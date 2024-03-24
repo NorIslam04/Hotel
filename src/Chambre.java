@@ -1,75 +1,91 @@
 public class Chambre{
-	private int id;
+
+	private int id;//pour hash map
 	private int nbLit;
-	private TypeChambre type;
-	private int reservedatleastonce;  //0 means no
+	private String type;
+	private double prix;
 	private int nbOp=0;
-	static int nbid=0;
+	static int nb=0;
+	private boolean indb=false;
+	private int reserver=0;
+	
+	public Chambre(int id,int nbLit, String type, double prix,int reserver) {
+		this.id = id;
+		this.nbLit = nbLit;
+		this.type = type;
+		this.prix = prix;
+		this.reserver=reserver;
+		nb++;
+	
+	}
 
+	
 
-		public Chambre(int id ,int nbLit,int reservedatleastonce) {
-			this.id=id;
-			this.nbLit = nbLit;
-			if(nbLit==1) {
-			type=TypeChambre.SOLO;
-			}else {
-			if(nbLit==2) {
-			type=TypeChambre.DOUBLE;
-			}else {
-			if(nbLit==3) 	{
-			type=TypeChambre.TRIPLE;
-			}else if(nbLit==4)
-		{
-				type=TypeChambre.SUITE;
-				}}
-		}
-			this.reservedatleastonce=reservedatleastonce;
-		
-			
-		}
-		
-		public int getNbLit() {
-			return nbLit;
-		}
-		public void setNbLit(int nbLit) {
-			this.nbLit = nbLit;
-			if(nbLit==1) {
-				type=TypeChambre.SOLO;
-				}else {
-				if(nbLit==2) {
-				type=TypeChambre.DOUBLE;
-				}else {
-				if(nbLit==3) 	{
-				type=TypeChambre.TRIPLE;
-				}}}
-		}
-		
-		public TypeChambre getType() {
-			return type;
-		}
-		public void setType(TypeChambre type) {
-			this.type = type;
-		}
-		
-		
-		
-		public int getId() {
-			return id;
-		}
-		
-		public int getNbOp() {
-			return nbOp;
-		}
-		public void setNbOp(int nbOp) {
-			this.nbOp = nbOp;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public int getReservedatleastonce() {
-			return reservedatleastonce;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public void setReservedatleastonce(int reservedatleastonce) {
-			this.reservedatleastonce = reservedatleastonce;
-		}
+	public int getNbLit() {
+		return nbLit;
+	}
+
+	public void setNbLit(int nbLit) {
+		this.nbLit = nbLit;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	public int getNbOp() {
+		return nbOp;
+	}
+
+	public void setNbOp(int nbOp) {
+		this.nbOp = nbOp;
+	}
+
+	public static int getNb() {
+		return nb;
+	}
+
+	public static void setNb(int nb) {
+		Chambre.nb = nb;
+	}
+
+	public boolean isIndb() {
+		return indb;
+	}
+
+	public void setIndb(boolean indb) {
+		this.indb = indb;
+	}
+
+	public int getReserver() {
+		return reserver;
+	}
+
+	public void setReserver(int reserver) {
+		this.reserver = reserver;
+	}
+
+	
+	
 
 }
