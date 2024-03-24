@@ -1,4 +1,3 @@
-
 enum TypeOperation {
     AJOUT,
     SUPPRESSION,
