@@ -1,4 +1,3 @@
-package hotel;
 import java.util.HashMap;
 
 public class GestionOperation {
@@ -11,18 +10,18 @@ public class GestionOperation {
 	 static void AjouterOpsChambreMap(Chambre chambre) {
 		 	ChambreOps.put(Integer.parseInt(String.valueOf(chambre.getId())+String.valueOf(chambre.getNbOp())),new Operation<Chambre>(TypeOperation.AJOUT, chambre));
 		 	chambre.setNbOp(chambre.getNbOp()+1);
-		 	GestionMapBdd.AjouterChambreMap(chambre);
+		 	Hotel.AjouterChambreMap(chambre);
 	 }
 	 static void AjouterOpsUserMap(User user) {
 		 //verif adresse mail
 	        UserOps.put(Integer.parseInt(String.valueOf(user.getId())+String.valueOf(user.getNbOp())),new Operation<User>(TypeOperation.AJOUT, user));
 			user.setNbOp(user.getNbOp() + 1);
-			GestionMapBdd.AjouterUserMap(user);
+			Hotel.AjouterUserMap(user);
 	 }
 	 static void AjouterOpsReservation(Reservation reservation) {
 	        reservationOps.put(Integer.parseInt(String.valueOf(reservation.getId())+String.valueOf(reservation.getNbOp())),new Operation<Reservation>(TypeOperation.AJOUT, reservation));
 	        reservation.setNbOp(reservation.getNbOp() + 1);
-	        GestionMapBdd.AjouterReservationMap(reservation);
+	        Hotel.AjouterReservationMap(reservation);
 	 }
 	 
 	 
@@ -30,17 +29,17 @@ public class GestionOperation {
 	static void SupprimerOpsChambreMap(Chambre chambre) {
 		ChambreOps.put(Integer.parseInt(String.valueOf(chambre.getId())+String.valueOf(chambre.getNbOp())),new Operation<Chambre>(TypeOperation.SUPPRESSION, chambre));
 		chambre.setNbOp(chambre.getNbOp() + 1);
-		GestionMapBdd.SupprimerChambreMap(chambre);
+		Hotel.SupprimerChambreMap(chambre);
 	}
 	 static void SupprimerOpsUserMap(User user) {
 		  UserOps.put(Integer.parseInt(String.valueOf(user.getId())+String.valueOf(user.getNbOp())),new Operation<User>(TypeOperation.SUPPRESSION, user));
 		  user.setNbOp(user.getNbOp() + 1);
-		  GestionMapBdd.SupprimerUserMap(user);
+		  Hotel.SupprimerUserMap(user);
 	 }
 	 static void SupprimerOpsReservation(Reservation reservation) {
 		 reservationOps.put(Integer.parseInt(String.valueOf(reservation.getId())+String.valueOf(reservation.getNbOp())),new Operation<Reservation>(TypeOperation.SUPPRESSION, reservation));
 		 reservation.setNbOp(reservation.getNbOp() + 1);
-		 GestionMapBdd.SupprimerReservationMap(reservation);
+		 Hotel.SupprimerReservationMap(reservation);
 	 }
 	 
 	 
@@ -48,16 +47,16 @@ public class GestionOperation {
 	static void ModifierOpsChambreMap(Chambre chambre) {
 		ChambreOps.put(Integer.parseInt(String.valueOf(chambre.getId())+String.valueOf(chambre.getNbOp())),new Operation<Chambre>(TypeOperation.MODIFICATION, chambre));
 		chambre.setNbOp(chambre.getNbOp() + 1);
-		GestionMapBdd.ModifierChambreMap(chambre);
+		Hotel.ModifierChambreMap(chambre);
 	}//ici le id reste tjr le mm
 	 static void ModifierOpsUserMap(User user) {
 		UserOps.put(Integer.parseInt(String.valueOf(user.getId())+String.valueOf(user.getNbOp())),new Operation<User>(TypeOperation.MODIFICATION, user));
 		user.setNbOp(user.getNbOp() + 1);
-		GestionMapBdd.ModifierUserMap(user);
+		//Hotel.ModifierUserMap(user); //modifier user !!
 	 }
 	 static void ModifierOpsReservation(Reservation reservation) {
 		reservationOps.put(Integer.parseInt(reservation.getId()+String.valueOf(reservation.getNbOp())),new Operation<Reservation>(TypeOperation.MODIFICATION, reservation));
 		reservation.setNbOp(reservation.getNbOp() + 1);
-		GestionMapBdd.SupprimerReservationMap(reservation);
+		Hotel.SupprimerReservationMap(reservation);
 	 }
 }

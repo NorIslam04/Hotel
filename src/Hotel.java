@@ -56,6 +56,7 @@ private static HashMap<Integer,Reservation> reservationMap = new HashMap<>();
 	static void ModifierReservationMap(int id,Reservation reservation) {
 		reservationMap.replace(id,reservation);
 	}
+
 	
 	void recherchechambredispo(String type) {
 		}
