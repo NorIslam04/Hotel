@@ -1,5 +1,63 @@
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("test");
+    
+    public static void main(String[] args) throws Exception {
+        Date today=new Date(25, 05, 2024);
+       try {
+
+        Date date_debut=Date.Recupere_date("1", "1", "2025");
+        Date.verif_today_date(today,date_debut );
+        Date date_fin =Date.Recupere_date("1", "2", "2025");
+        System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
+
+       } catch (NumberFormatException e) {
+        System.out.println("entrer des chiffres dans les dates -> "+e.getMessage());
+
+       } catch(Date_nonvalid e){
+        System.out.println(e.getMessage());
+
+       } catch(Date_Debut_Reservation e) {
+        System.out.println(e.getMessage());
+
+       }catch(Date_nonorganiser e){
+        System.out.println(e.getMessage());
+       }
+       
+       //creation des hashMap 
+       DataBase.Bdd_to_hashMap_users();
+       DataBase.Bdd_to_hashMap_room();
+       DataBase.Bdd_to_hashMap_reservation();
+
+
+       
+        User user1=new User(User.nb, "aloo@gamil.com", "aloo", "aloo1234");
+        Hotel.AjouterUserMap(user1);
+        DataBase.hashMapToDatabase_User();
+        System.out.println(User.nb);
+       
+
+        Chambre chambre=new Chambre(Chambre.nb, 2, "couple", 2300.34,0);
+        Hotel.AjouterChambreMap(chambre);
+        DataBase.hashMapToDatabase_chambres();
+        
+
+        Date dd=Date.Recupere_date("1", "1", "2025");
+        Date df=Date.Recupere_date("20", "2", "2025");
+        //
+        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), "solo", dd, df, chambre.getId(), "en attente");
+        Hotel.AjouterReservationMap(reservation);
+        DataBase.hashMapToDatabase_Reservation();
+
+
+       //ses instruction dans login-page admin:
+       String username="islam";//usertext.gettext();
+       String password="islam";//pwdtext.gettext();
+       if(DataBase.verif_admin_bdd(username, password)){
+        //to Admin-page: 
+       }else{
+            //username or password is incorrect - affiche dans la fenetre d'error
+       }
+    
     }
+
+    
 }
