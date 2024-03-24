@@ -1,5 +1,6 @@
 import java.util.HashMap;
 //hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiihih
+//islam
 
 public class Hotel{
 
