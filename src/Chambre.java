@@ -1,5 +1,3 @@
-
-
 public class Chambre{
 	private int id;
 	private int nbLit;
