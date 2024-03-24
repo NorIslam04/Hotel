@@ -1,5 +1,6 @@
 import java.util.HashMap;
-//islammm
+//hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiihih
+
 public class Hotel{
 
 private static HashMap<Integer,Chambre> chambreMap = new HashMap<>();
