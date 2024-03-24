@@ -1,5 +1,5 @@
 import java.util.HashMap;
-
+//islammm
 public class Hotel{
 
 private static HashMap<Integer,Chambre> chambreMap = new HashMap<>();
