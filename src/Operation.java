@@ -3,7 +3,7 @@ enum TypeOperation {
     SUPPRESSION,
     MODIFICATION
 }
-public class Operation<S> {
+public class Operation <S> {
 
     private S object; // chambre,user,etc.....
     private TypeOperation type; // represente le type d'operation ajout..etc

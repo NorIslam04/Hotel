@@ -35,7 +35,7 @@ public class Main {
         System.out.println(User.nb);
        
 
-        Chambre chambre=new Chambre(Chambre.nb, 2, "couple", 2300.34,0);
+        Chambre chambre=new Chambre(Chambre.nb, 2, TypeChambre.SUITE, 23000.16,0);
         Hotel.AjouterChambreMap(chambre);
         DataBase.hashMapToDatabase_chambres();
         
@@ -43,7 +43,7 @@ public class Main {
         Date dd=Date.Recupere_date("1", "1", "2025");
         Date df=Date.Recupere_date("20", "2", "2025");
         //
-        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), "solo", dd, df, chambre.getId(), "en attente");
+        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), "en attente");
         Hotel.AjouterReservationMap(reservation);
         DataBase.hashMapToDatabase_Reservation();
 

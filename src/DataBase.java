@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class DataBase {
 
 
@@ -76,8 +77,10 @@ public class DataBase {
                 String type = resultSet.getString("type");
                 double prix = resultSet.getDouble("prix");
                 int reserver=resultSet.getInt("reserver");
+
+                TypeChambre typeChambre=TypeChambre.ToTypeChambre(type);
                 
-                Chambre chambre=new Chambre(id,nombre_lit, type, prix,reserver);
+                Chambre chambre=new Chambre(id,nombre_lit, typeChambre, prix,reserver);
                 chambre.setIndb(true);
                 Hotel.AjouterChambreMap(chambre);
             }
@@ -249,7 +252,8 @@ public class DataBase {
             if(!chambre.isIndb()){
             // Définir les valeurs pour la déclaration d'insertion
             preparedStatement.setInt(1, chambre.getNbLit());
-            preparedStatement.setString(2, chambre.getType());
+            TypeChambre typeChambre=chambre.getType();
+            preparedStatement.setString(2, typeChambre.ToString());
             preparedStatement.setDouble(3, chambre.getPrix());
             preparedStatement.setInt(4, chambre.getReserver());
 
@@ -296,7 +300,7 @@ public static void hashMapToDatabase_Reservation() {
             
             // Exécuter la requête d'insertion
             preparedStatement.executeUpdate();
-            System.out.println("La Resevation de la Chambre iD: "+reservation.getIdChambre());
+            System.out.println("La Resevation: la Chambre iD: "+reservation.getIdChambre());
             }
         }
 
