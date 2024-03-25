@@ -8,7 +8,7 @@ public class GestionOperation {
 	
 	
 	 static void AjouterOpsChambreMap(Chambre chambre) {
-		 	ChambreOps.put(Integer.parseInt(String.valueOf(chambre.getId())+String.valueOf(chambre.getNbOp())),new Operation<Chambre>(TypeOperation.AJOUT, chambre));
+		 	ChambreOps.put(chambre.getId()+chambre.getNbOp(),new Operation<Chambre>(TypeOperation.AJOUT, chambre));
 		 	chambre.setNbOp(chambre.getNbOp()+1);
 		 	Hotel.AjouterChambreMap(chambre);
 	 }
