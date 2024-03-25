@@ -94,7 +94,7 @@ public class DataBase {
         }
     }
 
-    public static void Bdd_to_hashMap_reservation() throws Date_nonvalid {
+    public static void Bdd_to_hashMap_reservation() throws Date_nonvalid, Date_syntaxe {
         String query = "SELECT * FROM reservation";
     
         try {
@@ -111,10 +111,9 @@ public class DataBase {
                 int idChambre = resultSet.getInt("idChambre");
                 String etat = resultSet.getString("etat");
 
-                String[] parts_date_debut = dateDebut.split("/");
-                String[] parts_date_fin = dateFin.split("/");
-                Date dd=Date.Recupere_date(parts_date_debut[0], parts_date_debut[1], parts_date_debut[2]);
-                Date df=Date.Recupere_date(parts_date_fin[0], parts_date_fin[1], parts_date_fin[2]);
+                Date dd=Date.Recupere_date(dateDebut);
+                Date df=Date.Recupere_date(dateFin);
+
                 Reservation reservation=new Reservation(id, idUser, type, dd, df, idChambre, EtatReservation.toEtatReservation(etat));
                 reservation.setIndb(true);
                 Hotel.AjouterReservationMap(reservation);

@@ -7,6 +7,9 @@ public class Main {
         Date.verif_today_date(today,date_debut );
         Date date_fin =Date.Recupere_date("26/03/2024");
         System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
+        
+        catch(Date_syntaxe e){
+            System.out.println(e.getMessage());
 
        } catch (NumberFormatException e) {
         System.out.println("entrer des chiffres dans les dates -> "+e.getMessage());
@@ -39,8 +42,8 @@ public class Main {
         DataBase.hashMapToDatabase_chambres();
         
 
-        Date dd=Date.Recupere_date("1", "1", "2025");
-        Date df=Date.Recupere_date("20", "2", "2025");
+        Date dd=Date.Recupere_date("23/03/2024");
+        Date df=Date.Recupere_date("26/03/2024");
 
         Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), EtatReservation.ACCEPTER);
         Hotel.AjouterReservationMap(reservation);
