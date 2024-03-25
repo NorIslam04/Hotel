@@ -44,7 +44,7 @@ public class Chambre {
 	private int nbOp = 0;
 	static int nb = 0;
 	private boolean indb = false;
-	private int Reservedatleastonce = 0;// 0->non et 1->oui setReservedatleastonce
+	private int Reservedatleastonce = 0;// 0->non et 1->oui Reservedatleastonce
 
 	public Chambre(int id, int nbLit, TypeChambre type, double prix, int Reservedatleastonce) {
 		this.id = id;
