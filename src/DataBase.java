@@ -21,7 +21,7 @@ public class DataBase {
     }
 
     // base de donnet to hashMap:
-    public static void Bdd_to_hashMap_users() {
+    public static void Bdd_to_hashMap_users() throws deja_presente_bdd {
         // Informations de connexion à la base de données
 
         String query = "SELECT * FROM users";
@@ -57,7 +57,7 @@ public class DataBase {
 
     }
 
-    public static void Bdd_to_hashMap_room() {
+    public static void Bdd_to_hashMap_room() throws deja_presente_bdd {
         // Informations de connexion à la base de données
 
         String query = "SELECT * FROM rooms";
@@ -96,7 +96,7 @@ public class DataBase {
         }
     }
 
-    public static void Bdd_to_hashMap_reservation() throws Date_nonvalid, Date_syntaxe {
+    public static void Bdd_to_hashMap_reservation() throws Date_nonvalid, Date_syntaxe, deja_presente_bdd {
         String query = "SELECT * FROM reservation";
 
         try {
@@ -257,7 +257,7 @@ public class DataBase {
                     TypeChambre typeChambre = chambre.getType();
                     preparedStatement.setString(2, typeChambre.ToString());
                     preparedStatement.setDouble(3, chambre.getPrix());
-                    preparedStatement.setInt(4, chambre.getReserver());
+                    preparedStatement.setInt(4, chambre.getReservedatleastonce());
 
                     // Exécuter la requête d'insertion
                     preparedStatement.executeUpdate();
@@ -293,7 +293,7 @@ public class DataBase {
                 Reservation reservation = entry.getValue();
                 if (!reservation.isIndb()) {
                     // Définir les valeurs pour la déclaration d'insertion
-                    preparedStatement.setInt(1, reservation.getIdUser());
+                    preparedStatement.setInt(1, reservation.getUser().getId());
                     preparedStatement.setString(2, reservation.getType());
                     preparedStatement.setString(3, reservation.getDateDebut().toString()); // Supposons que
                                                                                            // getDateDebut() retourne
@@ -302,12 +302,12 @@ public class DataBase {
                     preparedStatement.setString(4, reservation.getDateFin().toString()); // Supposons que getDateFin()
                                                                                          // retourne une chaîne de
                                                                                          // caractères pour la date
-                    preparedStatement.setInt(5, reservation.getIdChambre());
+                    preparedStatement.setInt(5, reservation.getChambre().getId());
                     preparedStatement.setString(6, reservation.getEtat().toString());
 
                     // Exécuter la requête d'insertion
                     preparedStatement.executeUpdate();
-                    System.out.println("La Resevation: la Chambre iD: " + reservation.getIdChambre());
+                    System.out.println("La Resevation: la Chambre iD: " + reservation.getChambre().getId());
                 }
             }
 
@@ -357,11 +357,11 @@ public class DataBase {
                     Reservation reservation = entry.getValue();
 
                     System.out.println("ID: " + id);
-                    System.out.println("ID User: " + reservation.getIdUser());
+                    System.out.println("ID User: " + reservation.getUser().getId());
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
-                    System.out.println("ID Chambre: " + reservation.getIdChambre());
+                    System.out.println("ID Chambre: " + reservation.getChambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
                 }
