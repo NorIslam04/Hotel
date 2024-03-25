@@ -4,8 +4,7 @@ public enum TypeChambre {
     TRIPLE,
 	SUITE;
 
-
-    public TypeChambre ToTypeChambre(String str) {
+        public TypeChambre ToTypeChambre(String str) {
         switch (str) {
             case "SOLO":
                 return DOUBLE;
@@ -21,7 +20,6 @@ public enum TypeChambre {
         }
     }
     
- 
     public  String ToString() {
         switch (this) {
             case SOLO:

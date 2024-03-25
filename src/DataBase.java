@@ -115,7 +115,7 @@ public class DataBase {
                 String[] parts_date_fin = dateFin.split("/");
                 Date dd=Date.Recupere_date(parts_date_debut[0], parts_date_debut[1], parts_date_debut[2]);
                 Date df=Date.Recupere_date(parts_date_fin[0], parts_date_fin[1], parts_date_fin[2]);
-                Reservation reservation=new Reservation(id, idUser, type, dd, df, idChambre, etat);
+                Reservation reservation=new Reservation(id, idUser, type, dd, df, idChambre, EtatReservation.toEtatReservation(etat));
                 reservation.setIndb(true);
                 Hotel.AjouterReservationMap(reservation);
                 
@@ -296,7 +296,7 @@ public static void hashMapToDatabase_Reservation() {
             preparedStatement.setString(3, reservation.getDateDebut().toString()); // Supposons que getDateDebut() retourne une chaîne de caractères pour la date
             preparedStatement.setString(4, reservation.getDateFin().toString()); // Supposons que getDateFin() retourne une chaîne de caractères pour la date
             preparedStatement.setInt(5, reservation.getIdChambre());
-            preparedStatement.setString(6, reservation.getEtat());
+            preparedStatement.setString(6, reservation.getEtat().toString());
             
             // Exécuter la requête d'insertion
             preparedStatement.executeUpdate();

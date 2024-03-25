@@ -1,5 +1,4 @@
 public class Main {
-    
     public static void main(String[] args) throws Exception {
         Date today=new Date(25, 05, 2024);
        try {
@@ -42,8 +41,8 @@ public class Main {
 
         Date dd=Date.Recupere_date("1", "1", "2025");
         Date df=Date.Recupere_date("20", "2", "2025");
-        //
-        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), "en attente");
+
+        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), EtatReservation.ACCEPTER);
         Hotel.AjouterReservationMap(reservation);
         DataBase.hashMapToDatabase_Reservation();
 

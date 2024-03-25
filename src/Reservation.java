@@ -6,23 +6,21 @@ public class Reservation {
 		private Date dateDebut;
 		private Date dateFin;
 		private int idChambre;
-		private String etat="en attente";// new reservation
+		private EtatReservation etat=EtatReservation.EN_ATTEND;// new reservation
 		private int nbOp=0;
 		static int nb=0;
 		private boolean indb=false;
 		
-		public Reservation(int id,int idUser, String type, Date dateDebut, Date dateFin, int idChambre,String etat) {
+		public Reservation(int id,int idUser, String type, Date dateDebut, Date dateFin, int idChambre, EtatReservation etat) {
 			this.id = id;
 			this.idUser = idUser;
 			this.type = type;
 			this.dateDebut = dateDebut;
 			this.dateFin = dateFin;
 			this.idChambre = idChambre;
-			this.etat = etat;
+			this.etat=etat;
 			nb++;
 		}
-
-
 
 		public int getId() {
 			return id;
@@ -72,11 +70,11 @@ public class Reservation {
 			this.idChambre = idChambre;
 		}
 
-		public String getEtat() {
+		public EtatReservation getEtat() {
 			return etat;
 		}
 
-		public void setEtat(String etat) {
+		public void setEtat(EtatReservation etat) {
 			this.etat = etat;
 		}
 
@@ -103,6 +101,10 @@ public class Reservation {
 		public void setIndb(boolean indb) {
 			this.indb = indb;
 		}
+
+
+
+		
 
 		
 
