@@ -1,16 +1,17 @@
-import java.util.Date;
-
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Date1 today=new Date1(25, 05, 2024);
+        
+        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
+        System.out.println(today.toString());
        try {
 
 
-        Date1 date_debut=Date1.Recupere_date("islam/03/2024");
-        Date1.verif_today_date(today,date_debut );
-        Date1 date_fin =Date1.Recupere_date("26/03/2024");
-        System.out.println("deffirance : "+Date1.differenceEntreDates(date_debut, date_fin));
+        Date date_debut=Date.Recupere_date("25/03/2025");
+        Date.verif_today_date(today,date_debut );
+        Date date_fin =Date.Recupere_date("26/03/2025");
+        System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
 
        } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
@@ -46,8 +47,8 @@ public class Main {
         DataBase.hashMapToDatabase_chambres();
         
 
-        Date1 dd=Date1.Recupere_date("23/03/2024");
-        Date1 df=Date1.Recupere_date("26/03/2024");
+        Date dd=Date.Recupere_date("23/03/2024");
+        Date df=Date.Recupere_date("26/03/2024");
 
         Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), EtatReservation.ACCEPTER);
         Hotel.AjouterReservationMap(reservation);
