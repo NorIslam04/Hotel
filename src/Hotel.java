@@ -1,25 +1,21 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 class non_presente_bdd extends Exception {
-	private String message = "l'article que vous cherchez n est pas present a notre bdd verifiez svp";
-
-	// hna j crois nst3mlou les interface graphic ten khir
-	public String getMessage() {
-		return message;
-	}
+    private String message = "l'article que vous cherchez n est pas present a notre bdd verifiez svp";
+	//hna j crois nst3mlou les interface graphic ten khir 
+    public String getMessage() {
+        return message;
+    }
 }
 
 class deja_presente_bdd extends Exception {
-	private String message = "l'article que vous faite entrer est deja present a notre bdd";
-
-	// hna j crois nst3mlou les interface graphic ten khir
-	public String getMessage() {
-		return message;
-	}
+    private String message = "l'article que vous faite entrer est deja present a notre bdd";
+	//hna j crois nst3mlou les interface graphic ten khir 
+    public String getMessage() {
+        return message;
+    }
 }
-
 public class Hotel {
 
 	private static HashMap<Integer, Chambre> chambreMap = new HashMap<>();
@@ -58,11 +54,11 @@ public class Hotel {
 		}
 	}
 
-	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd {
+	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd{
 		if (!reservationMap.containsKey(reservation.getId())) {
 			reservationMap.put(reservation.getId(), reservation);
 		} else {
-			throw new deja_presente_bdd();
+		throw new deja_presente_bdd();
 		}
 	}
 

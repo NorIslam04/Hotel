@@ -2,9 +2,9 @@ public enum TypeChambre {
     SOLO,
     DOUBLE,
     TRIPLE,
-	SUITE;
+    SUITE;
 
-        public TypeChambre ToTypeChambre(String str) {
+    public TypeChambre ToTypeChambre(String str) {
         switch (str) {
             case "SOLO":
                 return DOUBLE;
@@ -16,11 +16,11 @@ public enum TypeChambre {
                 return TRIPLE;
             default:
                 throw new IllegalStateException("Type de chambre inconnu : " + str);
-            
+
         }
     }
-    
-    public  String ToString() {
+
+    public String ToString() {
         switch (this) {
             case SOLO:
                 return "SOLO";
@@ -32,7 +32,7 @@ public enum TypeChambre {
                 return "SUITE";
             default:
                 throw new IllegalArgumentException("Type de chambre invalide : " + this);
-            }
+        }
     }
-    
+
 }
