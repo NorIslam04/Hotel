@@ -7,7 +7,6 @@ public class Main {
         System.out.println(today.toString());
        try {
 
-
         Date date_debut=Date.Recupere_date("25/03/2025");
         Date.verif_today_date(today,date_debut );
         Date date_fin =Date.Recupere_date("26/03/2025");
