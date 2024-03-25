@@ -212,7 +212,7 @@ private JFrame frame;
         });
     }
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify                     
     private javax.swing.JButton addreservationbtn;
     private javax.swing.JLabel backgroundlabel;
     private javax.swing.JLabel enddatelabel;
