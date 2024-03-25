@@ -1,12 +1,16 @@
+import java.util.Date;
+
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        Date today=new Date(25, 05, 2024);
+        Date1 today=new Date1(25, 05, 2024);
        try {
 
-        Date date_debut=Date.Recupere_date("islam/03/2024");
-        Date.verif_today_date(today,date_debut );
-        Date date_fin =Date.Recupere_date("26/03/2024");
-        System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
+
+        Date1 date_debut=Date1.Recupere_date("islam/03/2024");
+        Date1.verif_today_date(today,date_debut );
+        Date1 date_fin =Date1.Recupere_date("26/03/2024");
+        System.out.println("deffirance : "+Date1.differenceEntreDates(date_debut, date_fin));
 
        } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
@@ -42,8 +46,8 @@ public class Main {
         DataBase.hashMapToDatabase_chambres();
         
 
-        Date dd=Date.Recupere_date("23/03/2024");
-        Date df=Date.Recupere_date("26/03/2024");
+        Date1 dd=Date1.Recupere_date("23/03/2024");
+        Date1 df=Date1.Recupere_date("26/03/2024");
 
         Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), EtatReservation.ACCEPTER);
         Hotel.AjouterReservationMap(reservation);
