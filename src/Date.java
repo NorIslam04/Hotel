@@ -30,10 +30,10 @@ class Date_syntaxe extends Exception {
 }
 
 
-public class Date1 {
+public class Date {
     private int jour, mois, annee;
 
-    public Date1(int jour, int mois, int annee) throws Date_nonvalid {
+    public Date(int jour, int mois, int annee) throws Date_nonvalid {
         if(!isValidDate(jour, mois, annee) ){
             throw new Date_nonvalid();
         }
@@ -42,7 +42,7 @@ public class Date1 {
         this.annee = annee;
     }
     
-    public static void verif_today_date(Date1 today,Date1 dubut_reservation) throws Date_Debut_Reservation{
+    public static void verif_today_date(Date today,Date dubut_reservation) throws Date_Debut_Reservation{
         if(!Dates_logique(today, dubut_reservation)){
             throw new Date_Debut_Reservation();
         }
@@ -78,7 +78,7 @@ public class Date1 {
         return (annee % 4 == 0 && annee % 100 != 0) || (annee % 400 == 0);
     }
 
-    public static boolean Dates_logique(Date1 date_debut, Date1 date_fin) {
+    public static boolean Dates_logique(Date date_debut, Date date_fin) {
         if (date_debut.annee > date_fin.annee ||
                 (date_debut.annee == date_fin.annee && date_debut.mois > date_fin.mois) ||
                 (date_debut.annee == date_fin.annee && date_debut.mois == date_fin.mois && date_debut.jour >= date_fin.jour)) {
@@ -87,7 +87,7 @@ public class Date1 {
         return true;
     }
 
-    public static int joursDepuisDebutAnnee(Date1 date) {
+    public static int joursDepuisDebutAnnee(Date date) {
         int[] joursParMois = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         int jours = date.getJour();
     
@@ -102,7 +102,7 @@ public class Date1 {
         return jours;
     }
     
-    public static Object differenceEntreDates(Date1 date_debut, Date1 date_fin) throws Date_nonvalid, Date_nonorganiser {
+    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Date_nonvalid, Date_nonorganiser {
         if (!Dates_logique(date_debut, date_fin)) {
             throw new Date_nonorganiser();
         }
@@ -118,7 +118,7 @@ public class Date1 {
         return joursDepuisDebutAnnee(date_fin)-joursDepuisDebutAnnee(date_debut);
     }
     
-    public static Date1 Recupere_date(String dateString) throws Date_nonvalid,Date_syntaxe,NumberFormatException { 
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,Date_syntaxe,NumberFormatException { 
         try {
 
             String[] parts_date_debut = dateString.split("/");
@@ -126,7 +126,7 @@ public class Date1 {
             int moisInt=Integer.parseInt(parts_date_debut[1]);
             int anneeInt=Integer.parseInt(parts_date_debut[2]);
 
-            return new Date1(jourInt, moisInt, anneeInt);
+            return new Date(jourInt, moisInt, anneeInt);
         
         }catch(NumberFormatException e){
             throw new NumberFormatException();

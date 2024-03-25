@@ -111,8 +111,8 @@ public class DataBase {
                 int idChambre = resultSet.getInt("idChambre");
                 String etat = resultSet.getString("etat");
 
-                Date1 dd=Date1.Recupere_date(dateDebut);
-                Date1 df=Date1.Recupere_date(dateFin);
+                Date dd=Date.Recupere_date(dateDebut);
+                Date df=Date.Recupere_date(dateFin);
 
                 Reservation reservation=new Reservation(id, idUser, type, dd, df, idChambre, EtatReservation.toEtatReservation(etat));
                 reservation.setIndb(true);
