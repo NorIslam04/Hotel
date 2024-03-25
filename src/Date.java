@@ -118,11 +118,10 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin)-joursDepuisDebutAnnee(date_debut);
     }
     
-    public static Date Recupere_date(String dateString) throws Date_nonvalid,Date_syntaxe {
-        String s1="test"; 
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,Date_syntaxe { 
         try {
 
-            String[] parts_date_debut = s1.split("/");
+            String[] parts_date_debut = dateString.split("/");
             int jourInt=Integer.parseInt(parts_date_debut[0]);
             int moisInt=Integer.parseInt(parts_date_debut[1]);
             int anneeInt=Integer.parseInt(parts_date_debut[2]);
@@ -132,7 +131,6 @@ public class Date {
         } catch (Exception e) {
             throw new Date_syntaxe();
             
-
         }
        
     }
