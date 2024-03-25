@@ -162,5 +162,41 @@ public class Date {
         return this.jour + "/" + this.mois + "/" + this.annee;
     }
 
+    static int comparer(Date date1,Date date2) {
+        if(date1.annee<date2.annee) {
+            return -1;
+        }else {
+            if(date1.annee>date2.annee) {
+                return 1;
+            }else{
+                if(date1.mois<date2.mois) {
+                    return -1;	
+            }else {
+                if(date1.mois>date2.mois) {
+                    return 1;
+                }else {
+                    if(date1.jour<date2.jour) {
+                        return -1;
+                    }else {
+                        if(date1.jour>date2.jour) {
+                            return 1;
+                        }else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+                }
+        }
+    }
+    
+    static boolean DateCoincidePas(Date datedebut1, Date datefin1, Date datedebut2, Date datefin2) {
+   
+        if (comparer(datefin1, datedebut2) < 0 || comparer(datefin2, datedebut1) < 0) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
     
 }
