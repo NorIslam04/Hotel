@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 public class Admin {
 
 	private String name;
@@ -62,6 +63,24 @@ public class Admin {
 
 	public static void setNb(int nb) {
 		Admin.nb = nb;
+	}
+
+	public void supprimerreservationinutile(){
+		//ici l admin a la fin de journee vas executer ce traitement
+		//cette fonction permet de supprimer kml les reservation ly la date de fin dylhm =date actuelle m la bdd ...etc
+		//gnr nlibiriw wsh mnss79ouch
+		LocalDate date=LocalDate.now();
+		Date dateact=new Date(date.getDayOfMonth(), date.getDayOfMonth(), date.getYear());
+		Iterator<Map.Entry<Integer, Reservation>> iterator = Hotel.entrySet().iterator();
+	while (iterator.hasNext()) {
+		Map.Entry<Integer, Reservation> entry = iterator.next();
+		Reservation reservation = entry.getValue();
+		if(reservation.getDateFin()==dateact){
+			GestionOperation.SupprimerOpsReservation(reservation);
+		}
+
+
+	}
 	}
 
 	
