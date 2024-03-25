@@ -3,15 +3,15 @@ public class Reservation {
 		private int id;
 		private int idUser;
 		private String type;
-		private Date dateDebut;
-		private Date dateFin;
+		private Date1 dateDebut;
+		private Date1 dateFin;
 		private int idChambre;
 		private EtatReservation etat=EtatReservation.EN_ATTEND;// new reservation
 		private int nbOp=0;
 		static int nb=0;
 		private boolean indb=false;
 		
-		public Reservation(int id,int idUser, String type, Date dateDebut, Date dateFin, int idChambre, EtatReservation etat) {
+		public Reservation(int id,int idUser, String type, Date1 dateDebut, Date1 dateFin, int idChambre, EtatReservation etat) {
 			this.id = id;
 			this.idUser = idUser;
 			this.type = type;
@@ -46,19 +46,19 @@ public class Reservation {
 			this.type = type;
 		}
 
-		public Date getDateDebut() {
+		public Date1 getDateDebut() {
 			return dateDebut;
 		}
 
-		public void setDateDebut(Date dateDebut) {
+		public void setDateDebut(Date1 dateDebut) {
 			this.dateDebut = dateDebut;
 		}
 
-		public Date getDateFin() {
+		public Date1 getDateFin() {
 			return dateFin;
 		}
 
-		public void setDateFin(Date dateFin) {
+		public void setDateFin(Date1 dateFin) {
 			this.dateFin = dateFin;
 		}
 
