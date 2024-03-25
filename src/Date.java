@@ -21,6 +21,15 @@ class Date_Debut_Reservation extends Exception {
     }
 }
 
+class Date_syntaxe extends Exception {
+    private String message = "erreur dans la syntaxe de la date ! -> syntaxe: (JJ/MM/AAAA)";
+
+    public String getMessage() {
+        return message;
+    }
+}
+
+
 public class Date {
     private int jour, mois, annee;
 
@@ -109,11 +118,22 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin)-joursDepuisDebutAnnee(date_debut);
     }
     
-    public static Date Recupere_date(String jour, String mois, String annee) throws Date_nonvalid {
-            int jourInt = Integer.parseInt(jour);
-            int moisInt = Integer.parseInt(mois);
-            int anneeInt = Integer.parseInt(annee);
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,Date_syntaxe {
+        String s1="test"; 
+        try {
+
+            String[] parts_date_debut = s1.split("/");
+            int jourInt=Integer.parseInt(parts_date_debut[0]);
+            int moisInt=Integer.parseInt(parts_date_debut[1]);
+            int anneeInt=Integer.parseInt(parts_date_debut[2]);
+
             return new Date(jourInt, moisInt, anneeInt);
+
+        } catch (Exception e) {
+            throw new Date_syntaxe();
+            
+
+        }
        
     }
     

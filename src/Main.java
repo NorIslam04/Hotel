@@ -3,9 +3,9 @@ public class Main {
         Date today=new Date(25, 05, 2024);
        try {
 
-        Date date_debut=Date.Recupere_date("1", "1", "2025");
+        Date date_debut=Date.Recupere_date("23/03/2024");
         Date.verif_today_date(today,date_debut );
-        Date date_fin =Date.Recupere_date("1", "2", "2025");
+        Date date_fin =Date.Recupere_date("26/03/2024");
         System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
 
        } catch (NumberFormatException e) {
