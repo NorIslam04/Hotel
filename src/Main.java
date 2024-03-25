@@ -3,16 +3,16 @@ public class Main {
         Date today=new Date(25, 05, 2024);
        try {
 
-        Date date_debut=Date.Recupere_date("23/03/2024");
+        Date date_debut=Date.Recupere_date("islam/03/2024");
         Date.verif_today_date(today,date_debut );
         Date date_fin =Date.Recupere_date("26/03/2024");
         System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
-        
-        catch(Date_syntaxe e){
+
+       } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
 
        } catch (NumberFormatException e) {
-        System.out.println("entrer des chiffres dans les dates -> "+e.getMessage());
+        System.out.println("entrer des chiffres dans les dates !");
 
        } catch(Date_nonvalid e){
         System.out.println(e.getMessage());
