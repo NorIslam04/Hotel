@@ -1,85 +1,131 @@
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
+import java.awt.*;
+import java.util.Set;
 
 public class Login extends javax.swing.JFrame {
 
-    
     public Login() {
         initComponents();
+        
     }
-
+                        
     private void initComponents() {
 
         userlabel = new javax.swing.JLabel();
         pwdlabel = new javax.swing.JLabel();
         loginlabel = new javax.swing.JLabel();
+        welcomelabel = new javax.swing.JLabel();
+        backgroundlabel = new javax.swing.JLabel();
         usertext = new javax.swing.JTextField();
         pwdtext = new javax.swing.JPasswordField();
-        welcomelabel = new javax.swing.JLabel();
         signinbtn = new javax.swing.JButton();
         closebtn = new javax.swing.JButton();
         submitbtn = new javax.swing.JButton();
-        backgroundlabel = new javax.swing.JLabel();
 
+        //rendre le layout manager null pour le positionement absolu.
+        getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Page");
-
-        userlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24));
+        setLocationRelativeTo(null);
+        setVisible(true);
+        
+        //creation d'une label pour le username avec ses caractéristiques.
+        userlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); 
         userlabel.setForeground(new java.awt.Color(255, 255, 255));
         userlabel.setText("User-name:");
-
-        pwdlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24));
+        // le positionement exact du label.
+        userlabel.setBounds(240, 320, 150, 30);
+        getContentPane().add(userlabel);
+        
+        //creation d'une label pour le password avec ses caractéristiques.
+        pwdlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
         pwdlabel.setForeground(new java.awt.Color(255, 255, 255));
         pwdlabel.setText("Password:");
-
-        loginlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 36));
+        // le positionement exact du label.
+        pwdlabel.setBounds(240, 380, 150,30);
+        getContentPane().add(pwdlabel);
+        
+        //creation d'une label pour le login avec ses caractéristiques.
+        loginlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 36)); // NOI18N
         loginlabel.setForeground(new java.awt.Color(255, 255, 255));
         loginlabel.setText("Login");
+        // le positionement exact du label.
+        loginlabel.setBounds(400, 240, 150, 50);
+        getContentPane().add(loginlabel);
 
-        usertext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usertextActionPerformed(evt);
-            }
-        });
-
+        //creation d'une label pour le welcome avec ses caractéristiques.
+        welcomelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 48)); // NOI18N
+        welcomelabel.setForeground(new java.awt.Color(255, 255, 255));
+        welcomelabel.setText("Welcome To Our Hotel");
+        // le positionement exact du label.
+        welcomelabel.setBounds(180,30,1000,50);
+        getContentPane().add(welcomelabel);
+        
+        // le positionement exact du password field.
+        pwdtext.setBounds(420, 380, 230, 30);
+        getContentPane().add(pwdtext);
+        // l'action du password field.
         pwdtext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdtextActionPerformed(evt);
             }
         });
+        // le positionement exact du user text field.
+        usertext.setBounds(420, 320, 230, 30);
+        getContentPane().add(usertext);
+        // l'action du user text field.
+        /* usertext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usertextActionPerformed(evt);
+            }
+        });*/
 
-        welcomelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 48)); // NOI18N
-        welcomelabel.setForeground(new java.awt.Color(255, 255, 255));
-        welcomelabel.setText("Welcome To Our Hotel");
+        //les bouttons.
 
         signinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         signinbtn.setText("Sign-in");
+        // le positionement exact du signin button.
+        signinbtn.setBounds(610, 450, 90, 30);
+        getContentPane().add(signinbtn);
+        // l'action du signin button.
         signinbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signinbtnActionPerformed(evt);
             }
         });
-
+        
+        
         closebtn.setBackground(new java.awt.Color(171, 34, 34));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setForeground(new java.awt.Color(255, 255, 255));
         closebtn.setText("Close");
+        // le positionement exact du close button.
+        closebtn.setBounds(230, 450, 90, 30);
+        getContentPane().add(closebtn);
+        // l'action du close button.
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closebtnActionPerformed(evt);
             }
         });
+       
 
-        submitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        submitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); 
         submitbtn.setText("Submit");
+        // le positionement exact du submit button.
+        submitbtn.setBounds(420, 450, 90, 30);
+        getContentPane().add(submitbtn);
+        // l'action du submit button.
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitbtnActionPerformed(evt);
             }
         });
-
-        backgroundlabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Desktop\\les interfaces graphiques\\login.png"));
+        // le positionement exact du background label.
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("login.png")); // NOI18N
+        backgroundlabel.setBounds(0, 0, 920, 580);
+        getContentPane().add(backgroundlabel);
+       
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
@@ -92,7 +138,7 @@ public class Login extends javax.swing.JFrame {
     private void signinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
-private JFrame frame;
+    private JFrame frame;
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
     frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
@@ -104,10 +150,6 @@ private JFrame frame;
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
-
-    private void usertextActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }    
 
     public static void main(String args[]) {
         try {
@@ -126,17 +168,14 @@ private JFrame frame;
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
     }
-
-                       
+                    
     private javax.swing.JLabel backgroundlabel;
     private javax.swing.JButton closebtn;
     private javax.swing.JLabel loginlabel;
@@ -147,6 +186,5 @@ private JFrame frame;
     private javax.swing.JLabel userlabel;
     private javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
-                    
+                   
 }
-
