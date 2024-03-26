@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -161,7 +163,11 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         addreservationbtn.setText("Add Reservation");
         addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addreservationbtnActionPerformed(evt);
+                try {
+                    addreservationbtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         // le positionement exact du boutton.
@@ -213,9 +219,50 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                             
 
-    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+        try{
+        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
+        Date date_debut=Date.Recupere_date(startdatetext.getText());
+        Date.verif_today_date(today, date_debut);
+        Date date_fin=Date.Recupere_date(enddatetext.getText());
+        System.out.println("deffirance -> "+Date.differenceEntreDates(date_debut, date_fin));
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
         Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
+
+    } catch(Date_syntaxe e){
+        System.out.println(e.getMessage());
+    
+   } catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(frame,
+                "entrer des chiffres dans les dates !",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+   } catch(Date_nonvalid e){
+   
+    JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+    
+
+   } catch(Date_Debut_Reservation e) {
+    JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+   }catch(Date_nonorganiser e){
+    JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+   } catch(DiffSup365 e){
+    JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.INFORMATION_MESSAGE);
+   }                                          
     }                                                 
 
     private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              

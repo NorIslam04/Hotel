@@ -19,7 +19,7 @@ public class Reservation {
 		this.type = type;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.user=Hotel.RechercheuserParId(idUser);
+		this.user=Hotel.RechercheuserParId(idUser);//TODO: supp
 		this.chambre=Hotel.RechercheChambreParId(idChambre); //fhed les fct g pas encore geree les err
 		this.etat = etat;
 		nb++;

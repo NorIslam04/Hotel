@@ -137,11 +137,15 @@ public class Hotel {
 
 	}
 
+	
 	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
+
 		Iterator<Map.Entry<Integer, Reservation>> iterator = reservationMap.entrySet().iterator();
+
 		while (iterator.hasNext()) {
 			Map.Entry<Integer, Reservation> entry = iterator.next();
 			Reservation reservation = entry.getValue();
+
 			if (reservation.getChambre().getId() == chambre.getId()) {
 				if (!Date.DateCoincidePas(datedebut, datefin, reservation.getDateDebut(), reservation.getDateFin())) {
 					return false;
