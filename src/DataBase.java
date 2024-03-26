@@ -197,6 +197,7 @@ public class DataBase {
     }
 
     // hashMap to base de donner
+    /* 
     public static void hashMapToDatabase_User() {
         HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
