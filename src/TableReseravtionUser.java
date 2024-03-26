@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,88 +29,44 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         enddatetext = new javax.swing.JTextField();
         backgroundlabel = new javax.swing.JLabel();
 
-        //rendre le layout manager null pour le positionement absolu.
-        getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Table de réservation pour l'utilisateur");
-        setLocationRelativeTo(null);
-        setVisible(true);
-        
-        //creation d'une label pour le description des réservation avec ses caractéristiques.
+        setTitle("Login Page");
+
         jLabel2.setFont(new java.awt.Font("Bodoni MT Black", 0, 24));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Here Are Your Reservations:");
-        // le positionement exact du label.
-        jLabel2.setBounds(460, 40, 390, 30);
-        getContentPane().add(jLabel2);
-        
-        //creation d'une label pour les caractéristiques des chambres avec ses caractéristiques.
+
         jLabel3.setFont(new java.awt.Font("Bodoni MT Black", 0, 14));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("The Characteristics Of Your Room:");
-        // le positionement exact du label.
-        jLabel3.setBounds(50, 80, 260, 30);
-        getContentPane().add(jLabel3);
 
-        //creation d'une label pour l'ID de la chambre avec ses caractéristiques.
-        idroomlabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
-        idroomlabel.setForeground(new java.awt.Color(255, 255, 255));
-        idroomlabel.setText("ID-Room:");
-        // le positionement exact du label.
-        idroomlabel.setBounds(30, 140, 150, 50);
-        getContentPane().add(idroomlabel);
-
-        //creation d'une label pour le type de la chambre avec ses caractéristiques.
         roomtypelabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
         roomtypelabel.setForeground(new java.awt.Color(255, 255, 255));
         roomtypelabel.setText("Room Type:");
-        // le positionement exact du label.
-        roomtypelabel.setBounds(30, 200, 120,50);
-        getContentPane().add(roomtypelabel);
-        
-        //creation d'une label pour la date de début avec ses caractéristiques.
+
         startdatelabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
         startdatelabel.setForeground(new java.awt.Color(255, 255, 255));
         startdatelabel.setText("Start Date:");
-        // le positionement exact du label.
-        startdatelabel.setBounds(30, 260,120,50);
-        getContentPane().add(startdatelabel);
 
-        //creation d'une label pour la date de fin avec ses caractéristiques.
         enddatelabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
         enddatelabel.setForeground(new java.awt.Color(255, 255, 255));
         enddatelabel.setText("End Date:");
-        // le positionement exact du label.
-        enddatelabel.setBounds(30, 330, 120, 50);
-        getContentPane().add(enddatelabel);
 
-        //creation d'une label pour la prix de la chambre avec ses caractéristiques.
         roompricelabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
         roompricelabel.setForeground(new java.awt.Color(255, 255, 255));
         roompricelabel.setText("Room Price:");
-        // le positionement exact du label.
-        roompricelabel.setBounds(30, 400, 120, 50);
-        getContentPane().add(roompricelabel);
-
-        //les TextFields:
 
         idroomtext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idroomtextActionPerformed(evt);
             }
         });
-        // le positionement exact du text field.
-        idroomtext.setBounds(160, 140, 150, 30);
-        getContentPane().add(idroomtext);
 
         roomtypetext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomtypetextActionPerformed(evt);
             }
         });
-        // le positionement exact du text field.
-        roomtypetext.setBounds(160, 200, 150, 30);
-        getContentPane().add(roomtypetext);
 
         startdatetext.setText("JJ/MM/AA");
         startdatetext.addActionListener(new java.awt.event.ActionListener() {
@@ -120,24 +74,13 @@ public class TableReseravtionUser extends javax.swing.JFrame {
                 startdatetextActionPerformed(evt);
             }
         });
-        startdatetext.setBounds(160, 260, 150, 30);
-        getContentPane().add(startdatetext);
-
-        enddatetext.setText("JJ/MM/AA");
-        // le positionement exact du text field.
-        enddatetext.setBounds(160, 330, 150, 30);
-        getContentPane().add(enddatetext);
 
         roompricetext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roompricetextActionPerformed(evt);
             }
         });
-        // le positionement exact du text field.
-        roompricetext.setBounds(160, 400, 150, 30);
-        getContentPane().add(roompricetext);
 
-        // la Table des Réservations:
         tablereservation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tablereservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,26 +96,14 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablereservation);
-        // le positionement exact du text field.
-        jScrollPane1.setBounds(420, 130, 440, 330);
-        getContentPane().add(jScrollPane1);
 
-        //les bouttons:
-
-        addreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        addreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         addreservationbtn.setText("Add Reservation");
         addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addreservationbtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                addreservationbtnActionPerformed(evt);
             }
         });
-        // le positionement exact du boutton.
-        addreservationbtn.setBounds(20, 460, 130, 30);
-        getContentPane().add(addreservationbtn);
 
         updatebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         updatebtn.setText("Update-Now");
@@ -181,9 +112,10 @@ public class TableReseravtionUser extends javax.swing.JFrame {
                 updatebtnActionPerformed(evt);
             }
         });
-        // le positionement exact du boutton.
-        updatebtn.setBounds(190, 460, 130, 30);
-        getContentPane().add(updatebtn);
+
+        idroomlabel.setFont(new java.awt.Font("Bodoni MT", 0, 18));
+        idroomlabel.setForeground(new java.awt.Color(255, 255, 255));
+        idroomlabel.setText("ID-Room:");
 
         exitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         exitbtn.setText("Exit");
@@ -192,16 +124,11 @@ public class TableReseravtionUser extends javax.swing.JFrame {
                 exitbtnActionPerformed(evt);
             }
         });
-        // le positionement exact du boutton.
-        exitbtn.setBounds(100, 510, 140, 30);
-        getContentPane().add(exitbtn);
 
+        enddatetext.setText("JJ/MM/AA");
 
         backgroundlabel.setIcon(new javax.swing.ImageIcon("liste-de-reservations.png"));
         backgroundlabel.setText("AnnÃ©e");
-        // le positionement exact du label.
-        backgroundlabel.setBounds(0, 0, 920, 580);
-        getContentPane().add(backgroundlabel);
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
@@ -219,55 +146,9 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                             
 
-    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
-        try{
-        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
-        Date date_debut=Date.Recupere_date(startdatetext.getText());
-        Date.verif_today_date(today, date_debut);
-        Date date_fin=Date.Recupere_date(enddatetext.getText());
-        //Date.differenceEntreDates(date_debut, date_fin);
-        int id_user=0001;//des instruction pour recuperer le id_user
-        int id_chambre=0002;//des instruction pour recuperer le id_chambre
-        Reservation reservation= new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin,id_chambre, EtatReservation.EN_ATTEND);
-        Hotel.AjtResMap(reservation);
-
+    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
         Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
-
-    } catch(Date_syntaxe e){
-        System.out.println(e.getMessage());
-    
-   } catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(frame,
-                "entrer des chiffres dans les dates !",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-
-   } catch(Date_nonvalid e){
-   
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-    
-
-   } catch(Date_Debut_Reservation e) {
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-
-   }catch(Date_nonorganiser e){
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-   } catch(DiffSup365 e){
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.INFORMATION_MESSAGE);
-   }                                          
     }                                                 
 
     private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
@@ -297,7 +178,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     private void idroomtextActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
     }                                          
-    private JFrame frame;
+private JFrame frame;
     private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
