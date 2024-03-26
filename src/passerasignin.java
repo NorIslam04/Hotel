@@ -70,15 +70,13 @@ public class passerasignin extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void clickbackbtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        Login log = new Login();
-        log.setVisible(true);
-        this.hide();
+        this.dispose();
     }                                            
 
     private void signinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Signeininterface sin = new Signeininterface();
         sin.setVisible(true);
-        this.hide();
+        this.dispose();
     }                                         
 
     
