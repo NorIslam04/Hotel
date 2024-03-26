@@ -10,35 +10,6 @@ public class Main {
        DataBase.Bdd_to_hashMap_room();
        DataBase.Bdd_to_hashMap_reservation();
 
-
-       
-        User user1=new User(User.nb, "aloo@gamil.com", "aloo", "aloo1234");
-        Hotel.AjouterUserMap(user1);
-        DataBase.hashMapToDatabase_User();
-        System.out.println(User.nb);
-       
-
-        Chambre chambre=new Chambre(Chambre.nb, 2, TypeChambre.SUITE, 23000.16,0);
-        Hotel.AjouterChambreMap(chambre);
-        DataBase.hashMapToDatabase_chambres();
-        
-
-        Date dd=Date.Recupere_date("23/03/2024");
-        Date df=Date.Recupere_date("26/03/2024");
-
-        Reservation reservation=new Reservation(Reservation.nb, user1.getId(), chambre.getType().ToString(), dd, df, chambre.getId(), EtatReservation.ACCEPTER);
-        Hotel.AjouterReservationMap(reservation);
-        DataBase.hashMapToDatabase_Reservation();
-
-
-       //ses instruction dans login-page admin:
-       String username="islam";//usertext.gettext();
-       String password="islam";//pwdtext.gettext();
-       if(DataBase.verif_admin_bdd(username, password)){
-        //to Admin-page: 
-       }else{
-            //username or password is incorrect - affiche dans la fenetre d'error
-       }
     
     }
 
