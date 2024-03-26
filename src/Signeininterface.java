@@ -153,7 +153,6 @@ public class Signeininterface extends javax.swing.JFrame {
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
             Hotel.AjtUserMap(user);
-            
             chambreinterface ch = new chambreinterface();
             ch.setVisible(true);
             this.hide();
