@@ -319,6 +319,8 @@ public class DataBase {
         }
     }
     */
+   
+   
     public static void afficherHashMap() {
         System.out.println("choisir un num: ");
         System.out.println("1 -> Users");
@@ -361,6 +363,7 @@ public class DataBase {
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
+                    System.out.println("NbrJourResrvation: "+reservation.getNbrJourReservation());
                     System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
