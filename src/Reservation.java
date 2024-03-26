@@ -8,7 +8,7 @@ public class Reservation {
 	private Chambre chambre;
 
 
-	private EtatReservation etat = EtatReservation.EN_ATTEND;// new reservation
+	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
 	private int nbOp = 0;
 	static int nb = 0;
 	private boolean indb = false;

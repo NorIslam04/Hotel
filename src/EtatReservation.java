@@ -1,7 +1,7 @@
 public enum EtatReservation {
     ACCEPTER,
     DECLINER,
-    EN_ATTEND;
+    EN_ATTENTE;
 
     public static EtatReservation toEtatReservation(String str) {
         switch (str) {
@@ -10,7 +10,7 @@ public enum EtatReservation {
             case "DECLINER":
                 return DECLINER;
             case "EN_ATTEND":
-                return EN_ATTEND;
+                return EN_ATTENTE;
             default:
                 throw new IllegalStateException("État de réservation inconnu : " + str);
         }
@@ -23,7 +23,7 @@ public enum EtatReservation {
                 return "ACCEPTER";
             case DECLINER:
                 return "DECLINER";
-            case EN_ATTEND:
+            case EN_ATTENTE:
                 return "EN_ATTEND";
             default:
                 throw new IllegalArgumentException("État de réservation invalide : " + this);
