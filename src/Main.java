@@ -14,6 +14,7 @@ public class Main {
 
        } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
+        
 
        } catch (NumberFormatException e) {
         System.out.println("entrer des chiffres dans les dates !");
@@ -67,3 +68,5 @@ public class Main {
 
     
 }
+
+
