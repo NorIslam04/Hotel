@@ -96,7 +96,7 @@ public class DataBase {
         }
     }
 
-    public static void Bdd_to_hashMap_reservation() throws Date_nonvalid, Date_syntaxe, deja_presente_bdd {
+    public static void Bdd_to_hashMap_reservation() throws Exception {
         String query = "SELECT * FROM reservation";
 
         try {
@@ -112,10 +112,10 @@ public class DataBase {
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
                 String etat = resultSet.getString("etat");
-
+                
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-
+                
                 Reservation reservation = new Reservation(id, idUser, type, dd, df, idChambre,
                         EtatReservation.toEtatReservation(etat));
                 reservation.setIndb(true);

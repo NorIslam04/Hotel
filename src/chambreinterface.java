@@ -5,9 +5,7 @@ public class chambreinterface extends javax.swing.JFrame {
     public chambreinterface() {
         initComponents();
     }
-
     @SuppressWarnings("unchecked")
-    // < defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         titrelabel = new javax.swing.JLabel();
