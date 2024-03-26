@@ -35,7 +35,7 @@ public class Hotel {
 		return reservationMap;
 	}
 	//une fonction pour vérifier si un utilisateur existe dans déja:
-	private static boolean findUser(String name, String password) {
+	static boolean findUser(String name, String password) {
 		for (Map.Entry<Integer, User> entry : userMap.entrySet()) {
 			User user = entry.getValue();
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
@@ -147,7 +147,7 @@ public class Hotel {
 
 	}
 
-	
+
 	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
 
 		Iterator<Map.Entry<Integer, Reservation>> iterator = reservationMap.entrySet().iterator();

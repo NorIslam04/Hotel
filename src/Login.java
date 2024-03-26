@@ -149,10 +149,27 @@ public class Login extends javax.swing.JFrame {
         }
     }                                        
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {  
+        if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
+           // new tableReservationAdmin && modifier chambre
+           JOptionPane.showMessageDialog(frame,
+                "WELCOME ADMIN ZA3IIIM",
+                "WELCOME",
+                JOptionPane.INFORMATION_MESSAGE); 
+
+        }else{
+        if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
         chambreinterface ch = new chambreinterface();
         ch.setVisible(true);
         this.hide();
+        }else{
+            JOptionPane.showMessageDialog(frame,
+                "le compte n'existe pas !!",
+                "Erreur",
+                JOptionPane.INFORMATION_MESSAGE);
+                //cree panel pour cree un compte button (sign-in)
+        }
+    }
     }                                         
 
     public static void main(String args[]) {
