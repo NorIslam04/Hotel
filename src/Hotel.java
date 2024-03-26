@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.swing.plaf.nimbus.State;
 class non_presente_bdd extends Exception {
     private String message = "l'article que vous cherchez n est pas present a notre bdd verifiez svp";
 	//hna j crois nst3mlou les interface graphic ten khir 
@@ -70,6 +72,11 @@ public class Hotel {
 		} else {
 		throw new deja_presente_bdd();
 		}
+	}
+	static void AjtResMap(Reservation reservation){
+		reservationMap.put(reservation.getId(), reservation);
+		//chaque fois en appelle cette fonction AjtResMap(Reservation reservation) 
+		//en doit appeller la ajouter une instance a la classe classgenerique
 	}
 
 	// modification sur les hashmap
@@ -156,7 +163,7 @@ public class Hotel {
 			Map.Entry<Integer, Reservation> entry = iterator.next();
 			Reservation reservation = entry.getValue();
 
-			if (reservation.getChambre().getId() == chambre.getId()) {
+			if (reservation.getId_user() == chambre.getId()) {
 				if (!Date.DateCoincidePas(datedebut, datefin, reservation.getDateDebut(), reservation.getDateFin())) {
 					return false;
 				}
