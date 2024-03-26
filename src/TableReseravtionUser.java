@@ -225,7 +225,12 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         Date date_debut=Date.Recupere_date(startdatetext.getText());
         Date.verif_today_date(today, date_debut);
         Date date_fin=Date.Recupere_date(enddatetext.getText());
-        System.out.println("deffirance -> "+Date.differenceEntreDates(date_debut, date_fin));
+        //Date.differenceEntreDates(date_debut, date_fin);
+        int id_user=0001;//des instruction pour recuperer le id_user
+        int id_chambre=0002;//des instruction pour recuperer le id_chambre
+        Reservation reservation= new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin,id_chambre, EtatReservation.EN_ATTEND);
+        Hotel.AjtResMap(reservation);
+
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
         Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
 

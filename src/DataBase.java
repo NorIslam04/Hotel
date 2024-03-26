@@ -118,7 +118,6 @@ public class DataBase {
                 
                 Reservation reservation = new Reservation(id, idUser, type, dd, df, idChambre,
                         EtatReservation.toEtatReservation(etat));
-                reservation.setIndb(true);
                 Hotel.AjouterReservationMap(reservation);
 
             }
@@ -197,7 +196,7 @@ public class DataBase {
         return adminTrouve;
     }
 
-    // hashMap to base de données:
+    // hashMap to base de donner
     public static void hashMapToDatabase_User() {
         HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
@@ -318,8 +317,8 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-
-    public static void afficherUsersMap() {
+    */
+    public static void afficherHashMap() {
         System.out.println("choisir un num: ");
         System.out.println("1 -> Users");
         System.out.println("3 -> Chambre");
@@ -357,11 +356,11 @@ public class DataBase {
                     Reservation reservation = entry.getValue();
 
                     System.out.println("ID: " + id);
-                    System.out.println("ID User: " + reservation.getUser().getId());
+                    System.out.println("ID User: " + reservation.getId_user());
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
-                    System.out.println("ID Chambre: " + reservation.getChambre());
+                    System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
                 }
