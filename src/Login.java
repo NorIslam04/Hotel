@@ -152,6 +152,13 @@ public class Login extends javax.swing.JFrame {
     }                                        
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {  
+
+        if(usertext.getText().equals("") || pwdtext.getText().equals("")){
+            JOptionPane.showMessageDialog(frame,
+            "Remplir le champ de User et Password",
+            "ERROR",
+            JOptionPane.ERROR_MESSAGE); 
+        }else
         if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
            // new tableReservationAdmin && modifier chambre
            JOptionPane.showMessageDialog(frame,

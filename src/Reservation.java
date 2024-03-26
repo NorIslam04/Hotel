@@ -1,26 +1,31 @@
 public class Reservation {
 
-	private int id;
-	private User user;
+	private int id;//de hash map
+	//private User user;
+	private int id_user;
 	private String type;
 	private Date dateDebut;
 	private Date dateFin;
-	private Chambre chambre;
+	//private Chambre chambre;
+	private int id_chambre;
+	private int NbrJourReservation;
 
 
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
 	private int nbOp = 0;
 	static int nb = 0;
-	private boolean indb = false;
 
 	public Reservation(int id, int idUser, String type, Date dateDebut, Date dateFin, int idChambre,
-			EtatReservation etat) {
+			EtatReservation etat) throws Exception {
 		this.id = id;
 		this.type = type;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.user=Hotel.RechercheuserParId(idUser);//TODO: supp
-		this.chambre=Hotel.RechercheChambreParId(idChambre); //fhed les fct g pas encore geree les err
+		this.NbrJourReservation=(int) Date.differenceEntreDates(dateDebut, dateFin);
+		//this.user=Hotel.RechercheuserParId(idUser);//TODO: supp
+		//this.chambre=Hotel.RechercheChambreParId(idChambre); //fhed les fct g pas encore geree les err TODO: supp
+		this.id_user=idUser;
+		this.id_chambre=idChambre;
 		this.etat = etat;
 		nb++;
 	}
@@ -33,16 +38,34 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
+//	public User getUser() {
+//		return user;
+	//}
 
-	public void setser(User idUser) {
-		this.user = user;
-	}
+	//public void setser(User idUser) {
+	//	this.user = user;
+	//}
+
+	
 
 	public String getType() {
 		return type;
+	}
+
+	public int getId_user() {
+		return id_user;
+	}
+
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
+	}
+
+	public int getId_chambre() {
+		return id_chambre;
+	}
+
+	public void setId_chambre(int id_chambre) {
+		this.id_chambre = id_chambre;
 	}
 
 	public void setType(String type) {
@@ -89,19 +112,21 @@ public class Reservation {
 		Reservation.nb = nb;
 	}
 
-	public boolean isIndb() {
-		return indb;
+	
+
+	public int getNbrJourReservation() {
+		return NbrJourReservation;
 	}
 
-	public void setIndb(boolean indb) {
-		this.indb = indb;
+	public void setNbrJourReservation(int nbrJourReservation) {
+		NbrJourReservation = nbrJourReservation;
 	}
 
-	public Chambre getChambre() {
-		return chambre;
-	}
+	//public Chambre getChambre() {
+	//	return chambre;
+	//}
 
-	public void setChambre(Chambre chambre) {
-		this.chambre = chambre;
-	}
+	//public void setChambre(Chambre chambre) {
+	//	this.chambre = chambre;
+	//}
 }

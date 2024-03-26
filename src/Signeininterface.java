@@ -151,28 +151,43 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-         if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
+
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
+
+        if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
             JOptionPane.showMessageDialog(frame,
             "please return to Login and login with it",
             "This Acount Already Exists",
             JOptionPane.INFORMATION_MESSAGE);
-         }else{
-         //if ydkhel les bonnes informations y'enregitrihoum f la hashmap et yjouz l la fenetre chambre
-         // else (il n'a pas remplit un des champs erreur) 
-           JOptionPane.showMessageDialog(frame,
-           "please Fell All the text Fields with the right informations",
-           "Error",
-           JOptionPane.ERROR_MESSAGE);
-                
-         }
-     }
+        }else
+        if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
+            
+                JOptionPane.showMessageDialog(frame,
+                "Please fill all the textfileds !",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE); 
+        }else{
+                JOptionPane.showMessageDialog(frame,
+                "Votre compte a été créé avec succès ",
+                "WELCOME",
+                JOptionPane.INFORMATION_MESSAGE);
+                //ajoute dans hashMap users
+                chambreinterface ch = new chambreinterface();
+                ch.setVisible(true);
+                this.hide();
+        }
+         
+            
+        
+    }
     
     private void backtologinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
         Login log = new Login();
         log.setVisible(true);
         this.hide();
     }                                      
+
+                                   
 
     public static void main(String args[]) {
         try {
