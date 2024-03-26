@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 class non_presente_bdd extends Exception {
-    private String message = "l'article que vous cherchez n est pas present a notre bdd verifiez svp";
+    private String message = "l'article que vous cherchez n'est pas présent à notre bdd verifiez svp";
 	//hna j crois nst3mlou les interface graphic ten khir 
     public String getMessage() {
         return message;
@@ -34,6 +34,7 @@ public class Hotel {
 	public static HashMap<Integer, Reservation> getReservationMap() {
 		return reservationMap;
 	}
+	
 	//une fonction pour vérifier si un utilisateur existe dans déja:
 	static boolean findUser(String name, String password) {
 		for (Map.Entry<Integer, User> entry : userMap.entrySet()) {

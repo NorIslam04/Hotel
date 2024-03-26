@@ -115,12 +115,14 @@ public class Login extends javax.swing.JFrame {
         // le positionement exact du submit button.
         submitbtn.setBounds(420, 450, 90, 30);
         getContentPane().add(submitbtn);
+
         // l'action du submit button.
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitbtnActionPerformed(evt);
             }
         });
+
         // le positionement exact du background label.
         backgroundlabel.setIcon(new javax.swing.ImageIcon("login.png")); // NOI18N
         backgroundlabel.setBounds(0, 0, 920, 580);
@@ -163,10 +165,13 @@ public class Login extends javax.swing.JFrame {
         ch.setVisible(true);
         this.hide();
         }else{
-            JOptionPane.showMessageDialog(frame,
+            /*JOptionPane.showMessageDialog(frame,
                 "le compte n'existe pas !!",
                 "Erreur",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);*/
+            passerasignin pas = new passerasignin();
+            pas.setVisible(true);
+
                 //cree panel pour cree un compte button (sign-in)
         }
     }
