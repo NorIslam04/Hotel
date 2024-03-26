@@ -6,10 +6,40 @@ public class GestionOperation {
 	static HashMap<Integer, Operation<User>> UserOps = new HashMap<>();
 	static HashMap<Integer, Operation<Reservation>> reservationOps = new HashMap<>();
 
+	//static HashMap<Integer, Operation<Reservation>> reservationOps = new HashMap<>();
+	//ajout chambre:
+	//supp user
+	//Pair<String, Integer> pair1 = new Pair<>("Hello", 42);
+
+	/*
+	 * public class Pair<P, T> {
+	 * private id;user,reservation,
+    private P first;
+    private T second;
+
+    public Pair(P first, T second)
+	 */
+
 	static void AjouterOpsChambreMap(Chambre chambre) throws deja_presente_bdd {
 		ChambreOps.put(chambre.getId() + chambre.getNbOp(), new Operation<Chambre>(TypeOperation.AJOUT, chambre));
 		chambre.setNbOp(chambre.getNbOp() + 1);
 		Hotel.AjouterChambreMap(chambre);
+		/*
+		 * static void ajoutet (T objet){
+		 * 
+		 * update
+		 * 
+		 * }
+		 * 
+		 * ajouter(user,chambre,reservation);
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 	}
 
 	static void AjouterOpsUserMap(User user) throws deja_presente_bdd {

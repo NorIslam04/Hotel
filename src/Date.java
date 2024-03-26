@@ -14,6 +14,14 @@ class Date_nonorganiser extends Exception {
     }
 }
 
+class DiffSup365 extends Exception {
+    private String message = "le nombre de jours de réservation était supérieure à 365 jours, contactez la direction de l'hôtel.";
+
+    public String getMessage() {
+        return message;
+    }
+}
+
 class Date_Debut_Reservation extends Exception {
     private String message = "Votre date de réservation est déjà passée !";
 
@@ -23,7 +31,7 @@ class Date_Debut_Reservation extends Exception {
 }
 
 class Date_syntaxe extends Exception {
-    private String message = "erreur dans la syntaxe de la date ! -> syntaxe: (JJ/MM/AAAA)";
+    private String message = "erreur dans la syntaxe de la date ! -> syntaxe: (JJ/MM/AAAA) ou 2-chiffres pour JJ et MM et 4 pour AAAA ";
 
     public String getMessage() {
         return message;
@@ -103,18 +111,14 @@ public class Date {
         return jours;
     }
 
-    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Date_nonvalid, Date_nonorganiser {
+    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Exception {
         if (!Dates_logique(date_debut, date_fin)) {
             throw new Date_nonorganiser();
         }
         if (date_debut.annee != date_fin.annee) {
             int diff1 = 365 - joursDepuisDebutAnnee(date_debut) - joursDepuisDebutAnnee(date_fin) + 1;
             if (date_fin.annee - date_debut.annee > 1) {
-                System.out.println(
-                        "le nombre de jours de réservation était supérieure à 365 jours, contactez la direction de l'hôtel.");// afficher
-                                                                                                                  // (abdou)
-                                                                                                                              // d'error
-                return null;
+                throw new DiffSup365();
             }
             return diff1;
         }
@@ -122,7 +126,7 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin) - joursDepuisDebutAnnee(date_debut);
     }
 
-    public static Date Recupere_date(String dateString) throws Date_nonvalid, Date_syntaxe, NumberFormatException {
+    public static Date Recupere_date(String dateString) throws Exception {
         try {
 
             String[] parts_date_debut = dateString.split("/");
@@ -134,9 +138,6 @@ public class Date {
 
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
-
-        } catch (Exception e) {
-            throw new Date_syntaxe();
 
         }
 

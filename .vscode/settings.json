@@ -7,5 +7,6 @@
         "lib/**/*.jar",
         "c:\\Users\\Aoudia Nour Islam\\OneDrive\\Desktop\\mysql-connector-j-8.3.0.jar"
     ],
-    "jdk.runConfig.vmOptions": "--enable-preview --source 22"
+    "jdk.runConfig.vmOptions": "--enable-preview --source 22",
+    "java.debug.settings.onBuildFailureProceed": true
 }
