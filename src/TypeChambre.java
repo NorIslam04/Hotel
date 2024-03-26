@@ -1,4 +1,4 @@
-public enum TypeChambre {
+/*public enum TypeChambre {
     SOLO,
     DOUBLE,
     TRIPLE,
@@ -35,4 +35,4 @@ public enum TypeChambre {
         }
     }
 
-}
+}*/
