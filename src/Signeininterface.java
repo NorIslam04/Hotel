@@ -156,6 +156,7 @@ public class Signeininterface extends javax.swing.JFrame {
             chambreinterface ch = new chambreinterface();
             ch.setVisible(true);
             this.hide();
+            System.out.println(Modification_Hotel.getNb());//pour le test !!
         }
     }                                       
 
