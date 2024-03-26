@@ -1,4 +1,4 @@
-public class MyClass<T>,<O> {
+public class Classgenerique<T,O> {
 
     int id;//user,chambre,reservation
     T objet;

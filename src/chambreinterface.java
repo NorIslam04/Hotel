@@ -8,7 +8,6 @@ public class chambreinterface extends javax.swing.JFrame {
     public chambreinterface() {
         initComponents();
     }
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         titrelabel = new javax.swing.JLabel();
