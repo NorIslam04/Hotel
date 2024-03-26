@@ -7,9 +7,9 @@ enum TypeChambre {
 	public String ToString() {
 		switch (this) {
 			case SOLO:
-				return "DOUBLE";
-			case DOUBLE:
 				return "SOLO";
+			case DOUBLE:
+				return "DOUBLE";
 			case TRIPLE:
 				return "TRIPLE";
 			case SUITE:

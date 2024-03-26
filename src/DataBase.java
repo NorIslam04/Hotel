@@ -20,7 +20,7 @@ public class DataBase {
 
     }
 
-    // base de donnet to hashMap:
+    // base de données to hashMap:
     public static void Bdd_to_hashMap_users() throws deja_presente_bdd {
         // Informations de connexion à la base de données
 
@@ -197,7 +197,6 @@ public class DataBase {
     }
 
     // hashMap to base de donner
-    /* 
     public static void hashMapToDatabase_User() {
         HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
