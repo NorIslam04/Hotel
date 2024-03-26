@@ -141,7 +141,7 @@ public class Signeininterface extends javax.swing.JFrame {
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {   
         if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Remplir le champ de User et Password et Email",
+            "Remplir le champ de User-Name et Password et Adresse-Mail",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else{
@@ -151,6 +151,9 @@ public class Signeininterface extends javax.swing.JFrame {
             "WELCOME",
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
+            User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+            Hotel.AjtUserMap(user);
+            
             chambreinterface ch = new chambreinterface();
             ch.setVisible(true);
             this.hide();

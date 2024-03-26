@@ -48,7 +48,7 @@ public class Hotel {
 		return false;
 	}
 
-	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {
+	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
 		if (!chambreMap.containsKey(chambre.getId())) {
 			chambreMap.put(chambre.getId(), chambre);
 		} else {
@@ -58,16 +58,16 @@ public class Hotel {
 
 	}
 
-	static void AjouterUserMap(User user) throws deja_presente_bdd {
-		if (!userMap.containsKey(user.getId())) {
-			userMap.put(user.getId(), user);
+	static void AjouterUserMap(User user) throws deja_presente_bdd {//had l fcnt mafhemtch wch fayda ta3ha
+		if (!userMap.containsKey(user.getId())) {					//ki izid user mayhmch esq existe wla lala psq l'id li raho f bdd
+			userMap.put(user.getId(), user);						//raho auto-increment tsema jamais tel9a 3andhom meme id
 		} else {
 			throw new deja_presente_bdd();
 			// erreur
 		}
 	}
 
-	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd{
+	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd{// la meme chose hna kima ajout user Mapss
 		if (!reservationMap.containsKey(reservation.getId())) {
 			reservationMap.put(reservation.getId(), reservation);
 		} else {
@@ -77,6 +77,12 @@ public class Hotel {
 	static void AjtResMap(Reservation reservation){
 		reservationMap.put(reservation.getId(), reservation);
 		//chaque fois en appelle cette fonction AjtResMap(Reservation reservation) 
+		//en doit appeller la ajouter une instance a la classe classgenerique
+	}
+
+	static void AjtUserMap(User user){
+		userMap.put(user.getId(), user);
+		//chaque fois en appelle cette fonction AjtResMap(User user) 
 		//en doit appeller la ajouter une instance a la classe classgenerique
 	}
 
