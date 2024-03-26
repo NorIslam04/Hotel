@@ -172,14 +172,9 @@ public class Login extends javax.swing.JFrame {
         ch.setVisible(true);
         this.hide();
         }else{
-            /*JOptionPane.showMessageDialog(frame,
-                "le compte n'existe pas !!",
-                "Erreur",
-                JOptionPane.INFORMATION_MESSAGE);*/
+
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
-
-                //cree panel pour cree un compte button (sign-in)
         }
     }
     }                                         
