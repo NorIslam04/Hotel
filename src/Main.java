@@ -1,19 +1,23 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        Date today=new Date(25, 05, 2024);
+        
+        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
+        System.out.println(today.toString());
        try {
 
-        Date date_debut=Date.Recupere_date("23/03/2024");
+        Date date_debut=Date.Recupere_date("25/03/2025");
         Date.verif_today_date(today,date_debut );
-        Date date_fin =Date.Recupere_date("26/03/2024");
+        Date date_fin =Date.Recupere_date("26/03/2025");
         System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
-        
+
        } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
         
 
        } catch (NumberFormatException e) {
-        System.out.println("entrer des chiffres dans les dates -> "+e.getMessage());
+        System.out.println("entrer des chiffres dans les dates !");
 
        } catch(Date_nonvalid e){
         System.out.println(e.getMessage());

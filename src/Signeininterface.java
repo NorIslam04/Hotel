@@ -7,7 +7,7 @@ public class Signeininterface extends javax.swing.JFrame {
     public Signeininterface() {
         initComponents();
     }
-                          
+
     private void initComponents() {
 
         userlabel = new javax.swing.JLabel();
