@@ -8,8 +8,9 @@ public class Main {
         Date date_fin =Date.Recupere_date("26/03/2024");
         System.out.println("deffirance : "+Date.differenceEntreDates(date_debut, date_fin));
         
-        catch(Date_syntaxe e){
+       } catch(Date_syntaxe e){
             System.out.println(e.getMessage());
+        
 
        } catch (NumberFormatException e) {
         System.out.println("entrer des chiffres dans les dates -> "+e.getMessage());
@@ -63,3 +64,5 @@ public class Main {
 
     
 }
+
+
