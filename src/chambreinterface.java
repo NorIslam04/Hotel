@@ -1,14 +1,13 @@
-import javax.swing.*;
-import java.awt.*;
-import java.util.Set;
 
 public class chambreinterface extends javax.swing.JFrame {
 
-    
+  
     public chambreinterface() {
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
+    // < defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         titrelabel = new javax.swing.JLabel();
@@ -22,14 +21,15 @@ public class chambreinterface extends javax.swing.JFrame {
         prixsolo = new javax.swing.JLabel();
         passtomyreservationsbtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
-        
+
         //rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("chambre");
         setLocationRelativeTo(null);
         setVisible(true);
-        
+      
+
         //creation d'une label pour le titre avec ses caractéristiques.
         titrelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 48)); // NOI18N
         titrelabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -44,59 +44,70 @@ public class chambreinterface extends javax.swing.JFrame {
         // le positionement exact du label.
         suitetext.setBounds(30, 330, 120, 20);
         getContentPane().add(suitetext);
-        
+    
+
         //creation d'une label pour prix suite avec ses caractéristiques.
         prixsuite.setFont(new java.awt.Font("Bodoni MT", 0, 14)); 
-        prixsuite.setText("700$/Night.");
+        prixsuite.setText("700/Night.");  
         // le positionement exact du label.
         prixsuite.setBounds(30, 360, 120, 20);
         getContentPane().add(prixsuite);
-        
+     
+
         //creation d'une label pour double avec ses caractéristiques.
         doubletext.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         doubletext.setText("Double Room: Max 2 Guests.");
         // le positionement exact du label.
         doubletext.setBounds(480, 330, 200 , 20);
         getContentPane().add(doubletext);
-       
+
         //creation d'une label pour prix double avec ses caractéristiques.
         prixdouble.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         prixdouble.setText("250$/Night.  ");
         // le positionement exact du label.
         prixdouble.setBounds(480, 360, 120, 20);
         getContentPane().add(prixdouble);
-        
+
+
         //creation d'une label pour trio avec ses caractéristiques.
         triotext.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         triotext.setText("Trio Room:Max 3 Guests.");
         // le positionement exact du label.
         triotext.setBounds(250, 330, 200, 20);
         getContentPane().add(triotext);
-        
+      
+
         //creation d'une label pour prix trio avec ses caractéristiques.
         prixtrio.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         prixtrio.setText("500$/Night.");
         // le positionement exact du label.
         prixtrio.setBounds(250, 360, 120, 20);
         getContentPane().add(prixtrio);
-        
+     
+
         //creation d'une label pour solo avec ses caractéristiques.
         solotext.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         solotext.setText("Solo Room:For 1 Guest.");
         // le positionement exact du label.
         solotext.setBounds(700, 330, 200, 20);
         getContentPane().add(solotext);
-        
-        //creation d'une label pour prix solo avec ses caractéristiques.
-        prixsolo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        prixsolo.setText("100$/Night.");
-        // le positionement exact du label.
-        prixsolo.setBounds(700, 360, 120, 20);
-        getContentPane().add(prixsolo);
-        
-        //creation d'une label pour le pass to my reservations button avec ses caractéristiques.
-        passtomyreservationsbtn.setFont(new java.awt.Font("Bodoni MT", 1, 14)); 
+   
+
+         //creation d'une label pour prix solo avec ses caractéristiques.
+         prixsolo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+         prixsolo.setText("100$/Night.");
+         // le positionement exact du label.
+         prixsolo.setBounds(700, 360, 120, 20);
+         getContentPane().add(prixsolo);
+   
+       
+        passtomyreservationsbtn.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
         passtomyreservationsbtn.setText("Pass To My Reservations");
+        passtomyreservationsbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passtomyreservationsbtnActionPerformed(evt);
+            }
+        });
         // le positionement exact du label.
         passtomyreservationsbtn.setBounds(20, 470, 200, 40);
         getContentPane().add(passtomyreservationsbtn);
@@ -106,14 +117,27 @@ public class chambreinterface extends javax.swing.JFrame {
         // le positionement exact du label.
         backgroundlabel.setBounds(0, 0, 920, 580);
         getContentPane().add(backgroundlabel);
-       
+        
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
-    }                      
+    }                       
 
-    
+    private void passtomyreservationsbtnActionPerformed(java.awt.event.ActionEvent evt) {                                                        
+        TableReseravtionUser TRU = new TableReseravtionUser();
+        TRU.setVisible(true);
+        this.hide();
+    }                                                       
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -130,6 +154,12 @@ public class chambreinterface extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(chambreinterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new chambreinterface().setVisible(true);
@@ -137,7 +167,7 @@ public class chambreinterface extends javax.swing.JFrame {
         });
     }
 
-                   
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel backgroundlabel;
     private javax.swing.JLabel doubletext;
     private javax.swing.JButton passtomyreservationsbtn;
@@ -148,5 +178,6 @@ public class chambreinterface extends javax.swing.JFrame {
     private javax.swing.JLabel solotext;
     private javax.swing.JLabel suitetext;
     private javax.swing.JLabel titrelabel;
-    private javax.swing.JLabel triotext;                 
+    private javax.swing.JLabel triotext;
+    // End of variables declaration                   
 }

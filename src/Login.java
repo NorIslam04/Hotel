@@ -80,7 +80,7 @@ public class Login extends javax.swing.JFrame {
             }
         });*/
 
-        //les bouttons.
+        //les bouttons:
 
         signinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         signinbtn.setText("Sign-in");
@@ -136,7 +136,9 @@ public class Login extends javax.swing.JFrame {
     }                                       
 
     private void signinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        Signeininterface sin = new Signeininterface();
+        sin.setVisible(true);
+        this.hide();
     }                                         
     private JFrame frame;
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -148,7 +150,9 @@ public class Login extends javax.swing.JFrame {
     }                                        
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        chambreinterface ch = new chambreinterface();
+        ch.setVisible(true);
+        this.hide();
     }                                         
 
     public static void main(String args[]) {

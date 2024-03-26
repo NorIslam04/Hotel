@@ -73,6 +73,11 @@ public class Signeininterface extends javax.swing.JFrame {
         //creation d'un boutton pour le submit avec ses caractéristiques.
         submitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); 
         submitbtn.setText("Submit");
+        submitbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitbtnActionPerformed(evt);
+            }
+        });
         // le positionement exact du boutton.
         submitbtn.setBounds(620, 480, 100, 30);
         getContentPane().add(submitbtn);
@@ -132,7 +137,12 @@ public class Signeininterface extends javax.swing.JFrame {
         {
             System.exit(0);
         }
-    }                                        
+    }    
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        chambreinterface ch = new chambreinterface();
+        ch.setVisible(true);
+        this.hide();
+    }                                       
 
     public static void main(String args[]) {
         try {
