@@ -20,7 +20,6 @@ public class Signeininterface extends javax.swing.JFrame {
         maillabel = new javax.swing.JLabel();
         mailtext = new javax.swing.JTextField();
         closebtn = new javax.swing.JButton();
-        backtologinbtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         
         //rendre le layout manager null pour le positionement absolu.
@@ -82,18 +81,6 @@ public class Signeininterface extends javax.swing.JFrame {
         // le positionement exact du boutton.
         submitbtn.setBounds(620, 480, 100, 30);
         getContentPane().add(submitbtn);
-
-        //creation d'un boutton pour le back to login avec ses caractéristiques.
-        backtologinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        backtologinbtn.setText("Back To Login");
-        backtologinbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backtologinbtnActionPerformed(evt);
-            }
-        });
-        // le positionement exact du boutton.
-        backtologinbtn.setBounds(400, 480, 120, 30);
-        getContentPane().add(backtologinbtn);
        
         //creation d'un boutton pour le close avec ses caractéristiques.
         closebtn.setBackground(new java.awt.Color(171, 34, 34));
@@ -151,43 +138,26 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
-
-        if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
-            JOptionPane.showMessageDialog(frame,
-            "please return to Login and login with it",
-            "This Acount Already Exists",
-            JOptionPane.INFORMATION_MESSAGE);
-        }else
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {   
         if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
-            
-                JOptionPane.showMessageDialog(frame,
-                "Please fill all the textfileds !",
-                "ERROR",
-                JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(frame,
+            "Remplir le champ de User-Name et Password et Adresse-Mail",
+            "ERROR",
+            JOptionPane.ERROR_MESSAGE); 
         }else{
-                JOptionPane.showMessageDialog(frame,
-                "Votre compte a été créé avec succès ",
-                "WELCOME",
-                JOptionPane.INFORMATION_MESSAGE);
-                //ajoute dans hashMap users
-                chambreinterface ch = new chambreinterface();
-                ch.setVisible(true);
-                this.hide();
-        }
-         
-            
-        
-    }
-    
-    private void backtologinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        Login log = new Login();
-        log.setVisible(true);
-        this.hide();
-    }                                      
 
-                                   
+            JOptionPane.showMessageDialog(frame,
+            "Votre compte a été créé avec succès ",
+            "WELCOME",
+            JOptionPane.INFORMATION_MESSAGE);
+            //ajoute dans hashMap users
+            User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+            Hotel.AjtUserMap(user);
+            chambreinterface ch = new chambreinterface();
+            ch.setVisible(true);
+            this.hide();
+        }
+    }                                       
 
     public static void main(String args[]) {
         try {
@@ -216,7 +186,6 @@ public class Signeininterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel backgroundlabel;
-    private javax.swing.JButton backtologinbtn;
     private javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtext;
