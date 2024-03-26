@@ -1,4 +1,4 @@
-public enum EtatReservation {
+enum EtatReservation {
     ACCEPTER,
     DECLINER,
     EN_ATTENTE;
