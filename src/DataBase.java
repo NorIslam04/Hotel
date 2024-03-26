@@ -1,10 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
+import java.sql.*;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -319,13 +313,9 @@ public class DataBase {
         }
     }
     */
-    public static void afficherHashMap() {
-        System.out.println("choisir un num: ");
-        System.out.println("1 -> Users");
-        System.out.println("3 -> Chambre");
-        System.out.println("4 -> Reservation");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
+   
+   
+    public static void afficherHashMap(int i) {
         switch (i) {
             case 1:
                 for (Map.Entry<Integer, User> entry : Hotel.getUserMap().entrySet()) {
@@ -334,12 +324,13 @@ public class DataBase {
 
                     System.out.println("ID: " + id);
                     System.out.println("Name: " + user.getName());
+                    System.out.println("Email :"+user.getGmail());
                     System.out.println("Password: " + user.getPassword());
                     System.out.println("----------------------");
                 }
                 break;
 
-            case 3:
+            case 2:
                 for (Map.Entry<Integer, Chambre> entry : Hotel.getChambreMap().entrySet()) {
                     int id = entry.getKey();
                     Chambre chambre = entry.getValue();
@@ -351,7 +342,7 @@ public class DataBase {
                     System.out.println("----------------------");
                 }
                 break;
-            case 4:
+            case 3:
                 for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
                     int id = entry.getKey();
                     Reservation reservation = entry.getValue();
@@ -361,6 +352,7 @@ public class DataBase {
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
+                    System.out.println("NbrJourResrvation: "+reservation.getNbrJourReservation());
                     System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
@@ -371,7 +363,7 @@ public class DataBase {
                 System.out.println("hashMap n'existe pas !");
                 break;
         }
-        sc.close();
 
-    }
+    
+}
 }

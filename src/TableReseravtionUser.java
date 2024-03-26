@@ -146,7 +146,18 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                             
 
-    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+        try{
+        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
+        Date date_debut=Date.Recupere_date(startdatetext.getText());
+        Date.verif_today_date(today, date_debut);
+        Date date_fin=Date.Recupere_date(enddatetext.getText());
+        //Date.differenceEntreDates(date_debut, date_fin);
+        int id_user=0001;//des instruction pour recuperer le id_user
+        int id_chambre=0002;//des instruction pour recuperer le id_chambre
+        Reservation reservation= new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin,id_chambre, EtatReservation.EN_ATTENTE);
+        Hotel.AjtResMap(reservation);
+
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
         Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
     }                                                 
