@@ -1,4 +1,4 @@
-public class Modification_Hotel<T,O> {
+public class ModificationHotel<T,O> {
 
     private int id;// de user,chambre,reservation
     private T objet;// user,chambre,reservation
@@ -12,7 +12,7 @@ public class Modification_Hotel<T,O> {
      */
 
 
-    public Modification_Hotel(int id, T objet, O operation) {
+    public ModificationHotel(int id, T objet, O operation) {
         this.id = id;
         this.objet = objet;
         this.operation = operation;
@@ -39,16 +39,22 @@ public class Modification_Hotel<T,O> {
         this.operation = operation;
     }
 
-
-
     public static int getNb() {
         return nb;
     }
 
 
     public static void setNb(int nb) {
-        Modification_Hotel.nb = nb;
+        ModificationHotel.nb = nb;
     }
+
+
+    @Override
+    public String toString() {
+        return "ModificationHotel [objet=" + objet + ", operation=" + operation + "]";
+    }
+
+    
 
     
     /*//tous les operation......

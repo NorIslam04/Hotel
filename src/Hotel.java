@@ -23,7 +23,7 @@ public class Hotel {
 	private static HashMap<Integer, Chambre> chambreMap = new HashMap<>();
 	private static HashMap<Integer, User> userMap = new HashMap<>();
 	private static HashMap<Integer, Reservation> reservationMap = new HashMap<>();
-	private static HashMap<Modification_Hotel<?, ?>, Integer> modificationMap = new HashMap<>();
+	private static HashMap<Integer,ModificationHotel<?, ?>> modificationMap = new HashMap<>();
 
 	// get Hashmap
 	
@@ -32,11 +32,11 @@ public class Hotel {
 		return chambreMap;
 	}
 
-	public static HashMap<Modification_Hotel<?, ?>, Integer> getModificationMap() {
+	public static HashMap< Integer,ModificationHotel<?, ?>> getModificationMap() {
 		return modificationMap;
 	}
 
-	public static void setModificationMap(HashMap<Modification_Hotel<?, ?>, Integer> modificationMap) {
+	public static void setModificationMap(HashMap<Integer,ModificationHotel<?, ?>> modificationMap) {
 		Hotel.modificationMap = modificationMap;
 	}
 
@@ -91,16 +91,16 @@ public class Hotel {
 		reservationMap.put(reservation.getId(), reservation);
 		//chaque fois en appelle cette fonction AjtResMap(Reservation reservation) 
 		//en doit appeller la ajouter une instance a la classe classgenerique
-		Modification_Hotel<Reservation, TypeOperation> ajouterReservation = new Modification_Hotel<>(reservation.getId(),reservation,TypeOperation.AJOUT );
-		modificationMap.put(ajouterReservation,Modification_Hotel.getNb());
+		ModificationHotel<Reservation, TypeOperation> ajouterReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.AJOUT );
+		modificationMap.put(ModificationHotel.getNb(),ajouterReservation);
 	}
 
 	static void AjtUserMap(User user){
 		userMap.put(user.getId(), user);
 		//chaque fois en appelle cette fonction AjtResMap(User user) 
 		//en doit appeller la ajouter une instance a la classe classgenerique
-		Modification_Hotel<User, TypeOperation> ajouterUser = new Modification_Hotel<>(user.getId(),user,TypeOperation.AJOUT );
-		modificationMap.put(ajouterUser,Modification_Hotel.getNb());
+		ModificationHotel<User, TypeOperation> ajouterUser = new ModificationHotel<>(user.getId(),user,TypeOperation.AJOUT );
+		modificationMap.put(ModificationHotel.getNb(),ajouterUser);
 	}
 
 	// modification sur les hashmap

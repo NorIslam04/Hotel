@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -190,10 +191,30 @@ public class DataBase {
         return adminTrouve;
     }
 
+    static void HasgMapsToDb(){
+        HashMap<Integer,ModificationHotel<?, ?>> modificMap =Hotel.getModificationMap();
+
+        // Parcours de la HashMap et accès à ses éléments
+        for (Map.Entry<Integer, ModificationHotel<?, ?>> entry : modificMap.entrySet()) {
+            Integer key = entry.getKey();
+            int id = entry.getValue().getId(); // Obtenez l'ID de ModificationHotel
+            Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
+            Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type O)
+            
+            if (objet instanceof User && operation.equals(TypeOperation.AJOUT)) {
+                User user = (User) objet;
+                AddUserDb(user);
+            }
+           
+        }
+        
+
+    }
+
     // hashMap to base de donner
-    /* 
-    public static void hashMapToDatabase_User() {
-        HashMap<Integer, User> userMap = Hotel.getUserMap();
+    
+    public static void AddUserDb(User user) {
+        //HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
             // Établir la connexion à la base de données
             Connection connection = connectToMySQL();
@@ -202,11 +223,6 @@ public class DataBase {
             String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
 
-            // Parcourir la HashMap et insérer chaque utilisateur dans la base de données
-            for (Map.Entry<Integer, User> entry : userMap.entrySet()) {
-                User user = entry.getValue();
-                if (!user.isIndb()) {// pour ne pas inserer le meme user 2fois dans database
-
                     statement.setString(1, user.getName());
                     statement.setString(2, user.getGmail());
                     statement.setString(3, user.getPassword());
@@ -214,9 +230,7 @@ public class DataBase {
                     statement.executeUpdate();
                     System.out.println(
                             "User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
-                }
-            }
-
+                
             // Fermer les ressources
             statement.close();
             connection.close();
@@ -225,7 +239,7 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-
+/* 
     public static void hashMapToDatabase_chambres() {
         // Récupérer la HashMap contenant les données
         HashMap<Integer, Chambre> chambreMap = Hotel.getChambreMap();
