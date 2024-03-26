@@ -20,6 +20,7 @@ public class Signeininterface extends javax.swing.JFrame {
         maillabel = new javax.swing.JLabel();
         mailtext = new javax.swing.JTextField();
         closebtn = new javax.swing.JButton();
+        backtologinbtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         
         //rendre le layout manager null pour le positionement absolu.
@@ -81,6 +82,18 @@ public class Signeininterface extends javax.swing.JFrame {
         // le positionement exact du boutton.
         submitbtn.setBounds(620, 480, 100, 30);
         getContentPane().add(submitbtn);
+
+        //creation d'un boutton pour le back to login avec ses caractéristiques.
+        backtologinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        backtologinbtn.setText("Back To Login");
+        backtologinbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backtologinbtnActionPerformed(evt);
+            }
+        });
+        // le positionement exact du boutton.
+        backtologinbtn.setBounds(400, 480, 120, 30);
+        getContentPane().add(backtologinbtn);
        
         //creation d'un boutton pour le close avec ses caractéristiques.
         closebtn.setBackground(new java.awt.Color(171, 34, 34));
@@ -139,10 +152,27 @@ public class Signeininterface extends javax.swing.JFrame {
         }
     }    
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        chambreinterface ch = new chambreinterface();
-        ch.setVisible(true);
+         if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
+            JOptionPane.showMessageDialog(frame,
+            "please return to Login and login with it",
+            "This Acount Already Exists",
+            JOptionPane.INFORMATION_MESSAGE);
+         }else{
+         //if ydkhel les bonnes informations y'enregitrihoum f la hashmap et yjouz l la fenetre chambre
+         // else (il n'a pas remplit un des champs erreur) 
+           JOptionPane.showMessageDialog(frame,
+           "please Fell All the text Fields with the right informations",
+           "Error",
+           JOptionPane.ERROR_MESSAGE);
+                
+         }
+     }
+    
+    private void backtologinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        Login log = new Login();
+        log.setVisible(true);
         this.hide();
-    }                                       
+    }                                      
 
     public static void main(String args[]) {
         try {
@@ -171,6 +201,7 @@ public class Signeininterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel backgroundlabel;
+    private javax.swing.JButton backtologinbtn;
     private javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtext;
