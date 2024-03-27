@@ -178,7 +178,7 @@ public class Login extends javax.swing.JFrame {
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
 
-        } //abdou
+        } 
     }
     }                                         
 
