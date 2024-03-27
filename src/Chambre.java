@@ -46,9 +46,20 @@ public class Chambre {
 	private boolean indb = false;
 	private int Reservedatleastonce = 0;// 0->non et 1->oui Reservedatleastonce
 
-	public Chambre(int id, int nbLit, TypeChambre type, double prix, int Reservedatleastonce) {
+	public Chambre(int id, TypeChambre type, double prix, int Reservedatleastonce) {
 		this.id = id;
-		this.nbLit = nbLit;
+		if(type==TypeChambre.SOLO){
+			this.nbLit = 1;
+		}if(type==TypeChambre.DOUBLE){
+			this.nbLit = 2;
+		}
+		if(type==TypeChambre.SUITE){
+			this.nbLit = 4;
+		}
+		if(type==TypeChambre.TRIPLE){
+			this.nbLit = 3;
+		}
+		
 		this.type = type;
 		this.prix = prix;
 		this.Reservedatleastonce = Reservedatleastonce;

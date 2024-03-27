@@ -75,4 +75,18 @@ public class Admin {
 		}
 	}
 
+
+	void modifierchambrenblit(int id ,int nblit) throws non_presente_bdd {
+		Chambre chambre=Hotel.RechercheChambreParId(id);
+		if(chambre.getReservedatleastonce()==0) {
+		chambre.setNbLit(nblit);
+		GestionOperation.ModifierOpsChambreMap(chambre);//le id ne peut pas etre modified
+		}else {
+			//erreur
+		}
+			
+		}
+	
+
 }
+//TODO : ne7iw m la bdd nb de lit per chambre

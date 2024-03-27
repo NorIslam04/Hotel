@@ -108,6 +108,8 @@ public class User {
 
 	}
 
+
+
 	static boolean signin(String name, String passworld, String gmail)
 			throws deja_presente_bdd, motDePasseSimple, GmailIncorrect {
 		// verifier gmail correct
@@ -120,7 +122,6 @@ public class User {
 			return true;
 
 		}
-
 	}
 
 		
@@ -128,7 +129,8 @@ public class User {
 	
 		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
 		Hotel.AjouterReservationMap(reservation);
-		}
+	}
 		
+
 
 }

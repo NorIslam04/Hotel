@@ -77,7 +77,7 @@ public class DataBase {
 
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
 
-                Chambre chambre = new Chambre(id, nombre_lit, typeChambre, prix, reserver);
+                Chambre chambre = new Chambre(id, typeChambre, prix, reserver);
                 chambre.setIndb(true);
                 Hotel.AjouterChambreMap(chambre);
             }
