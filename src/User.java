@@ -120,7 +120,6 @@ public class User {
 			return true;
 
 		}
-
 	}
 
 		
@@ -128,7 +127,8 @@ public class User {
 	
 		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
 		Hotel.AjouterReservationMap(reservation);
-		}
+	}
 		
+
 
 }

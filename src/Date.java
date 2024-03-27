@@ -225,5 +225,33 @@ public class Date {
 		return new Date(jour,mois,annee);
 	}
 	
+
+    public static Date ajouterJours(int jour, int mois, int annee, int nombreJours) throws Date_nonvalid {
+     
+        int[] joursParMois = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (estBissextile(annee)) {
+            joursParMois[2] = 29;
+        }
+        jour = jour+nombreJours;
+
+        while (jour > joursParMois[mois]) {
+            jour = jour- joursParMois[mois];
+            mois++;
+
+            if (mois > 12) {
+                mois = 1;
+                annee++;
+                if (estBissextile(annee)) {
+                    joursParMois[2] = 29;
+                } else {
+                    joursParMois[2] = 28;
+                }
+            }
+        }
+
+     
+        return new Date(jour, mois, annee);
+    }
     
 }

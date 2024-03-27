@@ -3,7 +3,55 @@ enum TypeChambre {
 	DOUBLE,
 	TRIPLE,
 	SUITE;
+	
+	
+    private float prix;
+	private int nblit;
 
+    TypeChambre() {
+    	this.prix = 0;
+		this.nblit=0;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+	public int getNbLit() {
+        return nblit;
+    }
+
+    
+    public void setNbLit(int nbLit) {
+        this.nblit = nbLit;
+    }
+
+	public static void initialiser(float prixSOLO,int nbLitSOLOS,float prixDOUBLE,int nbLitDOULBE,float prixTRIPLE,int nbLitTRIPLE,float prixSUITE,int nbLitSUITE){
+		initialisersSOLO(prixSOLO, nbLitSOLOS);
+		initialisersDOUBLE(prixDOUBLE, nbLitDOULBE);
+		initialisersTRIPLE(prixTRIPLE, nbLitTRIPLE);
+		initialisersSUITE(prixSUITE, nbLitSUITE);
+	}
+	public static void initialisersSOLO(float prix,int nbLit){
+	SOLO.setPrix(prix);
+	SOLO.setNbLit(nbLit);
+	}
+	public static void initialisersDOUBLE(float prix,int nbLit){
+		DOUBLE.setPrix(prix);
+		DOUBLE.setNbLit(nbLit);
+	}
+	public static void initialisersTRIPLE(float prix,int nbLit){
+		TRIPLE.setNbLit(nbLit);
+		TRIPLE.setPrix(prix);
+	}
+	public static void initialisersSUITE(float prix,int nbLit){
+		SUITE.setNbLit(nbLit);
+		SUITE.setPrix(prix);
+	}
 	public String ToString() {
 		switch (this) {
 			case SOLO:
@@ -38,18 +86,14 @@ enum TypeChambre {
 public class Chambre {
 
 	private int id;// pour hash map
-	private int nbLit;
 	private TypeChambre type;
-	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
 
 
-	public Chambre(int id, int nbLit, TypeChambre type, double prix) {
+	public Chambre(int id, TypeChambre type) {
 		this.id = id;
-		this.nbLit = nbLit;
 		this.type = type;
-		this.prix = prix;
 		nb++;
 	}
 
@@ -62,12 +106,9 @@ public class Chambre {
 	}
 
 	public int getNbLit() {
-		return nbLit;
+		return type.getNbLit();
 	}
 
-	public void setNbLit(int nbLit) {
-		this.nbLit = nbLit;
-	}
 
 	public TypeChambre getType() {
 		return type;
@@ -78,11 +119,7 @@ public class Chambre {
 	}
 
 	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
+		return type.getPrix();
 	}
 
 	public int getNbOp() {
