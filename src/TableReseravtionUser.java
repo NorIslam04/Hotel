@@ -227,7 +227,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             //Date.differenceEntreDates(date_debut, date_fin);
             int id_user = 0001; // des instructions pour récupérer le id_user
             int id_chambre = 0002; // des instructions pour récupérer le id_chambre
-            Reservation reservation = new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin, id_chambre, EtatReservation.EN_ATTENTE);
+            Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_debut, date_fin, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
             Hotel.AjtResMap(reservation);
     
             DefaultTableModel Model = (DefaultTableModel) tablereservation.getModel();
@@ -236,9 +236,9 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     }
     //hiiiiiiiiiiiiiiiiiiii
     //byyy
-                                               
 
-    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
+
+    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         idroomtext.setText(model.getValueAt(selectedRow,0).toString());
