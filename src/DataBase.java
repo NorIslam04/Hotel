@@ -107,11 +107,14 @@ public class DataBase {
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
                 EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
-                
+
+
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-                
-                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,etat);
+            
+
+                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,
+                        etat);
                 Hotel.AjouterReservationMap(reservation);
 
             }
