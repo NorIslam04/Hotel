@@ -73,7 +73,7 @@ public class Admin {
 		Admin.nb = nb;
 	}
 
-	public void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd {
+	public void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {
 		// ici l admin a la fin de journee vas executer ce traitement
 		// cette fonction permet de supprimer kml les reservation ly la date de fin
 		// dylhm =date actuelle m la bdd ...etc
@@ -91,7 +91,7 @@ public class Admin {
 		}
 	}
 
-	void modifierchambrenblit(int id, TypeChambre type) throws non_presente_bdd, Date_nonvalid, Chambre_reservee {
+	void modifierchambrenblit(int id, TypeChambre type) throws non_presente_bdd, Date_nonvalid, Chambre_reservee, deja_presente_bdd {
 		LocalDate date = LocalDate.now();
 		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
 		Date dateDansUnan = Date.ajouterJours(date.getDayOfMonth(), date.getMonthValue(), date.getYear(), 365);
