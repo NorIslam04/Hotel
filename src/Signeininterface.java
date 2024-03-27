@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -75,7 +77,11 @@ public class Signeininterface extends javax.swing.JFrame {
         submitbtn.setText("Submit");
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitbtnActionPerformed(evt);
+                try {
+                    submitbtnActionPerformed(evt);
+                } catch (deja_presente_bdd | SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
         // le positionement exact du boutton.
@@ -138,7 +144,7 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException { 
         if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
             if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
              JOptionPane.showMessageDialog(frame,
@@ -154,7 +160,6 @@ public class Signeininterface extends javax.swing.JFrame {
                 //ajoute dans hashMap users
                 User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
                 Hotel.AjtUserMap(user);
-                //chambreinterface ch = 
                 new chambreinterface();
             }
          }  
@@ -171,12 +176,10 @@ public class Signeininterface extends javax.swing.JFrame {
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.AjtUserMap(user);
-            //chambreinterface ch = 
+            Hotel.AjtUserMap(user);;//hna lzem nst3amlo had l fct machi lokhra !!!
             new chambreinterface();
-            //ch.setVisible(true);
+            System.out.println(ModificationHotel.getNb());//test
             this.hide();
-            DataBase.HasgMapsToDb();//pour le test !!
         }
     }                                       
 

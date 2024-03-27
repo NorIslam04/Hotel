@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.management.Query;
+
 public class DataBase {
 
     public static Connection connectToMySQL() throws SQLException {
@@ -38,8 +40,8 @@ public class DataBase {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 User user = new User(id, email, name, password);
-                user.setIndb(true);
                 Hotel.AjouterUserMap(user);
+                User.setNb(id);
             }
 
             // Fermer les ressources
@@ -66,21 +68,20 @@ public class DataBase {
 
             // Exécuter la requête SQL et obtenir le résultat
             ResultSet resultSet = statement.executeQuery(query);
-
             // Parcourir le résultat et afficher les informations
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 int nombre_lit = resultSet.getInt("nombre_lit");
                 String type = resultSet.getString("type");
                 double prix = resultSet.getDouble("prix");
-                int reserver = resultSet.getInt("reserver");
 
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
 
-                Chambre chambre = new Chambre(id, nombre_lit, typeChambre, prix, reserver);
-                chambre.setIndb(true);
-                Hotel.AjouterChambreMap(chambre);
+                Chambre chambre = new Chambre(id, nombre_lit, typeChambre, prix);
+                //Hotel.
+                Chambre.setNb(id);
             }
+            
 
             // Fermer les ressources
             resultSet.close();
@@ -108,15 +109,12 @@ public class DataBase {
                 int idChambre = resultSet.getInt("idChambre");
                 EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
 
-
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-            
-
-                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,
-                        etat);
+        
+                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,etat);
                 Hotel.AjouterReservationMap(reservation);
-
+                Reservation.setNb(id);
             }
 
             resultSet.close();
@@ -193,12 +191,12 @@ public class DataBase {
         return adminTrouve;
     }
 
-    static void HasgMapsToDb(){
+    static void HasgMapsToDb() throws SQLException{
         HashMap<Integer,ModificationHotel<?, ?>> modificMap =Hotel.getModificationMap();
-
+        Connection connection = connectToMySQL();
         // Parcours de la HashMap et accès à ses éléments
         for (Map.Entry<Integer, ModificationHotel<?, ?>> entry : modificMap.entrySet()) {
-            Integer key = entry.getKey();
+
             int id = entry.getValue().getId(); // Obtenez l'ID de ModificationHotel
             Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
             Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type O)
@@ -207,40 +205,109 @@ public class DataBase {
                 User user = (User) objet;
                 AddUserDb(user);
             }
-           
+            
+            else if(objet instanceof Chambre){
+                Chambre chambre=(Chambre) objet;
+                if(operation.equals(TypeOperation.AJOUT)){
+
+                    String insertQuery="INSERT INTO rooms (nombre_lit, type, prix) VALUES (?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+                    preparedStatement.setInt(1, chambre.getNbLit());
+                    preparedStatement.setString(2, chambre.getType().ToString());
+                    preparedStatement.setDouble(3, chambre.getPrix());
+                    preparedStatement.executeUpdate();
+
+                }else if(operation.equals(TypeOperation.MODIFICATION)){
+                    //on a un probleme de iD_hashMap != iD_DB (c pas suur)
+                    int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe Chambre pour obtenir l'identifiant de la chambre
+                    String updateQuery = "UPDATE rooms SET nombre_lit = ?, type = ?, prix = ? WHERE id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                    preparedStatement.setInt(1, chambre.getNbLit());
+                    preparedStatement.setString(2, chambre.getType().ToString());
+                    preparedStatement.setDouble(3, chambre.getPrix());
+                    preparedStatement.setInt(4, idChambre);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+
+                }else{
+
+                    int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe Chambre pour obtenir l'identifiant de la chambre
+                    String deleteQuery = "DELETE FROM rooms WHERE id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+                    preparedStatement.setInt(1, idChambre);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+
+                }
+            }else{// modification operation 
+                if (objet instanceof Reservation) {
+                    Reservation reservation = (Reservation) objet;
+                    if (operation.equals(TypeOperation.AJOUT)) {
+                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat) VALUES (?, ?, ?, ?, ?, ?)";
+                        PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+                        preparedStatement.setInt(1, reservation.getId_user());
+                        preparedStatement.setString(2, reservation.getType().ToString());
+                        preparedStatement.setString(3, reservation.getDateDebut().toString());
+                        preparedStatement.setString(4,reservation.getDateFin().toString());
+                        preparedStatement.setInt(5, reservation.getId_chambre());
+                        preparedStatement.setString(6, reservation.getEtat().toString());
+                        preparedStatement.executeUpdate();
+                    } else if (operation.equals(TypeOperation.MODIFICATION)) {
+                        int idReservation = reservation.getId();
+                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ? WHERE id = ?";
+                        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                        preparedStatement.setInt(1, reservation.getId_user());
+                        preparedStatement.setString(2, reservation.getType().ToString());
+                        preparedStatement.setString(3, reservation.getDateDebut().toString());
+                        preparedStatement.setString(4,reservation.getDateFin().toString());
+                        preparedStatement.setInt(5, reservation.getId_chambre());
+                        preparedStatement.setString(6, reservation.getEtat().toString());
+                        preparedStatement.setInt(7, idReservation);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                    } else if (operation.equals(TypeOperation.SUPPRESSION)) {
+                        int idReservation = reservation.getId();
+                        String deleteQuery = "DELETE FROM reservation WHERE id = ?";
+                        PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+                        preparedStatement.setInt(1, idReservation);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                    }
+                }
+                
+
+            }
         }
         
+        connection.close();
 
     }
 
     // hashMap to base de donner
     
     public static void AddUserDb(User user) {
-        //HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
-            // Établir la connexion à la base de données
             Connection connection = connectToMySQL();
 
             // Préparer la requête SQL pour l'insertion des données
             String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
 
-                    statement.setString(1, user.getName());
-                    statement.setString(2, user.getGmail());
-                    statement.setString(3, user.getPassword());
+                statement.setString(1, user.getName());
+                statement.setString(2, user.getGmail());
+                statement.setString(3, user.getPassword());
                     // Exécuter la requête d'insertion
-                    statement.executeUpdate();
-                    System.out.println(
-                            "User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
+                statement.executeUpdate();
+                System.out.println("User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
                 
             // Fermer les ressources
             statement.close();
-            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 /* 
     public static void hashMapToDatabase_chambres() {
         // Récupérer la HashMap contenant les données
@@ -261,13 +328,11 @@ public class DataBase {
 
                 Chambre chambre = entry.getValue();
 
-                if (!chambre.isIndb()) {
                     // Définir les valeurs pour la déclaration d'insertion
                     preparedStatement.setInt(1, chambre.getNbLit());
                     TypeChambre typeChambre = chambre.getType();
                     preparedStatement.setString(2, typeChambre.ToString());
                     preparedStatement.setDouble(3, chambre.getPrix());
-                    preparedStatement.setInt(4, chambre.getReservedatleastonce());
 
                     // Exécuter la requête d'insertion
                     preparedStatement.executeUpdate();
@@ -286,7 +351,7 @@ public class DataBase {
 
     public static void hashMapToDatabase_Reservation() {
         // Récupérer la HashMap contenant les réservations
-        HashMap<Integer, Reservation> reservationMap = Hotel.getReservationMap();
+       // HashMap<Integer, Reservation> reservationMap = Hotel.getReservationMap();
 
         // Informations de connexion à la base de données
         String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat) VALUES (?, ?, ?, ?, ?, ?)";
@@ -328,9 +393,9 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-    */
+    
    
-   
+  */ 
     public static void afficherHashMap(int i) {
         switch (i) {
             case 1:
