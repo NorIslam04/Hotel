@@ -123,4 +123,12 @@ public class User {
 
 	}
 
+		
+	public void reserver(TypeChambre type,String datedebut,String datefin) throws Date_nonvalid, Exception {
+	
+		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
+		Hotel.AjouterReservationMap(reservation);
+		}
+		
+
 }
