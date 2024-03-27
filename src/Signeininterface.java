@@ -138,10 +138,29 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {   
-        if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
+        if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
+            if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
+             JOptionPane.showMessageDialog(frame,
+             "Ce compte existe deja !",
+             "Compte Existe",
+             JOptionPane.INFORMATION_MESSAGE);
+             new Login();
+            }else{
+                JOptionPane.showMessageDialog(frame,
+                "Votre compte a été créé avec succès ",
+                "WELCOME",
+                JOptionPane.INFORMATION_MESSAGE);
+                //ajoute dans hashMap users
+                User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+                Hotel.AjtUserMap(user);
+                //chambreinterface ch = 
+                new chambreinterface();
+            }
+         }  
+        else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Remplir le champ de User-Name et Password et Adresse-Mail",
+            "Remplir le champ de User-Name et Password et Adresse-Mail !",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else{
@@ -153,8 +172,9 @@ public class Signeininterface extends javax.swing.JFrame {
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
             Hotel.AjtUserMap(user);
-            chambreinterface ch = new chambreinterface();
-            ch.setVisible(true);
+            //chambreinterface ch = 
+            new chambreinterface();
+            //ch.setVisible(true);
             this.hide();
             DataBase.HasgMapsToDb();//pour le test !!
         }
