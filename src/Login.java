@@ -94,7 +94,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         
-        
         closebtn.setBackground(new java.awt.Color(171, 34, 34));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,13 +148,14 @@ public class Login extends javax.swing.JFrame {
         {
             System.exit(0);
         }
-    }                                        
+    }      
+                              
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {  
 
         if(usertext.getText().equals("") || pwdtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Please Fill All The TextFields !!",
+            "Please Fill All The Text Fields !!",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else

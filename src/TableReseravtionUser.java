@@ -61,7 +61,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         idroomlabel.setForeground(new java.awt.Color(255, 255, 255));
         idroomlabel.setText("ID-Room:");
         // le positionement exact du label.
-        idroomlabel.setBounds(30, 140, 150, 50);
+        idroomlabel.setBounds(30, 130, 150, 50);
         getContentPane().add(idroomlabel);
 
         //creation d'une label pour le type de la chambre avec ses caractéristiques.
@@ -69,7 +69,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         roomtypelabel.setForeground(new java.awt.Color(255, 255, 255));
         roomtypelabel.setText("Room Type:");
         // le positionement exact du label.
-        roomtypelabel.setBounds(30, 200, 120,50);
+        roomtypelabel.setBounds(30, 190, 120,50);
         getContentPane().add(roomtypelabel);
         
         //creation d'une label pour la date de début avec ses caractéristiques.
@@ -77,7 +77,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         startdatelabel.setForeground(new java.awt.Color(255, 255, 255));
         startdatelabel.setText("Start Date:");
         // le positionement exact du label.
-        startdatelabel.setBounds(30, 260,120,50);
+        startdatelabel.setBounds(30, 250,120,50);
         getContentPane().add(startdatelabel);
 
         //creation d'une label pour la date de fin avec ses caractéristiques.
@@ -85,7 +85,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         enddatelabel.setForeground(new java.awt.Color(255, 255, 255));
         enddatelabel.setText("End Date:");
         // le positionement exact du label.
-        enddatelabel.setBounds(30, 330, 120, 50);
+        enddatelabel.setBounds(30, 320, 120, 50);
         getContentPane().add(enddatelabel);
 
         //creation d'une label pour la prix de la chambre avec ses caractéristiques.
@@ -93,7 +93,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         roompricelabel.setForeground(new java.awt.Color(255, 255, 255));
         roompricelabel.setText("Room Price:");
         // le positionement exact du label.
-        roompricelabel.setBounds(30, 400, 120, 50);
+        roompricelabel.setBounds(30, 390, 120, 50);
         getContentPane().add(roompricelabel);
 
         //les TextFields:

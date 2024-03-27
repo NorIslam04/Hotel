@@ -51,7 +51,6 @@ public class Chambre {
 		this.type = type;
 		this.prix = prix;
 		nb++;
-
 	}
 
 	public int getId() {
