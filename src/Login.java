@@ -155,7 +155,7 @@ public class Login extends javax.swing.JFrame {
 
         if(usertext.getText().equals("") || pwdtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Remplir le champ de User et Password",
+            "Please Fill All The TextFields !!",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else
@@ -174,11 +174,11 @@ public class Login extends javax.swing.JFrame {
         this.hide();
 
         }else{
+
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
 
-                //cree panel pour cree un compte button (sign-in)
-        }
+        } //abdou
     }
     }                                         
 
