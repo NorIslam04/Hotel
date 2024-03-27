@@ -162,9 +162,10 @@ public class Login extends javax.swing.JFrame {
         if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
            // new tableReservationAdmin && modifier chambre
            JOptionPane.showMessageDialog(frame,
-                "WELCOME ADMIN ZA3IIIM",
+                "WELCOME ADMIN ",
                 "WELCOME",
                 JOptionPane.INFORMATION_MESSAGE); 
+                new chambreadmin();
 
         }else{
             

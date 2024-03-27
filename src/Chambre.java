@@ -4,7 +4,6 @@ enum TypeChambre {
 	TRIPLE,
 	SUITE;
 	
-	
     private float prix;
 	private int nblit;
 
