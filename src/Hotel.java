@@ -24,20 +24,110 @@ public class Hotel {
 	private static HashMap<Integer, User> userMap = new HashMap<>();
 	private static HashMap<Integer, Reservation> reservationMap = new HashMap<>();
 
-	private static HashMap<Integer,ModificationHotel<?, ?>> modificationMap = new HashMap<>();
+	private static HashMap<Integer,ModificationHotel<?>> modificationMap = new HashMap<>();
 
 	// get Hashmap
 	
+	static void ajouterModificationHotel(Object objet,TypeOperation type){
+			if(objet instanceof User ){
+				User user=(User)objet;
+					modificationMap.put(Integer.parseInt(String.valueOf(user.getId()) + String.valueOf(user.getNbOp())),
+					new ModificationHotel<User>(user.getId(),user,type));
+					modifierMap(user, type);
+					user.setNbOp(user.getNbOp() + 1);
+				}else{
+					if (objet instanceof Chambre) {
+						Chambre chambre=(Chambre)objet;
+						modificationMap.put(Integer.parseInt(String.valueOf(chambre.getId()) + String.valueOf(chambre.getNbOp())),
+					new ModificationHotel<Chambre>(chambre.getId(),chambre,type));
+					modifierMap(chambre,type);
+					chambre.setNbOp(chambre.getNbOp() + 1);
+						
+					}
+					else{//reservation
+						Reservation reservation=(Reservation)objet;
+						modificationMap.put(Integer.parseInt(String.valueOf(reservation.getId()) + String.valueOf(reservation.getNbOp())),
+					new ModificationHotel<Reservation>(reservation.getId(),reservation,type));
+					modifierMap(reservation, type);
+					reservation.setNbOp(reservation.getNbOp() + 1);
+						
+					}
+				}
+				
+		
+		
 
+	}
+	//hadi mandiro biha walo !!
+	public static void modifierMap(Object o,TypeOperation T){//fonction principale
+		if(T==TypeOperation.AJOUT){
+			ajouterobjetmap(o);
+
+		}if(T==TypeOperation.MODIFICATION){
+			modifierobjetmap(o);
+
+		}if(T==TypeOperation.SUPPRESSION){
+			supprimerobjetmap(o);
+			
+		}
+
+	}
+	static void ajouterobjetmap(Object o){//secondaire
+		if(o instanceof User){
+			User user = (User) o; 
+			userMap.put(user.getId(), user);
+		}
+		else if(o instanceof Chambre){
+			Chambre chambre = (Chambre) o; // Cast 
+			chambreMap.put(chambre.getId(), chambre);
+		}
+		else if(o instanceof Reservation){
+			Reservation reservation = (Reservation) o; // 
+			reservationMap.put(reservation.getId(), reservation);
+		}
+
+	}
+	static void modifierobjetmap(Object o){//secondaire
+		if(o instanceof User){
+			User user = (User) o; 
+			userMap.replace(user.getId(), user);
+		}
+		else if(o instanceof Chambre){
+			Chambre chambre = (Chambre) o; // Cast 
+			chambreMap.replace(chambre.getId(), chambre);
+		}
+		else if(o instanceof Reservation){
+			Reservation reservation = (Reservation) o; // 
+			reservationMap.replace(reservation.getId(), reservation);
+		}
+
+	}
+	static void supprimerobjetmap(Object o){//secondaire
+		if(o instanceof User){
+			User user = (User) o; 
+			userMap.remove(user.getId());
+		}
+		else if(o instanceof Chambre){
+			Chambre chambre = (Chambre) o; // Cast 
+			chambreMap.remove(chambre.getId(), chambre);
+		}
+		else if(o instanceof Reservation){
+			Reservation reservation = (Reservation) o; // 
+			reservationMap.remove(reservation.getId(), reservation);
+		}
+
+	}
+
+	
 	public static HashMap<Integer, Chambre> getChambreMap() {
 		return chambreMap;
 	}
 
-	public static HashMap< Integer,ModificationHotel<?, ?>> getModificationMap() {
+	public static HashMap< Integer,ModificationHotel<?>> getModificationMap() {
 		return modificationMap;
 	}
 
-	public static void setModificationMap(HashMap<Integer,ModificationHotel<?, ?>> modificationMap) {
+	public static void setModificationMap(HashMap<Integer,ModificationHotel<?>> modificationMap) {
 		Hotel.modificationMap = modificationMap;
 	}
 
@@ -76,91 +166,8 @@ public class Hotel {
 	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
 		chambreMap.put(chambre.getId(), chambre);
 	}
-	static void AjtChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
-		chambreMap.put(chambre.getId(), chambre);
-		ModificationHotel<Chambre, TypeOperation> ajouterChambre = new ModificationHotel<>(chambre.getId(),chambre,TypeOperation.AJOUT );
-		modificationMap.put(ModificationHotel.getNb(),ajouterChambre);
-		
-	}
-
-	static void AjouterUserMap(User user) throws deja_presente_bdd {	
-		userMap.put(user.getId(), user);						
-	}
-	
-	static void AjtUserMap(User user) throws deja_presente_bdd {	
-		userMap.put(user.getId(), user);						
-		ModificationHotel<User, TypeOperation> ajouterUser = new ModificationHotel<>(user.getId(),user,TypeOperation.AJOUT );
-		modificationMap.put(ModificationHotel.getNb(),ajouterUser);
-	}
 
 
-	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd{// la meme chose hna kima ajout user Mapss
-		reservationMap.put(reservation.getId(), reservation);
-		
-	}
-	
-	static void AjtReservationMap(Reservation reservation) throws deja_presente_bdd{// la meme chose hna kima ajout user Mapss
-		reservationMap.put(reservation.getId(), reservation);
-		ModificationHotel<Reservation, TypeOperation> ajouterReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.AJOUT );
-		modificationMap.put(ModificationHotel.getNb(),ajouterReservation);
-	}
-	
-
-	// modification sur les hashmap
-	static void SupprimerChambreMap(Chambre chambre) throws non_presente_bdd {
-		if (chambreMap.containsKey(chambre.getId())) {
-			chambreMap.remove(chambre.getId());
-			ModificationHotel<Chambre, TypeOperation> suppChambre = new ModificationHotel<>(chambre.getId(),chambre,TypeOperation.SUPPRESSION);
-			modificationMap.put(ModificationHotel.getNb(),suppChambre);
-		} else {
-			throw new non_presente_bdd();
-		}
-
-	}
-
-	static void SupprimerUserMap(User user) throws non_presente_bdd {
-		if (userMap.containsKey(user.getId())) {
-			userMap.remove(user.getId());
-			ModificationHotel<User, TypeOperation> suppUser = new ModificationHotel<>(user.getId(),user,TypeOperation.SUPPRESSION );
-			modificationMap.put(ModificationHotel.getNb(),suppUser);
-		} else {
-			throw new non_presente_bdd();
-		}
-
-	}
-
-	static void SupprimerReservationMap(Reservation reservation) throws non_presente_bdd {
-		if (reservationMap.containsKey(reservation.getId())) {
-			reservationMap.remove(reservation.getId());
-			ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.SUPPRESSION );
-			modificationMap.put(ModificationHotel.getNb(),suppReservation);
-		} else {
-			throw new non_presente_bdd();
-		}
-
-	}
-
-	static void ModifierChambreMap(Chambre chambre) throws non_presente_bdd {
-		if (chambreMap.containsKey(chambre.getId())) {
-			chambreMap.replace(chambre.getId(), chambre);
-			ModificationHotel<Chambre, TypeOperation> modifChambre = new ModificationHotel<>(chambre.getId(),chambre,TypeOperation.MODIFICATION);
-			modificationMap.put(ModificationHotel.getNb(),modifChambre);
-
-		} else {
-			throw new non_presente_bdd();
-		}
-
-	}
-
-	static void ModifierReservationMap(Reservation reservation) throws non_presente_bdd {
-		if (reservationMap.containsKey(reservation.getId())) {
-			reservationMap.replace(reservation.getId(), reservation);
-			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.MODIFICATION );
-			modificationMap.put(ModificationHotel.getNb(),modifReservation);
-		} else {
-			throw new non_presente_bdd();
-		}
-	}
 
 	static Chambre RechercheChambreParId(int id) {
 		if (chambreMap.containsKey(id)) {
@@ -221,7 +228,7 @@ public class Hotel {
 			if (chambre.getType() == type) {
 				boolean nonreserve = ChambreDispo(chambre, date1, date2);
 				if (nonreserve) {
-					GestionOperation.ModifierOpsChambreMap(chambre);
+				Hotel.modifierMap(chambre, TypeOperation.MODIFICATION);
 					return chambre;
 				}
 

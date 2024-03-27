@@ -116,7 +116,7 @@ public class User {
 		} else {
 			User.motdepass(passworld);
 			User.gmailCorrect(gmail);
-			GestionOperation.AjouterOpsUserMap(new User(nb, gmail, name, passworld));
+			Hotel.modifierMap(new User(nb, gmail, name, passworld),TypeOperation.AJOUT);
 			return true;
 
 		}
@@ -126,7 +126,7 @@ public class User {
 	public void reserver(TypeChambre type,String datedebut,String datefin) throws Date_nonvalid, Exception {
 	
 		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
-		Hotel.AjouterReservationMap(reservation);
+		Hotel.modifierMap(reservation,TypeOperation.AJOUT);
 	}
 		
 
