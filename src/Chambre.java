@@ -95,7 +95,6 @@ public class Chambre {
 		this.id = id;
 		this.type = type;
 		nb++;
-
 	}
 
 	public int getId() {
