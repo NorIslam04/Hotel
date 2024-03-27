@@ -1,3 +1,4 @@
+import java.awt.event.WindowListener;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
@@ -7,11 +8,11 @@ import javax.swing.table.DefaultTableModel;
 public class TableReseravtionUser extends javax.swing.JFrame {
 
     public TableReseravtionUser() {
+        
         initComponents();
     }
                         
     private void initComponents() {
-
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         roomtypelabel = new javax.swing.JLabel();
@@ -218,6 +219,12 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
+
+        //for loop 
+        //reservation 
+        //if(id_user==id){
+
+        //}
     }                      
 
     private void roomtypetextActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -230,9 +237,10 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
     private void roompricetextActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }                                             
+    }                               
 
     private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+
             Date today = new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
             Date date_debut = Date.Recupere_date(startdatetext.getText());
             Date.verif_today_date(today, date_debut);
@@ -240,15 +248,14 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             //Date.differenceEntreDates(date_debut, date_fin);
             int id_user = 0001; // des instructions pour récupérer le id_user
             int id_chambre = 0002; // des instructions pour récupérer le id_chambre
-            Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_debut, date_fin, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
-            Hotel.AjtResMap(reservation);
-    
+            Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_fin, date_debut, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
+            Hotel.AjtReservationMap(reservation);//hna lzem nst3amlo had l fct machi lokhra !!!
+            DataBase.HasgMapsToDb();
             DefaultTableModel Model = (DefaultTableModel) tablereservation.getModel();
             Model.addRow(new Object[]{idroomtext.getText(), roomtypetext.getText(), startdatetext.getText(), enddatetext.getText(), roompricetext.getText()});
         
     }
-    //hiiiiiiiiiiiiiiiiiiii
-    //byyy
+  
 
 
     private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {
@@ -270,6 +277,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
           model.setValueAt(startdatetext.getText(),i,2);
           model.setValueAt(enddatetext.getText(),i,3);
           model.setValueAt(roompricetext.getText(),i,4);
+          
       }else{
           JOptionPane.showMessageDialog(null,"Error");
       }
@@ -290,7 +298,8 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         chambreinterface ch = new chambreinterface();
         ch.setVisible(true);
         this.hide();
-    }                                     
+    }  
+                                 
 
     public static void main(String args[]) {
         try {

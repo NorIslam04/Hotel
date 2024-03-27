@@ -23,7 +23,7 @@ public class GestionOperation {
 	static void AjouterOpsChambreMap(Chambre chambre) throws deja_presente_bdd {
 		ChambreOps.put(chambre.getId() + chambre.getNbOp(), new Operation<Chambre>(TypeOperation.AJOUT, chambre));
 		chambre.setNbOp(chambre.getNbOp() + 1);
-		Hotel.AjouterChambreMap(chambre);
+		//Hotel.AjouterChambreMap(chambre);
 		/*
 		 * static void ajoutet (T objet){
 		 * 
@@ -47,7 +47,7 @@ public class GestionOperation {
 		UserOps.put(Integer.parseInt(String.valueOf(user.getId()) + String.valueOf(user.getNbOp())),
 				new Operation<User>(TypeOperation.AJOUT, user));
 		user.setNbOp(user.getNbOp() + 1);
-		Hotel.AjouterUserMap(user);
+		//Hotel.AjouterUserMap(user);
 	}
 
 	static void AjouterOpsReservation(Reservation reservation) throws deja_presente_bdd {
@@ -55,7 +55,7 @@ public class GestionOperation {
 				Integer.parseInt(String.valueOf(reservation.getId()) + String.valueOf(reservation.getNbOp())),
 				new Operation<Reservation>(TypeOperation.AJOUT, reservation));
 		reservation.setNbOp(reservation.getNbOp() + 1);
-		Hotel.AjouterReservationMap(reservation);
+		//Hotel.AjouterReservationMap(reservation);
 	}
 
 	static void SupprimerOpsChambreMap(Chambre chambre) throws non_presente_bdd {
