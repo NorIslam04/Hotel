@@ -126,16 +126,19 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin) - joursDepuisDebutAnnee(date_debut);
     }
 
-    public static Date Recupere_date(String dateString) throws Date_nonvalid,NumberFormatException {
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,NumberFormatException,Date_syntaxe {
         try {
 
             String[] parts_date_debut = dateString.split("/");
+            if (!dateString.contains("/")){
+                throw new Date_syntaxe();
+            }
             int jourInt = Integer.parseInt(parts_date_debut[0]);
             int moisInt = Integer.parseInt(parts_date_debut[1]);
             int anneeInt = Integer.parseInt(parts_date_debut[2]);
 
             return new Date(jourInt, moisInt, anneeInt);
-       
+
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
 

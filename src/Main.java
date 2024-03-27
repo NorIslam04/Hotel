@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-import javax.swing.table.DefaultTableModel;
+
 
 public class Main {
     public static void main(String[] args)  throws Exception { 
@@ -10,11 +10,11 @@ public class Main {
         DataBase.Bdd_to_hashMap_users();
         DataBase.Bdd_to_hashMap_room();
         DataBase.Bdd_to_hashMap_reservation();
-        new chambreadmin();
-
+        //new chambreadmin();
+        new Login();
         // creation des hashMap
 
-        //DataBase.afficherHashMap(1);
+        DataBase.afficherHashMap(3);
         //System.out.println(ModificationHotel.getNb());
 
         /*

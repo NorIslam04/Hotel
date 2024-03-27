@@ -29,8 +29,6 @@ public class Hotel {
 	// get Hashmap
 	
 	static void ajouterModificationHotel(Object objet,TypeOperation type){
-	
-		
 			if(objet instanceof User ){
 				User user=(User)objet;
 					modificationMap.put(Integer.parseInt(String.valueOf(user.getId()) + String.valueOf(user.getNbOp())),
@@ -60,7 +58,7 @@ public class Hotel {
 		
 
 	}
-
+	//hadi mandiro biha walo !!
 	public static void modifierMap(Object o,TypeOperation T){//fonction principale
 		if(T==TypeOperation.AJOUT){
 			ajouterobjetmap(o);
