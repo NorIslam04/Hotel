@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class DataBase {
 
     public static Connection connectToMySQL() throws SQLException {
