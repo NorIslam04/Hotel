@@ -35,7 +35,7 @@ public class Reservation {
 	private int id;//de hash map
 	//private User user;
 	private int id_user;
-	private String type;
+	private TypeChambre type;
 	private Date dateDebut;
 	private Date dateFin;
 	//private Chambre chambre;
@@ -47,7 +47,7 @@ public class Reservation {
 	private int nbOp = 0;
 	static int nb = 0;
 
-	public Reservation(int id, int idUser, String type, Date dateDebut, Date dateFin, int idChambre,
+	public Reservation(int id, int idUser, Date dateFin, Date dateDebut, TypeChambre type, int idChambre,
 			EtatReservation etat) throws Exception {
 		this.id = id;
 		this.type = type;
@@ -80,7 +80,7 @@ public class Reservation {
 
 	
 
-	public String getType() {
+	public TypeChambre getType() {
 		return type;
 	}
 
@@ -100,7 +100,7 @@ public class Reservation {
 		this.id_chambre = id_chambre;
 	}
 
-	public void setType(String type) {
+	public void setType(TypeChambre type) {
 		this.type = type;
 	}
 
