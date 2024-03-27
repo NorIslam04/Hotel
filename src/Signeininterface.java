@@ -146,6 +146,16 @@ public class Signeininterface extends javax.swing.JFrame {
              "Compte Existe",
              JOptionPane.INFORMATION_MESSAGE);
              new Login();
+            }else{
+                JOptionPane.showMessageDialog(frame,
+                "Votre compte a été créé avec succès ",
+                "WELCOME",
+                JOptionPane.INFORMATION_MESSAGE);
+                //ajoute dans hashMap users
+                User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+                Hotel.AjtUserMap(user);
+                //chambreinterface ch = 
+                new chambreinterface();
             }
          }  
         else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
@@ -162,8 +172,9 @@ public class Signeininterface extends javax.swing.JFrame {
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
             Hotel.AjtUserMap(user);
-            chambreinterface ch = new chambreinterface();
-            ch.setVisible(true);
+            //chambreinterface ch = 
+            new chambreinterface();
+            //ch.setVisible(true);
             this.hide();
             DataBase.HasgMapsToDb();//pour le test !!
         }
