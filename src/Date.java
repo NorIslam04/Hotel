@@ -111,7 +111,7 @@ public class Date {
         return jours;
     }
 
-    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Exception {
+    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Date_nonorganiser,DiffSup365 {
         if (!Dates_logique(date_debut, date_fin)) {
             throw new Date_nonorganiser();
         }
@@ -126,7 +126,7 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin) - joursDepuisDebutAnnee(date_debut);
     }
 
-    public static Date Recupere_date(String dateString) throws Exception {
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,NumberFormatException {
         try {
 
             String[] parts_date_debut = dateString.split("/");
@@ -135,7 +135,7 @@ public class Date {
             int anneeInt = Integer.parseInt(parts_date_debut[2]);
 
             return new Date(jourInt, moisInt, anneeInt);
-
+       
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
 
