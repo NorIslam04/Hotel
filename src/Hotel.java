@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.plaf.nimbus.State;
 class non_presente_bdd extends Exception {
@@ -58,6 +59,19 @@ public class Hotel {
 		}
 		return false;
 	}
+	
+	static boolean findEmail(String name, String password,String email) {
+		// Parcourir la HashMap d'utilisateurs
+		for (Entry<Integer, User> entry : userMap.entrySet()) {
+			User user = entry.getValue();
+			// Vérifier si le nom d'utilisateur et le mot de passe correspondent
+			if (user.getName().equals(name) && user.getPassword().equals(password) && user.getGmail().equals(email)) {
+				return true; // Correspondance trouvée
+			}
+		}
+		return false; // Aucune correspondance trouvée
+	}
+	
 
 	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
 		if (!chambreMap.containsKey(chambre.getId())) {

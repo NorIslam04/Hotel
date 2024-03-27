@@ -167,15 +167,13 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE); 
 
         }else{
+            
         if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
         chambreinterface ch = new chambreinterface();
         ch.setVisible(true);
         this.hide();
+
         }else{
-            /*JOptionPane.showMessageDialog(frame,
-                "le compte n'existe pas !!",
-                "Erreur",
-                JOptionPane.INFORMATION_MESSAGE);*/
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
 
