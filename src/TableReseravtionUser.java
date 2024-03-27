@@ -233,57 +233,25 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     }                                             
 
     private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
-        try{
-        Date today=new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear());
-        Date date_debut=Date.Recupere_date(startdatetext.getText());
-        Date.verif_today_date(today, date_debut);
-        Date date_fin=Date.Recupere_date(enddatetext.getText());
-        //Date.differenceEntreDates(date_debut, date_fin);
-        int id_user=0001;//des instruction pour recuperer le id_user
-        int id_chambre=0002;//des instruction pour recuperer le id_chambre
-        Reservation reservation= new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin,id_chambre, EtatReservation.EN_ATTENTE);
-        Hotel.AjtResMap(reservation);
-
-        DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
-        Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
-
-    } catch(Date_syntaxe e){
-        System.out.println(e.getMessage());
+            Date today = new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+            Date date_debut = Date.Recupere_date(startdatetext.getText());
+            Date.verif_today_date(today, date_debut);
+            Date date_fin = Date.Recupere_date(enddatetext.getText());
+            //Date.differenceEntreDates(date_debut, date_fin);
+            int id_user = 0001; // des instructions pour récupérer le id_user
+            int id_chambre = 0002; // des instructions pour récupérer le id_chambre
+            Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_debut, date_fin, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
+            Hotel.AjtResMap(reservation);
     
-   } catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(frame,
-                "entrer des chiffres dans les dates !",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
+            DefaultTableModel Model = (DefaultTableModel) tablereservation.getModel();
+            Model.addRow(new Object[]{idroomtext.getText(), roomtypetext.getText(), startdatetext.getText(), enddatetext.getText(), roompricetext.getText()});
+        
+    }
+    //hiiiiiiiiiiiiiiiiiiii
+    //byyy
 
-   } catch(Date_nonvalid e){
-   
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-    
 
-   } catch(Date_Debut_Reservation e) {
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-
-   }catch(Date_nonorganiser e){
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
-   } catch(DiffSup365 e){
-    JOptionPane.showMessageDialog(frame,
-                e.getMessage(),
-                "Erreur",
-                JOptionPane.INFORMATION_MESSAGE);
-   }                                          
-    }                                                 
-
-    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         idroomtext.setText(model.getValueAt(selectedRow,0).toString());

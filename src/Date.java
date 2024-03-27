@@ -208,5 +208,22 @@ public class Date {
             return false;
         }
     }
+    	
+	static Date StringDateint(String date) throws Date_nonvalid {
+		
+        int SlashIndex1= date.indexOf('/');
+        int SlashIndex2= date.lastIndexOf('/');
+
+        
+        String jourDebutString = date.substring(0, SlashIndex1);
+        String moisDebutString = date.substring(SlashIndex1+ 1, SlashIndex2);
+        String anneeDebutString = date.substring(SlashIndex2+ 1);
+
+        int jour = Integer.parseInt(jourDebutString);
+        int mois = Integer.parseInt(moisDebutString);
+        int annee = Integer.parseInt(anneeDebutString);
+		return new Date(jour,mois,annee);
+	}
+	
     
 }
