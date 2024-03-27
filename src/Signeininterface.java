@@ -159,7 +159,7 @@ public class Signeininterface extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
                 //ajoute dans hashMap users
                 User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.AjtUserMap(user);
+                Hotel.ajouterModificationHotel(user, TypeOperation.AJOUT);
                 new chambreinterface();
             }
          }  
@@ -176,7 +176,7 @@ public class Signeininterface extends javax.swing.JFrame {
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.AjtUserMap(user);;//hna lzem nst3amlo had l fct machi lokhra !!!
+            Hotel.modifierMap(user,TypeOperation.AJOUT);;//hna lzem nst3amlo had l fct machi lokhra !!!
             new chambreinterface();
             System.out.println(ModificationHotel.getNb());//test
             this.hide();

@@ -42,7 +42,7 @@ public class DataBase {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 User user = new User(id, email, name, password);
-                Hotel.AjouterUserMap(user);
+                Hotel.modifierMap(user,TypeOperation.AJOUT);
                 User.setNb(id);
             }
 
@@ -112,7 +112,7 @@ public class DataBase {
                 Date df = Date.Recupere_date(dateFin);
 
                 Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat);
-                Hotel.AjouterReservationMap(reservation);
+                Hotel.modifierMap(reservation,TypeOperation.AJOUT);
                 Reservation.setNb(id);
             }
 
@@ -191,16 +191,17 @@ public class DataBase {
     }
 
     static void HasgMapsToDb() throws SQLException {
-        HashMap<Integer, ModificationHotel<?, ?>> modificMap = Hotel.getModificationMap();
+        HashMap<Integer, ModificationHotel<?>> modificMap = Hotel.getModificationMap();
         Connection connection = connectToMySQL();
         // Parcours de la HashMap et accès à ses éléments
-        for (Map.Entry<Integer, ModificationHotel<?, ?>> entry : modificMap.entrySet()) {
+        for (Map.Entry<Integer, ModificationHotel<?>> entry : modificMap.entrySet()) {
 
             int id = entry.getValue().getId(); // Obtenez l'ID de ModificationHotel
             Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
-            Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type O)
+            TypeOperation operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
+                                                                       // O)
 
-            if (objet instanceof User && operation.equals(TypeOperation.AJOUT)) {
+            if (objet instanceof User && operation == TypeOperation.AJOUT) {
                 User user = (User) objet;
                 AddUserDb(user);
             }
@@ -216,7 +217,7 @@ public class DataBase {
                     preparedStatement.setDouble(3, chambre.getPrix());
                     preparedStatement.executeUpdate();
 
-                } else if (operation.equals(TypeOperation.MODIFICATION)) {
+                } else if (operation == TypeOperation.MODIFICATION) {
                     // on a un probleme de iD_hashMap != iD_DB (c pas suur)
                     int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe
                                                      // Chambre pour obtenir l'identifiant de la chambre
