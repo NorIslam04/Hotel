@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.plaf.nimbus.State;
 class non_presente_bdd extends Exception {
@@ -23,10 +24,21 @@ public class Hotel {
 	private static HashMap<Integer, Chambre> chambreMap = new HashMap<>();
 	private static HashMap<Integer, User> userMap = new HashMap<>();
 	private static HashMap<Integer, Reservation> reservationMap = new HashMap<>();
+	private static HashMap<Integer,ModificationHotel<?, ?>> modificationMap = new HashMap<>();
 
 	// get Hashmap
+	
+
 	public static HashMap<Integer, Chambre> getChambreMap() {
 		return chambreMap;
+	}
+
+	public static HashMap< Integer,ModificationHotel<?, ?>> getModificationMap() {
+		return modificationMap;
+	}
+
+	public static void setModificationMap(HashMap<Integer,ModificationHotel<?, ?>> modificationMap) {
+		Hotel.modificationMap = modificationMap;
 	}
 
 	public static HashMap<Integer, User> getUserMap() {
@@ -47,6 +59,19 @@ public class Hotel {
 		}
 		return false;
 	}
+	
+	static boolean findEmail(String name, String password,String email) {
+		// Parcourir la HashMap d'utilisateurs
+		for (Entry<Integer, User> entry : userMap.entrySet()) {
+			User user = entry.getValue();
+			// Vérifier si le nom d'utilisateur et le mot de passe correspondent
+			if (user.getName().equals(name) && user.getPassword().equals(password) && user.getGmail().equals(email)) {
+				return true; // Correspondance trouvée
+			}
+		}
+		return false; // Aucune correspondance trouvée
+	}
+	
 
 	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
 		if (!chambreMap.containsKey(chambre.getId())) {
@@ -74,16 +99,22 @@ public class Hotel {
 		throw new deja_presente_bdd();
 		}
 	}
+	
+	
 	static void AjtResMap(Reservation reservation){
 		reservationMap.put(reservation.getId(), reservation);
 		//chaque fois en appelle cette fonction AjtResMap(Reservation reservation) 
 		//en doit appeller la ajouter une instance a la classe classgenerique
+		ModificationHotel<Reservation, TypeOperation> ajouterReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.AJOUT );
+		modificationMap.put(ModificationHotel.getNb(),ajouterReservation);
 	}
 
 	static void AjtUserMap(User user){
 		userMap.put(user.getId(), user);
 		//chaque fois en appelle cette fonction AjtResMap(User user) 
 		//en doit appeller la ajouter une instance a la classe classgenerique
+		ModificationHotel<User, TypeOperation> ajouterUser = new ModificationHotel<>(user.getId(),user,TypeOperation.AJOUT );
+		modificationMap.put(ModificationHotel.getNb(),ajouterUser);
 	}
 
 	// modification sur les hashmap

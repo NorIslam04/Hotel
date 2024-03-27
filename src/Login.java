@@ -167,16 +167,18 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE); 
 
         }else{
+            
         if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
         chambreinterface ch = new chambreinterface();
         ch.setVisible(true);
         this.hide();
+
         }else{
 
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
 
-        }
+        } //abdou
     }
     }                                         
 
