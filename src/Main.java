@@ -3,32 +3,14 @@ import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
 
 public class Main {
-    public static void main(String[] args)  throws NumberFormatException,Date_syntaxe,Date_nonvalid,DiffSup365,Date_nonorganiser, Date_Debut_Reservation { 
-        try {
-         
-            Date today = new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-            Date date_debut = Date.Recupere_date("ihytcxd");
-            Date.verif_today_date(today, date_debut);
-            Date date_fin = Date.Recupere_date("i");
-            Date.differenceEntreDates(date_debut, date_fin);
-            
+    public static void main(String[] args)  throws Exception { 
+        
 
-            
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-        } catch(Date_nonvalid e){
-            System.out.println(e.getMessage());
-        } catch(DiffSup365 e){
-            System.out.println(e.getMessage());
-        } catch(Date_nonorganiser e){
-            System.out.println(e.getMessage());
-        }
-
-        //new Login();
-        //TypeChambre.initialiser(100, 1, 200, 2, 300, 3, 400, 4);
-        //DataBase.Bdd_to_hashMap_users();
-        //DataBase.Bdd_to_hashMap_room();
-        //DataBase.Bdd_to_hashMap_reservation();
+        
+        DataBase.Bdd_to_hashMap_users();
+        DataBase.Bdd_to_hashMap_room();
+        DataBase.Bdd_to_hashMap_reservation();
+        new chambreadmin();
 
         // creation des hashMap
 

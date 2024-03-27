@@ -36,6 +36,7 @@ enum TypeChambre {
 		initialisersTRIPLE(prixTRIPLE, nbLitTRIPLE);
 		initialisersSUITE(prixSUITE, nbLitSUITE);
 	}
+
 	public static void initialisersSOLO(float prix,int nbLit){
 	SOLO.setPrix(prix);
 	SOLO.setNbLit(nbLit);
@@ -52,6 +53,7 @@ enum TypeChambre {
 		SUITE.setNbLit(nbLit);
 		SUITE.setPrix(prix);
 	}
+
 	public String ToString() {
 		switch (this) {
 			case SOLO:
@@ -87,16 +89,19 @@ public class Chambre {
 
 	private int id;// pour hash map
 	private TypeChambre type;
+	private int prix;
 	private int nbOp = 0;
 	static int nb = 0;
 
 
-	public Chambre(int id, TypeChambre type) {
+	public Chambre(int id, TypeChambre type,int prix) {
 		this.id = id;
 		this.type = type;
+		this.prix=prix;
 		nb++;
-
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -119,8 +124,8 @@ public class Chambre {
 		this.type = type;
 	}
 
-	public double getPrix() {
-		return type.getPrix();
+	public int getPrix() {
+		return prix;
 	}
 
 	public int getNbOp() {
@@ -137,6 +142,12 @@ public class Chambre {
 
 	public static void setNb(int nb) {
 		Chambre.nb = nb;
+	}
+
+
+
+	public void setPrix(int prix) {
+		this.prix = prix;
 	}
 
 
