@@ -59,7 +59,7 @@ public class Chambre {
 	static int nb = 0;
 
 
-	public Chambre(int id, TypeChambre type, double prix) {
+	public Chambre(int id, TypeChambre type) {
 		this.id = id;
 		if(type==TypeChambre.SOLO){
 			this.nbLit = 1;

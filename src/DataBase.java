@@ -79,7 +79,7 @@ public class DataBase {
 
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
 
-                Chambre chambre = new Chambre(id, typeChambre, prix);
+                Chambre chambre = new Chambre(id, typeChambre);
                 // Hotel.
                 Chambre.setNb(id);
             }
