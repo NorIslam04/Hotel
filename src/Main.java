@@ -1,10 +1,7 @@
 public class Main {
     public static void main(String[] args) throws Exception {
         new Login();
-        TypeChambre.SOLO.setPrix(150);
-        TypeChambre.DOUBLE.setPrix(250);
-        TypeChambre.TRIPLE.setPrix(300);
-        TypeChambre.SUITE.setPrix(450);
+        TypeChambre.initialiser(100, 1, 200, 2, 300, 3, 400, 4);
         DataBase.Bdd_to_hashMap_users();
         DataBase.Bdd_to_hashMap_room();
         DataBase.Bdd_to_hashMap_reservation();

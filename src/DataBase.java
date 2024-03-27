@@ -73,13 +73,11 @@ public class DataBase {
             // Parcourir le résultat et afficher les informations
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                int nombre_lit = resultSet.getInt("nombre_lit");
                 String type = resultSet.getString("type");
-                double prix = resultSet.getDouble("prix");
-
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
 
                 Chambre chambre = new Chambre(id, typeChambre);
+                Hotel.AjouterChambreMap(chambre);
                 // Hotel.
                 Chambre.setNb(id);
             }
