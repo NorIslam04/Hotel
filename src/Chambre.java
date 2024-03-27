@@ -3,6 +3,21 @@ enum TypeChambre {
 	DOUBLE,
 	TRIPLE,
 	SUITE;
+	
+    private float prix;
+
+    TypeChambre() {
+    	this.prix = 0;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
 
 	public String ToString() {
 		switch (this) {
@@ -40,7 +55,6 @@ public class Chambre {
 	private int id;// pour hash map
 	private int nbLit;
 	private TypeChambre type;
-	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
 
@@ -60,7 +74,6 @@ public class Chambre {
 		}
 		
 		this.type = type;
-		this.prix = prix;
 		nb++;
 
 	}
@@ -90,11 +103,7 @@ public class Chambre {
 	}
 
 	public double getPrix() {
-		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
+		return type.getPrix();
 	}
 
 	public int getNbOp() {
