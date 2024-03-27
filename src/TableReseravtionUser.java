@@ -28,6 +28,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         updatebtn = new javax.swing.JButton();
         idroomlabel = new javax.swing.JLabel();
         exitbtn = new javax.swing.JButton();
+        backbtn = new javax.swing.JButton();
         enddatetext = new javax.swing.JTextField();
         backgroundlabel = new javax.swing.JLabel();
 
@@ -193,8 +194,20 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             }
         });
         // le positionement exact du boutton.
-        exitbtn.setBounds(100, 510, 140, 30);
+        exitbtn.setBounds(190, 510, 130, 30);
         getContentPane().add(exitbtn);
+
+        backbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        backbtn.setText("Back To Rooms");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        
+        // le positionement exact du boutton.
+        backbtn.setBounds(20, 510, 130, 30);
+        getContentPane().add(backbtn);
 
 
         backgroundlabel.setIcon(new javax.swing.ImageIcon("liste-de-reservations.png"));
@@ -272,7 +285,12 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         {
             System.exit(0);
         }
-    }                                       
+    }      
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        chambreinterface ch = new chambreinterface();
+        ch.setVisible(true);
+        this.hide();
+    }                                     
 
     public static void main(String args[]) {
         try {
@@ -318,5 +336,6 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     private javax.swing.JTextField startdatetext;
     private javax.swing.JTable tablereservation;
     private javax.swing.JButton updatebtn;
+    private javax.swing.JButton backbtn;
     // End of variables declaration                   
 }

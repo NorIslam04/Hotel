@@ -102,19 +102,18 @@ public class DataBase {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 int idUser = resultSet.getInt("idUser");
-                String type = resultSet.getString("type");
-
+                TypeChambre type = TypeChambre.ToTypeChambre(resultSet.getString("type"));
                 String dateDebut = resultSet.getString("dateDebut");
                 String dateFin = resultSet.getString("dateFin");
-
                 int idChambre = resultSet.getInt("idChambre");
-                String etat = resultSet.getString("etat");
+                EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
                 
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
                 
-                Reservation reservation = new Reservation(id, idUser,df, dd, TypeChambre.ToTypeChambre(type),idChambre,EtatReservation.toEtatReservation(etat));
+                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,etat);
                 Hotel.AjouterReservationMap(reservation);
+
             }
 
             resultSet.close();
@@ -211,7 +210,7 @@ public class DataBase {
 
     }
 
-    // hashMap to base de donn
+    // hashMap to base de donner
     
     public static void AddUserDb(User user) {
         //HashMap<Integer, User> userMap = Hotel.getUserMap();
