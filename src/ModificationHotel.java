@@ -1,3 +1,5 @@
+
+
 public class ModificationHotel<T> {
 
     private int id;// de user,chambre,reservation
