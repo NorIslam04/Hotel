@@ -138,10 +138,19 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {   
-        if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
+        if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
+            if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
+             JOptionPane.showMessageDialog(frame,
+             "Ce compte existe deja !",
+             "Compte Existe",
+             JOptionPane.INFORMATION_MESSAGE);
+             new Login();
+            }
+         }  
+        else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Remplir le champ de User-Name et Password et Adresse-Mail",
+            "Remplir le champ de User-Name et Password et Adresse-Mail !",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else{
