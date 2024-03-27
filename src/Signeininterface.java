@@ -156,6 +156,7 @@ public class Signeininterface extends javax.swing.JFrame {
             chambreinterface ch = new chambreinterface();
             ch.setVisible(true);
             this.hide();
+            DataBase.HasgMapsToDb();//pour le test !!
         }
     }                                       
 
