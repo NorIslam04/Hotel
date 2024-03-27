@@ -250,7 +250,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             int id_chambre = 0002; // des instructions pour récupérer le id_chambre
             
             Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_fin, date_debut, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
-            Hotel.AjtReservationMap(reservation);//hna lzem nst3amlo had l fct machi lokhra !!!
+            Hotel.modifierMap(reservation,TypeOperation.AJOUT);//hna lzem nst3amlo had l fct machi lokhra !!!
             DataBase.HasgMapsToDb();
             DefaultTableModel Model = (DefaultTableModel) tablereservation.getModel();
             Model.addRow(new Object[]{idroomtext.getText(), roomtypetext.getText(), startdatetext.getText(), enddatetext.getText(), roompricetext.getText()});
