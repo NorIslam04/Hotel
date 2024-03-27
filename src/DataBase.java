@@ -1,5 +1,7 @@
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class DataBase {
 
@@ -105,11 +107,11 @@ public class DataBase {
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
                 String etat = resultSet.getString("etat");
-
+                
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-
-                Reservation reservation = new Reservation(id, idUser, dd, df, type, idChambre,
+                
+                Reservation reservation = new Reservation(id, idUser, dd, df,type, idChambre,
                         EtatReservation.toEtatReservation(etat));
                 Hotel.AjouterReservationMap(reservation);
 
@@ -210,9 +212,9 @@ public class DataBase {
     }
 
     // hashMap to base de donner
-    /* 
-    public static void hashMapToDatabase_User() {
-        HashMap<Integer, User> userMap = Hotel.getUserMap();
+    
+    public static void AddUserDb(User user) {
+        //HashMap<Integer, User> userMap = Hotel.getUserMap();
         try {
             // Établir la connexion à la base de données
             Connection connection = connectToMySQL();
@@ -221,11 +223,6 @@ public class DataBase {
             String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
 
-            // Parcourir la HashMap et insérer chaque utilisateur dans la base de données
-            for (Map.Entry<Integer, User> entry : userMap.entrySet()) {
-                User user = entry.getValue();
-                if (!user.isIndb()) {// pour ne pas inserer le meme user 2fois dans database
-
                     statement.setString(1, user.getName());
                     statement.setString(2, user.getGmail());
                     statement.setString(3, user.getPassword());
@@ -233,9 +230,7 @@ public class DataBase {
                     statement.executeUpdate();
                     System.out.println(
                             "User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
-                }
-            }
-
+                
             // Fermer les ressources
             statement.close();
             connection.close();
@@ -244,7 +239,7 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-
+/* 
     public static void hashMapToDatabase_chambres() {
         // Récupérer la HashMap contenant les données
         HashMap<Integer, Chambre> chambreMap = Hotel.getChambreMap();
@@ -343,7 +338,7 @@ public class DataBase {
 
                     System.out.println("ID: " + id);
                     System.out.println("Name: " + user.getName());
-                    System.out.println("Email :" + user.getGmail());
+                    System.out.println("Email :"+user.getGmail());
                     System.out.println("Password: " + user.getPassword());
                     System.out.println("----------------------");
                 }
@@ -371,7 +366,7 @@ public class DataBase {
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
-                    System.out.println("NbrJourResrvation: " + reservation.getNbrJourReservation());
+                    System.out.println("NbrJourResrvation: "+reservation.getNbrJourReservation());
                     System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
@@ -383,5 +378,6 @@ public class DataBase {
                 break;
         }
 
-    }
+    
+}
 }
