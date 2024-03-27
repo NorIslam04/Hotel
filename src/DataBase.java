@@ -75,8 +75,9 @@ public class DataBase {
                 int id = resultSet.getInt("id");
                 String type = resultSet.getString("type");
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
+                int prix=resultSet.getInt("prix");
 
-                Chambre chambre = new Chambre(id, typeChambre);
+                Chambre chambre = new Chambre(id, typeChambre,prix);
                 Hotel.AjouterChambreMap(chambre);
                 // Hotel.
                 Chambre.setNb(id);

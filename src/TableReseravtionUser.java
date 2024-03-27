@@ -245,9 +245,10 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             Date date_debut = Date.Recupere_date(startdatetext.getText());
             Date.verif_today_date(today, date_debut);
             Date date_fin = Date.Recupere_date(enddatetext.getText());
-            //Date.differenceEntreDates(date_debut, date_fin);
+
             int id_user = 0001; // des instructions pour récupérer le id_user
             int id_chambre = 0002; // des instructions pour récupérer le id_chambre
+            
             Reservation reservation = new Reservation(Reservation.getNb(), id_user, date_fin, date_debut, TypeChambre.ToTypeChambre(roomtypetext.getText()),id_chambre,  EtatReservation.EN_ATTENTE);
             Hotel.AjtReservationMap(reservation);//hna lzem nst3amlo had l fct machi lokhra !!!
             DataBase.HasgMapsToDb();

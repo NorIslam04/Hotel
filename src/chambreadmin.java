@@ -6,6 +6,7 @@ public class chambreadmin extends javax.swing.JFrame {
 
     public chambreadmin() {
         initComponents();
+        
     }
     
     public void mettreleschmabresactuelles(){
@@ -201,6 +202,8 @@ public class chambreadmin extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
+
+        mettreleschmabresactuelles();
     }                      
 
     private void idroomtextActionPerformed(java.awt.event.ActionEvent evt) {                                           

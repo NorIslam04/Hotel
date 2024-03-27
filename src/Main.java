@@ -1,15 +1,21 @@
+import java.time.LocalDate;
+
+import javax.swing.table.DefaultTableModel;
+
 public class Main {
-    public static void main(String[] args) throws Exception {
-        new Login();
-        TypeChambre.initialiser(100, 1, 200, 2, 300, 3, 400, 4);
+    public static void main(String[] args)  throws Exception { 
+        
+
+        
         DataBase.Bdd_to_hashMap_users();
         DataBase.Bdd_to_hashMap_room();
         DataBase.Bdd_to_hashMap_reservation();
+        new chambreadmin();
 
         // creation des hashMap
 
-        DataBase.afficherHashMap(1);
-        System.out.println(ModificationHotel.getNb());
+        //DataBase.afficherHashMap(1);
+        //System.out.println(ModificationHotel.getNb());
 
         /*
          * Scanner sc = new Scanner(System.in);
