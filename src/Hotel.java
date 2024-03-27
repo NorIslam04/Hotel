@@ -267,31 +267,60 @@ public class Hotel {
 
 	// get Hashmap
 	
-	static void ajouterModificationHotel(Object objet,TypeOperation type){
+	static void ajouterModificationHotel(Object objet,TypeOperation type) throws non_presente_bdd, deja_presente_bdd{
+		
 			if(objet instanceof User ){
+			
 				User user=(User)objet;
+
+				if(type==TypeOperation.AJOUT){
+					if(userMap.containsKey(user)){
+						throw new deja_presente_bdd();
+					}
+			
+				}else{ if(!userMap.containsKey(user)){
+					throw new non_presente_bdd();
+				}
+			}
 					modificationMap.put(Integer.parseInt(String.valueOf(user.getId()) + String.valueOf(user.getNbOp())),
 					new ModificationHotel<User>(user.getId(),user,type));
 					modifierMap(user, type);
 					user.setNbOp(user.getNbOp() + 1);
-				}else{
+				}
+			
 					if (objet instanceof Chambre) {
 						Chambre chambre=(Chambre)objet;
+						if(type==TypeOperation.AJOUT){
+							if(userMap.containsKey(chambre)){
+								throw new deja_presente_bdd();
+							}
+					
+						}else{ if(!userMap.containsKey(chambre)){
+							throw new non_presente_bdd();
+						}
 						modificationMap.put(Integer.parseInt(String.valueOf(chambre.getId()) + String.valueOf(chambre.getNbOp())),
 					new ModificationHotel<Chambre>(chambre.getId(),chambre,type));
 					modifierMap(chambre,type);
 					chambre.setNbOp(chambre.getNbOp() + 1);
 						
 					}
-					else{//reservation
+					if (objet instanceof Reservation){//reservation
 						Reservation reservation=(Reservation)objet;
+						if(type==TypeOperation.AJOUT){
+							if(userMap.containsKey(reservation)){
+								throw new deja_presente_bdd();
+							}
+					
+						}else{ if(!userMap.containsKey(reservation)){
+							throw new non_presente_bdd();
+						}
 						modificationMap.put(Integer.parseInt(String.valueOf(reservation.getId()) + String.valueOf(reservation.getNbOp())),
 					new ModificationHotel<Reservation>(reservation.getId(),reservation,type));
 					modifierMap(reservation, type);
 					reservation.setNbOp(reservation.getNbOp() + 1);
 						
 					}
-				}
+				
 				
 		
 		
@@ -299,7 +328,7 @@ public class Hotel {
 	}
 	//hadi mandiro biha walo !!
 	// ciiiiiiiiiiiiiiii ena khdmt biha fly fou9a mekntch heba nkhlihm bzdd
-	public static void modifierMap(Object o,TypeOperation T){//fonction principale
+	public static void modifierMap(Object o,TypeOperation T){/*//fonction principale*/
 		if(T==TypeOperation.AJOUT){
 			ajouterobjetmap(o);
 

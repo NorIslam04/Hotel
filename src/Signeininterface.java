@@ -82,6 +82,9 @@ public class Signeininterface extends javax.swing.JFrame {
                     submitbtnActionPerformed(evt);
                 } catch (deja_presente_bdd | SQLException e) {
                     e.printStackTrace();
+                } catch (non_presente_bdd e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
             }
         });
@@ -162,7 +165,7 @@ public class Signeininterface extends javax.swing.JFrame {
         log.setVisible(true);
         this.hide();
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException { 
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException, non_presente_bdd { 
         if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
             if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
              JOptionPane.showMessageDialog(frame,
