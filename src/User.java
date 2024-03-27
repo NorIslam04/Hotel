@@ -1,15 +1,33 @@
-public class User {
+class GmailIncorrect extends Exception {
 
+	@Override
+	public String toString() {
+		return "GmailIncorrect";
+	}
+
+}
+
+class motDePasseSimple extends Exception {
+
+	@Override
+	public String toString() {
+		return "Mot de passe trop simple < 8 caracteres";
+	}
+
+}
+
+public class User {
+	// hii
 	private String gmail;
 	private String name;
 	private String password;
-	private int id;//de hashMap
-	static int nb=0;
-	private int nbOp=0;
-	private boolean indb=false;
-	
-	public User(int id,String gmail, String name, String password) {
-		this.id =id;
+	private int id;// de hashMap
+	static int nb = 0;
+	private int nbOp = 0;
+	private boolean indb = false;
+
+	public User(int id, String gmail, String name, String password) {
+		this.id = id;
 		this.gmail = gmail;
 		this.name = name;
 		this.password = password;
@@ -70,6 +88,39 @@ public class User {
 
 	public void setIndb(boolean indb) {
 		this.indb = indb;
+	}
+
+	static boolean gmailCorrect(String gmail) throws GmailIncorrect {
+		if (gmail.contains("@gmail.com")) {
+			return true;
+		} else {
+			throw new GmailIncorrect();
+		}
+
+	}
+
+	static boolean motdepass(String passworld) throws motDePasseSimple {
+		if (passworld.length() >= 8) {
+			return true;
+		} else {
+			throw new motDePasseSimple();
+		}
+
+	}
+
+	static boolean signin(String name, String passworld, String gmail)
+			throws deja_presente_bdd, motDePasseSimple, GmailIncorrect {
+		// verifier gmail correct
+		if (Hotel.findUser(name, passworld) == true) {
+			throw new deja_presente_bdd();
+		} else {
+			User.motdepass(passworld);
+			User.gmailCorrect(gmail);
+			GestionOperation.AjouterOpsUserMap(new User(nb, gmail, name, passworld));
+			return true;
+
+		}
+
 	}
 
 }
