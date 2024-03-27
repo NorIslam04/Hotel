@@ -327,8 +327,8 @@ public class Hotel {
 
 	}
 	//hadi mandiro biha walo !!
-	// ciiiiiiiiiiiiiiii ena khdmt biha fly fou9a mekntch heba nkhlihm bzdd
-	public static void modifierMap(Object o,TypeOperation T){/*//fonction principale*/
+	
+	public static void modifierMap(Object o,TypeOperation T){//fonction principale
 		if(T==TypeOperation.AJOUT){
 			ajouterobjetmap(o);
 
