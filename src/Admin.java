@@ -75,4 +75,22 @@ public class Admin {
 		}
 	}
 
+
+	void modifierchambrenblit(int id ,TypeChambre type) throws non_presente_bdd, Date_nonvalid {
+		LocalDate date = LocalDate.now();
+		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
+		Date dateDansUnan=Date.ajouterJours(date.getDayOfMonth(), date.getMonthValue(), date.getYear(),365);
+		Chambre chambre=Hotel.RechercheChambreParId(id);
+		if(Hotel.ChambreDispo(chambre,dateact,dateDansUnan)) {
+		chambre.setType(type);
+
+		GestionOperation.ModifierOpsChambreMap(chambre);//le id ne peut pas etre modified
+		}else {
+			//erreur
+		}
+			
+		}
+	
+
 }
+//TODO : ne7iw m la bdd nb de lit per chambre

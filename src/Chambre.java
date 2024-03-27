@@ -45,9 +45,20 @@ public class Chambre {
 	static int nb = 0;
 
 
-	public Chambre(int id, int nbLit, TypeChambre type, double prix) {
+	public Chambre(int id, TypeChambre type, double prix) {
 		this.id = id;
-		this.nbLit = nbLit;
+		if(type==TypeChambre.SOLO){
+			this.nbLit = 1;
+		}if(type==TypeChambre.DOUBLE){
+			this.nbLit = 2;
+		}
+		if(type==TypeChambre.SUITE){
+			this.nbLit = 4;
+		}
+		if(type==TypeChambre.TRIPLE){
+			this.nbLit = 3;
+		}
+		
 		this.type = type;
 		this.prix = prix;
 		nb++;
