@@ -4,10 +4,13 @@ enum TypeChambre {
 	TRIPLE,
 	SUITE;
 	
+	
     private float prix;
+	private int nblit;
 
     TypeChambre() {
     	this.prix = 0;
+		this.nblit=0;
     }
 
     public float getPrix() {
@@ -18,7 +21,37 @@ enum TypeChambre {
     public void setPrix(float prix) {
         this.prix = prix;
     }
+	public int getNbLit() {
+        return nblit;
+    }
 
+    
+    public void setNbLit(int nbLit) {
+        this.nblit = nbLit;
+    }
+
+	public static void initialiser(float prixSOLO,int nbLitSOLOS,float prixDOUBLE,int nbLitDOULBE,float prixTRIPLE,int nbLitTRIPLE,float prixSUITE,int nbLitSUITE){
+		initialisersSOLO(prixSOLO, nbLitSOLOS);
+		initialisersDOUBLE(prixDOUBLE, nbLitDOULBE);
+		initialisersTRIPLE(prixTRIPLE, nbLitTRIPLE);
+		initialisersSUITE(prixSUITE, nbLitSUITE);
+	}
+	public static void initialisersSOLO(float prix,int nbLit){
+	SOLO.setPrix(prix);
+	SOLO.setNbLit(nbLit);
+	}
+	public static void initialisersDOUBLE(float prix,int nbLit){
+		DOUBLE.setPrix(prix);
+		DOUBLE.setNbLit(nbLit);
+	}
+	public static void initialisersTRIPLE(float prix,int nbLit){
+		TRIPLE.setNbLit(nbLit);
+		TRIPLE.setPrix(prix);
+	}
+	public static void initialisersSUITE(float prix,int nbLit){
+		SUITE.setNbLit(nbLit);
+		SUITE.setPrix(prix);
+	}
 	public String ToString() {
 		switch (this) {
 			case SOLO:
@@ -53,7 +86,6 @@ enum TypeChambre {
 public class Chambre {
 
 	private int id;// pour hash map
-	private int nbLit;
 	private TypeChambre type;
 	private int nbOp = 0;
 	static int nb = 0;
@@ -61,18 +93,6 @@ public class Chambre {
 
 	public Chambre(int id, TypeChambre type) {
 		this.id = id;
-		if(type==TypeChambre.SOLO){
-			this.nbLit = 1;
-		}if(type==TypeChambre.DOUBLE){
-			this.nbLit = 2;
-		}
-		if(type==TypeChambre.SUITE){
-			this.nbLit = 4;
-		}
-		if(type==TypeChambre.TRIPLE){
-			this.nbLit = 3;
-		}
-		
 		this.type = type;
 		nb++;
 
@@ -87,12 +107,9 @@ public class Chambre {
 	}
 
 	public int getNbLit() {
-		return nbLit;
+		return type.getNbLit();
 	}
 
-	public void setNbLit(int nbLit) {
-		this.nbLit = nbLit;
-	}
 
 	public TypeChambre getType() {
 		return type;
