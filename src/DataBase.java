@@ -106,13 +106,15 @@ public class DataBase {
                 String dateDebut = resultSet.getString("dateDebut");
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
-                String etat = resultSet.getString("etat");
-                
+                EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
+
+
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-                
-                Reservation reservation = new Reservation(id, idUser, dd, df,type, idChambre,
-                        EtatReservation.toEtatReservation(etat));
+            
+
+                Reservation reservation = new Reservation(id, idUser, df, dd,type, idChambre,
+                        etat);
                 Hotel.AjouterReservationMap(reservation);
 
             }

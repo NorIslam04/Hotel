@@ -1,0 +1,565 @@
+[33mcommit 6cdb60fcd607b631b1e6701ccc95a8898796b903[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mislam[m[33m, [m[1;31morigin/islam[m[33m)[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 02:34:13 2024 +0100
+
+    fix errors
+
+[33mcommit e0ddff33e55974b0945722d8a207f138d3062c84[m
+Merge: 855d4f0 a2d9803
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Wed Mar 27 01:53:11 2024 +0100
+
+    Merge pull request #47 from NorIslam04/abdou
+    
+    Abdou
+
+[33mcommit a2d98036d49a57a0710786f4a5299493cdd9dbf8[m
+Merge: eac69e9 eb2441a
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Wed Mar 27 01:52:08 2024 +0100
+
+    change
+
+[33mcommit 855d4f063e77a709d07a07cd6f6eeb768762bcc0[m
+Merge: c39a561 d8f3685
+Author: hasnaa0407 <162985128+hasnaa0407@users.noreply.github.com>
+Date:   Wed Mar 27 01:49:15 2024 +0100
+
+    Merge pull request #46 from NorIslam04/hasnaa
+    
+    Hasnaa
+
+[33mcommit d8f3685fff47cbdf1e698a4f1f45f30d037ce09c[m
+Merge: dd38fb5 c39a561
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Wed Mar 27 01:47:54 2024 +0100
+
+    reserve
+
+[33mcommit dd38fb5ac787c5d7acddde6adfe79e6b738bbdc5[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Wed Mar 27 01:47:03 2024 +0100
+
+    reserve
+
+[33mcommit c39a5618786a737030dee0685ea9a342261a71b7[m
+Merge: eb2441a 7842b73
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Wed Mar 27 01:44:45 2024 +0100
+
+    Merge pull request #45 from NorIslam04/islam
+    
+    nothing
+
+[33mcommit eac69e9ca02dc4b598ed44bf361aa3b4a6427b6b[m
+Merge: 03fc09e 92c5ef1
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Wed Mar 27 01:44:20 2024 +0100
+
+    abdou
+
+[33mcommit 7842b734c963a6bb4460f5f769bb0dbc2e19775b[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 01:44:19 2024 +0100
+
+    nothing
+
+[33mcommit 0ddb46c65f58a045e69b37428a95493c38c78e36[m
+Merge: 6fc1b0f eb2441a
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Wed Mar 27 01:42:17 2024 +0100
+
+    bof
+
+[33mcommit eb2441ad3107a69f54c08ea56c94552705e2f05d[m
+Merge: fb10926 5268b4c
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Wed Mar 27 01:34:37 2024 +0100
+
+    Merge pull request #44 from NorIslam04/islam
+    
+    Islam
+
+[33mcommit 5268b4c725b89c25e1d8dea7aaf5a9cdbea6213a[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 01:34:16 2024 +0100
+
+    fix some error
+
+[33mcommit 55efbd92982d0fe55274f38dfbcb327713476a9c[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 01:31:50 2024 +0100
+
+    fix some error
+
+[33mcommit 6fc1b0fd44a94f0f5a2c195009245de41c06d3b7[m
+Merge: 67af88f 9370d00
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Wed Mar 27 01:23:12 2024 +0100
+
+    bof
+
+[33mcommit fb1092644f3428d7cc9bdc07cfdb01357431b783[m
+Merge: 9370d00 875bac8
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Wed Mar 27 01:19:50 2024 +0100
+
+    Merge pull request #43 from NorIslam04/islam
+    
+    mofid
+
+[33mcommit 875bac829180f4b9e9386d6aca769c8ba0b0ecb4[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 01:19:16 2024 +0100
+
+    mofid
+
+[33mcommit 67af88f83cb8ad980efbc6b7d8bfb552bef34950[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Wed Mar 27 01:01:18 2024 +0100
+
+    fonction reserver
+
+[33mcommit 9370d00726f619ec0a2f26b711cc1410d3fefd73[m
+Merge: 88514d1 92a4aa1
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Wed Mar 27 00:51:15 2024 +0100
+
+    Merge pull request #41 from NorIslam04/islam
+    
+    interface tableuserreservation
+
+[33mcommit 92a4aa18b5b5393c418cf3644550e25c4bfbabb4[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 00:50:00 2024 +0100
+
+    interface tableuserreservation
+
+[33mcommit 88514d1ac2abaf3d253b982480cf2475271b4e24[m
+Merge: 92c5ef1 691cf1f
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Wed Mar 27 00:11:49 2024 +0100
+
+    Merge pull request #40 from NorIslam04/islam
+    
+    class Modification_hotel
+
+[33mcommit 691cf1fcde30eb14043e963a8d2d76c5a50cd033[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Wed Mar 27 00:11:05 2024 +0100
+
+    class Modification_hotel
+
+[33mcommit 03fc09e2368d3cd60051f83717044ff7a5493230[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Wed Mar 27 00:05:15 2024 +0100
+
+    pass from reservation table to rooms
+
+[33mcommit 92c5ef1107e08becb4f71d6ce7fbaf1040743a4c[m
+Merge: 63fc8ad df2f092
+Author: hasnaa0407 <162985128+hasnaa0407@users.noreply.github.com>
+Date:   Tue Mar 26 23:47:27 2024 +0100
+
+    Merge pull request #38 from NorIslam04/hasnaa
+    
+    by
+
+[33mcommit df2f0922f72e46c47312cf0cc8e53acb06c23ee9[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Tue Mar 26 23:46:21 2024 +0100
+
+    by
+
+[33mcommit 63fc8ad55439622fce07d020aa022f1aebf32175[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Tue Mar 26 23:43:22 2024 +0100
+
+    hiii
+
+[33mcommit 505d2ffee02b90ca892dbe8278afba903e1b1658[m
+Merge: c537f7c 8773c98
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 19:11:06 2024 +0100
+
+    Merge pull request #37 from NorIslam04/islam
+    
+    00
+
+[33mcommit 8773c98fc9bcb087b7994a8144adb6d7c2112ca7[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 19:10:32 2024 +0100
+
+    00
+
+[33mcommit c537f7cb947816391c3c91389ae3a5510c83d040[m
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:58:52 2024 +0100
+
+    Delete src/TypeChambre.java
+
+[33mcommit c9e0eb291de20e774c7dbaac48439f027c6c4986[m
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:58:05 2024 +0100
+
+    Delete src/EtatReservation.java
+
+[33mcommit 09be237a68c609215f33b65cc78d9672eacfa51c[m
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:57:54 2024 +0100
+
+    Update Reservation.java
+
+[33mcommit ec4225c688b3d43dd0c02fe278480ebc75ef7554[m
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:56:20 2024 +0100
+
+    Update Chambre.java
+
+[33mcommit dcd135a64fc4f55535e3f5ba04a6423e31356413[m
+Merge: 3749ca8 c846081
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Tue Mar 26 18:54:58 2024 +0100
+
+    login
+
+[33mcommit 3749ca8783d873e0d2b0837314f92c119a897a76[m
+Merge: d276c25 d1c7f6e
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Tue Mar 26 18:53:56 2024 +0100
+
+    login
+
+[33mcommit c84608148ba4e693004c0943a7472919a109ba31[m
+Merge: d1c7f6e b57b4ab
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:52:59 2024 +0100
+
+    Merge pull request #36 from NorIslam04/islam
+    
+    modif
+
+[33mcommit b57b4abdc0f8228613861156ecda685bab2e8c9c[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 18:52:32 2024 +0100
+
+    modif
+
+[33mcommit d276c25a1d77f880727eabb7e01a9d6fae03ce20[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Tue Mar 26 18:44:00 2024 +0100
+
+    login
+
+[33mcommit d1c7f6ee2f265a0fa943478a8f532f60d9bb06df[m
+Merge: 27f5fad 0639a94
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:42:58 2024 +0100
+
+    Merge pull request #35 from NorIslam04/islam
+    
+    test dans le main
+
+[33mcommit 0639a94a9eb4fd22d4fe2ac6d8d61fd2b1087e03[m
+Merge: 790e96d 27f5fad
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 18:42:34 2024 +0100
+
+    test dans le main
+
+[33mcommit 790e96d7567e5518b6049b2edc67fe6b83b4d79a[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 18:37:41 2024 +0100
+
+    test dans le main
+
+[33mcommit 27f5fad2bbcef600dd3ef4ad58b952fc875b1397[m
+Merge: 35b66ca 152e9ea
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Tue Mar 26 18:36:56 2024 +0100
+
+    Merge pull request #34 from NorIslam04/abdou
+    
+    modif
+
+[33mcommit 152e9ea453d260e484599d5946a15e9115c2e171[m
+Merge: dd696e0 35b66ca
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 18:36:33 2024 +0100
+
+    modif
+
+[33mcommit dd696e0ff8047d587b29a48a1d2d3a7f853cba64[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 18:23:41 2024 +0100
+
+    modif
+
+[33mcommit 35b66cae9e43b08f722f07dc1866c0f143449099[m
+Merge: 33ea5ca f9a796d
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 18:11:26 2024 +0100
+
+    Merge pull request #33 from NorIslam04/islam
+    
+    ajt des panel dans inetrefaces
+
+[33mcommit f9a796da1c068b4f55e219862436c4a3571f8331[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 18:10:54 2024 +0100
+
+    ajt des panel dans inetrefaces
+
+[33mcommit 33ea5ca3f20cdb41a30033dad6685f6e28c7239e[m
+Merge: a5acff1 ff10d32
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 17:42:20 2024 +0100
+
+    Merge pull request #32 from NorIslam04/islam
+    
+    confirmation de les hashMap
+
+[33mcommit ff10d32c1f2ff268d842c453e9b5a3b5b7fc97e9[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 17:41:48 2024 +0100
+
+    confirmation de les hashMap
+
+[33mcommit a5acff1037f95240e3dd5a59f352f5dc583fd1ea[m
+Merge: 7d79b80 62c9f79
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 17:15:59 2024 +0100
+
+    Merge pull request #31 from NorIslam04/islam
+    
+    annuler les fncts de hashMap to DB
+
+[33mcommit 62c9f79422de3203a630370444c38766d0f49e41[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 17:15:26 2024 +0100
+
+    annuler les fncts de hashMap to DB
+
+[33mcommit 7d79b8024f56fcf8e7767691d0212d562ef89376[m
+Merge: 1b891da 6449fb5
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 17:12:04 2024 +0100
+
+    Merge pull request #30 from NorIslam04/islam
+    
+    implementer les hahsMap(reservation)
+
+[33mcommit 6449fb5574ccf3b47140bdf157edec9b8a1e08b9[m
+Merge: ebc5d57 1b891da
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 17:11:19 2024 +0100
+
+    implementer les hahsMap(reservation)
+
+[33mcommit ebc5d57b4fc0cd724a0f64cd971aeb21fe9097db[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 17:09:59 2024 +0100
+
+    implementer les hahsMap(reservation)
+
+[33mcommit 1b891da182577e0a9fabc47824b4a1ebd907e207[m
+Merge: 078c6ab 6ab1a67
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Tue Mar 26 16:45:08 2024 +0100
+
+    Merge pull request #29 from NorIslam04/abdou
+    
+    added pass to sign-in interface
+
+[33mcommit 6ab1a6707275f6f50c2ae95a6f10f6547e05600d[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 16:44:26 2024 +0100
+
+    added pass to sign-in interface
+
+[33mcommit 078c6ab765f0e0ad9b8064d0d902eec57c6b7524[m
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 04:49:39 2024 +0100
+
+    Update Classgenerique.java
+
+[33mcommit 722999a74d7960244e5981b88a2af07f125279ed[m
+Merge: c17466a b0306ea
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 04:48:17 2024 +0100
+
+    Merge pull request #28 from NorIslam04/islam
+    
+    some interfaces
+
+[33mcommit b0306eab0c0fc44a7b57687ab33f23c3cc555fbd[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 04:47:53 2024 +0100
+
+    some interfaces
+
+[33mcommit c17466a023f1c8c7a8096aeb0f1ac3e47eeca581[m
+Merge: 27bde2d 94b4bdf
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 04:45:32 2024 +0100
+
+    Merge pull request #27 from NorIslam04/islam
+    
+    some interfaces
+
+[33mcommit 94b4bdf806843b7985e84e15d123336ad05e7306[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 04:44:58 2024 +0100
+
+    some interfaces
+
+[33mcommit 27bde2ddd4a8eb85dea855aa6e18698401b897cb[m
+Merge: bb68336 678aa4f
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Tue Mar 26 04:26:36 2024 +0100
+
+    Merge pull request #26 from NorIslam04/abdou
+    
+    vérif-fonction
+
+[33mcommit 678aa4f00b1dbbba373b4601cba890d44da90b0e[m
+Merge: 03ef971 bb68336
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 04:26:17 2024 +0100
+
+    vérification-fonction
+
+[33mcommit 03ef971446cdb9329a37c01af4d677f4debc1885[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 04:23:37 2024 +0100
+
+    vérif-fonction
+
+[33mcommit bb683365a794c91b0e3f135ec8e3dcdd8a04e440[m
+Merge: 4944f3d 5993134
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 04:06:20 2024 +0100
+
+    Merge pull request #25 from NorIslam04/islam
+    
+    error panel
+
+[33mcommit 59931344f88c565d90cc8fe0ae63f45a46bc8f86[m
+Merge: 4d4d4eb 4944f3d
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 04:06:01 2024 +0100
+
+    error panel
+
+[33mcommit 4d4d4ebb40af16cf811b02d57f9dfb697fc76e47[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 04:01:58 2024 +0100
+
+    error panel
+
+[33mcommit 4944f3d9ced6486298e91e5821cfe6cafffd160c[m
+Merge: fc80996 89325b9
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 03:47:55 2024 +0100
+
+    Merge pull request #24 from NorIslam04/islam
+    
+    Islam
+
+[33mcommit 89325b9384e1dd77d8b819a0887383bc6f2137c0[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 03:47:24 2024 +0100
+
+    Date modification
+
+[33mcommit fc80996dbe6635cc40668dd784f85ec6678c7421[m
+Merge: 9f7aec9 133db3e
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Tue Mar 26 03:27:40 2024 +0100
+
+    Merge pull request #23 from NorIslam04/abdou
+    
+    Abdou
+
+[33mcommit 133db3e727090db1a4307671e4ab5f246c41e29c[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 03:26:47 2024 +0100
+
+    modifier interface
+
+[33mcommit 1d39e156c8e7b1f596a64004a84058da2baed525[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 03:21:52 2024 +0100
+
+     c:; cd 'c:\Users\ASUS\Desktop\gestion de l''hotel\hotel\gestion-hotel\Hotel'; & 'C:\Program Files\Java\jdk-21\bin\java.exe' '--enable-preview' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\ASUS\Desktop\gestion de l''hotel\hotel\gestion-hotel\Hotel\bin' 'Tablereservationadmin'
+
+[33mcommit 9dd376ea797794d615d5af030bbdd96f978d4055[m
+Merge: 6116c68 9f7aec9
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 02:48:00 2024 +0100
+
+    comments
+
+[33mcommit 6116c6850054f146930858dc3b85326fd78e71d6[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 02:21:17 2024 +0100
+
+    nothing
+
+[33mcommit 9f7aec98f0a2d41bd59eafdcb3823a2a9e13615f[m
+Merge: 84f34db b8d60e3
+Author: Abderrahmane0dx <163125305+Abderrahmane0dx@users.noreply.github.com>
+Date:   Tue Mar 26 01:11:39 2024 +0100
+
+    Merge pull request #22 from NorIslam04/abdou
+    
+    interface-photo
+
+[33mcommit b8d60e39c288bbf14033da687df22f05f306bcd8[m
+Merge: d4d7ac0 84f34db
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 01:11:13 2024 +0100
+
+    photo
+
+[33mcommit d4d7ac0ca6c738891b160fc00b2b853129fe1fb0[m
+Author: Abderrahmane0dx <benamaraabderrahmane2@gmail.com>
+Date:   Tue Mar 26 01:06:28 2024 +0100
+
+    interface-photo
+
+[33mcommit 84f34db58fe8ac2bb88ecfb85167a0dde70d8d12[m
+Merge: 7d9ae6d 101eeae
+Author: Aoudia Nour Islam <154976644+NorIslam04@users.noreply.github.com>
+Date:   Tue Mar 26 01:03:06 2024 +0100
+
+    Merge pull request #21 from NorIslam04/islam
+    
+    tablereservation user
+
+[33mcommit 101eeaebdc5316ae4908904d18cff821232402ea[m
+Author: NorIslam04 <islamaoudi18@gmail.com>
+Date:   Tue Mar 26 01:02:31 2024 +0100
+
+    tablereservation user
+
+[33mcommit 7d9ae6db7e7c226119f213755f427d58957b1270[m
+Author: hasnaa <hasnaabentouri@gmail.com>
+Date:   Mon Mar 25 21:28:48 2024 +0100
+
+    ss err
+
+[33mcommit a1788bfb6bc485a7d534b76e51c97c53640143f3[m
+Merge: 760998b ebbe496
+Author: hasnaa0407 <162985128+hasnaa0407@users.noreply.github.com>
+Date:   Mon Mar 25 21:06:39 2024 +0100
+
+    Merge pull request #20 from NorIslam04/revert-19-hasnaa
+    
+    Revert "plus d erreur"
+
+[33mcommit ebbe496c6039a6d973870f24407ed10577b68d7b[m
+Author: hasnaa0407 <162985128+hasnaa0407@users.noreply.github.com>
+Date:   Mon Mar 25 21:06:27 2024 +0100
+
+    Revert "plus d erreur"
