@@ -76,10 +76,14 @@ public class Admin {
 	}
 
 
-	void modifierchambrenblit(int id ,int nblit) throws non_presente_bdd {
+	void modifierchambrenblit(int id ,TypeChambre type) throws non_presente_bdd, Date_nonvalid {
+		LocalDate date = LocalDate.now();
+		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
+		Date dateDansUnan=Date.ajouterJours(date.getDayOfMonth(), date.getMonthValue(), date.getYear(),365);
 		Chambre chambre=Hotel.RechercheChambreParId(id);
-		if(chambre.getReservedatleastonce()==0) {
-		chambre.setNbLit(nblit);
+		if(Hotel.ChambreDispo(chambre,dateact,dateDansUnan)) {
+		chambre.setType(type);
+
 		GestionOperation.ModifierOpsChambreMap(chambre);//le id ne peut pas etre modified
 		}else {
 			//erreur

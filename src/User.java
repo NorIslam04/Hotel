@@ -108,9 +108,7 @@ public class User {
 
 	}
 
-
-
-	static boolean signin(String name, String passworld, String gmail)
+	static boolean signin(String name, String passworld, String gmail)//(islam) rani kteb deja wa7da kima f interface sign-in
 			throws deja_presente_bdd, motDePasseSimple, GmailIncorrect {
 		// verifier gmail correct
 		if (Hotel.findUser(name, passworld) == true) {

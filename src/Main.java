@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-     new Login();
+    new Login();
+    DataBase.Bdd_to_hashMap_users();
+    DataBase.Bdd_to_hashMap_room();
+    DataBase.Bdd_to_hashMap_reservation();
+    
      //creation des hashMap 
-     DataBase.Bdd_to_hashMap_users();
-     DataBase.Bdd_to_hashMap_room();
-     DataBase.Bdd_to_hashMap_reservation();
 
-     
+
+
+    DataBase.afficherHashMap(1);
+    System.out.println(ModificationHotel.getNb());
 
 
 

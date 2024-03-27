@@ -43,10 +43,9 @@ public class Chambre {
 	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
-	private boolean indb = false;
-	private int Reservedatleastonce = 0;// 0->non et 1->oui Reservedatleastonce
 
-	public Chambre(int id, TypeChambre type, double prix, int Reservedatleastonce) {
+
+	public Chambre(int id, TypeChambre type, double prix) {
 		this.id = id;
 		if(type==TypeChambre.SOLO){
 			this.nbLit = 1;
@@ -62,7 +61,6 @@ public class Chambre {
 		
 		this.type = type;
 		this.prix = prix;
-		this.Reservedatleastonce = Reservedatleastonce;
 		nb++;
 
 	}
@@ -115,20 +113,5 @@ public class Chambre {
 		Chambre.nb = nb;
 	}
 
-	public boolean isIndb() {
-		return indb;
-	}
-
-	public void setIndb(boolean indb) {
-		this.indb = indb;
-	}
-
-	public int getReservedatleastonce() {
-		return Reservedatleastonce;
-	}
-
-	public void setReservedatleastonce(int Reservedatleastonce) {
-		this.Reservedatleastonce = Reservedatleastonce;
-	}
 
 }

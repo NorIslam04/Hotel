@@ -4,7 +4,7 @@ public class ModificationHotel<T,O> {
     private T objet;// user,chambre,reservation
     private O operation;//AJOUT,SUPPRESSION,MODIFICATION
     private static int nb=0;
-
+    
     /*
      * le but de cette class dans le convertion de hashMap -> BDD 
      * utilison comme premery-key le id et objet pour recuperer l'instance modifier dans hashMap de l'hotel
