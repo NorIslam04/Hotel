@@ -210,7 +210,7 @@ public class DataBase {
 
             else if (objet instanceof Chambre) {
                 Chambre chambre = (Chambre) objet;
-                if (operation.equals(TypeOperation.AJOUT)) {
+                if (operation==TypeOperation.AJOUT) {
 
                     String insertQuery = "INSERT INTO rooms (nombre_lit, type, prix) VALUES (?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
@@ -246,7 +246,7 @@ public class DataBase {
             } else {// modification operation
                 if (objet instanceof Reservation) {
                     Reservation reservation = (Reservation) objet;
-                    if (operation.equals(TypeOperation.AJOUT)) {
+                    if(operation == TypeOperation.AJOUT) {
                         String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat) VALUES (?, ?, ?, ?, ?, ?)";
                         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
@@ -256,7 +256,7 @@ public class DataBase {
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
                         preparedStatement.executeUpdate();
-                    } else if (operation.equals(TypeOperation.MODIFICATION)) {
+                    } else if (operation==TypeOperation.MODIFICATION) {
                         int idReservation = reservation.getId();
                         String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ? WHERE id = ?";
                         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
