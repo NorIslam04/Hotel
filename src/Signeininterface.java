@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,6 +23,7 @@ public class Signeininterface extends javax.swing.JFrame {
         mailtext = new javax.swing.JTextField();
         closebtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
+        backtologinbtn = new javax.swing.JButton();
         
         //rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
@@ -75,7 +78,14 @@ public class Signeininterface extends javax.swing.JFrame {
         submitbtn.setText("Submit");
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitbtnActionPerformed(evt);
+                try {
+                    submitbtnActionPerformed(evt);
+                } catch (deja_presente_bdd | SQLException e) {
+                    e.printStackTrace();
+                } catch (non_presente_bdd e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
         // le positionement exact du boutton.
@@ -95,6 +105,18 @@ public class Signeininterface extends javax.swing.JFrame {
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closebtnActionPerformed(evt);
+            }
+        });
+
+        backtologinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        backtologinbtn.setText("Back To Login");
+        // le positionement exact du signin button.
+        backtologinbtn.setBounds(410, 480, 120, 30);
+        getContentPane().add(backtologinbtn);
+        // l'action du signin button.
+        backtologinbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backtologinbtnActionPerformed(evt);
             }
         });
 
@@ -138,7 +160,12 @@ public class Signeininterface extends javax.swing.JFrame {
             System.exit(0);
         }
     }    
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void backtologinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        Login log = new Login();
+        log.setVisible(true);
+        this.hide();
+    }    
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException, non_presente_bdd { 
         if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
             if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
              JOptionPane.showMessageDialog(frame,
@@ -153,8 +180,7 @@ public class Signeininterface extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
                 //ajoute dans hashMap users
                 User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.AjtUserMap(user);
-                //chambreinterface ch = 
+                Hotel.ajouterModificationHotel(user, TypeOperation.AJOUT);
                 new chambreinterface();
             }
          }  
@@ -171,12 +197,10 @@ public class Signeininterface extends javax.swing.JFrame {
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.AjtUserMap(user);
-            //chambreinterface ch = 
+            Hotel.modifierMap(user,TypeOperation.AJOUT);;//hna lzem nst3amlo had l fct machi lokhra !!!
             new chambreinterface();
-            //ch.setVisible(true);
+            System.out.println(ModificationHotel.getNb());//test
             this.hide();
-            DataBase.HasgMapsToDb();//pour le test !!
         }
     }                                       
 
@@ -207,6 +231,7 @@ public class Signeininterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel backgroundlabel;
+    private javax.swing.JButton backtologinbtn;
     private javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtext;

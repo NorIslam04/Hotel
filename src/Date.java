@@ -111,7 +111,7 @@ public class Date {
         return jours;
     }
 
-    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Exception {
+    public static Object differenceEntreDates(Date date_debut, Date date_fin) throws Date_nonorganiser,DiffSup365 {
         if (!Dates_logique(date_debut, date_fin)) {
             throw new Date_nonorganiser();
         }
@@ -126,10 +126,13 @@ public class Date {
         return joursDepuisDebutAnnee(date_fin) - joursDepuisDebutAnnee(date_debut);
     }
 
-    public static Date Recupere_date(String dateString) throws Exception {
+    public static Date Recupere_date(String dateString) throws Date_nonvalid,NumberFormatException,Date_syntaxe {
         try {
 
             String[] parts_date_debut = dateString.split("/");
+            if (!dateString.contains("/")){
+                throw new Date_syntaxe();
+            }
             int jourInt = Integer.parseInt(parts_date_debut[0]);
             int moisInt = Integer.parseInt(parts_date_debut[1]);
             int anneeInt = Integer.parseInt(parts_date_debut[2]);
@@ -207,6 +210,51 @@ public class Date {
         } else {
             return false;
         }
+    }
+    	
+	static Date StringDateint(String date) throws Date_nonvalid {
+		
+        int SlashIndex1= date.indexOf('/');
+        int SlashIndex2= date.lastIndexOf('/');
+
+        
+        String jourDebutString = date.substring(0, SlashIndex1);
+        String moisDebutString = date.substring(SlashIndex1+ 1, SlashIndex2);
+        String anneeDebutString = date.substring(SlashIndex2+ 1);
+
+        int jour = Integer.parseInt(jourDebutString);
+        int mois = Integer.parseInt(moisDebutString);
+        int annee = Integer.parseInt(anneeDebutString);
+		return new Date(jour,mois,annee);
+	}
+	
+
+    public static Date ajouterJours(int jour, int mois, int annee, int nombreJours) throws Date_nonvalid {
+     
+        int[] joursParMois = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (estBissextile(annee)) {
+            joursParMois[2] = 29;
+        }
+        jour = jour+nombreJours;
+
+        while (jour > joursParMois[mois]) {
+            jour = jour- joursParMois[mois];
+            mois++;
+
+            if (mois > 12) {
+                mois = 1;
+                annee++;
+                if (estBissextile(annee)) {
+                    joursParMois[2] = 29;
+                } else {
+                    joursParMois[2] = 28;
+                }
+            }
+        }
+
+     
+        return new Date(jour, mois, annee);
     }
     
 }

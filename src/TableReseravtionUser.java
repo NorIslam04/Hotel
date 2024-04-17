@@ -1,3 +1,4 @@
+import java.awt.event.WindowListener;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
@@ -7,11 +8,11 @@ import javax.swing.table.DefaultTableModel;
 public class TableReseravtionUser extends javax.swing.JFrame {
 
     public TableReseravtionUser() {
+        
         initComponents();
     }
                         
     private void initComponents() {
-
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         roomtypelabel = new javax.swing.JLabel();
@@ -28,6 +29,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         updatebtn = new javax.swing.JButton();
         idroomlabel = new javax.swing.JLabel();
         exitbtn = new javax.swing.JButton();
+        backbtn = new javax.swing.JButton();
         enddatetext = new javax.swing.JTextField();
         backgroundlabel = new javax.swing.JLabel();
 
@@ -59,7 +61,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         idroomlabel.setForeground(new java.awt.Color(255, 255, 255));
         idroomlabel.setText("ID-Room:");
         // le positionement exact du label.
-        idroomlabel.setBounds(30, 140, 150, 50);
+        idroomlabel.setBounds(30, 130, 150, 50);
         getContentPane().add(idroomlabel);
 
         //creation d'une label pour le type de la chambre avec ses caractéristiques.
@@ -67,7 +69,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         roomtypelabel.setForeground(new java.awt.Color(255, 255, 255));
         roomtypelabel.setText("Room Type:");
         // le positionement exact du label.
-        roomtypelabel.setBounds(30, 200, 120,50);
+        roomtypelabel.setBounds(30, 190, 120,50);
         getContentPane().add(roomtypelabel);
         
         //creation d'une label pour la date de début avec ses caractéristiques.
@@ -75,7 +77,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         startdatelabel.setForeground(new java.awt.Color(255, 255, 255));
         startdatelabel.setText("Start Date:");
         // le positionement exact du label.
-        startdatelabel.setBounds(30, 260,120,50);
+        startdatelabel.setBounds(30, 250,120,50);
         getContentPane().add(startdatelabel);
 
         //creation d'une label pour la date de fin avec ses caractéristiques.
@@ -83,7 +85,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         enddatelabel.setForeground(new java.awt.Color(255, 255, 255));
         enddatelabel.setText("End Date:");
         // le positionement exact du label.
-        enddatelabel.setBounds(30, 330, 120, 50);
+        enddatelabel.setBounds(30, 320, 120, 50);
         getContentPane().add(enddatelabel);
 
         //creation d'une label pour la prix de la chambre avec ses caractéristiques.
@@ -91,7 +93,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         roompricelabel.setForeground(new java.awt.Color(255, 255, 255));
         roompricelabel.setText("Room Price:");
         // le positionement exact du label.
-        roompricelabel.setBounds(30, 400, 120, 50);
+        roompricelabel.setBounds(30, 390, 120, 50);
         getContentPane().add(roompricelabel);
 
         //les TextFields:
@@ -193,8 +195,20 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             }
         });
         // le positionement exact du boutton.
-        exitbtn.setBounds(100, 510, 140, 30);
+        exitbtn.setBounds(190, 510, 130, 30);
         getContentPane().add(exitbtn);
+
+        backbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        backbtn.setText("Back To Rooms");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        
+        // le positionement exact du boutton.
+        backbtn.setBounds(20, 510, 130, 30);
+        getContentPane().add(backbtn);
 
 
         backgroundlabel.setIcon(new javax.swing.ImageIcon("liste-de-reservations.png"));
@@ -205,6 +219,12 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
+
+        //for loop 
+        //reservation 
+        //if(id_user==id){
+
+        //}
     }                      
 
     private void roomtypetextActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -217,7 +237,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
     private void roompricetextActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }                                             
+    }                               
 
     private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
@@ -225,17 +245,17 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         Date date_debut=Date.Recupere_date(startdatetext.getText());
         Date.verif_today_date(today, date_debut);
         Date date_fin=Date.Recupere_date(enddatetext.getText());
-        //Date.differenceEntreDates(date_debut, date_fin);
-        int id_user=0001;//des instruction pour recuperer le id_user
-        int id_chambre=0002;//des instruction pour recuperer le id_chambre
-        Reservation reservation= new Reservation(Reservation.getNb(), id_user, roomtypetext.getText(), date_debut, date_fin,id_chambre, EtatReservation.EN_ATTENTE);
-        Hotel.AjtResMap(reservation);
-
+        //System.out.println("deffirance -> "+Date.differenceEntreDates(date_debut, date_fin));
+        new Reservation(WIDTH, ALLBITS, date_debut, date_fin, null, ABORT, null);
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
         Model.addRow(new Object[]{idroomtext.getText(),roomtypetext.getText(),startdatetext.getText(),enddatetext.getText(),roompricetext.getText()});
 
     } catch(Date_syntaxe e){
-        System.out.println(e.getMessage());
+        JOptionPane.showMessageDialog(frame,
+        "entrer des chiffres dans les dates !",
+        "Erreur",
+        JOptionPane.ERROR_MESSAGE);
+
     
    } catch (NumberFormatException e) {
     JOptionPane.showMessageDialog(frame,
@@ -268,9 +288,11 @@ public class TableReseravtionUser extends javax.swing.JFrame {
                 "Erreur",
                 JOptionPane.INFORMATION_MESSAGE);
    }                                          
-    }                                                 
+    } 
+  
 
-    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
+
+    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         idroomtext.setText(model.getValueAt(selectedRow,0).toString());
@@ -289,6 +311,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
           model.setValueAt(startdatetext.getText(),i,2);
           model.setValueAt(enddatetext.getText(),i,3);
           model.setValueAt(roompricetext.getText(),i,4);
+          
       }else{
           JOptionPane.showMessageDialog(null,"Error");
       }
@@ -304,7 +327,13 @@ public class TableReseravtionUser extends javax.swing.JFrame {
         {
             System.exit(0);
         }
-    }                                       
+    }      
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        chambreinterface ch = new chambreinterface();
+        ch.setVisible(true);
+        this.hide();
+    }  
+                                 
 
     public static void main(String args[]) {
         try {
@@ -350,5 +379,6 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     private javax.swing.JTextField startdatetext;
     private javax.swing.JTable tablereservation;
     private javax.swing.JButton updatebtn;
+    private javax.swing.JButton backbtn;
     // End of variables declaration                   
 }

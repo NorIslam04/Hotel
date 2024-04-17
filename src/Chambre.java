@@ -3,6 +3,55 @@ enum TypeChambre {
 	DOUBLE,
 	TRIPLE,
 	SUITE;
+	
+    private float prix;
+	private int nblit;
+
+    TypeChambre() {
+    	this.prix = 0;
+		this.nblit=0;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+	public int getNbLit() {
+        return nblit;
+    }
+
+    
+    public void setNbLit(int nbLit) {
+        this.nblit = nbLit;
+    }
+
+	public static void initialiser(float prixSOLO,int nbLitSOLOS,float prixDOUBLE,int nbLitDOULBE,float prixTRIPLE,int nbLitTRIPLE,float prixSUITE,int nbLitSUITE){
+		initialisersSOLO(prixSOLO, nbLitSOLOS);
+		initialisersDOUBLE(prixDOUBLE, nbLitDOULBE);
+		initialisersTRIPLE(prixTRIPLE, nbLitTRIPLE);
+		initialisersSUITE(prixSUITE, nbLitSUITE);
+	}
+
+	public static void initialisersSOLO(float prix,int nbLit){
+	SOLO.setPrix(prix);
+	SOLO.setNbLit(nbLit);
+	}
+	public static void initialisersDOUBLE(float prix,int nbLit){
+		DOUBLE.setPrix(prix);
+		DOUBLE.setNbLit(nbLit);
+	}
+	public static void initialisersTRIPLE(float prix,int nbLit){
+		TRIPLE.setNbLit(nbLit);
+		TRIPLE.setPrix(prix);
+	}
+	public static void initialisersSUITE(float prix,int nbLit){
+		SUITE.setNbLit(nbLit);
+		SUITE.setPrix(prix);
+	}
 
 	public String ToString() {
 		switch (this) {
@@ -38,23 +87,20 @@ enum TypeChambre {
 public class Chambre {
 
 	private int id;// pour hash map
-	private int nbLit;
 	private TypeChambre type;
-	private double prix;
+	private int prix;
 	private int nbOp = 0;
 	static int nb = 0;
-	private boolean indb = false;
-	private int Reservedatleastonce = 0;// 0->non et 1->oui Reservedatleastonce
 
-	public Chambre(int id, int nbLit, TypeChambre type, double prix, int Reservedatleastonce) {
+
+	public Chambre(int id, TypeChambre type,int prix) {
 		this.id = id;
-		this.nbLit = nbLit;
 		this.type = type;
-		this.prix = prix;
-		this.Reservedatleastonce = Reservedatleastonce;
+		this.prix=prix;
 		nb++;
-
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -65,12 +111,9 @@ public class Chambre {
 	}
 
 	public int getNbLit() {
-		return nbLit;
+		return type.getNbLit();
 	}
 
-	public void setNbLit(int nbLit) {
-		this.nbLit = nbLit;
-	}
 
 	public TypeChambre getType() {
 		return type;
@@ -80,12 +123,8 @@ public class Chambre {
 		this.type = type;
 	}
 
-	public double getPrix() {
+	public int getPrix() {
 		return prix;
-	}
-
-	public void setPrix(double prix) {
-		this.prix = prix;
 	}
 
 	public int getNbOp() {
@@ -104,20 +143,11 @@ public class Chambre {
 		Chambre.nb = nb;
 	}
 
-	public boolean isIndb() {
-		return indb;
+
+
+	public void setPrix(int prix) {
+		this.prix = prix;
 	}
 
-	public void setIndb(boolean indb) {
-		this.indb = indb;
-	}
-
-	public int getReservedatleastonce() {
-		return Reservedatleastonce;
-	}
-
-	public void setReservedatleastonce(int Reservedatleastonce) {
-		this.Reservedatleastonce = Reservedatleastonce;
-	}
 
 }

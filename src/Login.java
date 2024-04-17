@@ -94,7 +94,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         
-        
         closebtn.setBackground(new java.awt.Color(171, 34, 34));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,22 +148,24 @@ public class Login extends javax.swing.JFrame {
         {
             System.exit(0);
         }
-    }                                        
+    }      
+                              
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {  
 
         if(usertext.getText().equals("") || pwdtext.getText().equals("")){
             JOptionPane.showMessageDialog(frame,
-            "Remplir le champ de User et Password",
+            "Please Fill All The Text Fields !!",
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else
         if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
            // new tableReservationAdmin && modifier chambre
            JOptionPane.showMessageDialog(frame,
-                "WELCOME ADMIN ZA3IIIM",
+                "WELCOME ADMIN ",
                 "WELCOME",
                 JOptionPane.INFORMATION_MESSAGE); 
+                new chambreadmin();
 
         }else{
             
@@ -174,11 +175,11 @@ public class Login extends javax.swing.JFrame {
         this.hide();
 
         }else{
+
             passerasignin pas = new passerasignin();
             pas.setVisible(true);
 
-                //cree panel pour cree un compte button (sign-in)
-        }
+        } 
     }
     }                                         
 

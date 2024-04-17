@@ -108,7 +108,7 @@ public class User {
 
 	}
 
-	static boolean signin(String name, String passworld, String gmail)
+	static boolean signin(String name, String passworld, String gmail)//(islam) rani kteb deja wa7da kima f interface sign-in
 			throws deja_presente_bdd, motDePasseSimple, GmailIncorrect {
 		// verifier gmail correct
 		if (Hotel.findUser(name, passworld) == true) {
@@ -116,11 +116,19 @@ public class User {
 		} else {
 			User.motdepass(passworld);
 			User.gmailCorrect(gmail);
-			GestionOperation.AjouterOpsUserMap(new User(nb, gmail, name, passworld));
+			Hotel.modifierMap(new User(nb, gmail, name, passworld),TypeOperation.AJOUT);
 			return true;
 
 		}
-
 	}
+
+		
+	public void reserver(TypeChambre type,String datedebut,String datefin) throws Date_nonvalid, Exception {
+	
+		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
+		Hotel.modifierMap(reservation,TypeOperation.AJOUT);
+	}
+		
+
 
 }
