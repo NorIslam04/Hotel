@@ -12,7 +12,6 @@ public class DataBase {
 
         Connection connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
         return connexion;
-
     }
 
     // base de données to hashMap:
@@ -327,7 +326,7 @@ public class DataBase {
         }
     }
     */
-   
+System.out.println("test");
    
     public static void afficherHashMap(int i) {
         switch (i) {
