@@ -226,6 +226,7 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -251,7 +252,7 @@ public class Login extends javax.swing.JFrame {
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
 
-        showPasswordButton = new JButton();
+        showPasswordButton = new JCheckBox();
         showPasswordLabel = new JLabel();
         sinscrireButton = new javax.swing.JButton();
         aPropos = new javax.swing.JButton();
@@ -266,7 +267,7 @@ public class Login extends javax.swing.JFrame {
         // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("signin page");
+        setTitle("Login page");
         setLocationRelativeTo(null);
         setVisible(true);
         // les labels:
@@ -275,7 +276,7 @@ public class Login extends javax.swing.JFrame {
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         userlabel.setText("User-name:");
         // le positionement exact du label.
-        userlabel.setBounds(70, 300, 150, 30);
+        userlabel.setBounds(20, 100, 150, 30);
         getContentPane().add(userlabel);
 
         // creation d'une label pour la description avec ses caractéristiques.
@@ -292,15 +293,15 @@ public class Login extends javax.swing.JFrame {
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
         showPasswordLabel.setText("voir le mot de passe");
         // le positionement exact du label.
-        showPasswordLabel.setBounds(250, 385, 150, 30);
+        showPasswordLabel.setBounds(170, 195, 150, 30);
         getContentPane().add(showPasswordLabel);
-
+        
         // creation d'une label pour le password avec ses caractéristiques.
         pwdlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         pwdlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         pwdlabel.setText("Password:");
         // le positionement exact du label.
-        pwdlabel.setBounds(70, 350, 150, 30);
+        pwdlabel.setBounds(20, 150, 150, 30);
         getContentPane().add(pwdlabel);
 
         // creation d'une label pour le sign in avec ses caractéristiques.
@@ -308,7 +309,7 @@ public class Login extends javax.swing.JFrame {
         loginlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         loginlabel.setText("Log-In");
         // le positionement exact du label.
-        loginlabel.setBounds(230, 220, 150, 40);
+        loginlabel.setBounds(170, 30, 150, 40);
         getContentPane().add(loginlabel);
 
         // creation d'une label pour le welcome avec ses caractéristiques.
@@ -322,8 +323,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(welcomelabel);
         // boutton pour le show passwd
         showPasswordButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        showPasswordButton.setText(" ");
-        showPasswordButton.setBounds(460, 390, 40, 20);
+        showPasswordButton.setBounds(362, 200, 40, 20);
         getContentPane().add(showPasswordButton);
 
         // creation d'une label pour le e-mail avec ses caractéristiques.
@@ -344,6 +344,7 @@ public class Login extends javax.swing.JFrame {
 
         // creation d'un boutton pour se connecter avec ses caractéristiques.
         sinscrireButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        sinscrireButton.setBorder(new RoundBorder(color, 3));
         sinscrireButton.setText("j'ai pas un compte");
 
         sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +355,7 @@ public class Login extends javax.swing.JFrame {
         // le positionement exact du boutton.
         sinscrireButton.setBounds(60, 457, 215, 40);
         sinscrireButton.setBackground(colorgris);
-        sinscrireButton.setForeground(Color.WHITE);
+        sinscrireButton.setForeground(color);
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
@@ -367,7 +368,8 @@ public class Login extends javax.swing.JFrame {
         // le positionement exact du boutton.
         aPropos.setBounds(60, 510, 452, 40);
         aPropos.setBackground(colorgris);
-        aPropos.setForeground(Color.WHITE);
+        aPropos.setBorder(new RoundBorder(color, 3));
+        aPropos.setForeground(color);
 
         // creation d'un boutton pour le close avec ses caractéristiques.
 
@@ -401,11 +403,8 @@ public class Login extends javax.swing.JFrame {
         });
 
         // le positionement exact du textfield:
-        pwdtext.setBounds(250, 350, 230, 30);
+        pwdtext.setBounds(170, 150, 230, 30);
         // Définir le remplissage du champ de texte
-        pwdtext.setForeground(color);
-        pwdtext.setBackground(colorgris);
-
         Border whiteBorder = BorderFactory.createLineBorder(color);
 
         // Créer une bordure transparente intérieure
@@ -420,7 +419,7 @@ public class Login extends javax.swing.JFrame {
         pwdtext.setBorder(compoundBorder);
 
         // le positionement exact du textfield.
-        usertext.setBounds(250, 300, 230, 30);
+        usertext.setBounds(170, 100, 230, 30);
         usertext.setForeground(color);
         usertext.setBackground(colorgris);
         usertext.setBorder(compoundBorder);
@@ -455,7 +454,7 @@ public class Login extends javax.swing.JFrame {
 
         // Positionner les panneaux
         bienvenuePanel.setBounds(30, 10, 1032, 150); // Ajustez les coordonnées et les dimensions selon votre interface
-        contenuPanel.setBounds(0, 10, 1032, 1000);
+        contenuPanel.setBounds(65, 200, 442, 250);
         bouttonsJPanel.setBounds(0, 10, 1032, 1000); // Ajustez les coordonnées et les dimensions selon votre interface
         bienvenuePanel.setOpaque(false);
         contenuPanel.setOpaque(false);
@@ -497,10 +496,9 @@ public class Login extends javax.swing.JFrame {
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
-            showPasswordButton.setText("*"); // Changer le texte du bouton
         } else {
             pwdtext.setEchoChar('\u2022'); // Masquer le mot de passe
-            showPasswordButton.setText(" "); // Changer le texte du bouton
+            
         }
     }
 
@@ -581,7 +579,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
-    private JButton showPasswordButton;
+    private JCheckBox showPasswordButton;
     private JButton sinscrireButton;
     private javax.swing.JLabel showPasswordLabel;
     private JButton aPropos;

@@ -157,7 +157,7 @@ public class APropos extends javax.swing.JFrame {
         getContentPane().add(backgroundlabel);
 
         setSize(new java.awt.Dimension(1032, 580));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); 
     }
 
     private JFrame frame;
