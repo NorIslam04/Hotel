@@ -1,3 +1,4 @@
+
 /*import javax.swing.*;
 import java.awt.*;
 import java.util.Set;
@@ -249,7 +250,7 @@ public class Login extends javax.swing.JFrame {
         closebtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
-     
+
         showPasswordButton = new JButton();
         showPasswordLabel = new JLabel();
         sinscrireButton = new javax.swing.JButton();
@@ -426,7 +427,6 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(usertext);
 
         // le positionement exct du textfield.
-       
 
         // Définir la disposition des panneaux
         bienvenuePanel.setLayout(new BorderLayout());
@@ -445,7 +445,7 @@ public class Login extends javax.swing.JFrame {
         contenuPanel.add(loginlabel);
         contenuPanel.add(usertext);
         contenuPanel.add(pwdtext);
-        
+
         contenuPanel.add(showPasswordLabel);
         contenuPanel.add(showPasswordButton);
 
@@ -480,7 +480,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void aProposbtnActionPerformed() {
-        APropos a=new APropos();
+        APropos a = new APropos();
     }
 
     private JFrame frame;
@@ -509,37 +509,37 @@ public class Login extends javax.swing.JFrame {
         new Signeininterface();
     }
 
-    private void seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt) {  
+    private void seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt) {
 
-        if(usertext.getText().equals("") || pwdtext.getText().equals("")){
+        if (usertext.getText().equals("") || pwdtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
-            "Please Fill All The Text Fields !!",
-            "ERROR",
-            JOptionPane.ERROR_MESSAGE); 
-        }else
-        if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
-           // new tableReservationAdmin && modifier chambre
-           JOptionPane.showMessageDialog(frame,
-                "WELCOME ADMIN ",
-                "WELCOME",
-                JOptionPane.INFORMATION_MESSAGE); 
-                new chambreadmin();
+                    "Please Fill All The Text Fields !!",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (usertext.getText().equals(".admin") && pwdtext.getText().equals(".admin")) {
+            // new tableReservationAdmin && modifier chambre
+            JOptionPane.showMessageDialog(frame,
+                    "WELCOME ADMIN ",
+                    "WELCOME",
+                    JOptionPane.INFORMATION_MESSAGE);
+            new chambreadmin();
 
-        }else{
-            
-        if(Hotel.findUser(usertext.getText(),pwdtext.getText())){                                  
-        chambreinterface ch = new chambreinterface();
-        ch.setVisible(true);
-        this.hide();
+        } else {
 
-        }else{
+            if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
+                chambreinterface ch = new chambreinterface();
+                ch.setVisible(true);
+                this.hide();
 
-            passerasignin pas = new passerasignin();
-            pas.setVisible(true);
+            } else {
 
-        } 
+                passerasignin pas = new passerasignin();
+                pas.setVisible(true);
+
+            }
+        }
     }
-}
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -589,5 +589,4 @@ public class Login extends javax.swing.JFrame {
 
 }
 
-
-//To:do verification de la validation de l adreesse mail
+// To:do verification de la validation de l adreesse mail
