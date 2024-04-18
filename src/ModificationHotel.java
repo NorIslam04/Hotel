@@ -1,26 +1,17 @@
-
-
-public class ModificationHotel<T> {
+public class ModificationHotel<T,O> {
 
     private int id;// de user,chambre,reservation
     private T objet;// user,chambre,reservation
-    private TypeOperation operation;//AJOUT,SUPPRESSION,MODIFICATION
+    private O operation;//AJOUT,SUPPRESSION,MODIFICATION
     private static int nb=0;
     
-    /*
-     * le but de cette class dans le convertion de hashMap -> BDD 
-     * utilison comme premery-key le id et objet pour recuperer l'instance modifier dans hashMap de l'hotel
-     * l'attribue operation pour separer les modification dans la BDD
-     */
 
-
-    public ModificationHotel(int id, T objet, TypeOperation operation) {
+    public ModificationHotel(int id, T objet, O operation) {
         this.id = id;
         this.objet = objet;
         this.operation = operation;
         nb++;
     }
-
 
     public int getId() {
         return id;
@@ -34,10 +25,10 @@ public class ModificationHotel<T> {
     public void setObjet(T objet) {
         this.objet = objet;
     }
-    public TypeOperation getOperation() {
+    public O getOperation() {
         return operation;
     }
-    public void setOperation(TypeOperation operation) {
+    public void setOperation(O operation) {
         this.operation = operation;
     }
 
@@ -56,18 +47,6 @@ public class ModificationHotel<T> {
         return "ModificationHotel [objet=" + objet + ", operation=" + operation + "]";
     }
 
-    
-
-    
-    /*//tous les operation......
-     * if(id=1&&objet user){
-     * 
-     * }if(id=1&&objet chambre){}
-     * 
-     * 
-
-     * 
-     */
 
 
 

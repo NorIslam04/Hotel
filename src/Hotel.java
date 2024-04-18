@@ -1,8 +1,16 @@
 
-/*import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+enum TypeOperation {
+    AJOUT,
+    SUPPRESSION,
+    MODIFICATION
+
+}
+
 
 class non_presente_bdd extends Exception {
     private String message = "l'article que vous cherchez n'est pas présent à notre bdd verifiez svp";
@@ -20,6 +28,8 @@ class deja_presente_bdd extends Exception {
     }
 }
 public class Hotel {
+
+	static int id_user_current;
 
 	private static HashMap<Integer, Chambre> chambreMap = new HashMap<>();
 	private static HashMap<Integer, User> userMap = new HashMap<>();
@@ -55,6 +65,7 @@ public class Hotel {
 		for (Map.Entry<Integer, User> entry : userMap.entrySet()) {
 			User user = entry.getValue();
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
+				id_user_current=user.getId();
 				return true;
 			}
 		}
@@ -222,7 +233,7 @@ public class Hotel {
 			if (chambre.getType() == type) {
 				boolean nonreserve = ChambreDispo(chambre, date1, date2);
 				if (nonreserve) {
-					GestionOperation.ModifierOpsChambreMap(chambre);
+
 					return chambre;
 				}
 
@@ -231,7 +242,8 @@ public class Hotel {
 		return null;
 	}
 
-}*/
+}
+/* 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -510,4 +522,4 @@ public class Hotel {
 		return null;
 	}
 
-}
+}*/
