@@ -180,8 +180,8 @@ public class Signeininterface extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
                 //ajoute dans hashMap users
                 User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.ajouterModificationHotel(user, TypeOperation.AJOUT);
-                new chambreinterface();
+                Hotel.AjtUserMap(user);
+                this.dispose();
             }
          }  
         else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
@@ -197,11 +197,10 @@ public class Signeininterface extends javax.swing.JFrame {
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.modifierMap(user,TypeOperation.AJOUT);;//hna lzem nst3amlo had l fct machi lokhra !!!
-            new chambreinterface();
-            System.out.println(ModificationHotel.getNb());//test
-            this.hide();
+            Hotel.AjtUserMap(user);
+            this.dispose();
         }
+        DataBase.HasgMapsToDb();
     }                                       
 
     public static void main(String args[]) {
@@ -368,7 +367,12 @@ public class Signeininterface extends javax.swing.JFrame {
         submitbtn.setText("creer un nouveau compte");
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitbtnActionPerformed(evt);
+                try {
+                    submitbtnActionPerformed(evt);
+                } catch (deja_presente_bdd e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
         // le positionement exact du boutton.
@@ -548,7 +552,7 @@ public class Signeininterface extends javax.swing.JFrame {
         new Login();
     }
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd {
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
                 JOptionPane.showMessageDialog(frame,
@@ -563,7 +567,7 @@ public class Signeininterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 // ajoute dans hashMap users
                 User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.modifierMap(user, TypeOperation.AJOUT);
+                Hotel.AjouterUserMap(user);
                 ;// hna lzem nst3amlo had l fct machi lokhra !!!
                 // chambreinterface ch =
                 new chambreinterface();
@@ -581,7 +585,7 @@ public class Signeininterface extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             // ajoute dans hashMap users
             User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.modifierMap(user, TypeOperation.AJOUT);
+            Hotel.AjouterUserMap(user);
             ;// hna lzem nst3amlo had l fct machi lokhra !!!
             // chambreinterface ch =
             new chambreinterface();

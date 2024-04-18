@@ -1,9 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +37,7 @@ public class DataBase {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 User user = new User(id, email, name, password);
-                Hotel.modifierMap(user,TypeOperation.AJOUT);
+                Hotel.AjouterUserMap(user);
                 User.setNb(id);
             }
 
@@ -113,7 +108,7 @@ public class DataBase {
                 Date df = Date.Recupere_date(dateFin);
 
                 Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat);
-                Hotel.modifierMap(reservation,TypeOperation.AJOUT);
+                Hotel.AjouterReservationMap(reservation);
                 Reservation.setNb(id);
             }
 
@@ -158,48 +153,15 @@ public class DataBase {
         return utilisateurTrouve;
     }
 
-    public static boolean verif_admin_bdd(String name, String psswrd) {
-        boolean adminTrouve = false;
-
-        // Requête SQL pour vérifier l'existence de l'utilisateur
-        String query = "SELECT * FROM admin WHERE name = ? AND password = ?";
-        try {
-            // Établir la connexion à la base de données
-            Connection connexion = connectToMySQL();
-
-            // Créer une déclaration préparée pour exécuter la requête avec les paramètres
-            PreparedStatement statement = connexion.prepareStatement(query);
-            statement.setString(1, name);
-            statement.setString(2, psswrd);
-
-            // Exécuter la requête SQL et obtenir le résultat
-            ResultSet resultSet = statement.executeQuery();
-
-            // Vérifier si un utilisateur correspondant a été trouvé dans la base de données
-            if (resultSet.next()) {
-                adminTrouve = true;
-            }
-
-            // Fermer les ressources
-            resultSet.close();
-            statement.close();
-            connexion.close();
-        } catch (SQLException e) {
-            System.out.println(e.getErrorCode());
-        }
-
-        return adminTrouve;
-    }
 
     static void HasgMapsToDb() throws SQLException {
-        HashMap<Integer, ModificationHotel<?>> modificMap = Hotel.getModificationMap();
+        HashMap<Integer, ModificationHotel<?,?>> modificMap = Hotel.getModificationMap();
         Connection connection = connectToMySQL();
         // Parcours de la HashMap et accès à ses éléments
-        for (Map.Entry<Integer, ModificationHotel<?>> entry : modificMap.entrySet()) {
+        for (Map.Entry<Integer, ModificationHotel<?,?>> entry : modificMap.entrySet()) {
 
-            int id = entry.getValue().getId(); // Obtenez l'ID de ModificationHotel
             Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
-            TypeOperation operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
+            Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
                                                                        // O)
 
             if (objet instanceof User && operation == TypeOperation.AJOUT) {
@@ -209,27 +171,31 @@ public class DataBase {
 
             else if (objet instanceof Chambre) {
                 Chambre chambre = (Chambre) objet;
+                String ch ="Chambre";
                 if (operation==TypeOperation.AJOUT) {
 
-                    String insertQuery = "INSERT INTO rooms (nombre_lit, type, prix) VALUES (?, ?, ?)";
+                    String insertQuery = "INSERT INTO rooms (type, prix) VALUES (?, ?)";                 
                     PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-                    preparedStatement.setInt(1, chambre.getNbLit());
-                    preparedStatement.setString(2, chambre.getType().ToString());
-                    preparedStatement.setDouble(3, chambre.getPrix());
+                    preparedStatement.setString(1, chambre.getType().ToString());
+                    preparedStatement.setDouble(2, chambre.getPrix());
                     preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    System.out.println("Objet: "+ch+" / Operation: "+operation);
 
                 } else if (operation == TypeOperation.MODIFICATION) {
                     // on a un probleme de iD_hashMap != iD_DB (c pas suur)
                     int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe
                                                      // Chambre pour obtenir l'identifiant de la chambre
-                    String updateQuery = "UPDATE rooms SET nombre_lit = ?, type = ?, prix = ? WHERE id = ?";
+                    String updateQuery = "UPDATE rooms SET  type = ?, prix = ? WHERE id = ?";
                     PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
-                    preparedStatement.setInt(1, chambre.getNbLit());
-                    preparedStatement.setString(2, chambre.getType().ToString());
-                    preparedStatement.setDouble(3, chambre.getPrix());
-                    preparedStatement.setInt(4, idChambre);
+                    
+                    preparedStatement.setString(1, chambre.getType().ToString());
+                    preparedStatement.setDouble(2, chambre.getPrix());
+                    preparedStatement.setInt(3, idChambre);
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
+                    System.out.println("Objet: "+ch+" / Operation: "+operation);
+
 
                 } else {
 
@@ -245,6 +211,7 @@ public class DataBase {
             } else {// modification operation
                 if (objet instanceof Reservation) {
                     Reservation reservation = (Reservation) objet;
+                    String res="Reservation";
                     if(operation == TypeOperation.AJOUT) {
                         String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat) VALUES (?, ?, ?, ?, ?, ?)";
                         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
@@ -255,6 +222,9 @@ public class DataBase {
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
                         preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
                     } else if (operation==TypeOperation.MODIFICATION) {
                         int idReservation = reservation.getId();
                         String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ? WHERE id = ?";
@@ -268,6 +238,8 @@ public class DataBase {
                         preparedStatement.setInt(7, idReservation);
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
                     } else if (operation.equals(TypeOperation.SUPPRESSION)) {
                         int idReservation = reservation.getId();
                         String deleteQuery = "DELETE FROM reservation WHERE id = ?";
@@ -275,6 +247,8 @@ public class DataBase {
                         preparedStatement.setInt(1, idReservation);
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
                     }
                 }
 

@@ -1,4 +1,6 @@
 import java.util.Map;
+
+import javax.swing.JButton;
 import javax.swing.JOptionPane;           
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +27,7 @@ public class chambreadmin extends javax.swing.JFrame {
                         
     private void initComponents() {
 
+        JButton suppreservationbtn = new javax.swing.JButton();
         roomslabel = new javax.swing.JLabel();
         chlabel = new javax.swing.JLabel();
         idroomlabel = new javax.swing.JLabel();
@@ -116,6 +119,24 @@ public class chambreadmin extends javax.swing.JFrame {
         // le positionement exact du tableau.
         jScrollPane1.setBounds(420, 130, 440, 330);
         getContentPane().add(jScrollPane1);
+
+        suppreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        suppreservationbtn.setText("Reservation inutile");
+        suppreservationbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    suppreservationbtnActionPerformed(evt);
+                } catch (Date_nonvalid | non_presente_bdd | deja_presente_bdd e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        suppreservationbtn.setBounds(100, 380, 160, 30);
+        getContentPane().add(suppreservationbtn);
+
+
+        
 
         //creation d'un boutton avec ses caractéristiques.
         addnewroombtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -243,7 +264,12 @@ public class chambreadmin extends javax.swing.JFrame {
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }                                        
+    }  
+    
+
+    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {                                            
+        Admin.supprimerreservationinutile();
+    }
 
     private void roomtypeboxActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
@@ -253,9 +279,6 @@ public class chambreadmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                            
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -278,24 +301,7 @@ public class chambreadmin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(chambreadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new chambreadmin().setVisible(true);

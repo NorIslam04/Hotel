@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
             "ERROR",
             JOptionPane.ERROR_MESSAGE); 
         }else
-        if(usertext.getText().equals(".admin")&&pwdtext.getText().equals(".admin")){
+        if(usertext.getText().equals(".")&&pwdtext.getText().equals(".")){
            // new tableReservationAdmin && modifier chambre
            JOptionPane.showMessageDialog(frame,
                 "WELCOME ADMIN ",
