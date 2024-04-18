@@ -68,6 +68,8 @@ enum TypeChambre {
 		}
 	}
 
+	
+
 	public static TypeChambre ToTypeChambre(String str) {
 		switch (str) {
 			case "SOLO":
@@ -84,23 +86,96 @@ enum TypeChambre {
 	}
 }
 
+enum OptionSupplementaire {
+TV,CLIMATISATION,VUESURMERE,VUESURFORET;
+private float prix;//prix pour chaque option
+
+
+OptionSupplementaire() {
+	this.prix = 0;
+}
+
+public float getPrix() {
+	return prix;
+}
+
+
+public void setPrix(float prix) {
+	this.prix = prix;
+}
+
+
+public static void initialiser(float prixTV,float prixClimatisation,float prixvuesurmer,float prixvuesurforet){
+	TV.setPrix(prixTV);
+	CLIMATISATION.setPrix(prixClimatisation);
+	VUESURFORET.setPrix(prixvuesurforet);
+	VUESURMERE.setPrix(prixvuesurmer);
+}
+}
+
 public class Chambre {
 
 	private int id;// pour hash map
 	private TypeChambre type;
+	private boolean tv;
+
+	private boolean climatisation;
+	private boolean vuesurmere;
+	private boolean vuesurforet;
 	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
-
-
 	public Chambre(int id, TypeChambre type,int prix) {
 		this.id = id;
 		this.type = type;
 		this.prix=prix;
 		nb++;
 	}
+	public Chambre(int id, TypeChambre type,int prix,boolean tv,boolean climatisation,boolean vuesurmere,boolean vuesurforet) {
+		this.id = id;
+		this.type = type;
+		this.prix=prix;
+		this.tv=tv;
+		this.climatisation=climatisation;
+		this.vuesurmere=vuesurmere;
+		this.vuesurforet=vuesurforet;
+		nb++;
+	}
 
-	
+
+
+	public boolean isVuesurmere() {
+		return vuesurmere;
+	}
+	public void setVuesurmere(boolean vuesurmere) {
+		this.vuesurmere = vuesurmere;
+	}
+
+	public boolean isVuesurforet() {
+		return vuesurforet;
+	}
+	public void setVuesurforet(boolean vuesurforet) {
+		this.vuesurforet = vuesurforet;
+	}
+
+
+	public boolean isClimatisation() {
+		return climatisation;
+	}
+	public void setClimatisation(boolean climatisation) {
+		this.climatisation = climatisation;
+	}
+
+
+	public boolean isTv() {
+		return tv;
+	}
+	public void setTv(boolean tv) {
+		this.tv = tv;
+	}
+
+
+
 
 	public int getId() {
 		return id;
@@ -150,4 +225,34 @@ public class Chambre {
 	}
 
 
+  public float calculeprixchambre(){
+	float prix=0;
+	if(tv){
+		prix=prix+OptionSupplementaire.TV.getPrix();
+	}
+	if(climatisation){
+		prix=prix+OptionSupplementaire.CLIMATISATION.getPrix();
+	}
+	if(vuesurforet){
+		prix=prix+OptionSupplementaire.VUESURFORET.getPrix();
+	}
+	if(vuesurmere){
+		prix=prix+OptionSupplementaire.VUESURMERE.getPrix();
+	}
+	if(type==TypeChambre.SOLO){
+		prix=prix+TypeChambre.SOLO.getPrix();
+	}
+	if(type==TypeChambre.DOUBLE){
+		prix=prix+TypeChambre.DOUBLE.getPrix();
+	}
+	if(type==TypeChambre.TRIPLE){
+		prix=prix+TypeChambre.TRIPLE.getPrix();
+	}
+	if(type==TypeChambre.SUITE){
+		prix=prix+TypeChambre.SUITE.getPrix();
+	}
+// TODO : n9drou n7ou kml hd les if w nkhdmou b objet ida mnssinech ndirouha
+	this.prix=prix;  
+	return prix;
+  }
 }

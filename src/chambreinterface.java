@@ -1,5 +1,4 @@
 
-
 /*public class chambreinterface extends javax.swing.JFrame {
 
   
@@ -242,14 +241,12 @@ public class chambreinterface extends javax.swing.JFrame {
         passeraureservationbtn.setForeground(colorgris);
         add(passeraureservationbtn);
 
-
-        JButton reserverpardetailbtn = new JButton("passer aux reservation");
+        JButton reserverpardetailbtn = new JButton("reservation avec details");
         reserverpardetailbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         reserverpardetailbtn.setBackground(color);
         reserverpardetailbtn.setBounds(665, 480, 240, 40);
         reserverpardetailbtn.setForeground(colorgris);
         add(reserverpardetailbtn);
-   
 
         JButton aPropos = new JButton();
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
@@ -260,7 +257,6 @@ public class chambreinterface extends javax.swing.JFrame {
                 aProposbtnActionPerformed();
             }
         });
-        // le positionement exact du boutton.
         aPropos.setBounds(10, 10, 150, 30);
         aPropos.setBackground(colorgris);
         aPropos.setForeground(color);
@@ -268,7 +264,23 @@ public class chambreinterface extends javax.swing.JFrame {
 
         add(aPropos);
 
-        
+        JButton avissurnousButton = new JButton();
+        // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
+        avissurnousButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        avissurnousButton.setText("Avis sur nous ");
+        avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avissurnousButtonActionPerformed();
+            }
+        });
+        avissurnousButton.setBounds(10, 40, 150, 30);
+        avissurnousButton.setBackground(colorgris);
+        avissurnousButton.setForeground(color);
+        avissurnousButton.setBorder(new RoundBorder(color, 3));
+
+        add(avissurnousButton);
+        // le positionement exact du boutton.
+
         // Bouton pour fermer la fenêtre
         JButton revenirbtn = new JButton("");
         revenirbtn.setBounds(970, 5, 25, 30);
@@ -282,7 +294,6 @@ public class chambreinterface extends javax.swing.JFrame {
             }
         });
 
-       
         passeraureservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passeraureservationActionPerformed();
@@ -294,9 +305,6 @@ public class chambreinterface extends javax.swing.JFrame {
             }
         });
 
-
-
-
         JLabel suitetext = new javax.swing.JLabel();
         JLabel prixsuite = new javax.swing.JLabel();
         JLabel doubletext = new javax.swing.JLabel();
@@ -305,152 +313,136 @@ public class chambreinterface extends javax.swing.JFrame {
         JLabel prixtrio = new javax.swing.JLabel();
         JLabel solotext = new javax.swing.JLabel();
         JLabel prixsolo = new javax.swing.JLabel();
-        JPanel soloPanel=new JPanel();
-        JPanel doublePanel=new JPanel();
-        JPanel triplePanel=new JPanel();
-        JPanel suitePanel=new JPanel();
+        JPanel soloPanel = new JPanel();
+        JPanel doublePanel = new JPanel();
+        JPanel triplePanel = new JPanel();
+        JPanel suitePanel = new JPanel();
 
-        JLabel suiteimLabel=new JLabel();
+        JLabel suiteimLabel = new JLabel();
         suiteimLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (9).png")); // NOI18N
         // le positionement exact du background.
         suiteimLabel.setBounds(49, 140, 219, 180);
         getContentPane().add(suiteimLabel);
 
-        JLabel triJLabel=new JLabel();
+        JLabel triJLabel = new JLabel();
         triJLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (11).png")); // NOI18N
         // le positionement exact du background.
         triJLabel.setBounds(768, 140, 219, 180);
         getContentPane().add(triJLabel);
-      
-        JLabel doubleJLabel=new JLabel();
+
+        JLabel doubleJLabel = new JLabel();
         doubleJLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (12).png")); // NOI18N
         // le positionement exact du background.
         doubleJLabel.setBounds(287, 140, 219, 180);
         getContentPane().add(doubleJLabel);
-        JLabel soloJLabel=new JLabel();
+        JLabel soloJLabel = new JLabel();
         soloJLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (13).png")); // NOI18N
         // le positionement exact du background.
         soloJLabel.setBounds(526, 140, 219, 180);
         getContentPane().add(soloJLabel);
-      
-      
-      
 
         doublePanel.setLayout(null);
-        
+
         soloPanel.setLayout(null);
-        
+
         triplePanel.setLayout(null);
         suitePanel.setLayout(null);
 
-        soloPanel.setBounds(49,338,219,100);
-        doublePanel.setBounds(287,338,219,100);
-        triplePanel.setBounds(526,338,219,100);
-        suitePanel.setBounds(768,338,219,100);
+        soloPanel.setBounds(49, 338, 219, 100);
+        doublePanel.setBounds(287, 338, 219, 100);
+        triplePanel.setBounds(526, 338, 219, 100);
+        suitePanel.setBounds(768, 338, 219, 100);
 
         soloPanel.setBackground(colorgris);
         doublePanel.setBackground(colorgris);
         triplePanel.setBackground(colorgris);
         suitePanel.setBackground(colorgris);
-        soloPanel.setBorder(new RoundBorder(color,3));
-        doublePanel.setBorder(new RoundBorder(color,3));
-        triplePanel.setBorder(new RoundBorder(color,3));
-        suitePanel.setBorder(new RoundBorder(color,3));
-        //rendre le layout manager null pour le positionement absolu.
+        soloPanel.setBorder(new RoundBorder(color, 3));
+        doublePanel.setBorder(new RoundBorder(color, 3));
+        triplePanel.setBorder(new RoundBorder(color, 3));
+        suitePanel.setBorder(new RoundBorder(color, 3));
+        // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("chambre");
         setLocationRelativeTo(null);
         setVisible(true);
-      
 
-        //creation d'une label pour le titre avec ses caractéristiques.
-       
-        //creation d'une label pour suite avec ses caractéristiques.
-        suitetext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); 
+        // creation d'une label pour le titre avec ses caractéristiques.
+
+        // creation d'une label pour suite avec ses caractéristiques.
+        suitetext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         suitetext.setText("Suite:Max 5 Guests.");
         suitetext.setForeground(color);
         // le positionement exact du label.
         suitetext.setBounds(50, 25, 120, 20);
-     
 
-        //creation d'une label pour prix suite avec ses caractéristiques.
-        prixsuite.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); 
-        prixsuite.setText("700/Night."); 
-        prixsuite.setForeground(color); 
+        // creation d'une label pour prix suite avec ses caractéristiques.
+        prixsuite.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
+        prixsuite.setForeground(color);
         // le positionement exact du label.
         prixsuite.setBounds(70, 45, 120, 20);
-     
 
-        //creation d'une label pour double avec ses caractéristiques.
+        // creation d'une label pour double avec ses caractéristiques.
         doubletext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         doubletext.setText("Double Room: Max 2 Guests.");
         doubletext.setForeground(color);
         // le positionement exact du label.
-        doubletext.setBounds(28, 25, 200 , 20);
-        
+        doubletext.setBounds(28, 25, 200, 20);
 
-        //creation d'une label pour prix double avec ses caractéristiques.
+        // creation d'une label pour prix double avec ses caractéristiques.
         prixdouble.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        prixdouble.setText("250$/Night.  ");
+        prixdouble.setText(TypeChambre.DOUBLE.getPrix() + "$/Night.  ");
         prixdouble.setForeground(color);
         // le positionement exact du label.
         prixdouble.setBounds(70, 45, 120, 20);
-   
 
-
-        //creation d'une label pour trio avec ses caractéristiques.
+        // creation d'une label pour trio avec ses caractéristiques.
         triotext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         triotext.setText("Trio Room:Max 3 Guests.");
         triotext.setForeground(color);
         // le positionement exact du label.
         triotext.setBounds(35, 25, 200, 20);
-       
-      
 
-        //creation d'une label pour prix trio avec ses caractéristiques.
+        // creation d'une label pour prix trio avec ses caractéristiques.
         prixtrio.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        prixtrio.setText("500$/Night.");
+        prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
 
         prixtrio.setForeground(color);
         // le positionement exact du label.
         prixtrio.setBounds(70, 45, 120, 20);
-        
-     
 
-        //creation d'une label pour solo avec ses caractéristiques.
+        // creation d'une label pour solo avec ses caractéristiques.
         solotext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         solotext.setText("Solo Room:For 1 Guest.");
         solotext.setForeground(color);
         // le positionement exact du label.
         solotext.setBounds(40, 25, 200, 20);
-        
-   
 
-         //creation d'une label pour prix solo avec ses caractéristiques.
-         prixsolo.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-         prixsolo.setText("100$/Night.");
-         prixsolo.setForeground(color);
-         // le positionement exact du label.
-         prixsolo.setBounds(70, 45, 120, 20);
-        
-         
-         soloPanel.add(solotext);
-         soloPanel.add(prixsolo);
-         add(soloPanel);
-         
-         doublePanel.add(doubletext);
-         doublePanel.add(prixdouble);
-         add(doublePanel);
-         
-         triplePanel.add(triotext);
-         triplePanel.add(prixtrio);
-         add(triplePanel);
-         
-         suitePanel.add(suitetext);
-         suitePanel.add(prixsuite);
-         add(suitePanel);
-   
+        // creation d'une label pour prix solo avec ses caractéristiques.
+        prixsolo.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        prixsolo.setText(TypeChambre.SOLO.getPrix() + "$/Night.");
+        prixsolo.setForeground(color);
+        // le positionement exact du label.
+        prixsolo.setBounds(70, 45, 120, 20);
+
+        soloPanel.add(solotext);
+        soloPanel.add(prixsolo);
+        add(soloPanel);
+
+        doublePanel.add(doubletext);
+        doublePanel.add(prixdouble);
+        add(doublePanel);
+
+        triplePanel.add(triotext);
+        triplePanel.add(prixtrio);
+        add(triplePanel);
+
+        suitePanel.add(suitetext);
+        suitePanel.add(prixsuite);
+        add(suitePanel);
+
         // le po
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
@@ -472,6 +464,10 @@ public class chambreinterface extends javax.swing.JFrame {
         }
     }
 
+    private void avissurnousButtonActionPerformed() {
+        // TODO:
+    };
+
     private void aProposbtnActionPerformed() {
         APropos a = new APropos();
     }
@@ -479,9 +475,11 @@ public class chambreinterface extends javax.swing.JFrame {
     private void passeraureservationActionPerformed() {
         new TableReseravtionUser();
     }
-    private void reserverDetailActionPerformed(){
-        //TODO:
+
+    private void reserverDetailActionPerformed() {
+        new ReservationAvecDetail();
     }
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

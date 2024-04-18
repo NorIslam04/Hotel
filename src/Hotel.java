@@ -204,6 +204,12 @@ public class Hotel {
 
 	}
 
+	static boolean verifchambreavecoption(Chambre chambre,boolean tv,boolean climatisation,boolean vuesurmer,boolean vuesurforet){
+		if((!chambre.isClimatisation()&&climatisation)||(!chambre.isTv()&&tv)||(!chambre.isVuesurforet()&&vuesurforet)||(!chambre.isVuesurmere()&&vuesurmer)){
+			return false;
+		}
+		return true;
+	}
 
 	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
 
@@ -222,6 +228,12 @@ public class Hotel {
 
 		}
 		return true;
+	}
+	static boolean chambreAafficher(Chambre chambre,Date datedebut,Date datefin,boolean tv,boolean climatisation,boolean vuesurforet,boolean vuesurmer){
+		if(ChambreDispo(chambre, datedebut, datefin)&&verifchambreavecoption(chambre, tv, climatisation, vuesurmer, vuesurforet)){
+			return true;
+		}
+		return false;
 	}
 
 	static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2) throws non_presente_bdd {
@@ -243,6 +255,8 @@ public class Hotel {
 	}
 
 }
+
+
 /* 
 import java.util.HashMap;
 import java.util.Iterator;
