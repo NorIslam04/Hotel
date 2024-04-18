@@ -135,6 +135,9 @@ public class chambreadmin extends javax.swing.JFrame {
         suppreservationbtn.setBounds(100, 380, 160, 30);
         getContentPane().add(suppreservationbtn);
 
+
+        
+
         //creation d'un boutton avec ses caractéristiques.
         addnewroombtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         addnewroombtn.setText("Add New Room");
