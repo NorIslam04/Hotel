@@ -40,7 +40,8 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             }
         }
     }
-    public Double getPrixParType(TypeChambre typeChambre) {
+
+    public float getPrixParType(TypeChambre typeChambre) {
 
          HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
     for (Chambre chambre : chambreMap.values()) {
@@ -48,7 +49,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             return chambre.getPrix();
         }
     }
-    return null;
+    return 0;
     }
 
 

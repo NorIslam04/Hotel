@@ -114,4 +114,3 @@ public class passerasignin extends javax.swing.JFrame {
     private javax.swing.JLabel signintext;
     // End of variables declaration                   
 }
-               
