@@ -72,25 +72,21 @@ public class Admin {
 	public static void setNb(int nb) {
 		Admin.nb = nb;
 	}
-/* 
-	public void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {
-		// ici l admin a la fin de journee vas executer ce traitement
-		// cette fonction permet de supprimer kml les reservation ly la date de fin
-		// dylhm =date actuelle m la bdd ...etc
-		// gnr nlibiriw wsh mnss79ouch
-		LocalDate date = LocalDate.now();
-		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
+
+	public static void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {
+		Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+
 		Iterator<Map.Entry<Integer, Reservation>> iterator = Hotel.getReservationMap().entrySet().iterator();
 		while (iterator.hasNext()) {
 			Map.Entry<Integer, Reservation> entry = iterator.next();
 			Reservation reservation = entry.getValue();
-			if (reservation.getDateFin() == dateact) {
-				Hotel.ajouterModificationHotel(reservation, TypeOperation.SUPPRESSION);
+			if (Date.comparer(reservation.getDateFin(),today)<=0) {
+				Hotel.SupprimerReservationMap(reservation);
 			}
 
 		}
 	}
-
+/* 
 	void modifierchambrenblit(int id, TypeChambre type) throws non_presente_bdd, Date_nonvalid, Chambre_reservee, deja_presente_bdd {
 		LocalDate date = LocalDate.now();
 		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
