@@ -72,7 +72,7 @@ public class Admin {
 	public static void setNb(int nb) {
 		Admin.nb = nb;
 	}
-
+/* 
 	public void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {
 		// ici l admin a la fin de journee vas executer ce traitement
 		// cette fonction permet de supprimer kml les reservation ly la date de fin
@@ -113,7 +113,7 @@ public class Admin {
 		} else {
 			type.setPrix(newprice);
 		}
-	}
+	}*/
 
 }
 // TODO : ne7iw m la bdd nb de lit per chambre

@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.util.Map.Entry;
+
 class Date_nonvalid extends Exception {
     private String message = "Dates invalide !";
 
@@ -40,6 +43,35 @@ class Date_syntaxe extends Exception {
 
 public class Date {
     private int jour, mois, annee;
+    private static int today_jour=LocalDate.now().getDayOfMonth();
+    private static int today_mois=LocalDate.now().getMonthValue();
+    private static int today_annee=LocalDate.now().getYear();
+
+    
+
+    public static int getToday_jour() {
+        return today_jour;
+    }
+
+    public static void setToday_jour(int today_jour) {
+        Date.today_jour = today_jour;
+    }
+
+    public static int getToday_mois() {
+        return today_mois;
+    }
+
+    public static void setToday_mois(int today_mois) {
+        Date.today_mois = today_mois;
+    }
+
+    public static int getToday_annee() {
+        return today_annee;
+    }
+
+    public static void setToday_annee(int today_annee) {
+        Date.today_annee = today_annee;
+    }
 
     public Date(int jour, int mois, int annee) throws Date_nonvalid {
         if (!isValidDate(jour, mois, annee)) {
@@ -169,6 +201,22 @@ public class Date {
     public void setAnnee(int annee) {
         this.annee = annee;
     }
+
+    static Reservation Decalage_Date(TypeChambre type) throws Date_nonvalid{//empeut recupirer le id de lachambre et la date fin
+ 
+        Date dateMin= new Date(31, 12, 9999);
+        Reservation tmp_res=null;
+        
+            for (Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
+                Reservation reservation = entry.getValue();
+                Date currentDateDebut = reservation.getDateFin();
+                if ( Dates_logique(currentDateDebut, dateMin) ) {
+                    dateMin = currentDateDebut;
+                    tmp_res=reservation;
+                }
+            }
+            return tmp_res;
+        }
 
     @Override
     public String toString() {

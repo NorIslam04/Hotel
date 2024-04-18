@@ -180,8 +180,8 @@ public class Signeininterface extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
                 //ajoute dans hashMap users
                 User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.ajouterModificationHotel(user, TypeOperation.AJOUT);
-                new chambreinterface();
+                Hotel.AjtUserMap(user);
+                this.dispose();
             }
          }  
         else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
@@ -197,11 +197,10 @@ public class Signeininterface extends javax.swing.JFrame {
             JOptionPane.INFORMATION_MESSAGE);
             //ajoute dans hashMap users
             User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.modifierMap(user,TypeOperation.AJOUT);;//hna lzem nst3amlo had l fct machi lokhra !!!
-            new chambreinterface();
-            System.out.println(ModificationHotel.getNb());//test
-            this.hide();
+            Hotel.AjtUserMap(user);
+            this.dispose();
         }
+        DataBase.HasgMapsToDb();
     }                                       
 
     public static void main(String args[]) {

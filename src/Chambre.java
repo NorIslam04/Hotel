@@ -88,7 +88,7 @@ public class Chambre {
 
 	private int id;// pour hash map
 	private TypeChambre type;
-	private int prix;
+	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
 
@@ -123,7 +123,7 @@ public class Chambre {
 		this.type = type;
 	}
 
-	public int getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
