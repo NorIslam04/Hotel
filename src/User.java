@@ -17,7 +17,6 @@ class motDePasseSimple extends Exception {
 }
 
 public class User {
-	// hii
 	private String gmail;
 	private String name;
 	private String password;
