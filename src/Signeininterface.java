@@ -251,6 +251,7 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -278,7 +279,7 @@ public class Signeininterface extends javax.swing.JFrame {
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
 
-        showPasswordButton = new JButton();
+        showPasswordButton = new JCheckBox();
         showPasswordLabel = new JLabel();
         seConnecterButton = new javax.swing.JButton();
         aPropos = new javax.swing.JButton();
@@ -302,7 +303,7 @@ public class Signeininterface extends javax.swing.JFrame {
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         userlabel.setText("User-name:");
         // le positionement exact du label.
-        userlabel.setBounds(70, 270, 150, 30);
+        userlabel.setBounds(20, 90, 150, 30);
         getContentPane().add(userlabel);
 
         // creation d'une label pour la description avec ses caractéristiques.
@@ -319,7 +320,7 @@ public class Signeininterface extends javax.swing.JFrame {
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
         showPasswordLabel.setText("voir le mot de passe");
         // le positionement exact du label.
-        showPasswordLabel.setBounds(250, 385, 150, 30);
+        showPasswordLabel.setBounds(170, 205, 150, 30);
         getContentPane().add(showPasswordLabel);
 
         // creation d'une label pour le password avec ses caractéristiques.
@@ -327,7 +328,7 @@ public class Signeininterface extends javax.swing.JFrame {
         pwdlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         pwdlabel.setText("Password:");
         // le positionement exact du label.
-        pwdlabel.setBounds(70, 350, 150, 30);
+        pwdlabel.setBounds(20, 170, 150, 30);
         getContentPane().add(pwdlabel);
 
         // creation d'une label pour le sign in avec ses caractéristiques.
@@ -335,7 +336,7 @@ public class Signeininterface extends javax.swing.JFrame {
         signinlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         signinlabel.setText("Sign-In");
         // le positionement exact du label.
-        signinlabel.setBounds(230, 220, 150, 40);
+        signinlabel.setBounds(170, 30, 150, 40);
         getContentPane().add(signinlabel);
 
         // creation d'une label pour le welcome avec ses caractéristiques.
@@ -350,7 +351,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // boutton pour le show passwd
         showPasswordButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         showPasswordButton.setText(" ");
-        showPasswordButton.setBounds(460, 390, 40, 20);
+        showPasswordButton.setBounds(370, 208, 40, 20);
         getContentPane().add(showPasswordButton);
 
         // creation d'une label pour le e-mail avec ses caractéristiques.
@@ -358,7 +359,7 @@ public class Signeininterface extends javax.swing.JFrame {
         maillabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         maillabel.setText("Adresse-Mail:");
         // le positionement exact du label.
-        maillabel.setBounds(70, 310, 200, 30);
+        maillabel.setBounds(20, 130, 200, 30);
         getContentPane().add(maillabel);
 
         // les bouttons:
@@ -439,7 +440,7 @@ public class Signeininterface extends javax.swing.JFrame {
         });
 
         // le positionement exact du textfield:
-        pwdtext.setBounds(250, 350, 230, 30);
+        pwdtext.setBounds(170, 170, 230, 30);
         // Définir le remplissage du champ de texte
         pwdtext.setForeground(color);
         pwdtext.setBackground(colorgris);
@@ -458,14 +459,14 @@ public class Signeininterface extends javax.swing.JFrame {
         pwdtext.setBorder(compoundBorder);
 
         // le positionement exact du textfield.
-        usertext.setBounds(250, 270, 230, 30);
+        usertext.setBounds(170, 90, 230, 30);
         usertext.setForeground(color);
         usertext.setBackground(colorgris);
         usertext.setBorder(compoundBorder);
         getContentPane().add(usertext);
 
         // le positionement exct du textfield.
-        mailtext.setBounds(250, 310, 230, 30);
+        mailtext.setBounds(170, 130, 230, 30);
         mailtext.setForeground(color);
         mailtext.setBackground(colorgris);
         mailtext.setBorder(compoundBorder);
@@ -498,7 +499,8 @@ public class Signeininterface extends javax.swing.JFrame {
 
         // Positionner les panneaux
         bienvenuePanel.setBounds(30, 10, 1032, 150); // Ajustez les coordonnées et les dimensions selon votre interface
-        contenuPanel.setBounds(0, 10, 1032, 1000);
+        contenuPanel.setBounds(65, 200, 442, 250);
+        contenuPanel.setBorder(new RoundBorder(color, 3));
         bouttonsJPanel.setBounds(0, 10, 1032, 1000); // Ajustez les coordonnées et les dimensions selon votre interface
         bienvenuePanel.setOpaque(false);
         contenuPanel.setOpaque(false);
@@ -540,10 +542,9 @@ public class Signeininterface extends javax.swing.JFrame {
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
-            showPasswordButton.setText("*"); // Changer le texte du bouton
         } else {
             pwdtext.setEchoChar('\u2022'); // Masquer le mot de passe
-            showPasswordButton.setText(" "); // Changer le texte du bouton
+            
         }
     }
 
@@ -638,7 +639,7 @@ public class Signeininterface extends javax.swing.JFrame {
     private javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
-    private JButton showPasswordButton;
+    private JCheckBox showPasswordButton;
     private JButton seConnecterButton;
     private javax.swing.JLabel showPasswordLabel;
     private JButton aPropos;

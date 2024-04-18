@@ -1,8 +1,8 @@
 import javax.swing.*;
 
-public class Main extends JFrame {
+public class CheckBoxExample extends JFrame {
     
-    public Main() {
+    public CheckBoxExample() {
         setTitle("Checkbox Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
