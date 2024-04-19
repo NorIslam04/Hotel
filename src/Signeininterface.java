@@ -153,6 +153,7 @@ public class Signeininterface extends javax.swing.JFrame {
                 aProposbtnActionPerformed();
             }
         });
+        pwdtext.setEchoChar('\u2022');
         // le positionement exact du boutton.
         aPropos.setBounds(60, 510, 452, 40);
         aPropos.setBackground(colorgris);
@@ -169,7 +170,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // le positionement exact du boutton.
         closebtn.setBounds(1000, 5, 25, 30);
         getContentPane().add(closebtn);
-
+        
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closebtnActionPerformed(evt);
@@ -317,7 +318,7 @@ public class Signeininterface extends javax.swing.JFrame {
                 Hotel.AjouterUserMap(user);
                 ;// hna lzem nst3amlo had l fct machi lokhra !!!
                 // chambreinterface ch =
-                new chambreinterface();
+                new Loby();
             }
         } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
@@ -335,7 +336,7 @@ public class Signeininterface extends javax.swing.JFrame {
             Hotel.AjouterUserMap(user);
             ;// hna lzem nst3amlo had l fct machi lokhra !!!
             // chambreinterface ch =
-            new chambreinterface();
+            new Loby();
             // ch.setVisible(true);
             this.hide();
 
