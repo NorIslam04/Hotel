@@ -24,6 +24,7 @@ public class User {
 	static int nb = 0;
 	private int nbOp = 0;
 	private boolean indb = false;
+	private int note=-1;// TODO:chaque user peut attribuer une note elle sera presente a la bdd
 
 	public User(int id, String gmail, String name, String password) {
 		this.id = id;
@@ -128,6 +129,14 @@ public class User {
 		Hotel.modifierMap(reservation,TypeOperation.AJOUT);
 	}
 	*/
+
+	public int getNote() {
+		return note;
+	}
+
+	public void setNote(int note) {
+		this.note = note;
+	}
 		
 
 
