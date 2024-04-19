@@ -297,7 +297,12 @@ public class chambreinterface extends javax.swing.JFrame {
     }
 
     private void reserverDetailActionPerformed() {
-        new ReservationAvecDetail();
+        try {
+            new ReservationAvecDetail();
+        } catch (deja_presente_bdd e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static void main(String args[]) {
