@@ -70,7 +70,7 @@ public class APropos extends javax.swing.JFrame {
         JPanel availabilityPanel = new JPanel();
         availabilityPanel.setLayout(null);
         availabilityPanel.setBounds(540, 350, 380, 200);
-        availabilityPanel.setBorder(new RoundBorder(colorgris, 3));
+       
         availabilityPanel.setBackground(color);
         add(availabilityPanel);
 
