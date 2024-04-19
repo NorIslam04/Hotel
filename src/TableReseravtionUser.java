@@ -43,10 +43,10 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
     public float getPrixParType(TypeChambre typeChambre) {
 
-         HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
+        HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
     for (Chambre chambre : chambreMap.values()) {
         if (chambre.getType() == typeChambre) {
-            return chambre.getPrix();
+            return (float) chambre.getPrix();
         }
     }
     return 0;
