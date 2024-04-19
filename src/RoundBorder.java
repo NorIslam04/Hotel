@@ -16,7 +16,7 @@ public class RoundBorder extends AbstractBorder {
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         g.setColor(color);
-        g.drawRoundRect(x, y, width - 1, height - 1, 10, 10); // Changez les valeurs des coins pour ajuster l'arrondi
+        g.drawRoundRect(x, y, width, height , 10, 10); // Changez les valeurs des coins pour ajuster l'arrondi
     }
 
     @Override

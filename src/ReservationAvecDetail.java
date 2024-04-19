@@ -40,8 +40,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
     JLabel prixJLabel = new JLabel("prix:");
-       
-     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+
+    javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
     public ReservationAvecDetail() throws deja_presente_bdd {
         initComponents();
@@ -49,26 +49,25 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
     private void initComponents() throws deja_presente_bdd {
 
-
         TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
-         Chambre chambre1;
+        Chambre chambre1;
 
-         for (int i = 0; i < 100; i++) {
-             chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
-             Hotel.AjouterChambreMap(chambre1);
-             chambre1 = new Chambre( i+100, TypeChambre.DOUBLE, false, true, true, true);
-             
-             Hotel.AjouterChambreMap(chambre1);
-             chambre1 = new Chambre( i+300, TypeChambre.SUITE, true, false, false, true);
-             
-             Hotel.AjouterChambreMap(chambre1);
-             chambre1 = new Chambre(  i+200, TypeChambre.TRIPLE, true, true, true, true);
-             
-             Hotel.AjouterChambreMap(chambre1);
-         }
+        for (int i = 0; i < 100; i++) {
+            chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
+            Hotel.AjouterChambreMap(chambre1);
+            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE, false, true, true, true);
 
-         //hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
+            Hotel.AjouterChambreMap(chambre1);
+            chambre1 = new Chambre(i + 300, TypeChambre.SUITE, true, false, false, true);
+
+            Hotel.AjouterChambreMap(chambre1);
+            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE, true, true, true, true);
+
+            Hotel.AjouterChambreMap(chambre1);
+        }
+
+        // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
         // rendre le layout manager null pour le positionement absolu.
@@ -85,7 +84,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         JLabel vuesurmerJLabel = new JLabel("climatisation :");
         JLabel climatisationJLabel = new JLabel("vue sur mer :");
         JLabel vuesurforetJLabel = new JLabel("vue sur foret :");
-       
 
         JPanel informationReservationPanel = new JPanel();
 
@@ -264,8 +262,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         if (chambre.isTv()) {
             tvLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                 // colorie en vert
-        }else{
-            tvLabel.setForeground(Color.white); 
+        } else {
+            tvLabel.setForeground(Color.white);
         }
         optionsPanel.add(tvLabel);
 
@@ -273,8 +271,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         if (chambre.isClimatisation()) {
             climatiJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                       // colorie en vert
-        }else{
-            climatiJLabel.setForeground(Color.white); 
+        } else {
+            climatiJLabel.setForeground(Color.white);
         }
         optionsPanel.add(climatiJLabel);
 
@@ -282,8 +280,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         if (chambre.isVuesurmere()) {
             vuemerJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                      // colorie en vert
-        }else{
-            vuemerJLabel.setForeground(Color.white); 
+        } else {
+            vuemerJLabel.setForeground(Color.white);
         }
         optionsPanel.add(vuemerJLabel);
 
@@ -291,8 +289,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         if (chambre.isVuesurforet()) {
             vueforetJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                        // colorie en vert
-        }else{
-            vueforetJLabel.setForeground(Color.white); 
+        } else {
+            vueforetJLabel.setForeground(Color.white);
         }
         optionsPanel.add(vueforetJLabel);
         vueforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
@@ -314,7 +312,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         infoPanel.setLayout(new GridLayout(0, 1)); // Utilisation d'un GridLayout pour empiler verticalement les
                                                    // éléments
         infoPanel.add(nameLabel);
-     
+
         infoPanel.add(bedsLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(optionlLabel);
@@ -332,7 +330,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         reserveButton.setBorder(border);
         panel.setBorder(border);
         // Définir une taille préférée pour le JPanel
-        panel.setPreferredSize(new Dimension(182, 170));
+        panel.setPreferredSize(new Dimension(182, 200));
 
         return panel;
     }
@@ -361,11 +359,11 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
             TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
-       
+
             JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
-            Chambre chambrerecherchee=new Chambre(0,typeChambre, tv, climatisation,vuesurmer,vueforet);
-            prixJLabel.setText("prix : "+chambrerecherchee.calculeprixchambre());
-        
+            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            prixJLabel.setText("prix : " + chambrerecherchee.calculeprixchambre());
+
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
             while (iterator.hasNext()) {
@@ -384,15 +382,14 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             viewport.removeAll();
             viewport.add(chambreContainer);
             getContentPane().add(backgroundlabel);
-            
+
             System.setProperty("sun.java2d.uiScale.enabled", "false");
             backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
             backgroundlabel.setBounds(0, 0, 1032, 580);
             getContentPane().add(backgroundlabel);
-    
+
             // le positionement exact du background.
             // Ajouter les nouveaux composants (chambres filtrées) au viewport
-         
 
             // Repaint pour mettre à jour l'affichage
             getContentPane().revalidate();
@@ -427,7 +424,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
     }
 
     void afficherchambre() throws deja_presente_bdd {
-  
 
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -437,11 +433,11 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             chambreContainer.add(createPanel(chambre));
 
         }
-        
+
         chambreContainer.setBackground(colorgris);
         scrollPane = new BlackScrollPane(chambreContainer);
         scrollPane.setBackground(colorgris);
-        
+
         scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
         scrollPane.setBounds(0, 210, 1033, 400);
 
@@ -459,7 +455,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                   
+
                     new ReservationAvecDetail().setVisible(true);
                 } catch (deja_presente_bdd e) {
                     // TODO Auto-generated catch block
