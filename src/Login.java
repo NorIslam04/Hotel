@@ -279,7 +279,7 @@ public class Login extends javax.swing.JFrame {
                     "Please Fill All The Text Fields !!",
                     "ERROR",
                     JOptionPane.ERROR_MESSAGE);
-        } else if (usertext.getText().equals(".admin") && pwdtext.getText().equals(".admin")) {
+        } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
             // new tableReservationAdmin && modifier chambre
             JOptionPane.showMessageDialog(frame,
                     "WELCOME ADMIN ",
