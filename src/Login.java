@@ -3,6 +3,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class Login extends javax.swing.JFrame {
+    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
     public Login() {
         initComponents();
@@ -31,6 +33,7 @@ public class Login extends javax.swing.JFrame {
         sinscrireButton = new javax.swing.JButton();
         aPropos = new javax.swing.JButton();
         showPasswordButton = new JCheckBox();
+      
         // Création des panneaux 
         JPanel bienvenuePanel = new JPanel();
         JPanel contenuPanel = new JPanel();
@@ -47,10 +50,46 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         // les labels:
+        if(Hotel.langue==0){
+        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","Frensh" }));
+        }else{
+            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
+        }
+        langueBox.setBounds(400, 5, 150, 30);
+        langueBox.setForeground(color);
+        langueBox.setBackground(colorgris);
+        langueBox.setBorder(new RoundBorder(color, 3));
+        add(langueBox);
+        langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changerlangue();
+            }
+        });
+        if(Hotel.langue==0){
+        pwdlabel.setText("Password:");
+        descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
+        showPasswordLabel.setText("See PassWord");
+        userlabel.setText("User-name:"); // le positionement exact du label.
+        loginlabel.setText("Log-In");
+        welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
+        sinscrireButton.setText("I Don't Have An Acount");
+        loginlabel.setBounds(170, 30, 300, 40);
+        }else{
+            pwdlabel.setText("Mot de pass:");
+            descriptionlabel.setText("<html><p style='line-height: ;'>un sejour confortable et relaxant en pleine nature a jijel,<br> vivez l'experience</p></html>");
+            showPasswordLabel.setText("Voir le mot de pass");
+            userlabel.setText("Pseudo:"); // le positionement exact du label.
+            loginlabel.setText("Se Connecter");
+            welcomelabel.setText("<html><p style='line-height: ;'>Bienvenue au Harry,<br>l’evasion par excellence</p></html>");
+            sinscrireButton.setText("J'ai pas de compte"); 
+            aPropos.setText("A propos de Nous");
+            loginlabel.setBounds(125, 30, 300, 40);
+        }
+        
         // creation d'une label pour le username avec ses caractéristiques.
         userlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        userlabel.setText("User-name:");
+        
         // le positionement exact du label.
         userlabel.setBounds(20, 100, 150, 30);
         getContentPane().add(userlabel);
@@ -58,15 +97,14 @@ public class Login extends javax.swing.JFrame {
         // creation d'une label pour la description avec ses caractéristiques.
         descriptionlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 15));
         descriptionlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
-        // le positionement exact du label.
+      
         descriptionlabel.setBounds(42, 100, 1000, 105);
         getContentPane().add(descriptionlabel);
 
         // creation d'une label pour le show password avec ses caractéristiques.
         showPasswordLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
-        showPasswordLabel.setText("See PassWord");
+      
         // le positionement exact du label.
         showPasswordLabel.setBounds(170, 195, 150, 30);
         getContentPane().add(showPasswordLabel);
@@ -74,7 +112,7 @@ public class Login extends javax.swing.JFrame {
         // creation d'une label pour le password avec ses caractéristiques.
         pwdlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); 
         pwdlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        pwdlabel.setText("Password:");
+      
         // le positionement exact du label.
         pwdlabel.setBounds(20, 150, 150, 30);
         getContentPane().add(pwdlabel);
@@ -82,15 +120,15 @@ public class Login extends javax.swing.JFrame {
         // creation d'une label pour le sign in avec ses caractéristiques.
         loginlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         loginlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        loginlabel.setText("Log-In");
+        
         // le positionement exact du label.
-        loginlabel.setBounds(170, 30, 150, 40);
+     
         getContentPane().add(loginlabel);
 
         // creation d'une label pour le welcome avec ses caractéristiques.
         welcomelabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 37));
         welcomelabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
+        
         // le positionement exact du label.
         welcomelabel.setBounds(70, 34, 1000, 100);
         getContentPane().add(welcomelabel);
@@ -117,7 +155,7 @@ public class Login extends javax.swing.JFrame {
         // creation d'un boutton pour se connecter avec ses caractéristiques.
         sinscrireButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         sinscrireButton.setBorder(new RoundBorder(color, 3));
-        sinscrireButton.setText("I Don't Have An Acount");
+     
 
         sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +169,7 @@ public class Login extends javax.swing.JFrame {
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        aPropos.setText("About Us");
+
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
@@ -302,6 +340,18 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
+    private void changerlangue(){
+        if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
+            Hotel.langue=0;
+           
+        }else{
+            Hotel.langue=1;
+        }
+        dispose();
+        new Login();
+       
+    }
+
 
     public static void main(String args[]) {
         try {

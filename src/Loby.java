@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
 public class Loby extends javax.swing.JFrame {
+      javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
     public Loby() {
         initComponents();
@@ -15,6 +17,8 @@ public class Loby extends javax.swing.JFrame {
 
     private void initComponents() {
 
+
+        
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
         // rendre le layout manager null pour le positionement absolu.
@@ -27,7 +31,39 @@ public class Loby extends javax.swing.JFrame {
         javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
+        JButton aPropos = new JButton();
+        JLabel descJLabel;
+        JButton passeraureservationbtn ;
 
+        if(Hotel.langue==0){
+            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","Frensh" }));
+            }else{
+                langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
+            }
+
+        langueBox.setBounds(840, 5, 150, 30);
+        langueBox.setForeground(color);
+        langueBox.setBackground(colorgris);
+        langueBox.setBorder(new RoundBorder(color, 3));
+        add(langueBox);
+        langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changerlangue();
+            }
+        });
+
+        if(Hotel.langue==0){
+             descJLabel = new JLabel(
+                "<html>Our vision is to be <br>themost reliable and <br>respected hotel in Djijel.</html>");
+             passeraureservationbtn = new JButton("pass to rooms");
+            aPropos.setText("About-Us ");
+        }
+            else{
+         descJLabel = new JLabel(
+                "<html>Notre vision est d'être<br>l'Hotel le plus fiable<br>et respectée à djijel.</html>");
+                 passeraureservationbtn = new JButton("passer aux chambres");
+                aPropos.setText("A propos de nous ");
+            }
         // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
@@ -52,23 +88,22 @@ public class Loby extends javax.swing.JFrame {
         descriptionpPanel.setBackground(colorgris);
         add(descriptionpPanel);
 
-        JLabel descJLabel = new JLabel(
-                "<html>Notre vision est d'être<br>l'Hotel le plus fiable<br>et respectée à djijel.</html>");
+        
         descJLabel.setForeground(color);
         descJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 34));
         descJLabel.setBounds(10, 70, 900, 200);
         descriptionpPanel.add(descJLabel);
 
-        JButton passeraureservationbtn = new JButton("passer aux reservation");
+     
         passeraureservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         passeraureservationbtn.setBackground(color);
         passeraureservationbtn.setBounds(700, 360, 240, 30);
         passeraureservationbtn.setForeground(colorgris);
         add(passeraureservationbtn);
-        JButton aPropos = new JButton();
+      
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        aPropos.setText("A propos de nous ");
+        
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
@@ -115,7 +150,17 @@ public class Loby extends javax.swing.JFrame {
     private void passeraureservationActionPerformed() {
         new chambreinterface();
     }
-
+    private void changerlangue(){
+        if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
+            Hotel.langue=0;
+           
+        }else{
+            Hotel.langue=1;
+        }
+        dispose();
+        new Loby();
+       
+    }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

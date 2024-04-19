@@ -1,13 +1,14 @@
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class chambreinterface extends javax.swing.JFrame {
-
+    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
     public chambreinterface() {
         initComponents();
     }
@@ -26,6 +27,8 @@ public class chambreinterface extends javax.swing.JFrame {
         JPanel doublePanel = new JPanel();
         JPanel triplePanel = new JPanel();
         JPanel suitePanel = new JPanel();
+
+
         
         // Création de la fenêtre principale
         // Supprime tous les boutons par défaut
@@ -42,6 +45,68 @@ public class chambreinterface extends javax.swing.JFrame {
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
 
+
+        
+        if(Hotel.langue==0){
+            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","Frensh" }));
+            }else{
+                langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
+            }
+
+        langueBox.setBounds(800, 5, 150, 30);
+        langueBox.setForeground(color);
+        langueBox.setBackground(colorgris);
+        langueBox.setBorder(new RoundBorder(color, 3));
+        add(langueBox);
+        langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changerlangue();
+            }
+        });
+        JButton aPropos = new JButton();
+        JButton avissurnousButton = new JButton();
+        JButton passeraureservationbtn;
+        JLabel descJLabel;
+        JButton reserverpardetailbtn ;
+        if(Hotel.langue==0){
+            reserverpardetailbtn = new JButton("reserve with options");
+            avissurnousButton.setText("Comments");
+            aPropos.setText("About Us ");
+             passeraureservationbtn = new JButton("pass to reservations");
+            prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
+            suitetext.setText("Suite:Max 5 Guests.");
+            prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
+            triotext.setText("Trio Room:Max 3 Guests.");
+            prixdouble.setText(TypeChambre.DOUBLE.getPrix() + "$/Night.  ");
+            doubletext.setText("Double Room: Max 2 Guests.");
+            prixsolo.setText(TypeChambre.SOLO.getPrix() + "$/Night.");
+            solotext.setText("Solo Room:For 1 Guest.");
+             descJLabel = new JLabel("Our Rooms");
+
+             suitetext.setBounds(50, 25, 120, 20);
+             doubletext.setBounds(28, 25, 200, 20);
+             solotext.setBounds(40, 25, 200, 20);
+             triotext.setBounds(35, 25, 200, 20);
+        }else{
+            reserverpardetailbtn = new JButton("reserver avec options");
+            avissurnousButton.setText("Commentaires ");
+            aPropos.setText("A propos de nous ");
+             passeraureservationbtn = new JButton("passer aux reservation");
+            prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/nuit.");
+            suitetext.setText("Suite:Max 5 personnes.");
+            prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/nuit.");
+            triotext.setText("Chambre tripe:Max 3 personnes.");
+            prixdouble.setText(TypeChambre.DOUBLE.getPrix() + "$/nuit.  ");
+            doubletext.setText("Chambre Double : Max 2 persns.");
+            prixsolo.setText(TypeChambre.SOLO.getPrix() + "$/nuit.");
+            solotext.setText("Chambre Solo : pour 1 personne.");
+             descJLabel = new JLabel("Nos Chambre");
+             suitetext.setBounds(50, 25, 200, 20);
+             doubletext.setBounds(20, 25, 200, 20);
+             solotext.setBounds(20, 25, 200, 20);
+             triotext.setBounds(20, 25, 200, 20);
+
+        }
         //les panels:
         JPanel descriptionpPanel = new JPanel();
         descriptionpPanel.setLayout(null);
@@ -96,7 +161,7 @@ public class chambreinterface extends javax.swing.JFrame {
         soloJLabel.setBounds(526, 140, 219, 180);
         getContentPane().add(soloJLabel);
 
-        JLabel descJLabel = new JLabel("Nos Chambre");
+        
         descJLabel.setForeground(color);
         descJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 34));
         // le positionement exact du label.
@@ -105,17 +170,17 @@ public class chambreinterface extends javax.swing.JFrame {
 
         // creation d'une label pour solo avec ses caractéristiques.
         solotext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        solotext.setText("Solo Room:For 1 Guest.");
+        
         solotext.setForeground(color);
         // le positionement exact du label.
-        solotext.setBounds(40, 25, 200, 20);
+        
  
         // creation d'une label pour prix solo avec ses caractéristiques.
         prixsolo.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        prixsolo.setText(TypeChambre.SOLO.getPrix() + "$/Night.");
+        
         prixsolo.setForeground(color);
         // le positionement exact du label.
-        prixsolo.setBounds(70, 45, 120, 20);
+        prixsolo.setBounds(80, 45, 120, 20);
  
         soloPanel.add(solotext);
         soloPanel.add(prixsolo);
@@ -123,17 +188,16 @@ public class chambreinterface extends javax.swing.JFrame {
 
         // creation d'une label pour double avec ses caractéristiques.
         doubletext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        doubletext.setText("Double Room: Max 2 Guests.");
+       
         doubletext.setForeground(color);
         // le positionement exact du label.
-        doubletext.setBounds(28, 25, 200, 20);
-
+      
         // creation d'une label pour prix double avec ses caractéristiques.
         prixdouble.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        prixdouble.setText(TypeChambre.DOUBLE.getPrix() + "$/Night.  ");
+       
         prixdouble.setForeground(color);
         // le positionement exact du label.
-        prixdouble.setBounds(70, 45, 120, 20);
+        prixdouble.setBounds(80, 45, 120, 20);
 
         doublePanel.add(doubletext);
         doublePanel.add(prixdouble);
@@ -141,17 +205,16 @@ public class chambreinterface extends javax.swing.JFrame {
 
         // creation d'une label pour trio avec ses caractéristiques.
         triotext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        triotext.setText("Trio Room:Max 3 Guests.");
+
         triotext.setForeground(color);
-        // le positionement exact du label.
-        triotext.setBounds(35, 25, 200, 20);
+       
 
         // creation d'une label pour prix trio avec ses caractéristiques.
         prixtrio.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
+    
         prixtrio.setForeground(color);
         // le positionement exact du label.
-        prixtrio.setBounds(70, 45, 120, 20);
+        prixtrio.setBounds(80, 45, 120, 20);
 
         triplePanel.add(triotext);
         triplePanel.add(prixtrio);
@@ -159,17 +222,17 @@ public class chambreinterface extends javax.swing.JFrame {
 
         // creation d'une label pour suite avec ses caractéristiques.
         suitetext.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        suitetext.setText("Suite:Max 5 Guests.");
+     
         suitetext.setForeground(color);
         // le positionement exact du label.
-        suitetext.setBounds(50, 25, 120, 20);
+       
 
         // creation d'une label pour prix suite avec ses caractéristiques.
         prixsuite.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
+       
         prixsuite.setForeground(color);
         // le positionement exact du label.
-        prixsuite.setBounds(70, 45, 120, 20);
+        prixsuite.setBounds(80, 45, 120, 20);
 
         suitePanel.add(suitetext);
         suitePanel.add(prixsuite);
@@ -191,24 +254,24 @@ public class chambreinterface extends javax.swing.JFrame {
             }
         });
 
-        JButton passeraureservationbtn = new JButton("passer aux reservation");
+        
         passeraureservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         passeraureservationbtn.setBackground(color);
         passeraureservationbtn.setBounds(86, 480, 240, 40);
         passeraureservationbtn.setForeground(colorgris);
         add(passeraureservationbtn);
 
-        JButton reserverpardetailbtn = new JButton("reservation avec details");
+      
         reserverpardetailbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         reserverpardetailbtn.setBackground(color);
         reserverpardetailbtn.setBounds(665, 480, 240, 40);
         reserverpardetailbtn.setForeground(colorgris);
         add(reserverpardetailbtn);
 
-        JButton aPropos = new JButton();
+        
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        aPropos.setText("A propos de nous ");
+    
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
@@ -221,10 +284,10 @@ public class chambreinterface extends javax.swing.JFrame {
 
         add(aPropos);
 
-        JButton avissurnousButton = new JButton();
+        
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         avissurnousButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        avissurnousButton.setText("Avis sur nous ");
+     
         avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avissurnousButtonActionPerformed();
@@ -235,6 +298,7 @@ public class chambreinterface extends javax.swing.JFrame {
         avissurnousButton.setBackground(colorgris);
         avissurnousButton.setForeground(color);
         avissurnousButton.setBorder(new RoundBorder(color, 3));
+        
 
         add(avissurnousButton);
 
@@ -303,6 +367,17 @@ public class chambreinterface extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+    private void changerlangue(){
+        if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
+            Hotel.langue=0;
+           
+        }else{
+            Hotel.langue=1;
+        }
+        dispose();
+        new chambreinterface();
+       
     }
 
     public static void main(String args[]) {

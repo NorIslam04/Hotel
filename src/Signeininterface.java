@@ -3,6 +3,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class Signeininterface extends javax.swing.JFrame {
+    
+    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
     public Signeininterface() {
         initComponents();
@@ -29,6 +32,9 @@ public class Signeininterface extends javax.swing.JFrame {
         closebtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
+      
+
+        
 
         showPasswordButton = new JCheckBox();
         showPasswordLabel = new JLabel();
@@ -42,6 +48,50 @@ public class Signeininterface extends javax.swing.JFrame {
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
         setUndecorated(true); // Supprime tous les boutons par défaut
+
+        if(Hotel.langue==0){
+            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","frensh" }));
+        }else{
+                langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
+         }
+         langueBox.setBounds(400, 5, 150, 30);
+         langueBox.setForeground(color);
+        langueBox.setBackground(colorgris);
+        langueBox.setBorder(new RoundBorder(color, 3));
+        add(langueBox);
+        langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changerlangue();
+            }
+        });
+
+        if(Hotel.langue==0){
+            pwdlabel.setText("Password:");
+            descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
+            showPasswordLabel.setText("See PassWord");
+            userlabel.setText("User-name:"); // le positionement exact du label.
+            signinlabel.setText("Sign-In");
+            welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
+            seConnecterButton.setText("Back To Login");
+            submitbtn.setText("Creat A New Acount");
+            signinlabel.setBounds(170, 30, 300, 40);
+            }else{
+                pwdlabel.setText("Mot de pass:");
+                descriptionlabel.setText("<html><p style='line-height: ;'>un sejour confortable et relaxant en pleine nature a jijel,<br> vivez l'experience</p></html>");
+                showPasswordLabel.setText("Voir le mot de pass");
+                userlabel.setText("Pseudo:"); // le positionement exact du label.
+                signinlabel.setText("S'inscrire");
+                welcomelabel.setText("<html><p style='line-height: ;'>Bienvenue au Harry,<br>l’evasion par excellence</p></html>");
+                maillabel.setText("Adresse email");
+                aPropos.setText("A propos de Nous");
+                seConnecterButton.setText("revenir a ce connecter");
+                submitbtn.setText("Creer un nouveaux compte");
+           
+                signinlabel.setBounds(10, 30, 300, 40);
+            }
+        
+            
+   
         
         // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
@@ -54,7 +104,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le username avec ses caractéristiques.
         userlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        userlabel.setText("User-name:");
+       
         // le positionement exact du label.
         userlabel.setBounds(20, 90, 150, 30);
         getContentPane().add(userlabel);
@@ -62,7 +112,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour la description avec ses caractéristiques.
         descriptionlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 15));
         descriptionlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
+      
         // le positionement exact du label.
         descriptionlabel.setBounds(42, 100, 1000, 105);
         getContentPane().add(descriptionlabel);
@@ -70,7 +120,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le show password avec ses caractéristiques.
         showPasswordLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
-        showPasswordLabel.setText("See PassWord");
+       
         // le positionement exact du label.
         showPasswordLabel.setBounds(170, 205, 150, 30);
         getContentPane().add(showPasswordLabel);
@@ -78,7 +128,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le password avec ses caractéristiques.
         pwdlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         pwdlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        pwdlabel.setText("Password:");
+       
         // le positionement exact du label.
         pwdlabel.setBounds(20, 170, 150, 30);
         getContentPane().add(pwdlabel);
@@ -86,7 +136,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le sign in avec ses caractéristiques.
         signinlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         signinlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        signinlabel.setText("Sign-In");
+     
         // le positionement exact du label.
         signinlabel.setBounds(170, 30, 150, 40);
         getContentPane().add(signinlabel);
@@ -94,8 +144,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le welcome avec ses caractéristiques.
         welcomelabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 37));
         welcomelabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
-
+    
         // le positionement exact du label.
         welcomelabel.setBounds(42, 34, 1000, 100);
         getContentPane().add(welcomelabel);
@@ -108,7 +157,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le e-mail avec ses caractéristiques.
         maillabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
         maillabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        maillabel.setText("Mail-Adress:");
+   
         // le positionement exact du label.
         maillabel.setBounds(20, 130, 200, 30);
         getContentPane().add(maillabel);
@@ -116,7 +165,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // les bouttons:
         // creation d'un boutton pour le submit avec ses caractéristiques.
         submitbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        submitbtn.setText("Creat A New Acount");
+        
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -133,7 +182,7 @@ public class Signeininterface extends javax.swing.JFrame {
 
         // creation d'un boutton pour se connecter avec ses caractéristiques.
         seConnecterButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        seConnecterButton.setText("Back To Login");
+    
 
         seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +196,7 @@ public class Signeininterface extends javax.swing.JFrame {
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        aPropos.setText("About Us");
+    
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
@@ -298,6 +347,17 @@ public class Signeininterface extends javax.swing.JFrame {
     private void seConnecterButtonbtnActionPerformed() {
         dispose();
         new Login();
+    }
+    private void changerlangue(){
+        if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
+            Hotel.langue=0;
+           
+        }else{
+            Hotel.langue=1;
+        }
+        dispose();
+        new Signeininterface();
+       
     }
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd {
