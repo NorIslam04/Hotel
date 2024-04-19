@@ -204,11 +204,17 @@ public class Hotel {
 
 	}
 
-	static boolean verifchambreavecoption(Chambre chambre,boolean tv,boolean climatisation,boolean vuesurmer,boolean vuesurforet){
+	static boolean verifchambreavecoption(Chambre chambre,TypeChambre type,boolean tv,boolean climatisation,boolean vuesurmer,boolean vuesurforet){
+		
+		if(type==chambre.getType()){
 		if((!chambre.isClimatisation()&&climatisation)||(!chambre.isTv()&&tv)||(!chambre.isVuesurforet()&&vuesurforet)||(!chambre.isVuesurmere()&&vuesurmer)){
 			return false;
+			
 		}
-		return true;
+		return true;}
+		else{
+			return false;
+		}
 	}
 
 	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
@@ -229,8 +235,8 @@ public class Hotel {
 		}
 		return true;
 	}
-	static boolean chambreAafficher(Chambre chambre,Date datedebut,Date datefin,boolean tv,boolean climatisation,boolean vuesurforet,boolean vuesurmer){
-		if(ChambreDispo(chambre, datedebut, datefin)&&verifchambreavecoption(chambre, tv, climatisation, vuesurmer, vuesurforet)){
+	static boolean chambreAafficher(Chambre chambre,TypeChambre type,Date datedebut,Date datefin,boolean tv,boolean climatisation,boolean vuesurforet,boolean vuesurmer){
+		if(ChambreDispo(chambre, datedebut, datefin)&&verifchambreavecoption(chambre, type,tv, climatisation, vuesurmer, vuesurforet)){
 			return true;
 		}
 		return false;

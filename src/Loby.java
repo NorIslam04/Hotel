@@ -97,7 +97,7 @@ public class Loby extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
     }
-
+    
     private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {

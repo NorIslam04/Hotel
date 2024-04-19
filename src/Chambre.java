@@ -10,6 +10,7 @@ enum TypeChambre {
     TypeChambre() {
     	this.prix = 0;
 		this.nblit=0;
+
     }
 
     public float getPrix() {
@@ -27,6 +28,8 @@ enum TypeChambre {
     
     public void setNbLit(int nbLit) {
         this.nblit = nbLit;
+	
+
     }
 
 	public static void initialiser(float prixSOLO,int nbLitSOLOS,float prixDOUBLE,int nbLitDOULBE,float prixTRIPLE,int nbLitTRIPLE,float prixSUITE,int nbLitSUITE){
@@ -92,7 +95,7 @@ private float prix;//prix pour chaque option
 
 
 OptionSupplementaire() {
-	this.prix = 0;
+	this.prix = 5;
 }
 
 public float getPrix() {
@@ -131,14 +134,14 @@ public class Chambre {
 		this.prix=prix;
 		nb++;
 	}
-	public Chambre(int id, TypeChambre type,int prix,boolean tv,boolean climatisation,boolean vuesurmere,boolean vuesurforet) {
+	public Chambre(int id, TypeChambre type,boolean tv,boolean climatisation,boolean vuesurmere,boolean vuesurforet) {
 		this.id = id;
 		this.type = type;
-		this.prix=prix;
 		this.tv=tv;
 		this.climatisation=climatisation;
 		this.vuesurmere=vuesurmere;
 		this.vuesurforet=vuesurforet;
+		this.prix=calculeprixchambre();
 		nb++;
 	}
 
@@ -224,14 +227,16 @@ public class Chambre {
 		this.prix = prix;
 	}
 
-
+	
   public float calculeprixchambre(){
-	float prix=0;
+	float prix=type.getPrix();
 	if(tv){
 		prix=prix+OptionSupplementaire.TV.getPrix();
+	
 	}
 	if(climatisation){
 		prix=prix+OptionSupplementaire.CLIMATISATION.getPrix();
+		
 	}
 	if(vuesurforet){
 		prix=prix+OptionSupplementaire.VUESURFORET.getPrix();
@@ -239,18 +244,7 @@ public class Chambre {
 	if(vuesurmere){
 		prix=prix+OptionSupplementaire.VUESURMERE.getPrix();
 	}
-	if(type==TypeChambre.SOLO){
-		prix=prix+TypeChambre.SOLO.getPrix();
-	}
-	if(type==TypeChambre.DOUBLE){
-		prix=prix+TypeChambre.DOUBLE.getPrix();
-	}
-	if(type==TypeChambre.TRIPLE){
-		prix=prix+TypeChambre.TRIPLE.getPrix();
-	}
-	if(type==TypeChambre.SUITE){
-		prix=prix+TypeChambre.SUITE.getPrix();
-	}
+	
 // TODO : n9drou n7ou kml hd les if w nkhdmou b objet ida mnssinech ndirouha
 	this.prix=prix;  
 	return prix;
