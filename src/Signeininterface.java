@@ -1,5 +1,254 @@
+/*import java.sql.SQLException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+
+public class Signeininterface extends javax.swing.JFrame {
+
+    public Signeininterface() {
+        initComponents();
+    }
+
+    private void initComponents() {
+
+        userlabel = new javax.swing.JLabel();
+        pwdlabel = new javax.swing.JLabel();
+        signinlabel = new javax.swing.JLabel();
+        usertext = new javax.swing.JTextField();
+        pwdtext = new javax.swing.JPasswordField();
+        welcomelabel = new javax.swing.JLabel();
+        submitbtn = new javax.swing.JButton();
+        maillabel = new javax.swing.JLabel();
+        mailtext = new javax.swing.JTextField();
+        closebtn = new javax.swing.JButton();
+        backgroundlabel = new javax.swing.JLabel();
+        backtologinbtn = new javax.swing.JButton();
+        
+        //rendre le layout manager null pour le positionement absolu.
+        getContentPane().setLayout(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("signin page");
+        setLocationRelativeTo(null);
+        setVisible(true);
+        // les labels:
+        //creation d'une label pour le username avec ses caractéristiques.
+        userlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
+        userlabel.setForeground(new java.awt.Color(255, 255, 255));
+        userlabel.setText("User-name:");
+        // le positionement exact du label.
+        userlabel.setBounds(240, 300, 150, 30);
+        getContentPane().add(userlabel);
+
+        //creation d'une label pour le password avec ses caractéristiques.
+        pwdlabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); // NOI18N
+        pwdlabel.setForeground(new java.awt.Color(255, 255, 255));
+        pwdlabel.setText("Password:");
+        // le positionement exact du label.
+        pwdlabel.setBounds(240, 420, 150, 30);
+        getContentPane().add(pwdlabel);
+       
+        //creation d'une label pour le sign in avec ses caractéristiques.
+        signinlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 36)); // NOI18N
+        signinlabel.setForeground(new java.awt.Color(255, 255, 255));
+        signinlabel.setText("Sign-In");
+        // le positionement exact du label.
+        signinlabel.setBounds(380, 240,150,40);
+        getContentPane().add(signinlabel);
+        
+        //creation d'une label pour le welcome avec ses caractéristiques.
+        welcomelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 48)); 
+        welcomelabel.setForeground(new java.awt.Color(255, 255, 255));
+        welcomelabel.setText("Welcome To Our Hotel");
+        // le positionement exact du label.
+        welcomelabel.setBounds(180, 30, 1000, 50);
+        getContentPane().add(welcomelabel);
+        
+        //creation d'une label pour le e-mail avec ses caractéristiques.
+        maillabel.setFont(new java.awt.Font("Bookman Old Style", 0, 24)); 
+        maillabel.setForeground(new java.awt.Color(255, 255, 255));
+        maillabel.setText("Adresse-Mail:");
+        // le positionement exact du label.
+        maillabel.setBounds(240, 360, 200, 30);
+        getContentPane().add(maillabel);
+        
+        //les bouttons:
+        //creation d'un boutton pour le submit avec ses caractéristiques.
+        submitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); 
+        submitbtn.setText("Submit");
+        submitbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    submitbtnActionPerformed(evt);
+                } catch (deja_presente_bdd | SQLException e) {
+                    e.printStackTrace();
+                } catch (non_presente_bdd e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        // le positionement exact du boutton.
+        submitbtn.setBounds(620, 480, 100, 30);
+        getContentPane().add(submitbtn);
+       
+        //creation d'un boutton pour le close avec ses caractéristiques.
+        closebtn.setBackground(new java.awt.Color(171, 34, 34));
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); 
+        closebtn.setForeground(new java.awt.Color(255, 255, 255));
+        closebtn.setText("Close");
+        // le positionement exact du boutton.
+        closebtn.setBounds(210, 480, 100, 30);
+        getContentPane().add(closebtn);
+
+
+        closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closebtnActionPerformed(evt);
+            }
+        });
+
+        backtologinbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        backtologinbtn.setText("Back To Login");
+        // le positionement exact du signin button.
+        backtologinbtn.setBounds(410, 480, 120, 30);
+        getContentPane().add(backtologinbtn);
+        // l'action du signin button.
+        backtologinbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backtologinbtnActionPerformed(evt);
+            }
+        });
+
+        //les textfields:
+
+        pwdtext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdtextActionPerformed(evt);
+            }
+        });
+
+        // le positionement exact du textfield:
+        pwdtext.setBounds(440, 420, 230, 30);
+        getContentPane().add(pwdtext);
+        
+        // le positionement exact du textfield.
+        usertext.setBounds(440, 300, 230, 30);
+        getContentPane().add(usertext);
+
+        // le positionement exact du textfield.
+        mailtext.setBounds(440, 360, 230, 30);
+        getContentPane().add(mailtext);
+
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("sign_up.png")); // NOI18N
+        // le positionement exact du background.
+        backgroundlabel.setBounds(0, 0, 920, 580);
+        getContentPane().add(backgroundlabel);
+        
+        setSize(new java.awt.Dimension(936, 588));
+        setLocationRelativeTo(null);
+    }                       
+
+    private void pwdtextActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
+    private JFrame frame;
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        frame=new JFrame("Exit");
+        if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+        {
+            System.exit(0);
+        }
+    }    
+    private void backtologinbtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        Login log = new Login();
+        log.setVisible(true);
+        this.hide();
+    }    
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException, non_presente_bdd { 
+        if(Hotel.findUser(usertext.getText(), pwdtext.getText())){
+            if(Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())){
+             JOptionPane.showMessageDialog(frame,
+             "Ce compte existe deja !",
+             "Compte Existe",
+             JOptionPane.INFORMATION_MESSAGE);
+             new Login();
+            }else{
+                JOptionPane.showMessageDialog(frame,
+                "Votre compte a été créé avec succès ",
+                "WELCOME",
+                JOptionPane.INFORMATION_MESSAGE);
+                //ajoute dans hashMap users
+                User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+                Hotel.AjtUserMap(user);
+                this.dispose();
+            }
+         }  
+        else if(usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")){
+            JOptionPane.showMessageDialog(frame,
+            "Remplir le champ de User-Name et Password et Adresse-Mail !",
+            "ERROR",
+            JOptionPane.ERROR_MESSAGE); 
+        }else{
+
+            JOptionPane.showMessageDialog(frame,
+            "Votre compte a été créé avec succès ",
+            "WELCOME",
+            JOptionPane.INFORMATION_MESSAGE);
+            //ajoute dans hashMap users
+            User user=new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+            Hotel.AjtUserMap(user);
+            this.dispose();
+        }
+        DataBase.HasgMapsToDb();
+    }                                       
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Signeininterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Signeininterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Signeininterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Signeininterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+     
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Signeininterface().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JLabel backgroundlabel;
+    private javax.swing.JButton backtologinbtn;
+    private javax.swing.JButton closebtn;
+    private javax.swing.JLabel maillabel;
+    private javax.swing.JTextField mailtext;
+    private javax.swing.JLabel pwdlabel;
+    private javax.swing.JPasswordField pwdtext;
+    private javax.swing.JLabel signinlabel;
+    private javax.swing.JButton submitbtn;
+    private javax.swing.JLabel userlabel;
+    private javax.swing.JTextField usertext;
+    private javax.swing.JLabel welcomelabel;
+    // End of variables declaration                   
+}
+
+*/
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -42,17 +291,15 @@ public class Signeininterface extends javax.swing.JFrame {
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
         setUndecorated(true); // Supprime tous les boutons par défaut
-        
         // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("signin page");
         setLocationRelativeTo(null);
         setVisible(true);
-
         // les labels:
         // creation d'une label pour le username avec ses caractéristiques.
-        userlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
+        userlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         userlabel.setText("User-name:");
         // le positionement exact du label.
@@ -60,17 +307,18 @@ public class Signeininterface extends javax.swing.JFrame {
         getContentPane().add(userlabel);
 
         // creation d'une label pour la description avec ses caractéristiques.
-        descriptionlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 15));
+        descriptionlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 15)); // NOI18N
         descriptionlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
+        descriptionlabel.setText(
+                "<html><p style='line-height: ;'>un sejour confortable et relaxant en pleine nature a jijel,<br> vivez l'experience</p></html>");
         // le positionement exact du label.
         descriptionlabel.setBounds(42, 100, 1000, 105);
         getContentPane().add(descriptionlabel);
 
         // creation d'une label pour le show password avec ses caractéristiques.
-        showPasswordLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        showPasswordLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
-        showPasswordLabel.setText("See PassWord");
+        showPasswordLabel.setText("voir le mot de passe");
         // le positionement exact du label.
         showPasswordLabel.setBounds(170, 205, 150, 30);
         getContentPane().add(showPasswordLabel);
@@ -94,7 +342,8 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le welcome avec ses caractéristiques.
         welcomelabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 37));
         welcomelabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
+        welcomelabel
+                .setText("<html><p style='line-height: ;'>Bienvenue au Harry,<br>l’evasion par excellence</p></html>");
 
         // le positionement exact du label.
         welcomelabel.setBounds(42, 34, 1000, 100);
@@ -108,7 +357,7 @@ public class Signeininterface extends javax.swing.JFrame {
         // creation d'une label pour le e-mail avec ses caractéristiques.
         maillabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
         maillabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        maillabel.setText("Mail-Adress:");
+        maillabel.setText("Adresse-Mail:");
         // le positionement exact du label.
         maillabel.setBounds(20, 130, 200, 30);
         getContentPane().add(maillabel);
@@ -116,24 +365,25 @@ public class Signeininterface extends javax.swing.JFrame {
         // les bouttons:
         // creation d'un boutton pour le submit avec ses caractéristiques.
         submitbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        submitbtn.setText("Creat A New Acount");
+        submitbtn.setText("creer un nouveau compte");
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     submitbtnActionPerformed(evt);
                 } catch (deja_presente_bdd e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
         // le positionement exact du boutton.
-        submitbtn.setBounds(285, 457, 230, 40);
+        submitbtn.setBounds(280, 457, 235, 40);
         submitbtn.setBackground(color);
         submitbtn.setForeground(Color.BLACK);
 
         // creation d'un boutton pour se connecter avec ses caractéristiques.
         seConnecterButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        seConnecterButton.setText("Back To Login");
+        seConnecterButton.setText("Se Connecter");
 
         seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,13 +391,13 @@ public class Signeininterface extends javax.swing.JFrame {
             }
         });
         // le positionement exact du boutton.
-        seConnecterButton.setBounds(60, 457, 220, 40);
+        seConnecterButton.setBounds(60, 457, 150, 40);
         seConnecterButton.setBackground(colorgris);
         seConnecterButton.setForeground(Color.WHITE);
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        aPropos.setText("About Us");
+        aPropos.setText("A propos de nous ");
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
@@ -271,7 +521,7 @@ public class Signeininterface extends javax.swing.JFrame {
     }
 
     private void pwdtextActionPerformed(java.awt.event.ActionEvent evt) {
-       
+        // TODO add your handling code here:
     }
 
     private void aProposbtnActionPerformed() {
@@ -281,7 +531,11 @@ public class Signeininterface extends javax.swing.JFrame {
     private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
+        frame = new JFrame("Exit");
+        if (JOptionPane.showConfirmDialog(frame, "DO YOU REALY WANT TO CLOSE THIS WINDOW?", "MySQL Connector",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
     }
 
     private void togglePasswordVisibility() {
