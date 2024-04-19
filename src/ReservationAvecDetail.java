@@ -28,8 +28,8 @@ class BlackScrollPane extends JScrollPane {
 }
 
 public class ReservationAvecDetail extends javax.swing.JFrame {
-    JTextField datedebuTextField = new JTextField("5/5/2024");
-    JTextField datefinTextField = new JTextField("11/5/2024");
+    JTextField datedebuTextField = new JTextField("jj/mm/annee");
+    JTextField datefinTextField = new JTextField("jj/mm/annee");
     JCheckBox tvcCheckBox = new JCheckBox();
     JCheckBox climatisationBox = new JCheckBox();
     JCheckBox vuesurmerBox = new JCheckBox();
@@ -39,7 +39,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
     BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
-    JLabel prixJLabel = new JLabel("prix:");
+    JLabel prixJLabel ;
 
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
@@ -76,14 +76,36 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         setTitle("signin page");
         setLocationRelativeTo(null);
         setVisible(true);
+        JLabel datedebutJLabel ;
+        JLabel datefinJLabel ;
+        JLabel tvJLabel;
+        JLabel vuesurmerJLabel;
+        JLabel climatisationJLabel;
+        JLabel vuesurforetJLabel ;
+        JButton filtrer = new JButton();
         // les labels:
-
-        JLabel datedebutJLabel = new JLabel("date debut");
-        JLabel datefinJLabel = new JLabel("date fin");
-        JLabel tvJLabel = new JLabel("tv :");
-        JLabel vuesurmerJLabel = new JLabel("climatisation :");
-        JLabel climatisationJLabel = new JLabel("vue sur mer :");
-        JLabel vuesurforetJLabel = new JLabel("vue sur foret :");
+        if(Hotel.langue==0){
+            datedebutJLabel = new JLabel("Starting Date");
+            datefinJLabel = new JLabel("Ending Date");
+            tvJLabel = new JLabel("TV :");
+            vuesurmerJLabel = new JLabel("Sea View :");
+            climatisationJLabel = new JLabel("Air Conditioning :");
+            vuesurforetJLabel = new JLabel("Forest View :");
+            filtrer.setText("Filter");
+            prixJLabel =new JLabel("price:");
+            datefinJLabel.setBounds(530, 0, 150, 50);
+        }else{
+             datedebutJLabel = new JLabel("date debut");
+             datefinJLabel = new JLabel("date fin");
+             tvJLabel = new JLabel("tv :");
+             vuesurmerJLabel = new JLabel("climatisation :");
+             climatisationJLabel = new JLabel("vue sur mer :");
+             vuesurforetJLabel = new JLabel("vue sur foret :");
+             prixJLabel= new JLabel("prix:");
+        
+             filtrer.setText("Filtrer");
+             datefinJLabel.setBounds(560, 0, 150, 50);
+        }
 
         JPanel informationReservationPanel = new JPanel();
 
@@ -139,7 +161,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         datedebutJLabel.setBounds(220, 0, 150, 50);
         datedebuTextField.setBounds(340, 10, 150, 30);
-        datefinJLabel.setBounds(560, 0, 150, 50);
+      
         datefinTextField.setBounds(650, 10, 150, 30);
 
         tvJLabel.setBounds(100, 60, 40, 20);
@@ -203,10 +225,10 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             }
         });
 
-        JButton filtrer = new JButton();
+       
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         filtrer.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        filtrer.setText("Filtrer");
+        
         filtrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -239,18 +261,49 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
     public JPanel createPanel(Chambre chambre) {
         JPanel panel = new JPanel();
+        JLabel nameLabel ;
+        JLabel bedsLabel;
+        JLabel priceLabel ;
+        JLabel optionlLabel ;
         panel.setLayout(new BorderLayout()); // Utilisation d'un BorderLayout
+        JLabel tvLabel ;
+        JLabel climatiJLabel;
+        JLabel vuemerJLabel ;
+        JLabel vueforetJLabel ;
+        JButton reserveButton ;
+        if(Hotel.langue==0){
+         nameLabel = new JLabel("RoomID: " + chambre.getId());
+         bedsLabel = new JLabel("beds number: " + chambre.getNbLit());
+         priceLabel = new JLabel("price: " + chambre.getPrix());
+         optionlLabel = new JLabel("Options: ");
+          tvLabel = new JLabel("                      tv ");
+          climatiJLabel = new JLabel("           Air Conditioning");
+          vuemerJLabel = new JLabel("                 Sea View");
+          vueforetJLabel = new JLabel("               Forest View");
+           reserveButton = new JButton("Reserve this Room");
+        }else{
+         nameLabel = new JLabel("IDChambre: " + chambre.getId());
+         bedsLabel = new JLabel("Nombre de lits: " + chambre.getNbLit());
+         priceLabel = new JLabel("Prix: " + chambre.getPrix());
+         optionlLabel = new JLabel("Options: ");
+          tvLabel = new JLabel("                     tv ");
+          climatiJLabel = new JLabel("             Climatisation");
+          vuemerJLabel = new JLabel("           Vue sur la mere");
+          vueforetJLabel = new JLabel("           Vue sur la foret");
+           reserveButton = new JButton("reserver cette chambre");
+        }
+        
+    
 
-        JLabel nameLabel = new JLabel("IDChambre: " + chambre.getId());
         nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         nameLabel.setForeground(color);
-        JLabel bedsLabel = new JLabel("Nombre de lits: " + chambre.getNbLit());
+      
         bedsLabel.setForeground(color);
         bedsLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        JLabel priceLabel = new JLabel("Prix: " + chambre.getPrix());
+       
         priceLabel.setForeground(color);
         priceLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        JLabel optionlLabel = new JLabel("Options: ");
+       
         optionlLabel.setForeground(color);
         optionlLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
@@ -258,7 +311,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS)); // Utilisation d'un BoxLayout vertical
                                                                                // pour les options
 
-        JLabel tvLabel = new JLabel("                     tv ");
         if (chambre.isTv()) {
             tvLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                 // colorie en vert
@@ -267,7 +319,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         }
         optionsPanel.add(tvLabel);
 
-        JLabel climatiJLabel = new JLabel("             Climatisation");
+       
         if (chambre.isClimatisation()) {
             climatiJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                       // colorie en vert
@@ -276,7 +328,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         }
         optionsPanel.add(climatiJLabel);
 
-        JLabel vuemerJLabel = new JLabel("           Vue sur la mere");
+        
         if (chambre.isVuesurmere()) {
             vuemerJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                      // colorie en vert
@@ -285,7 +337,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         }
         optionsPanel.add(vuemerJLabel);
 
-        JLabel vueforetJLabel = new JLabel("           Vue sur la foret");
+     
         if (chambre.isVuesurforet()) {
             vueforetJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
                                                        // colorie en vert
@@ -299,7 +351,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         tvLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
         // Ajout du bouton "Réserver"
-        JButton reserveButton = new JButton("reserver cette chambre");
+       
         reserveButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
         reserveButton.addActionListener(e -> {
@@ -449,6 +501,16 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+
+    private void changerlangue() {
+        if (roomtypebox.getSelectedItem() == "English") {
+            Hotel.langue = 0;
+
+        } else {
+            Hotel.langue = 1;
+        }
+        System.out.println(Hotel.langue);
     }
 
     public static void main(String args[]) {
