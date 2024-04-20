@@ -74,6 +74,8 @@ public class Signeininterface extends javax.swing.JFrame {
             welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
             seConnecterButton.setText("Back To Login");
             submitbtn.setText("Creat A New Acount");
+            maillabel.setText("Mail-Adress");
+            aPropos.setText("About-Us");
             signinlabel.setBounds(170, 30, 300, 40);
             }else{
                 pwdlabel.setText("Mot de pass:");
