@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.border.Border;
 
@@ -28,8 +27,7 @@ class BlackScrollPane extends JScrollPane {
 }
 
 public class ReservationAvecDetail extends javax.swing.JFrame {
-    JTextField datedebuTextField = new JTextField("jj/mm/annee");
-    JTextField datefinTextField = new JTextField("jj/mm/annee");
+
     JCheckBox tvcCheckBox = new JCheckBox();
     JCheckBox climatisationBox = new JCheckBox();
     JCheckBox vuesurmerBox = new JCheckBox();
@@ -82,7 +80,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("signin page");
+        setTitle("ReservationaAvecDetails page");
         setLocationRelativeTo(null);
         setVisible(true);
         JLabel datedebutJLabel;
@@ -134,9 +132,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         informationReservationPanel.setBackground(colorgris);
         add(informationReservationPanel);
 
-        informationReservationPanel.add(datefinTextField);
-        informationReservationPanel.add(datedebuTextField);
-
         informationReservationPanel.add(prixJLabel);
 
         datedebutJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
@@ -169,7 +164,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         vuesurmerBox.setBounds(240, 150, 40, 20);
         choisistypeJLabel.setBounds(20, 20, 200, 17);
         choisisoptionsJLabel.setBounds(20, 60, 200, 17);
-        roomtypebox.setBounds(180, 14, 150, 30);
+        roomtypebox.setBounds(200, 14, 150, 30);
 
         choisistypeJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         choisisoptionsJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
@@ -299,8 +294,9 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                 dispose();
             }
         });
-        optioJPanel.add(roomtypebox);
+
         informationReservationPanel.add(revenirbtn);
+        optioJPanel.add(roomtypebox);
         // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
@@ -328,9 +324,9 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         filtrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-    
-                    filtrerbtnActionPerformed();
-              
+
+                filtrerbtnActionPerformed();
+
             }
         });
         // le positionement exact du boutton.
@@ -441,9 +437,67 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         reserveButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
         reserveButton.addActionListener(e -> {
-            // Action à effectuer lors du clic sur le bouton Réserver
-           //TODO Hotel.AjtReservationMap(new Reservation(WIDTH,Hotel.id_user_current, new Date((Integer)jourfinBox.getSelectedItem(),(Integer)moisfinBox.getSelectedItem(),(Integer)anneefinBox.getSelectedItem()),  new Date((Integer)jourdebutBox.getSelectedItem(),(Integer)moisdebutBox.getSelectedItem(),(Integer)anneedebutBox.getSelectedItem()), TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem()), idchambre, EtatReservation.ACCEPTER));
-            JOptionPane.showMessageDialog(panel, "Chambre " + chambre.getId() + " réservée avec succee !");
+            Date date_debut;
+            try {
+                date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
+                        (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
+                Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
+                        (Integer) anneefinBox.getSelectedItem());
+                // Action à effectuer lors du clic sur le bouton Réserver
+                // TODO Hotel.AjtReservationMap(new Reservation(WIDTH,Hotel.id_user_current, new
+                // Date((Integer)jourfinBox.getSelectedItem(),(Integer)moisfinBox.getSelectedItem(),(Integer)anneefinBox.getSelectedItem()),
+                // new
+                // Date((Integer)jourdebutBox.getSelectedItem(),(Integer)moisdebutBox.getSelectedItem(),(Integer)anneedebutBox.getSelectedItem()),
+                // TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem()), idchambre,
+                // EtatReservation.ACCEPTER));
+
+                Reservation reservation = new Reservation(Reservation.getNb(), Hotel.id_user_current, date_fin,
+                        date_debut, chambre.getType(),
+                        chambre.getId(), EtatReservation.ACCEPTER);
+                Hotel.AjtReservationMap(reservation);
+
+                JOptionPane.showMessageDialog(panel, "Chambre " + chambre.getId() + " réservée avec succee !");
+                new TableReseravtionUser();
+
+            } catch (NumberFormatException e1) {
+                JOptionPane.showMessageDialog(frame,
+                        "entrer des chiffres dans les dates !",
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } catch (Date_nonvalid e1) {
+
+                JOptionPane.showMessageDialog(frame,
+                        e1.getMessage(),
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } catch (Date_Debut_Reservation e1) {
+                JOptionPane.showMessageDialog(frame,
+                        e1.getMessage(),
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } catch (Date_nonorganiser e1) {
+                JOptionPane.showMessageDialog(frame,
+                        e1.getMessage(),
+                        "dates non organisee",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } catch (DiffSup365 e1) {
+                JOptionPane.showMessageDialog(frame,
+                        "date non valide!",
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } catch (deja_presente_bdd e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
         });
 
         // Ajout des composants au JPanel
@@ -476,22 +530,20 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
     private JFrame frame;
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
-        frame = new JFrame("Exit");
-        if (JOptionPane.showConfirmDialog(frame, "DO YOU REALY WANT TO CLOSE THIS WINDOW?", "MySQL Connector",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
-            System.exit(0);
-        }
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
     }
 
     private void filtrerbtnActionPerformed() {
 
         try {
-           
+
             Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
-            Date date_debut = new Date((Integer)jourdebutBox.getSelectedItem(),(Integer)moisdebutBox.getSelectedItem(),(Integer)anneedebutBox.getSelectedItem());
-           
-            Date date_fin =new Date((Integer)jourfinBox.getSelectedItem(),(Integer)moisfinBox.getSelectedItem(),(Integer)anneefinBox.getSelectedItem());
+            Date date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
+                    (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
+
+            Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
+                    (Integer) anneefinBox.getSelectedItem());
             Date.verif_today_date(today, date_debut);
             Date.differenceEntreDates(date_debut, date_fin);
             TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
@@ -507,7 +559,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
-            System.out.println("hi");
             while (iterator.hasNext()) {
                 Map.Entry<Integer, Chambre> entry = iterator.next();
                 Chambre chambre = entry.getValue();
@@ -555,20 +606,19 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
 
-        }    catch (Date_nonorganiser e) {
+        } catch (Date_nonorganiser e) {
             JOptionPane.showMessageDialog(frame,
                     e.getMessage(),
                     "dates non organisee",
                     JOptionPane.ERROR_MESSAGE);
 
-        }
-        catch (DiffSup365 e) {
+        } catch (DiffSup365 e) {
             JOptionPane.showMessageDialog(frame,
                     "date non valide!",
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
 
-        } 
+        }
 
     }
 
