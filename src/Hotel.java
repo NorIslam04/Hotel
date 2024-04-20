@@ -34,6 +34,8 @@ public class Hotel {
 	static int id_user_current;
 	static int totalRating;
 	static int langue; //0 ang 1 fr
+	
+    static boolean reserveoption=false;
 
 	private static HashMap<Integer, Chambre> chambreMap = new HashMap<>();
 	private static HashMap<Integer, User> userMap = new HashMap<>();
@@ -187,6 +189,7 @@ public class Hotel {
 		}
 
 	}
+
 
 	static void ModifierChambreMap(Chambre chambre) throws non_presente_bdd {
 		if (chambreMap.containsKey(chambre.getId())) {

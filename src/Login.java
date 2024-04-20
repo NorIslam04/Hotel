@@ -208,6 +208,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+
         // le positionement exact du textfield:
         pwdtext.setBounds(170, 150, 230, 30);
         // Définir le remplissage du champ de texte
@@ -290,10 +291,6 @@ public class Login extends javax.swing.JFrame {
 
     private JFrame frame;
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        frame = new JFrame("Exit");
-            System.exit(0);
-    }
 
     private void togglePasswordVisibility() {
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
@@ -352,6 +349,9 @@ public class Login extends javax.swing.JFrame {
        
     }
 
+ private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
+    }
 
     public static void main(String args[]) {
         try {

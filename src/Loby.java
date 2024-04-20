@@ -135,16 +135,14 @@ public class Loby extends javax.swing.JFrame {
     
     private JFrame frame;
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        frame = new JFrame("Exit");
-        if (JOptionPane.showConfirmDialog(frame, "DO YOU REALY WANT TO CLOSE THIS WINDOW?", "MySQL Connector",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
-            System.exit(0);
-        }
-    }
+ 
 
     private void aProposbtnActionPerformed() {
         APropos a = new APropos();
+    }
+
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
     }
 
     private void passeraureservationActionPerformed() {

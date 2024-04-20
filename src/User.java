@@ -122,13 +122,14 @@ public class User {
 		}
 	}
 
-		
-	public void reserver(TypeChambre type,String datedebut,String datefin) throws Date_nonvalid, Exception {
+	*/	
+	public void reserveravecdetail(Chambre chambre,Date datedebut,Date datefin) throws Date_nonvalid, Exception {
 	
-		Reservation reservation=new Reservation(Reservation.nb,this.id,Date.StringDateint(datedebut),Date.StringDateint(datefin),type,0,EtatReservation.EN_ATTENTE);
-		Hotel.modifierMap(reservation,TypeOperation.AJOUT);
+		Reservation reservation=new Reservation(Reservation.nb,this.id,datedebut,datefin,chambre.getType(),chambre.getId(),EtatReservation.ACCEPTER);
+	  
+		Hotel.AjtReservationMap(reservation);
 	}
-	*/
+	
 
 	public int getNote() {
 		return note;
