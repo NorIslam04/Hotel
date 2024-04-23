@@ -24,6 +24,7 @@ class BlackScrollPane extends JScrollPane {
 }
 
 public class CommentairesInterface extends javax.swing.JFrame {
+    
 
     JCheckBox etoile1Box = new JCheckBox();
     JCheckBox etoile2Box = new JCheckBox();
@@ -69,24 +70,30 @@ public class CommentairesInterface extends javax.swing.JFrame {
 
         }
 
-        JPanel informationReservationPanel = new JPanel();
+        JPanel ratingJPanel = new JPanel();
 
-        informationReservationPanel.setLayout(null);
-        informationReservationPanel.setBounds(3, 3, 1027, 200);
-        informationReservationPanel.setBorder((new RoundBorder(color, 3)));
-        informationReservationPanel.setBackground(colorgris);
-        add(informationReservationPanel);
+        ratingJPanel.setLayout(null);
+        ratingJPanel.setBounds(3, 3, 1027, 200);
+        ratingJPanel.setBorder((new RoundBorder(color, 3)));
+        ratingJPanel.setBackground(colorgris);
+        add(ratingJPanel);
+        
+        etoile1Box.setBounds(0, 50, 40, 20);
+        etoile2Box.setBounds(40, 50, 40, 20);
+        etoile3Box.setBounds(80, 50, 40, 20);
+        etoile4Box.setBounds(120, 50, 40, 20);
+        etoile5Box.setBounds(160, 50, 40, 20);
 
-        etoile1Box.setBounds(240, 90, 40, 20);
-        etoile2Box.setBounds(240, 110, 40, 20);
-        etoile4Box.setBounds(240, 150, 40, 20);
-        etoile3Box.setBounds(240, 130, 40, 20);
-        etoile5Box.setBounds(240, 170, 40, 20);
+        etoile1Box.setBackground(colorgris);
+        etoile2Box.setBackground(colorgris);
+        etoile3Box.setBackground(colorgris);
+        etoile4Box.setBackground(colorgris);
+        etoile5Box.setBackground(colorgris);
 
-        rateusJLabel.setBounds(20, 60, 200, 17);
+        rateusJLabel.setBounds(0,20, 200, 17);
 
         rateusJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        rateusJLabel.setForeground(colorgris);
+        rateusJLabel.setForeground(color);
 
         JPanel optioJPanel = new JPanel();
         optioJPanel.setLayout(null);
@@ -98,8 +105,8 @@ public class CommentairesInterface extends javax.swing.JFrame {
         optioJPanel.add(etoile4Box);
         optioJPanel.add(rateusJLabel);
         optioJPanel.setBounds(400, 10, 380, 180);
-        optioJPanel.setBackground(color);
-        informationReservationPanel.add(optioJPanel);
+        optioJPanel.setBackground(colorgris);
+        ratingJPanel.add(optioJPanel);
 
         // Créer une JComboBox et lui fournir le tableau d'entiers comme modèle
 
@@ -119,11 +126,44 @@ public class CommentairesInterface extends javax.swing.JFrame {
         Icon etoileJauneIcon = new ImageIcon("For Rent2.png");
 
         // Initialiser les cases à cocher avec l'icône d'étoile blanche
-        etoile1Box.setIcon(etoileBlancheIcon);
+        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==1){
+        etoile1Box.setIcon(etoileJauneIcon);
         etoile2Box.setIcon(etoileBlancheIcon);
         etoile3Box.setIcon(etoileBlancheIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
-        etoile5Box.setIcon(etoileBlancheIcon);
+        etoile5Box.setIcon(etoileBlancheIcon);}
+      
+        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==2){
+        etoile1Box.setIcon(etoileJauneIcon);
+        etoile2Box.setIcon(etoileJauneIcon);
+        etoile3Box.setIcon(etoileBlancheIcon);
+        etoile4Box.setIcon(etoileBlancheIcon);
+        etoile5Box.setIcon(etoileBlancheIcon);} 
+         if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==3){
+        etoile1Box.setIcon(etoileJauneIcon);
+        etoile2Box.setIcon(etoileJauneIcon);
+        etoile3Box.setIcon(etoileJauneIcon);
+        etoile4Box.setIcon(etoileBlancheIcon);
+        etoile5Box.setIcon(etoileBlancheIcon);}  
+        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==4){
+            etoile1Box.setIcon(etoileJauneIcon);
+            etoile2Box.setIcon(etoileJauneIcon);
+            etoile3Box.setIcon(etoileJauneIcon);
+            etoile4Box.setIcon(etoileJauneIcon);
+            etoile5Box.setIcon(etoileBlancheIcon);}
+
+            if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==5){
+                etoile1Box.setIcon(etoileJauneIcon);
+                etoile2Box.setIcon(etoileJauneIcon);
+                etoile3Box.setIcon(etoileJauneIcon);
+                etoile4Box.setIcon(etoileJauneIcon);
+                etoile5Box.setIcon(etoileJauneIcon);}
+                if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==-1){
+                    etoile1Box.setIcon(etoileBlancheIcon);
+                    etoile2Box.setIcon(etoileBlancheIcon);
+                    etoile3Box.setIcon(etoileBlancheIcon);
+                    etoile4Box.setIcon(etoileBlancheIcon);
+                    etoile5Box.setIcon(etoileBlancheIcon);}
 
         // Ajouter un écouteur d'événements à chaque case à cocher
         etoile1Box.addActionListener(new ActionListener() {
@@ -131,6 +171,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (etoile1Box.isSelected()) {
                     etoile1Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
 
                 } else {
                     etoile1Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
@@ -142,6 +183,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile3Box.setSelected(false); // Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(0);
 
                 }
             }
@@ -153,6 +195,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile2Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile1Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile1Box.setSelected(true);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
 
                 } else {
                     etoile2Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile
@@ -162,6 +205,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile3Box.setSelected(false); // Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
                 }
             }
         });
@@ -174,12 +218,14 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile1Box.setSelected(true);
                     etoile2Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile2Box.setSelected(true);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                 } else {
                     etoile3Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
                     etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile4Box.setSelected(false);// Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                 }
             }
         });
@@ -188,17 +234,19 @@ public class CommentairesInterface extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (etoile4Box.isSelected()) {
                     etoile4Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
-
                     etoile3Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile3Box.setSelected(true); // Changer l'icône en étoile jaune
                     etoile1Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile1Box.setSelected(true);
                     etoile2Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile2Box.setSelected(true);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                 } else {
+
                     etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                 }
             }
         });
@@ -216,13 +264,16 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile1Box.setSelected(true);
                     etoile2Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile2Box.setSelected(true);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(5);
                 } else {
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
+                    
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                 }
             }
         });
 
-        informationReservationPanel.add(revenirbtn);
+        ratingJPanel.add(revenirbtn);
 
         // creation d'un boutton pour le close avec ses caractéristiques.
 
@@ -233,7 +284,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         // le positionement exact du boutton.
         closebtn.setBounds(997, 5, 25, 30);
-        informationReservationPanel.add(closebtn);
+        ratingJPanel.add(closebtn);
 
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +305,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
         commenterbtn.setBackground(color);
         commenterbtn.setForeground(colorgris);
         commenterbtn.setBorder(new RoundBorder(color, 3));
-        informationReservationPanel.add(commenterbtn);
+        ratingJPanel.add(commenterbtn);
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N

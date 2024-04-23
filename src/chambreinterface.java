@@ -346,6 +346,12 @@ public class chambreinterface extends javax.swing.JFrame {
 
 
     private void avissurnousButtonActionPerformed() {
+        try {
+            new CommentairesInterface();
+        } catch (deja_presente_bdd e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     };
 
