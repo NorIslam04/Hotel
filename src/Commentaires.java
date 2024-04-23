@@ -1,9 +1,11 @@
 
 public class Commentaires {
+    private int id;
     private String commentaire;
     private User user;
-    private int id;
     private Date date;
+
+    
     public Date getDate() {
         return date;
     }

@@ -23,7 +23,7 @@ public class Admin {
 	private String name;
 	private String password;
 	private int id;
-	private int nbOp = 0;
+
 	static int nb = 0;
 
 	public Admin(String name, String password, int id) {
@@ -57,13 +57,7 @@ public class Admin {
 		this.id = id;
 	}
 
-	public int getNbOp() {
-		return nbOp;
-	}
-
-	public void setNbOp(int nbOp) {
-		this.nbOp = nbOp;
-	}
+	
 
 	public static int getNb() {
 		return nb;
