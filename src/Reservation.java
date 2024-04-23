@@ -39,6 +39,8 @@ public class Reservation {
 	private Date dateDebut;
 	private Date dateFin;
 	//private Chambre chambre;
+	// peut etre lzm nzidou prix ly reserva bih bsh dans le cas ou avec le temps 
+	//on modifie le prix des options le prix de la chambre y93d lui mm
 	private int id_chambre;
 	private int NbrJourReservation;
 

@@ -258,11 +258,11 @@ public class Hotel {
 
 	}
 
-	static boolean verifchambreavecoption(Chambre chambre, TypeChambre type, boolean tv, boolean climatisation,
+	static boolean verifchambreavecoption(Chambre chambre, TypeChambre type, boolean sona, boolean terasse,
 			boolean vuesurmer, boolean vuesurforet) {
 
 		if (type == chambre.getType()) {
-			if ((!chambre.isClimatisation() && climatisation) || (!chambre.isTv() && tv)
+			if ((!chambre.isTERASSE() && terasse) || (!chambre.isSONA() && sona)
 					|| (!chambre.isVuesurforet() && vuesurforet) || (!chambre.isVuesurmere() && vuesurmer)) {
 				return false;
 

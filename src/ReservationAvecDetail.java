@@ -1,13 +1,7 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.Iterator;
-import java.util.Map;
 
-import javax.swing.BoxLayout;
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -15,21 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
-import javax.swing.border.Border;
-
-class BlackScrollPane extends JScrollPane {
-    public BlackScrollPane(Component view) {
-        super(view);
-        setOpaque(false);
-    }
-}
 
 public class ReservationAvecDetail extends javax.swing.JFrame {
 
-    JCheckBox tvcCheckBox = new JCheckBox();
-    JCheckBox climatisationBox = new JCheckBox();
+    JCheckBox sonaCheckBox = new JCheckBox();
+    JCheckBox terasseCheckBox = new JCheckBox();
     JCheckBox vuesurmerBox = new JCheckBox();
     JCheckBox vuesurforetBox = new JCheckBox();
     javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
@@ -42,8 +26,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
     javax.swing.JComboBox<Integer> moisfinBox = new JComboBox<>();
     javax.swing.JComboBox<Integer> anneefinBox = new JComboBox<>();
 
-    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
-    BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
     JLabel prixJLabel;
@@ -74,6 +56,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             Hotel.AjouterChambreMap(chambre1);
         }
 
+        TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
@@ -85,24 +68,26 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         setVisible(true);
         JLabel datedebutJLabel;
         JLabel datefinJLabel;
-        JLabel tvJLabel;
+        JLabel SonaJlabel;
         JLabel vuesurmerJLabel;
-        JLabel climatisationJLabel;
+        JLabel TerasseJlabel;
         JLabel vuesurforetJLabel;
         JLabel choisisdateJLabel;
         JLabel choisistypeJLabel;
         JLabel choisisoptionsJLabel;
 
-        JButton filtrer = new JButton();
+        JButton reserverbtn = new JButton();
+        JButton afficherprixButton = new JButton();
         // les labels:
         if (Hotel.langue == 0) {
             datedebutJLabel = new JLabel("Starting Date");
             datefinJLabel = new JLabel("Ending Date");
-            tvJLabel = new JLabel("TV :");
+            SonaJlabel = new JLabel("Sona :");
             vuesurmerJLabel = new JLabel("Sea View :");
-            climatisationJLabel = new JLabel("Air Conditioning :");
+            TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Forest View :");
-            filtrer.setText("Filter");
+            reserverbtn.setText("reserve");
+            afficherprixButton.setText("see price");
             choisisdateJLabel = new JLabel("Choose your reservation date :");
             choisisoptionsJLabel = new JLabel("Choose Options :");
             choisistypeJLabel = new JLabel("Choose Type :");
@@ -111,23 +96,24 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         } else {
             datedebutJLabel = new JLabel("date debut");
             datefinJLabel = new JLabel("date fin");
-            tvJLabel = new JLabel("tv :");
-            vuesurmerJLabel = new JLabel("climatisation :");
-            climatisationJLabel = new JLabel("vue sur mer :");
+            SonaJlabel = new JLabel("Sona :");
+            vuesurmerJLabel = new JLabel("Terasse :");
+            TerasseJlabel = new JLabel("vue sur mer :");
             vuesurforetJLabel = new JLabel("vue sur foret :");
             choisisoptionsJLabel = new JLabel("choisissez les Options :");
             choisistypeJLabel = new JLabel("choisissez le Type :");
             choisisdateJLabel = new JLabel("choisissez votre date de reservation :");
             prixJLabel = new JLabel("prix:");
+            afficherprixButton.setText("voir le prix");
 
-            filtrer.setText("Filtrer");
+            reserverbtn.setText("reserver");
             datefinJLabel.setBounds(0, 0, 150, 50);
         }
 
         JPanel informationReservationPanel = new JPanel();
 
         informationReservationPanel.setLayout(null);
-        informationReservationPanel.setBounds(3, 3, 1027, 200);
+        informationReservationPanel.setBounds(3, 180, 1027, 200);
         informationReservationPanel.setBorder((new RoundBorder(color, 3)));
         informationReservationPanel.setBackground(colorgris);
         add(informationReservationPanel);
@@ -136,16 +122,16 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         datedebutJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
         datefinJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-        tvJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-        climatisationJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        SonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
         vuesurforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
         vuesurmerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
 
         datedebutJLabel.setForeground(colorgris);
         datefinJLabel.setForeground(colorgris);
 
-        tvJLabel.setForeground(colorgris);
-        climatisationJLabel.setForeground(colorgris);
+        SonaJlabel.setForeground(colorgris);
+        TerasseJlabel.setForeground(colorgris);
         vuesurforetJLabel.setForeground(colorgris);
         vuesurmerJLabel.setForeground(colorgris);
 
@@ -154,10 +140,10 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         prixJLabel.setBorder(new RoundBorder(color, 3));
 
-        tvJLabel.setBounds(40, 90, 40, 20);
-        tvcCheckBox.setBounds(240, 90, 40, 20);
-        climatisationJLabel.setBounds(40, 110, 200, 20);
-        climatisationBox.setBounds(240, 110, 40, 20);
+        SonaJlabel.setBounds(40, 90, 200, 20);
+        sonaCheckBox.setBounds(240, 90, 40, 20);
+        TerasseJlabel.setBounds(40, 110, 200, 20);
+        terasseCheckBox.setBounds(240, 110, 40, 20);
         vuesurforetJLabel.setBounds(40, 130, 200, 20);
         vuesurforetBox.setBounds(240, 130, 40, 20);
         vuesurmerJLabel.setBounds(40, 150, 200, 20);
@@ -173,10 +159,10 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         JPanel optioJPanel = new JPanel();
         optioJPanel.setLayout(null);
-        optioJPanel.add(tvJLabel);
-        optioJPanel.add(tvcCheckBox);
-        optioJPanel.add(climatisationBox);
-        optioJPanel.add(climatisationJLabel);
+        optioJPanel.add(SonaJlabel);
+        optioJPanel.add(sonaCheckBox);
+        optioJPanel.add(terasseCheckBox);
+        optioJPanel.add(TerasseJlabel);
         optioJPanel.add(vuesurforetJLabel);
         optioJPanel.add(vuesurmerJLabel);
         optioJPanel.add(vuesurmerBox);
@@ -188,11 +174,11 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         optioJPanel.setBackground(color);
         informationReservationPanel.add(optioJPanel);
 
-        prixJLabel.setBounds(840, 150, 150, 30);
+        prixJLabel.setBounds(840, 100, 150, 70);
         prixJLabel.setBackground(color);
 
-        tvcCheckBox.setBackground(color);
-        climatisationBox.setBackground(color);
+        sonaCheckBox.setBackground(color);
+        terasseCheckBox.setBackground(color);
         vuesurforetBox.setBackground(color);
         vuesurmerBox.setBackground(color);
 
@@ -218,11 +204,19 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
         // Créer une JComboBox et lui fournir le tableau d'entiers comme modèle
         jourdebutBox = new JComboBox<>(jours);
+
         jourfinBox = new JComboBox<>(jours);
         moisdebutBox = new JComboBox<>(mois);
         moisfinBox = new JComboBox<>(mois);
         anneedebutBox = new JComboBox<>(annee);
         anneefinBox = new JComboBox<>(annee);
+
+        jourdebutBox.setSelectedItem(Date.getToday_jour());
+        jourfinBox.setSelectedItem(Date.getToday_jour() + 1);
+        moisdebutBox.setSelectedItem(Date.getToday_mois());
+        moisfinBox.setSelectedItem(Date.getToday_mois());
+        anneedebutBox.setSelectedItem(Date.getToday_annee());
+        anneefinBox.setSelectedItem(Date.getToday_annee());
 
         jourdebutBox.setForeground(color);
         jourdebutBox.setBackground(colorgris);
@@ -279,9 +273,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         gestiondate.setBackground(color);
         gestiondate.add(choisisdateJLabel);
         informationReservationPanel.add(gestiondate);
-
-        afficherchambre();
-
         // Bouton pour fermer la fenêtre
         JButton revenirbtn = new JButton("");
         revenirbtn.setBounds(970, 5, 25, 30);
@@ -295,7 +286,6 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             }
         });
 
-        informationReservationPanel.add(revenirbtn);
         optioJPanel.add(roomtypebox);
         // creation d'un boutton pour le close avec ses caractéristiques.
 
@@ -306,7 +296,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         // le positionement exact du boutton.
         closebtn.setBounds(997, 5, 25, 30);
-        informationReservationPanel.add(closebtn);
+        add(closebtn);
 
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,22 +310,37 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         });
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
-        filtrer.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        reserverbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
 
-        filtrer.addActionListener(new java.awt.event.ActionListener() {
+        reserverbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                filtrerbtnActionPerformed();
+                reserverbtnbtnActionPerformed();
 
             }
         });
         // le positionement exact du boutton.
-        filtrer.setBounds(840, 100, 150, 30);
-        filtrer.setBackground(color);
-        filtrer.setForeground(colorgris);
-        filtrer.setBorder(new RoundBorder(color, 3));
-        informationReservationPanel.add(filtrer);
+        reserverbtn.setBounds(840, 70, 150, 25);
+        reserverbtn.setBackground(color);
+        reserverbtn.setForeground(colorgris);
+        reserverbtn.setBorder(new RoundBorder(color, 3));
+        informationReservationPanel.add(reserverbtn);
 
+        afficherprixButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+
+        afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                afficherprixbtnbtnActionPerformed();
+
+            }
+        });
+        // le positionement exact du boutton.
+        afficherprixButton.setBounds(840, 40, 150, 25);
+        afficherprixButton.setBackground(color);
+        afficherprixButton.setForeground(colorgris);
+        afficherprixButton.setBorder(new RoundBorder(color, 3));
+        informationReservationPanel.add(afficherprixButton);
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
         // le positionement exact du background.
@@ -346,195 +351,13 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    public JPanel createPanel(Chambre chambre) {
-        JPanel panel = new JPanel();
-        JLabel nameLabel;
-        JLabel bedsLabel;
-        JLabel priceLabel;
-        JLabel optionlLabel;
-        panel.setLayout(new BorderLayout()); // Utilisation d'un BorderLayout
-        JLabel tvLabel;
-        JLabel climatiJLabel;
-        JLabel vuemerJLabel;
-        JLabel vueforetJLabel;
-        JButton reserveButton;
-        if (Hotel.langue == 0) {
-            nameLabel = new JLabel("RoomID: " + chambre.getId());
-            bedsLabel = new JLabel("beds number: " + chambre.getNbLit());
-            priceLabel = new JLabel("price: " + chambre.getPrix());
-            optionlLabel = new JLabel("Options: ");
-            tvLabel = new JLabel("                      tv ");
-            climatiJLabel = new JLabel("           Air Conditioning");
-            vuemerJLabel = new JLabel("                 Sea View");
-            vueforetJLabel = new JLabel("               Forest View");
-            reserveButton = new JButton("Reserve this Room");
-        } else {
-            nameLabel = new JLabel("IDChambre: " + chambre.getId());
-            bedsLabel = new JLabel("Nombre de lits: " + chambre.getNbLit());
-            priceLabel = new JLabel("Prix: " + chambre.getPrix());
-            optionlLabel = new JLabel("Options: ");
-            tvLabel = new JLabel("                     tv ");
-            climatiJLabel = new JLabel("             Climatisation");
-            vuemerJLabel = new JLabel("           Vue sur la mere");
-            vueforetJLabel = new JLabel("           Vue sur la foret");
-            reserveButton = new JButton("reserver cette chambre");
-        }
-
-        nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        nameLabel.setForeground(colorgris);
-
-        bedsLabel.setForeground(colorgris);
-        bedsLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-        priceLabel.setForeground(colorgris);
-        priceLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-        optionlLabel.setForeground(colorgris);
-        optionlLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-        JPanel optionsPanel = new JPanel();
-        optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS)); // Utilisation d'un BoxLayout vertical
-                                                                               // pour les options
-
-        if (chambre.isTv()) {
-            tvLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
-                                                // colorie en vert
-        } else {
-            tvLabel.setForeground(colorgris);
-        }
-        optionsPanel.add(tvLabel);
-
-        if (chambre.isClimatisation()) {
-            climatiJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
-                                                      // colorie en vert
-        } else {
-            climatiJLabel.setForeground(colorgris);
-        }
-        optionsPanel.add(climatiJLabel);
-
-        if (chambre.isVuesurmere()) {
-            vuemerJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
-                                                     // colorie en vert
-        } else {
-            vuemerJLabel.setForeground(colorgris);
-        }
-        optionsPanel.add(vuemerJLabel);
-
-        if (chambre.isVuesurforet()) {
-            vueforetJLabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
-                                                       // colorie en vert
-        } else {
-            vueforetJLabel.setForeground(colorgris);
-        }
-        optionsPanel.add(vueforetJLabel);
-        vueforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        vuemerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        climatiJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        tvLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-        // Ajout du bouton "Réserver"
-
-        reserveButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-        reserveButton.addActionListener(e -> {
-            Date date_debut;
-            try {
-                date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
-                        (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
-                Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
-                        (Integer) anneefinBox.getSelectedItem());
-                // Action à effectuer lors du clic sur le bouton Réserver
-                // TODO Hotel.AjtReservationMap(new Reservation(WIDTH,Hotel.id_user_current, new
-                // Date((Integer)jourfinBox.getSelectedItem(),(Integer)moisfinBox.getSelectedItem(),(Integer)anneefinBox.getSelectedItem()),
-                // new
-                // Date((Integer)jourdebutBox.getSelectedItem(),(Integer)moisdebutBox.getSelectedItem(),(Integer)anneedebutBox.getSelectedItem()),
-                // TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem()), idchambre,
-                // EtatReservation.ACCEPTER));
-
-                Reservation reservation = new Reservation(Reservation.getNb(), Hotel.id_user_current, date_fin,
-                        date_debut, chambre.getType(),
-                        chambre.getId(), EtatReservation.ACCEPTER);
-                Hotel.AjtReservationMap(reservation);
-
-                JOptionPane.showMessageDialog(panel, "Chambre " + chambre.getId() + " réservée avec succee !");
-                new TableReseravtionUser();
-
-            } catch (NumberFormatException e1) {
-                JOptionPane.showMessageDialog(frame,
-                        "entrer des chiffres dans les dates !",
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE);
-
-            } catch (Date_nonvalid e1) {
-
-                JOptionPane.showMessageDialog(frame,
-                        e1.getMessage(),
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE);
-
-            } catch (Date_Debut_Reservation e1) {
-                JOptionPane.showMessageDialog(frame,
-                        e1.getMessage(),
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE);
-
-            } catch (Date_nonorganiser e1) {
-                JOptionPane.showMessageDialog(frame,
-                        e1.getMessage(),
-                        "dates non organisee",
-                        JOptionPane.ERROR_MESSAGE);
-
-            } catch (DiffSup365 e1) {
-                JOptionPane.showMessageDialog(frame,
-                        "date non valide!",
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE);
-
-            } catch (deja_presente_bdd e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (Exception e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-
-        });
-
-        // Ajout des composants au JPanel
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(0, 1)); // Utilisation d'un GridLayout pour empiler verticalement les
-                                                   // éléments
-        infoPanel.add(nameLabel);
-
-        infoPanel.add(bedsLabel);
-        infoPanel.add(priceLabel);
-        infoPanel.add(optionlLabel);
-        reserveButton.setBackground(colorgris);
-        reserveButton.setForeground(color);
-        infoPanel.setBackground(Color.white);
-        optionsPanel.setBackground(Color.white);
-        panel.setBackground(Color.white);
-
-        panel.add(infoPanel, BorderLayout.NORTH); // Ajout du panneau d'informations au centre
-        panel.add(optionsPanel, BorderLayout.CENTER); // Ajout du panneau des options en haut
-        panel.add(reserveButton, BorderLayout.SOUTH); // Ajout du bouton Réserver en bas
-        Border border = new RoundBorder(colorgris, 2); // Utilisation du code RGB pour la couleur marron
-
-        reserveButton.setBorder(border);
-        panel.setBorder(border);
-        // Définir une taille préférée pour le JPanel
-        panel.setPreferredSize(new Dimension(182, 200));
-
-        return panel;
-    }
-
     private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    private void filtrerbtnActionPerformed() {
+    private void reserverbtnbtnActionPerformed() {
 
         try {
 
@@ -547,46 +370,96 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             Date.verif_today_date(today, date_debut);
             Date.differenceEntreDates(date_debut, date_fin);
             TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
-            boolean tv = tvcCheckBox.isSelected();
-            boolean climatisation = climatisationBox.isSelected();
+            boolean tv = sonaCheckBox.isSelected();
+            boolean climatisation = terasseCheckBox.isSelected();
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
-            TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
 
-            JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
             Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
-            prixJLabel.setText("prix : " + chambrerecherchee.calculeprixchambre());
-
-            Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
-
-            while (iterator.hasNext()) {
-                Map.Entry<Integer, Chambre> entry = iterator.next();
-                Chambre chambre = entry.getValue();
-                if (Hotel.chambreAafficher(chambre, typeChambre, date_debut, date_fin, tv, climatisation, vueforet,
-                        vuesurmer)) {
-                    chambreContainer.add(createPanel(chambre));
-                }
+            if (Hotel.langue == 0) {
+                prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
+                        + "total price :"
+                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + "$</html>");
+            } else {
+                prixJLabel.setText("<html>prix : " + chambrerecherchee.calculeprixchambre() + "$/nuitee<br>"
+                        + "prix total :"
+                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + "$</html>");
             }
-            chambreContainer.setBackground(colorgris);
-            scrollPane.setBackground(colorgris);
-            JViewport viewport = scrollPane.getViewport();
 
-            // Supprimer les composants du viewport
-            viewport.removeAll();
-            viewport.add(chambreContainer);
-            getContentPane().add(backgroundlabel);
+            Reservation reservation = new Reservation(Reservation.getNb(),Hotel.id_user_current, date_fin, date_debut, typeChambre, -1, EtatReservation.EN_ATTENTE);
+             Hotel.AjtReservationMap(reservation);
+             new TableReseravtionUser();
 
-            System.setProperty("sun.java2d.uiScale.enabled", "false");
-            backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
-            backgroundlabel.setBounds(0, 0, 1032, 580);
-            getContentPane().add(backgroundlabel);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame,
+                    "entrer des chiffres dans les dates !",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
 
-            // le positionement exact du background.
-            // Ajouter les nouveaux composants (chambres filtrées) au viewport
+        } catch (Date_nonvalid e) {
 
-            // Repaint pour mettre à jour l'affichage
-            getContentPane().revalidate();
-            getContentPane().repaint();
+            JOptionPane.showMessageDialog(frame,
+                    e.getMessage(),
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (Date_Debut_Reservation e) {
+            JOptionPane.showMessageDialog(frame,
+                    e.getMessage(),
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (Date_nonorganiser e) {
+            JOptionPane.showMessageDialog(frame,
+                    e.getMessage(),
+                    "dates non organisee",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (DiffSup365 e) {
+            JOptionPane.showMessageDialog(frame,
+                    "date non valide!",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    public void afficherprixbtnbtnActionPerformed() {
+        try {
+
+            Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+            Date date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
+                    (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
+
+            Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
+                    (Integer) anneefinBox.getSelectedItem());
+            Date.verif_today_date(today, date_debut);
+            Date.differenceEntreDates(date_debut, date_fin);
+            TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
+            boolean tv = sonaCheckBox.isSelected();
+            boolean climatisation = terasseCheckBox.isSelected();
+            boolean vuesurmer = vuesurmerBox.isSelected();
+            boolean vueforet = vuesurforetBox.isSelected();
+
+            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            if (Hotel.langue == 0) {
+                prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
+                        + "total price :"
+                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + "$</html>");
+            } else {
+                prixJLabel.setText("<html>prix : " + chambrerecherchee.calculeprixchambre() + "$/nuitee<br>"
+                        + "prix total :"
+                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + "$</html>");
+            }
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
                     "entrer des chiffres dans les dates !",
@@ -622,45 +495,8 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
     }
 
-    void afficherchambre() throws deja_presente_bdd {
-
-        Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, Chambre> entry = iterator.next();
-            Chambre chambre = entry.getValue();
-            chambreContainer.add(createPanel(chambre));
-
-        }
-
-        chambreContainer.setBackground(colorgris);
-        scrollPane = new BlackScrollPane(chambreContainer);
-        scrollPane.setBackground(colorgris);
-
-        scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
-        scrollPane.setBounds(0, 210, 1033, 400);
-
-        // Supprimer le contenu existant du JFrame principal
-
-        // Ajouter le JScrollPane au JFrame principal
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        // Repaint pour mettre à jour l'affichage
-        getContentPane().revalidate();
-        getContentPane().repaint();
-    }
-
-    private void changerlangue() {
-        if (roomtypebox.getSelectedItem() == "English") {
-            Hotel.langue = 0;
-
-        } else {
-            Hotel.langue = 1;
-        }
-        System.out.println(Hotel.langue);
-    }
-
     public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

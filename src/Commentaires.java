@@ -3,6 +3,15 @@ public class Commentaires {
     private String commentaire;
     private User user;
     private int id;
+    private Date date;
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     private int nbOp = 0;
 	static int nb = 0;
 
@@ -38,9 +47,10 @@ public class Commentaires {
         this.user = user;
     }
 
-    void Commentaire(int iduser, String commentaire) {
+    void Commentaire(int iduser, String commentaire,Date date) {
         this.user = Hotel.RechercheuserParId(iduser);
         this.commentaire = commentaire;
+        this.date=date;
     }
 
     public int getNbOp() {

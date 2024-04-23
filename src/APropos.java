@@ -229,7 +229,7 @@ public class APropos extends javax.swing.JFrame {
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
-
+    
     private void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
