@@ -364,6 +364,7 @@ public class Signeininterface extends javax.swing.JFrame {
     }
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException {
+        if(Hotel.verif_email(mailtext.getText())){
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
                 JOptionPane.showMessageDialog(frame,
@@ -378,9 +379,8 @@ public class Signeininterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 // ajoute dans hashMap users
                 User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.AjouterUserMap(user);
-                ;// hna lzem nst3amlo had l fct machi lokhra !!!
-                // chambreinterface ch =
+                Hotel.AjtUserMap(user);
+                Hotel.id_user_current=User.getNb();
                 new Loby();
             }
         } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
@@ -400,6 +400,12 @@ public class Signeininterface extends javax.swing.JFrame {
             Hotel.id_user_current=User.getNb();
             new Loby();
             this.hide();
+        }
+        }else{
+            JOptionPane.showMessageDialog(frame,
+                    "Exemple:  utilisateur@exemple.com",
+                    "Erreur de syntaxe dans l'e-mail",
+                    JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
