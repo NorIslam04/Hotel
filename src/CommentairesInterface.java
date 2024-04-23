@@ -14,6 +14,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.Border;;
 
 class BlackScrollPane extends JScrollPane {
@@ -31,6 +33,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
     JCheckBox etoile3Box = new JCheckBox();
     JCheckBox etoile4Box = new JCheckBox();
     JCheckBox etoile5Box = new JCheckBox();
+    JTextField commenttxt=new JTextField("ajoutez votre commentaire ici ...");
     JPanel commentContainerJPanel = new JPanel(new GridLayout(0, 1, 0, 0));
     BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
@@ -61,7 +64,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
         // les labels:
         if (Hotel.langue == 0) {
 
-            commenterbtn.setText("comment");
+            commenterbtn.setText("add comment");
             rateusJLabel = new JLabel("rate us :");
 
         } else {
@@ -104,7 +107,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
         optioJPanel.add(etoile5Box);
         optioJPanel.add(etoile4Box);
         optioJPanel.add(rateusJLabel);
-        optioJPanel.setBounds(400, 10, 380, 180);
+        optioJPanel.setBounds(10, 50, 300, 100);
         optioJPanel.setBackground(colorgris);
         ratingJPanel.add(optioJPanel);
 
@@ -131,21 +134,33 @@ public class CommentairesInterface extends javax.swing.JFrame {
         etoile2Box.setIcon(etoileBlancheIcon);
         etoile3Box.setIcon(etoileBlancheIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
-        etoile5Box.setIcon(etoileBlancheIcon);}
+        etoile5Box.setIcon(etoileBlancheIcon);
+    etoile1Box.setSelected(true);
+}
       
         if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==2){
+            etoile1Box.setSelected(true);
+            etoile2Box.setSelected(true);
         etoile1Box.setIcon(etoileJauneIcon);
         etoile2Box.setIcon(etoileJauneIcon);
         etoile3Box.setIcon(etoileBlancheIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
         etoile5Box.setIcon(etoileBlancheIcon);} 
          if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==3){
+            etoile1Box.setSelected(true);
+            etoile2Box.setSelected(true);
+            etoile3Box.setSelected(true);
+         
         etoile1Box.setIcon(etoileJauneIcon);
         etoile2Box.setIcon(etoileJauneIcon);
         etoile3Box.setIcon(etoileJauneIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
         etoile5Box.setIcon(etoileBlancheIcon);}  
         if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==4){
+            etoile1Box.setSelected(true);
+            etoile2Box.setSelected(true);
+            etoile3Box.setSelected(true);
+            etoile4Box.setSelected(true);
             etoile1Box.setIcon(etoileJauneIcon);
             etoile2Box.setIcon(etoileJauneIcon);
             etoile3Box.setIcon(etoileJauneIcon);
@@ -153,6 +168,12 @@ public class CommentairesInterface extends javax.swing.JFrame {
             etoile5Box.setIcon(etoileBlancheIcon);}
 
             if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==5){
+                etoile1Box.setSelected(true);
+                etoile2Box.setSelected(true);
+                etoile3Box.setSelected(true);
+                etoile4Box.setSelected(true);
+                etoile5Box.setSelected(true);
+               
                 etoile1Box.setIcon(etoileJauneIcon);
                 etoile2Box.setIcon(etoileJauneIcon);
                 etoile3Box.setIcon(etoileJauneIcon);
@@ -174,16 +195,17 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
 
                 } else {
-                    etoile1Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
+                 
                     etoile2Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
-                    etoile2Box.setSelected(false);
                     etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
-                    etoile4Box.setSelected(false);
                     etoile3Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
-                    etoile3Box.setSelected(false); // Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
+                    etoile1Box.setSelected(true);
+                    etoile2Box.setSelected(false);
+                    etoile4Box.setSelected(false);
+                    etoile3Box.setSelected(false); 
                     etoile5Box.setSelected(false);
-                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(0);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
 
                 }
             }
@@ -198,14 +220,16 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
 
                 } else {
-                    etoile2Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile
+      
+                  
+                    etoile2Box.setSelected(true);
                     etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile4Box.setSelected(false);
                     etoile3Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile3Box.setSelected(false); // Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
-                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                 }
             }
         });
@@ -220,12 +244,13 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                 } else {
-                    etoile3Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
+                 
+                    etoile3Box.setSelected(true);
                     etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile4Box.setSelected(false);// Changer l'icône en étoile jaune
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
-                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                 }
             }
         });
@@ -243,10 +268,10 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                 } else {
 
-                    etoile4Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
+                    etoile4Box.setSelected(true);
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     etoile5Box.setSelected(false);
-                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                 }
             }
         });
@@ -255,7 +280,6 @@ public class CommentairesInterface extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (etoile5Box.isSelected()) {
                     etoile5Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
-                    etoile5Box.setSelected(true);
                     etoile4Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile4Box.setSelected(true);// Changer l'icône en étoile jaun
                     etoile3Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
@@ -265,10 +289,9 @@ public class CommentairesInterface extends javax.swing.JFrame {
                     etoile2Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(5);
-                } else {
-                    etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile blanche
-                    
-                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
+                } 
+                else {
+                    etoile5Box.setSelected(true);
                 }
             }
         });

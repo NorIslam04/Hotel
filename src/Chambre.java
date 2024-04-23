@@ -31,6 +31,7 @@ enum TypeChambre {
 	
 
     }
+	
 
 	public static void initialiser(float prixSOLO,int nbLitSOLOS,float prixDOUBLE,int nbLitDOULBE,float prixTRIPLE,int nbLitTRIPLE,float prixSUITE,int nbLitSUITE){
 		initialisersSOLO(prixSOLO, nbLitSOLOS);
@@ -120,6 +121,14 @@ public static void initialiser(float prixSONA,float prixTERASSE,float prixvuesur
 
 
 	
+	/*chambre solo 
+	4 options
+	option sona: son prix  admin*/
+	//TODO reservation prix yb9a le meme dnc nzidoulou un prix 
+
+
+	//utilisateur reserva une chambre 4 option 20 dollar solo 100 dolars 120 dollars
+
 	
 public class Chambre {
 
