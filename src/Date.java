@@ -253,7 +253,7 @@ public class Date {
 
     static boolean DateCoincidePas(Date datedebut1, Date datefin1, Date datedebut2, Date datefin2) {
 
-        if (comparer(datefin1, datedebut2) < 0 || comparer(datefin2, datedebut1) < 0) {// cdt1 =true;cdt2=true;
+        if (comparer(datefin1, datedebut2) < 0 || comparer(datefin2, datedebut1) < 0) {//cdt1 =true;cdt2=true;
             return true;
         } else {
             return false;

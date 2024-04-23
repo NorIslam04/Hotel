@@ -123,7 +123,12 @@ public class AdminLoby1 extends javax.swing.JFrame {
 
         gererlesreservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passeraureservationActionPerformed();
+                try {
+                    passeraureservationActionPerformed();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
         // le pos
@@ -137,14 +142,18 @@ public class AdminLoby1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    private void passeraureservationActionPerformed() {
-        new chambreadmin();
+    private void passeraureservationActionPerformed() throws Exception {
+        try {
+          new t();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        
     }
 
     private void changerlangue() {

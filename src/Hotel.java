@@ -232,11 +232,11 @@ public class Hotel {
 	}
 
 	static void ModifierReservationMap(Reservation reservation) throws non_presente_bdd {
+		
 		if (reservationMap.containsKey(reservation.getId())) {
 			reservationMap.replace(reservation.getId(), reservation);
-			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(
-					reservation.getId(), reservation, TypeOperation.MODIFICATION);
-			modificationMap.put(ModificationHotel.getNb(), modifReservation);
+			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.MODIFICATION );
+			modificationMap.put(ModificationHotel.getNb(),modifReservation);
 		} else {
 			throw new non_presente_bdd();
 		}
