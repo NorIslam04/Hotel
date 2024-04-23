@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.sql.SQLException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -169,6 +171,9 @@ public class Signeininterface extends javax.swing.JFrame {
                 try {
                     submitbtnActionPerformed(evt);
                 } catch (deja_presente_bdd e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -358,7 +363,7 @@ public class Signeininterface extends javax.swing.JFrame {
        
     }
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd {
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException {
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
                 JOptionPane.showMessageDialog(frame,
@@ -391,11 +396,9 @@ public class Signeininterface extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             // ajoute dans hashMap users
             User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.AjouterUserMap(user);
-            ;// hna lzem nst3amlo had l fct machi lokhra !!!
-            // chambreinterface ch =
+            Hotel.AjtUserMap(user);
+            Hotel.id_user_current=User.getNb();
             new Loby();
-            // ch.setVisible(true);
             this.hide();
 
         }

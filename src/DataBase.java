@@ -274,7 +274,7 @@ public class DataBase {
             statement.setString(3, user.getPassword());
             // Exécuter la requête d'insertion
             statement.executeUpdate();
-            System.out.println("User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
+            System.out.println("Objet: User / Operation: AJOUT");
 
             // Fermer les ressources
             statement.close();
