@@ -390,7 +390,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
             Reservation reservation = new Reservation(Reservation.getNb(),Hotel.id_user_current, date_fin, date_debut, typeChambre, -1, EtatReservation.EN_ATTENTE);
              Hotel.AjtReservationMap(reservation);
-             new TableReseravtionUser();
+             new Tablereservationadmin();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
