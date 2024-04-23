@@ -360,7 +360,7 @@ public class chambreinterface extends javax.swing.JFrame {
     }
 
     private void passeraureservationActionPerformed() {
-        new Tablereservationadmin();
+        new t();
     }
 
     private void reserverDetailActionPerformed() {

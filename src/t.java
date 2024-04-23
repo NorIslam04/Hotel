@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Tablereservationadmin extends javax.swing.JFrame {
+public class t extends javax.swing.JFrame {
  private static int id_chambre;
 
     public static int getId_chambre() {
@@ -17,7 +17,7 @@ public class Tablereservationadmin extends javax.swing.JFrame {
 }
 
 public static void setId_chambre(int id_chambre) {
-    Tablereservationadmin.id_chambre = id_chambre;
+    t.id_chambre = id_chambre;
 }
 
     public void mettreajourlesreservationadmin(){
@@ -49,7 +49,7 @@ public static void setId_chambre(int id_chambre) {
     return null;
     }
 
-    public Tablereservationadmin() {
+    public t() {
         initComponents();
         mettreajourlesreservationadmin();
     }
@@ -359,19 +359,19 @@ public static void setId_chambre(int id_chambre) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tablereservationadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(t.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tablereservationadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(t.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tablereservationadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(t.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tablereservationadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(t.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tablereservationadmin().setVisible(true);
+                new t().setVisible(true);
             }
         });
     }
