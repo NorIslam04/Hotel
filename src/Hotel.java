@@ -75,6 +75,7 @@ public class Hotel {
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
 				id_user_current = user.getId();
 				return true;
+				
 			}
 		}
 		return false;

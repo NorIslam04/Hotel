@@ -36,7 +36,6 @@ public class TableReseravtionUser extends javax.swing.JFrame {
             id_reservation.add(reservation.getId());
             id_chambre.add(reservation.getId_chambre());
             model.addRow(rowData);
-            
             }
         }
     }
@@ -124,6 +123,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
     public TableReseravtionUser() {
         parcourChambre();
         initComponents();
+        
     }
 
 
@@ -382,7 +382,7 @@ public class TableReseravtionUser extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
-        //mettreajourlesreservation();
+        mettreajourlesreservation();
     }                        
 
     private void startdatetextActionPerformed(java.awt.event.ActionEvent evt) {                                              

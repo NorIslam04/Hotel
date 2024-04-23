@@ -316,7 +316,7 @@ public class Login extends javax.swing.JFrame {
                     "ERROR",
                     JOptionPane.ERROR_MESSAGE);
         } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
-            // new tableReservationAdmin && modifier chambre
+            
             JOptionPane.showMessageDialog(frame,
                     "WELCOME ADMIN ",
                     "WELCOME",
@@ -326,6 +326,7 @@ public class Login extends javax.swing.JFrame {
         } else {
 
             if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
+                
                 chambreinterface ch = new chambreinterface();
                 ch.setVisible(true);
                 this.hide();
