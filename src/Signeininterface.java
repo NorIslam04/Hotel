@@ -32,11 +32,6 @@ public class Signeininterface extends javax.swing.JFrame {
         closebtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
-      
-
-        
-        
-
         showPasswordButton = new JCheckBox();
         showPasswordLabel = new JLabel();
         seConnecterButton = new javax.swing.JButton();
