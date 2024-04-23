@@ -51,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         setVisible(true);
         // les labels:
         if(Hotel.langue==0){
-        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","Frensh" }));
+        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","French" }));
         }else{
             langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
         }
