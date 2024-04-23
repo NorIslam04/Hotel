@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 
 public class chambreinterface extends javax.swing.JFrame {
@@ -69,10 +69,10 @@ public class chambreinterface extends javax.swing.JFrame {
         JLabel descJLabel;
         JButton reserverpardetailbtn ;
         if(Hotel.langue==0){
-            reserverpardetailbtn = new JButton("reserve with options");
+            reserverpardetailbtn = new JButton("reserve");
             avissurnousButton.setText("Comments");
             aPropos.setText("About Us ");
-             passeraureservationbtn = new JButton("pass to reservations");
+             passeraureservationbtn = new JButton("manage my reservations");
             prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
             suitetext.setText("Suite:Max 5 Guests.");
             prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
@@ -88,10 +88,10 @@ public class chambreinterface extends javax.swing.JFrame {
              solotext.setBounds(40, 25, 200, 20);
              triotext.setBounds(35, 25, 200, 20);
         }else{
-            reserverpardetailbtn = new JButton("reserver avec options");
+            reserverpardetailbtn = new JButton("reserver");
             avissurnousButton.setText("Commentaires ");
             aPropos.setText("A propos de nous ");
-             passeraureservationbtn = new JButton("passer aux reservation");
+             passeraureservationbtn = new JButton("gerer mes reservation");
             prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/nuit.");
             suitetext.setText("Suite:Max 5 personnes.");
             prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/nuit.");
@@ -138,7 +138,7 @@ public class chambreinterface extends javax.swing.JFrame {
         javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
         JLabel suiteimLabel = new JLabel();
-        suiteimLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (9).png"));
+        suiteimLabel.setIcon(new javax.swing.ImageIcon("Design sans titre (10).png"));
         // le positionement exact du label.
         suiteimLabel.setBounds(49, 140, 219, 180);
         getContentPane().add(suiteimLabel);

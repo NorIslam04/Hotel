@@ -90,7 +90,7 @@ enum TypeChambre {
 }
 
 enum OptionSupplementaire {
-TV,CLIMATISATION,VUESURMERE,VUESURFORET;
+SONA,TERASSE,VUESURMERE,VUESURFORET;
 private float prix;//prix pour chaque option
 
 
@@ -108,23 +108,37 @@ public void setPrix(float prix) {
 }
 
 
-public static void initialiser(float prixTV,float prixClimatisation,float prixvuesurmer,float prixvuesurforet){
-	TV.setPrix(prixTV);
-	CLIMATISATION.setPrix(prixClimatisation);
+public static void initialiser(float prixSONA,float prixTERASSE,float prixvuesurmer,float prixvuesurforet){
+	SONA.setPrix(prixSONA);
+	TERASSE.setPrix(prixTERASSE);
 	VUESURFORET.setPrix(prixvuesurforet);
 	VUESURMERE.setPrix(prixvuesurmer);
 }
 }
 
+
+
+
+	
+	
 public class Chambre {
 
 	private int id;// pour hash map
 	private TypeChambre type;
-	private boolean tv;
-
-	private boolean climatisation;
+	private boolean SONA;
+	private boolean TERASSE;
 	private boolean vuesurmere;
 	private boolean vuesurforet;
+
+
+
+
+	// en gros ces deux variable vont permettre a l admin de mette une date pour les chambres ou tt les reservation 
+	//qui coincide m3a hd la date on vas pas leurs proposer cette chambre puisque elle sera soit
+	//supprimee apres soit modified apres 
+	//si la chambre est deja resevee durant la date que proposera l admin une err sera projetee 
+	//TODO faire les modif necessaires dans les fct d attribution 
+
 	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
@@ -134,11 +148,11 @@ public class Chambre {
 		this.prix=prix;
 		nb++;
 	}
-	public Chambre(int id, TypeChambre type,boolean tv,boolean climatisation,boolean vuesurmere,boolean vuesurforet) {
+	public Chambre(int id, TypeChambre type,boolean SONA,boolean TERASSE,boolean vuesurmere,boolean vuesurforet) {
 		this.id = id;
 		this.type = type;
-		this.tv=tv;
-		this.climatisation=climatisation;
+		this.SONA=SONA;
+		this.TERASSE=TERASSE;
 		this.vuesurmere=vuesurmere;
 		this.vuesurforet=vuesurforet;
 		this.prix=calculeprixchambre();
@@ -146,35 +160,36 @@ public class Chambre {
 	}
 
 
+	
 
 	public boolean isVuesurmere() {
 		return vuesurmere;
 	}
-	public void setVuesurmere(boolean vuesurmere) {
+	public void seSONAuesurmere(boolean vuesurmere) {
 		this.vuesurmere = vuesurmere;
 	}
 
 	public boolean isVuesurforet() {
 		return vuesurforet;
 	}
-	public void setVuesurforet(boolean vuesurforet) {
+	public void seSONAuesurforet(boolean vuesurforet) {
 		this.vuesurforet = vuesurforet;
 	}
 
 
-	public boolean isClimatisation() {
-		return climatisation;
+	public boolean isTERASSE() {
+		return TERASSE;
 	}
-	public void setClimatisation(boolean climatisation) {
-		this.climatisation = climatisation;
+	public void setTERASSE(boolean TERASSE) {
+		this.TERASSE = TERASSE;
 	}
 
 
-	public boolean isTv() {
-		return tv;
+	public boolean isSONA() {
+		return SONA;
 	}
-	public void setTv(boolean tv) {
-		this.tv = tv;
+	public void setSONA(boolean SONA) {
+		this.SONA = SONA;
 	}
 
 
@@ -230,12 +245,12 @@ public class Chambre {
 	
   public float calculeprixchambre(){
 	float prix=type.getPrix();
-	if(tv){
-		prix=prix+OptionSupplementaire.TV.getPrix();
+	if(SONA){
+		prix=prix+OptionSupplementaire.SONA.getPrix();
 	
 	}
-	if(climatisation){
-		prix=prix+OptionSupplementaire.CLIMATISATION.getPrix();
+	if(TERASSE){
+		prix=prix+OptionSupplementaire.TERASSE.getPrix();
 		
 	}
 	if(vuesurforet){

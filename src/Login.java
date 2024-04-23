@@ -73,6 +73,7 @@ public class Login extends javax.swing.JFrame {
         loginlabel.setText("Log-In");
         welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
         sinscrireButton.setText("I Don't Have An Acount");
+        aPropos.setText("About-Us");
         loginlabel.setBounds(170, 30, 300, 40);
         }else{
             pwdlabel.setText("Mot de pass:");
@@ -320,7 +321,7 @@ public class Login extends javax.swing.JFrame {
                     "WELCOME ADMIN ",
                     "WELCOME",
                     JOptionPane.INFORMATION_MESSAGE);
-            new chambreadmin();
+            new AdminLoby1();
 
         } else {
 
