@@ -149,25 +149,20 @@ enum OptionSupplementaire {
 	//supprimee apres soit modified apres 
 	//si la chambre est deja resevee durant la date que proposera l admin une err sera projetee 
 	//TODO faire les modif necessaires dans les fct d attribution 
-
 	private double prix;
-	private int nbOp = 0;
 	static int nb = 0;
 
-	public Chambre(int id, TypeChambre type,int prix) {
+	//neveau constructeure
+	public Chambre(int id, TypeChambre type,double prix,boolean SONA,boolean TERASSE,boolean vuesurmere,boolean vuesurforet) {
 		this.id = id;
 		this.type = type;
-		this.prix=prix;
-		nb++;
-	}
-	public Chambre(int id, TypeChambre type,boolean SONA,boolean TERASSE,boolean vuesurmere,boolean vuesurforet) {
-		this.id = id;
-		this.type = type;
+
 		this.SONA=SONA;
 		this.TERASSE=TERASSE;
 		this.vuesurmere=vuesurmere;
 		this.vuesurforet=vuesurforet;
-		this.prix=calculeprixchambre();
+		this.prix=calculeprixchambre();///hsna lazem nriglo prblm psq ana nst3mel had l constructure bch njbed base de donnees l hashmap bch njeb prix psq f base de donnees ikon prix wadjed
+		this.prix=prix;
 		nb++;
 	}
 
@@ -227,14 +222,6 @@ enum OptionSupplementaire {
 
 	public double getPrix() {
 		return prix;
-	}
-
-	public int getNbOp() {
-		return nbOp;
-	}
-
-	public void setNbOp(int nbOp) {
-		this.nbOp = nbOp;
 	}
 
 	public static int getNb() {
