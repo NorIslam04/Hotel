@@ -381,7 +381,7 @@ public class Signeininterface extends javax.swing.JFrame {
                         "WELCOME",
                         JOptionPane.INFORMATION_MESSAGE);
                 // ajoute dans hashMap users
-                User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+                User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
                 Hotel.AjtUserMap(user);
                 Hotel.id_user_current=User.getNb();
                 new Loby();
@@ -398,7 +398,7 @@ public class Signeininterface extends javax.swing.JFrame {
                     "WELCOME",
                     JOptionPane.INFORMATION_MESSAGE);
             // ajoute dans hashMap users
-            User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
+            User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
             Hotel.AjtUserMap(user);
             Hotel.id_user_current=User.getNb();
             new Loby();
