@@ -49,8 +49,8 @@ public class Adminchambresoption extends javax.swing.JFrame{
     
 
     private void initComponents() throws deja_presente_bdd {
-
-        TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
+        /* 
+        TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
         Chambre chambre1;
 
@@ -67,7 +67,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
 
             Hotel.AjouterChambreMap(chambre1);
         }
-
+*/
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
