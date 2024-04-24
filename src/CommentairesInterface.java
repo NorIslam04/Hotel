@@ -20,7 +20,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
     JCheckBox etoile3Box = new JCheckBox();
     JCheckBox etoile4Box = new JCheckBox();
     JCheckBox etoile5Box = new JCheckBox();
-    JTextField commenttxt=new JTextField("ajoutez votre commentaire ici ...");
+    JTextField commenttxt=new JTextField("ajoutez votre commentaire ici");
     JPanel commentContainerJPanel = new JPanel(new GridLayout(0, 1, 0, 0));
     BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
