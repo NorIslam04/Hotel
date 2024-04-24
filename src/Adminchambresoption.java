@@ -41,17 +41,17 @@ public class Adminchambresoption extends javax.swing.JFrame{
         TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
         Chambre chambre1;
-
+        double prix =-1;//hna 3la jal constricteure
         for (int i = 0; i < 100; i++) {
-            chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
+            chambre1 = new Chambre(i, TypeChambre.SOLO,prix, false, true, true, false);
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE, false, true, true, true);
+            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE,prix, false, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 300, TypeChambre.SUITE, true, false, false, true);
+            chambre1 = new Chambre(i + 300, TypeChambre.SUITE,prix, true, false, false, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE, true, true, true, true);
+            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE,prix, true, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
         }
@@ -414,7 +414,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
             TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
 
             JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
-            Chambre chambrerecherchee = new Chambre(0, typeChambre, Sona, climatisation, vuesurmer, vueforet);
+            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, Sona, climatisation, vuesurmer, vueforet);
           
 
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();

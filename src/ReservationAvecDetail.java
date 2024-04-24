@@ -43,15 +43,15 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
         Chambre chambre1;
 
         for (int i = 0; i < 100; i++) {
-            chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
+            chambre1 = new Chambre(i, TypeChambre.SOLO,-1, false, true, true, false);
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE, false, true, true, true);
+            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE,-1, false, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 300, TypeChambre.SUITE, true, false, false, true);
+            chambre1 = new Chambre(i + 300, TypeChambre.SUITE,-1, true, false, false, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE, true, true, true, true);
+            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE,-1, true, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
         }
@@ -375,7 +375,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
 
-            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, tv, climatisation, vuesurmer, vueforet);
             if (Hotel.langue == 0) {
                 prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
                         + "total price :"
@@ -447,7 +447,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
 
-            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, tv, climatisation, vuesurmer, vueforet);
             if (Hotel.langue == 0) {
                 prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
                         + "total price :"

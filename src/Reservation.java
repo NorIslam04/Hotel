@@ -50,8 +50,6 @@ public class Reservation {
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.NbrJourReservation=(int) Date.differenceEntreDates(dateDebut, dateFin);
-		//this.user=Hotel.RechercheuserParId(idUser);//TODO: supp
-		//this.chambre=Hotel.RechercheChambreParId(idChambre); //fhed les fct g pas encore geree les err TODO:supp
 		this.id_user=idUser;
 		this.prix=prix;
 		this.id_chambre=idChambre;
