@@ -365,6 +365,7 @@ public class Signeininterface extends javax.swing.JFrame {
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException {
         if(Hotel.verif_email(mailtext.getText())){
+            if(User.motdepass(pwdtext.getText())){
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
                 JOptionPane.showMessageDialog(frame,
@@ -401,6 +402,13 @@ public class Signeininterface extends javax.swing.JFrame {
             new Loby();
             this.hide();
         }
+    }else{
+        JOptionPane.showMessageDialog(frame,
+        "Veuillez entrer un mot de passe contenant au moins 8 caractères",
+        "Erreur de syntaxe dans le password",
+        JOptionPane.INFORMATION_MESSAGE);
+
+    }
         }else{
             JOptionPane.showMessageDialog(frame,
                     "Exemple:  utilisateur@exemple.com",
@@ -408,6 +416,7 @@ public class Signeininterface extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
 
         }
+    
     }
     public static void main(String args[]) {
         try {

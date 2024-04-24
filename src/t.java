@@ -336,6 +336,7 @@ public static void setId_chambre(int id_chambre) {
     private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                               
         new chambreadmin();
         DataBase.HasgMapsToDb();
+        System.out.println(Chambre.getNb());
         this.dispose();
     }                                              
 
