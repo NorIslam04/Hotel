@@ -1,21 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
+
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 
@@ -49,7 +37,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
     
 
     private void initComponents() throws deja_presente_bdd {
-        /* 
+        
         TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
         Chambre chambre1;
@@ -67,7 +55,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
 
             Hotel.AjouterChambreMap(chambre1);
         }
-*/
+        
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
@@ -409,8 +397,6 @@ public class Adminchambresoption extends javax.swing.JFrame{
 
         return panel;
     }
-
-    private JFrame frame;
 
     
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {

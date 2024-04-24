@@ -1,22 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.Border;;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
@@ -350,7 +337,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
 
         JButton modif, supprimer;
         if (Hotel.langue == 0) {
-            nameLabel = new JLabel("User : " + comment.getUser().getName());
+            nameLabel = new JLabel("User : " + comment.getUsername());
             commentLabel = new JLabel(" " + comment.getCommentaire());
             datLabel = new JLabel(" " + comment.getDate().getJour() + comment.getDate().getMois() + "/"
                     + comment.getDate().getAnnee() + "/");
@@ -358,7 +345,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
             modif = new JButton("modify");
             supprimer = new JButton("delete");
         } else {
-            nameLabel = new JLabel("User : " + comment.getUser().getName());
+            nameLabel = new JLabel("User : " + comment.getUsername());
             commentLabel = new JLabel(" " + comment.getCommentaire());
             datLabel = new JLabel("le : " + comment.getDate().getJour() + comment.getDate().getMois() + "/"
                     + comment.getDate().getAnnee() + "/");
@@ -400,7 +387,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
         panel.setBackground(Color.white);
 
         panel.add(infoPanel, BorderLayout.NORTH); // Ajout du panneau d'informations au centre
-        if (Hotel.id_user_current == comment.getUser().getId()) {
+        if (Hotel.id_user_current == comment.getId()) {
             panel.add(modif, BorderLayout.SOUTH);
             panel.add(supprimer, BorderLayout.SOUTH); // Ajout du bouton Réserver en bas
         }
