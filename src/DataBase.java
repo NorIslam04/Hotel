@@ -36,7 +36,8 @@ public class DataBase {
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                User user = new User(id, email, name, password);
+                int note =resultSet.getInt("note");
+                User user = new User(id, email, name, password,note);
                 Hotel.AjouterUserMap(user);
                 User.setNb(id);
             }
@@ -345,12 +346,13 @@ public class DataBase {
             Connection connection = connectToMySQL();
 
             // Préparer la requête SQL pour l'insertion des données
-            String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            String query = "INSERT INTO users (name, email, password,note) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getGmail());
             statement.setString(3, user.getPassword());
+            statement.setInt(4, user.getNote());
             // Exécuter la requête d'insertion
             statement.executeUpdate();
             System.out.println("Objet: User / Operation: AJOUT");
@@ -377,6 +379,7 @@ public class DataBase {
                     System.out.println("Name: " + user.getName());
                     System.out.println("Email :" + user.getGmail());
                     System.out.println("Password: " + user.getPassword());
+                    System.out.println("note : "+user.getNote()+"/5");
                     System.out.println("----------------------");
                 }
                 break;

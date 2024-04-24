@@ -4,17 +4,19 @@ public class User {
 	private String password;
 	private int id;// de hashMap
 	static int nb = 0;
-	private int nbOp = 0;
-	private boolean indb = false;
+
 	private int note=-1;// TODO:chaque user peut attribuer une note elle sera presente a la bdd
 
-	public User(int id, String gmail, String name, String password) {
+	public User(int id, String gmail, String name, String password,int note) {
+		this.note=note;
 		this.id = id;
 		this.gmail = gmail;
 		this.name = name;
 		this.password = password;
 		nb++;
 	}
+
+	
 
 	public String getGmail() {
 		return gmail;
@@ -56,42 +58,12 @@ public class User {
 		User.nb = nb;
 	}
 
-	public int getNbOp() {
-		return nbOp;
-	}
-
-	public void setNbOp(int nbOp) {
-		this.nbOp = nbOp;
-	}
-
-	public boolean isIndb() {
-		return indb;
-	}
-
-	public void setIndb(boolean indb) {
-		this.indb = indb;
-	}
 
 	static boolean motdepass(String passworld){
 			return passworld.length() >= 8;
 	
 	}
-	/* 
-	static boolean signin(String name, String passworld, String gmail)//(islam) rani kteb deja wa7da kima f interface sign-in
-			throws deja_presente_bdd, motDePasseSimple, GmailIncorrect {
-		// verifier gmail correct
-		if (Hotel.findUser(name, passworld) == true) {
-			throw new deja_presente_bdd();
-		} else {
-			User.motdepass(passworld);
-			User.gmailCorrect(gmail);
-			Hotel.modifierMap(new User(nb, gmail, name, passworld),TypeOperation.AJOUT);
-			return true;
 
-		}
-	}
-
-	*/	
 	public void reserveravecdetail(Chambre chambre,Date datedebut,Date datefin) throws Date_nonvalid, Exception {
 		double prix=-1;//une fonction pour calculer le prix apartir des fonction les khayarhom l user
 		Reservation reservation=new Reservation(Reservation.nb,this.id,datedebut,datefin,chambre.getType(),chambre.getId(),EtatReservation.ACCEPTER,prix);
