@@ -88,6 +88,8 @@ enum TypeChambre {
 				throw new IllegalStateException("Type de chambre inconnu : " + str);
 		}
 	}
+
+	
 }
 
 enum OptionSupplementaire {
