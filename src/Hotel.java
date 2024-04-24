@@ -43,9 +43,10 @@ public class Hotel {
 	private static HashMap<Integer, User> userMap = new HashMap<>();
 	private static HashMap<Integer, Reservation> reservationMap = new HashMap<>();
 	private static HashMap<Integer, Commentaires> commentairesMap = new HashMap<>();
-	private static HashMap<Integer, Option> optionHashMap = new HashMap<>();
+	static HashMap<Integer, Option> optionHashMap = new HashMap<>();
 
 	private static HashMap<Integer, ModificationHotel<?, ?>> modificationMap = new HashMap<>();
+	public static Object getOptionHashMap;
 
 	// get Hashmap
 
@@ -53,6 +54,12 @@ public class Hotel {
 
 	public static HashMap<Integer, Chambre> getChambreMap() {
 		return chambreMap;
+	}
+
+	
+
+	public static void setGetOptionHashMap(Object getOptionHashMap) {
+		Hotel.getOptionHashMap = getOptionHashMap;
 	}
 
 	public static void setReservationMap(HashMap<Integer, Reservation> reservationMap) {

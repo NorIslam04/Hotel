@@ -151,6 +151,36 @@ public class DataBase {
         }
 
     }
+
+    public static void Bdd_to_hashMap_option() throws deja_presente_bdd {
+        String query = "SELECT * FROM options";
+    
+        try {
+            Connection connection = connectToMySQL();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+    
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String optionName = resultSet.getString("option_name");
+                double prix = resultSet.getDouble("price");
+    
+                // Convertir le nom de l'option en enum Rooms_Options
+                Rooms_Options roomsOption = Rooms_Options.ToTypeChambre(optionName);
+    
+                Option option = new Option(roomsOption, prix, id);
+                Hotel.AjouterOptionMap(option);
+                Option.setNb(id);
+            }
+    
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+    }
+    
    
    
     public static boolean verif_user_bdd(String name, String psswrd) {
@@ -376,6 +406,18 @@ public class DataBase {
                 }
 
                 break;
+            case 5:
+
+            for (Map.Entry<Integer, Option> entry : Hotel.optionHashMap.entrySet()) {
+                int id = entry.getKey();
+                Option option = entry.getValue();
+        
+                System.out.println("ID: " + id);
+                System.out.println("Nom de l'option: " + option.getRooms_Options());
+                System.out.println("Prix de l'option: " + option.getPrix_option());
+                System.out.println("----------------------");
+            }
+            break;
 
             default:
                 System.out.println("hashMap n'existe pas !");
