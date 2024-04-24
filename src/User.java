@@ -93,9 +93,8 @@ public class User {
 
 	*/	
 	public void reserveravecdetail(Chambre chambre,Date datedebut,Date datefin) throws Date_nonvalid, Exception {
-	
-		Reservation reservation=new Reservation(Reservation.nb,this.id,datedebut,datefin,chambre.getType(),chambre.getId(),EtatReservation.ACCEPTER);
-	  
+		double prix=-1;//une fonction pour calculer le prix apartir des fonction les khayarhom l user
+		Reservation reservation=new Reservation(Reservation.nb,this.id,datedebut,datefin,chambre.getType(),chambre.getId(),EtatReservation.ACCEPTER,prix);
 		Hotel.AjtReservationMap(reservation);
 	}
 	

@@ -33,24 +33,18 @@ enum EtatReservation {
 public class Reservation {
 
 	private int id;//de hash map
-	//private User user;
 	private int id_user;
 	private TypeChambre type;
 	private Date dateDebut;
 	private Date dateFin;
-	//private Chambre chambre;
-	// peut etre lzm nzidou prix ly reserva bih bsh dans le cas ou avec le temps 
-	//on modifie le prix des options le prix de la chambre y93d lui mm
+	private double prix;
 	private int id_chambre;
 	private int NbrJourReservation;
-
-
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
-	private int nbOp = 0;
 	static int nb = 0;
 
 	public Reservation(int id, int idUser, Date dateFin, Date dateDebut, TypeChambre type, int idChambre,
-			EtatReservation etat) throws Exception {
+			EtatReservation etat,double prix) throws Exception {
 		this.id = id;
 		this.type = type;
 		this.dateDebut = dateDebut;
@@ -59,11 +53,14 @@ public class Reservation {
 		//this.user=Hotel.RechercheuserParId(idUser);//TODO: supp
 		//this.chambre=Hotel.RechercheChambreParId(idChambre); //fhed les fct g pas encore geree les err TODO:supp
 		this.id_user=idUser;
+		this.prix=prix;
 		this.id_chambre=idChambre;
 		this.etat = etat;
 		nb++;
 	}
 
+
+	
 	public int getId() {
 		return id;
 	}
@@ -71,14 +68,6 @@ public class Reservation {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-//	public User getUser() {
-//		return user;
-	//}
-
-	//public void setser(User idUser) {
-	//	this.user = user;
-	//}
 
 	
 
@@ -130,14 +119,6 @@ public class Reservation {
 		this.etat = etat;
 	}
 
-	public int getNbOp() {
-		return nbOp;
-	}
-
-	public void setNbOp(int nbOp) {
-		this.nbOp = nbOp;
-	}
-
 	public static int getNb() {
 		return nb;
 	}
@@ -156,11 +137,12 @@ public class Reservation {
 		NbrJourReservation = nbrJourReservation;
 	}
 
-	//public Chambre getChambre() {
-	//	return chambre;
-	//}
+	public double getPrix() {
+		return prix;
+	}
 
-	//public void setChambre(Chambre chambre) {
-	//	this.chambre = chambre;
-	//}
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
 }

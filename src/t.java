@@ -279,11 +279,13 @@ public static void setId_chambre(int id_chambre) {
 
           model.setValueAt(acceptdeclinebox.getSelectedItem(),i,6);
           if(EnAttente()==1){
-            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()));
+            double prix =-1;//hna ya nricipiriwah m lintereface wla ndiro une variable static, 7kayatha kima idChambre
+            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
             Hotel.ModifierReservationMap(newres);
                     
             }else{
-                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()));
+                double prix =-1;//hna ya nricipiriwah m lintereface wla ndiro une variable static
+                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
                 Hotel.ModifierReservationMap(newres);
             } 
         }else{

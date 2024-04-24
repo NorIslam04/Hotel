@@ -104,11 +104,11 @@ public class DataBase {
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
                 EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
-
+                double prix=resultSet.getDouble("prix");
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
 
-                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat);
+                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat,prix);
                 Hotel.AjouterReservationMap(reservation);
                 Reservation.setNb(id);
             }
@@ -122,7 +122,7 @@ public class DataBase {
     }
 
     public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe, deja_presente_bdd{
-        String query = "SELECT * FROM commantaires";
+        String query = "SELECT * FROM commentaires";
 
         try {
             Connection connection = connectToMySQL();
@@ -276,7 +276,7 @@ public class DataBase {
                     Reservation reservation = (Reservation) objet;
                     String res="Reservation";
                     if(operation == TypeOperation.AJOUT) {
-                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat) VALUES (?, ?, ?, ?, ?, ?)";
+                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix) VALUES (?, ?, ?, ?, ?, ?, ?)";
                         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
                         preparedStatement.setString(2, reservation.getType().ToString());
@@ -284,13 +284,14 @@ public class DataBase {
                         preparedStatement.setString(4, reservation.getDateFin().toString());
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
+                        preparedStatement.setDouble(7, reservation.getPrix());
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
                         System.out.println("Objet: "+res+" / Operation: "+operation);
 
                     } else if (operation==TypeOperation.MODIFICATION) {
                         int idReservation = reservation.getId();
-                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ? WHERE id = ?";
+                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ?, prix = ? WHERE id = ?";
                         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
                         preparedStatement.setString(2, reservation.getType().ToString());
@@ -298,7 +299,8 @@ public class DataBase {
                         preparedStatement.setString(4, reservation.getDateFin().toString());
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
-                        preparedStatement.setInt(7, idReservation);
+                        preparedStatement.setDouble(7, reservation.getPrix());
+                        preparedStatement.setInt(8, idReservation);
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
                         System.out.println("Objet: "+res+" / Operation: "+operation);
@@ -390,6 +392,7 @@ public class DataBase {
                     System.out.println("NbrJourResrvation: " + reservation.getNbrJourReservation());
                     System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
+                    System.out.println("Prix: "+reservation.getPrix());
                     System.out.println("----------------------");
                 }
                 break;
