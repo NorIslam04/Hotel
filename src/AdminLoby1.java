@@ -1,10 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class AdminLoby1 extends javax.swing.JFrame {
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();

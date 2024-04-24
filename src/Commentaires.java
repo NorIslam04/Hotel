@@ -1,11 +1,47 @@
-
 public class Commentaires {
-    private int id;
+    private int id;//hashMap
     private String commentaire;
-    private User user;
+    private String username;
+    private int iduser;
     private Date date;
+    private static int nb=0;
+
+
+    public Commentaires(int id, String commentaire, String username, Date date,int iduser) {
+        this.id = id;
+        this.commentaire = commentaire;
+        this.username = username;
+        this.iduser=iduser;
+        this.date = date;
+        nb++;
+    }
 
     
+
+    public String getUsername() {
+        return username;
+    }
+
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+
+    public int getIduser() {
+        return iduser;
+    }
+
+
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
+    }
+
+
+
     public Date getDate() {
         return date;
     }
@@ -13,9 +49,6 @@ public class Commentaires {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    private int nbOp = 0;
-	static int nb = 0;
 
     public static int getNb() {
         return nb;
@@ -41,26 +74,19 @@ public class Commentaires {
         this.commentaire = commentaire;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String username) {
+        this.username = username;
     }
 
     void Commentaire(int iduser, String commentaire,Date date) {
-        this.user = Hotel.RechercheuserParId(iduser);
+       // this.user = Hotel.RechercheuserParId(iduser); hna ikon andna direct l id user
         this.commentaire = commentaire;
         this.date=date;
     }
 
-    public int getNbOp() {
-        return nbOp;
-    }
-
-    public void setNbOp(int nbOp) {
-        this.nbOp = nbOp;
-    }
 
 }
