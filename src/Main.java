@@ -7,7 +7,7 @@ public class Main {
         DataBase.Bdd_to_hashMap_room();
         DataBase.Bdd_to_hashMap_reservation();
 
-        DataBase.afficherHashMap(5);
+        DataBase.afficherHashMap(3);
         //new Login();
 
     }
