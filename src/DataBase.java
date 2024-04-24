@@ -408,7 +408,7 @@ public class DataBase {
                 break;
             case 5:
 
-            for (Map.Entry<Integer, Option> entry : Hotel.optionHashMap.entrySet()) {
+            for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
                 int id = entry.getKey();
                 Option option = entry.getValue();
         
