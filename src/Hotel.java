@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 enum TypeOperation {
 	AJOUT,
@@ -73,6 +75,7 @@ public class Hotel {
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
 				id_user_current = user.getId();
 				return true;
+				
 			}
 		}
 		return false;
@@ -140,6 +143,17 @@ public class Hotel {
 				commentaires.getId(), commentaires, TypeOperation.AJOUT);
 		modificationMap.put(ModificationHotel.getNb(), ajouterCommentaireMap);
 	}
+
+	public static boolean verif_email(String chaine) {
+        // Expression régulière pour correspondre à "@.....com"
+        String pattern = "@.{4,}\\.com$";
+        // Créer un objet Pattern à partir de l'expression régulière
+        Pattern p = Pattern.compile(pattern);
+        // Créer un objet Matcher pour rechercher la correspondance dans la chaîne
+        Matcher m = p.matcher(chaine);
+        // Retourne true si la chaîne correspond au pattern, sinon false
+        return m.find();
+    }
 
 	// modification sur les hashmap
 	static void SupprimerChambreMap(Chambre chambre) throws non_presente_bdd {
@@ -218,11 +232,11 @@ public class Hotel {
 	}
 
 	static void ModifierReservationMap(Reservation reservation) throws non_presente_bdd {
+		
 		if (reservationMap.containsKey(reservation.getId())) {
 			reservationMap.replace(reservation.getId(), reservation);
-			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(
-					reservation.getId(), reservation, TypeOperation.MODIFICATION);
-			modificationMap.put(ModificationHotel.getNb(), modifReservation);
+			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.MODIFICATION );
+			modificationMap.put(ModificationHotel.getNb(),modifReservation);
 		} else {
 			throw new non_presente_bdd();
 		}

@@ -388,9 +388,9 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                         + "$</html>");
             }
 
-            Reservation reservation = new Reservation(Reservation.getNb(),Hotel.id_user_current, date_fin, date_debut, typeChambre, -1, EtatReservation.EN_ATTENTE);
-             Hotel.AjtReservationMap(reservation);
-             new TableReseravtionUser();
+            //Reservation reservation = new Reservation(Reservation.getNb(),Hotel.id_user_current, date_fin, date_debut, typeChambre, -1, EtatReservation.EN_ATTENTE);
+            //Hotel.AjtReservationMap(reservation);
+            new t();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,

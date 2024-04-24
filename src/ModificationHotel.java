@@ -46,10 +46,5 @@ public class ModificationHotel<T,O> {
     public String toString() {
         return "ModificationHotel [objet=" + objet + ", operation=" + operation + "]";
     }
-
-
-
-
-
     
 }

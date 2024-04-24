@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.sql.SQLException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,11 +34,6 @@ public class Signeininterface extends javax.swing.JFrame {
         closebtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         descriptionlabel = new javax.swing.JLabel();
-      
-
-        
-        
-
         showPasswordButton = new JCheckBox();
         showPasswordLabel = new JLabel();
         seConnecterButton = new javax.swing.JButton();
@@ -174,6 +171,9 @@ public class Signeininterface extends javax.swing.JFrame {
                 try {
                     submitbtnActionPerformed(evt);
                 } catch (deja_presente_bdd e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -365,7 +365,9 @@ public class Signeininterface extends javax.swing.JFrame {
        
     }
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd {
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException {
+        if(Hotel.verif_email(mailtext.getText())){
+            if(User.motdepass(pwdtext.getText())){
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
                 JOptionPane.showMessageDialog(frame,
@@ -380,9 +382,8 @@ public class Signeininterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 // ajoute dans hashMap users
                 User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-                Hotel.AjouterUserMap(user);
-                ;// hna lzem nst3amlo had l fct machi lokhra !!!
-                // chambreinterface ch =
+                Hotel.AjtUserMap(user);
+                Hotel.id_user_current=User.getNb();
                 new Loby();
             }
         } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
@@ -398,16 +399,27 @@ public class Signeininterface extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             // ajoute dans hashMap users
             User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText());
-            Hotel.AjouterUserMap(user);
-            ;// hna lzem nst3amlo had l fct machi lokhra !!!
-            // chambreinterface ch =
+            Hotel.AjtUserMap(user);
+            Hotel.id_user_current=User.getNb();
             new Loby();
-            // ch.setVisible(true);
             this.hide();
+        }
+    }else{
+        JOptionPane.showMessageDialog(frame,
+        "Veuillez entrer un mot de passe contenant au moins 8 caractères",
+        "Erreur de syntaxe dans le password",
+        JOptionPane.INFORMATION_MESSAGE);
+
+    }
+        }else{
+            JOptionPane.showMessageDialog(frame,
+                    "Exemple:  utilisateur@exemple.com",
+                    "Erreur de syntaxe dans l'e-mail",
+                    JOptionPane.INFORMATION_MESSAGE);
 
         }
+    
     }
-
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

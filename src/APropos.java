@@ -1,14 +1,9 @@
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.*;
+
+
 
 public class APropos extends javax.swing.JFrame {
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();
@@ -31,7 +26,7 @@ public class APropos extends javax.swing.JFrame {
         JLabel descJLabel2=new JLabel("<html>Avec son ambiance chaleureuse et son charme authentique, l'Hôtel Harry propose des hébergements confortables et élégants,idéaux<br> pour une escapade relaxante. Que ce soit pour un séjour romantique en amoureux, des vacances en famille ou une escapade entre <br>amis,  cet établissement offre une expérience de séjour mémorable.</html>");
         JLabel descJLabel3=new JLabel("<html>Profitez de délicieux repas dans les restaurants de l'hôtel, détendez-vous au bord de la piscine ou partez à la découverte des environs <br>pittoresques .Quels que soient vos besoins, l'Hôtel Harry est l'endroit parfait pour une escapade inoubliable à Jijel.</html>");
 
-        // Création de la fenêtre principale
+        // Création de lfenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
         // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);

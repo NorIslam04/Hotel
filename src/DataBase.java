@@ -88,6 +88,7 @@ public class DataBase {
     }
 
     public static void Bdd_to_hashMap_reservation() throws Exception {
+
         String query = "SELECT * FROM reservation";
 
         try {
@@ -120,6 +121,38 @@ public class DataBase {
         }
     }
 
+    public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe, deja_presente_bdd{
+        String query = "SELECT * FROM commantaires";
+
+        try {
+            Connection connection = connectToMySQL();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idUser = resultSet.getInt("iduser");
+                String stringdate = resultSet.getString("date");
+                String commantaires=resultSet.getString("commentaires");
+                String username=resultSet.getString("username");
+
+                Date date = Date.Recupere_date(stringdate);
+
+                Commentaires commantaire = new Commentaires(id, commantaires, username, date, idUser);
+                Hotel.AjouterCommentaireMap(commantaire);
+                Commentaires.setNb(id);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+   
+   
     public static boolean verif_user_bdd(String name, String psswrd) {
         boolean utilisateurTrouve = false;
 
@@ -274,7 +307,7 @@ public class DataBase {
             statement.setString(3, user.getPassword());
             // Exécuter la requête d'insertion
             statement.executeUpdate();
-            System.out.println("User: '" + user.getName() + "' est insérées avec succès dans la base de données.");
+            System.out.println("Objet: User / Operation: AJOUT");
 
             // Fermer les ressources
             statement.close();
@@ -329,6 +362,19 @@ public class DataBase {
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("----------------------");
                 }
+                break;
+                case 4:
+                for (Map.Entry<Integer, Commentaires> entry : Hotel.getCommentairesMap().entrySet()) {
+                    int id = entry.getKey();
+                    Commentaires commentaire = entry.getValue();
+                    System.out.println("ID: " + id);
+                    System.out.println("Commentaire: " + commentaire.getCommentaire());
+                    System.out.println("Username: " + commentaire.getUsername());
+                    System.out.println("ID utilisateur: " + commentaire.getIduser());
+                    System.out.println("Date: " + commentaire.getDate());
+                    System.out.println("------------------------");
+                }
+
                 break;
 
             default:

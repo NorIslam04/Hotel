@@ -51,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         setVisible(true);
         // les labels:
         if(Hotel.langue==0){
-        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","Frensh" }));
+        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","French" }));
         }else{
             langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
         }
@@ -316,16 +316,13 @@ public class Login extends javax.swing.JFrame {
                     "ERROR",
                     JOptionPane.ERROR_MESSAGE);
         } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
-            // new tableReservationAdmin && modifier chambre
-            JOptionPane.showMessageDialog(frame,
-                    "WELCOME ADMIN ",
-                    "WELCOME",
-                    JOptionPane.INFORMATION_MESSAGE);
+         
             new AdminLoby1();
 
         } else {
 
             if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
+
                 chambreinterface ch = new chambreinterface();
                 ch.setVisible(true);
                 this.hide();

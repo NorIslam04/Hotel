@@ -91,30 +91,33 @@ enum TypeChambre {
 }
 
 enum OptionSupplementaire {
-SONA,TERASSE,VUESURMERE,VUESURFORET;
-private float prix;//prix pour chaque option
+	SONA,
+	TERASSE,
+	VUESURMERE,
+	VUESURFORET;
+	private float prix;//prix pour chaque option
 
 
-OptionSupplementaire() {
-	this.prix = 5;
-}
+	OptionSupplementaire() {
+		this.prix = 5;
+	}
 
-public float getPrix() {
-	return prix;
-}
-
-
-public void setPrix(float prix) {
-	this.prix = prix;
-}
+	public float getPrix() {
+		return prix;
+	}
 
 
-public static void initialiser(float prixSONA,float prixTERASSE,float prixvuesurmer,float prixvuesurforet){
-	SONA.setPrix(prixSONA);
-	TERASSE.setPrix(prixTERASSE);
-	VUESURFORET.setPrix(prixvuesurforet);
-	VUESURMERE.setPrix(prixvuesurmer);
-}
+	public void setPrix(float prix) {
+		this.prix = prix;
+	}
+
+
+	public static void initialiser(float prixSONA,float prixTERASSE,float prixvuesurmer,float prixvuesurforet){
+		SONA.setPrix(prixSONA);
+		TERASSE.setPrix(prixTERASSE);
+		VUESURFORET.setPrix(prixvuesurforet);
+		VUESURMERE.setPrix(prixvuesurmer);
+	}
 }
 
 
@@ -130,17 +133,14 @@ public static void initialiser(float prixSONA,float prixTERASSE,float prixvuesur
 	//utilisateur reserva une chambre 4 option 20 dollar solo 100 dolars 120 dollars
 
 	
-public class Chambre {
+	public class Chambre {
 
-	private int id;// pour hash map
-	private TypeChambre type;
-	private boolean SONA;
-	private boolean TERASSE;
-	private boolean vuesurmere;
-	private boolean vuesurforet;
-
-
-
+		private int id;// pour hash map
+		private TypeChambre type;
+		private boolean SONA;
+		private boolean TERASSE;
+		private boolean vuesurmere;
+		private boolean vuesurforet;
 
 	// en gros ces deux variable vont permettre a l admin de mette une date pour les chambres ou tt les reservation 
 	//qui coincide m3a hd la date on vas pas leurs proposer cette chambre puisque elle sera soit
@@ -151,6 +151,7 @@ public class Chambre {
 	private double prix;
 	private int nbOp = 0;
 	static int nb = 0;
+
 	public Chambre(int id, TypeChambre type,int prix) {
 		this.id = id;
 		this.type = type;
@@ -200,9 +201,6 @@ public class Chambre {
 	public void setSONA(boolean SONA) {
 		this.SONA = SONA;
 	}
-
-
-
 
 	public int getId() {
 		return id;
