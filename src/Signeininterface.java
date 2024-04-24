@@ -192,6 +192,8 @@ public class Signeininterface extends javax.swing.JFrame {
                 seConnecterButtonbtnActionPerformed();
             }
         });
+
+        
         // le positionement exact du boutton.
         seConnecterButton.setBounds(60, 457, 220, 40);
         seConnecterButton.setBackground(colorgris);
