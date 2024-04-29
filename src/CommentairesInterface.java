@@ -294,12 +294,12 @@ public class CommentairesInterface extends javax.swing.JFrame {
         // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
-        javax.swing.JButton closebtn = new JButton(" ");
+        javax.swing.JButton closebtn = new JButton("Close");
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
-        closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 15));
+        closebtn.setForeground(Color.BLACK);
         // le positionement exact du boutton.
-        closebtn.setBounds(500, 500, 40, 40);
+        closebtn.setBounds(500, 500, 80, 40);
         add(closebtn);
 
         commenterbtn.addActionListener(new ActionListener() {
@@ -426,7 +426,6 @@ public class CommentairesInterface extends javax.swing.JFrame {
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
         DataBase.HasgMapsToDb();
-        System.out.println("close");
         System.exit(0);
     }
 
