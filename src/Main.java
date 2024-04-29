@@ -6,9 +6,10 @@ public class Main {
         DataBase.Bdd_to_hashMap_users();
         DataBase.Bdd_to_hashMap_room();
         DataBase.Bdd_to_hashMap_reservation();
+       
 
-        DataBase.afficherHashMap(1);
-        //new Login();
+        //DataBase.afficherHashMap(1);
+        new Login();
 
     }
 }

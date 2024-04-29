@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -60,7 +61,12 @@ public class CommentairesInterface extends javax.swing.JFrame {
 
         }
 
+      
+
         JPanel ratingJPanel = new JPanel();
+
+        commenttxt.setBounds(400, 53, 400, 30);
+        add(commenttxt);
 
         ratingJPanel.setLayout(null);
         ratingJPanel.setBounds(3, 3, 1027, 200);
@@ -293,8 +299,23 @@ public class CommentairesInterface extends javax.swing.JFrame {
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         // le positionement exact du boutton.
-        closebtn.setBounds(997, 5, 25, 30);
-        ratingJPanel.add(closebtn);
+        closebtn.setBounds(500, 500, 40, 40);
+        add(closebtn);
+
+        commenterbtn.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+                
+            Date today;
+            try {
+                today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                Commentaires commentaires=new Commentaires(Commentaires.getNb(), commenttxt.getText(),Hotel.username_current,today, Hotel.id_user_current);
+                Hotel.AjtCommentaireMap(commentaires);
+                } catch (Date_nonvalid e1) {
+                    e1.getMessage();
+                }
+                
+            }
+        });
 
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +343,8 @@ public class CommentairesInterface extends javax.swing.JFrame {
         // le positionement exact du background.
         backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);
+
+
 
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
@@ -401,7 +424,9 @@ public class CommentairesInterface extends javax.swing.JFrame {
         return panel;
     }
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
+        DataBase.HasgMapsToDb();
+        System.out.println("close");
         System.exit(0);
     }
 

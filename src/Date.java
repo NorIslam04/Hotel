@@ -46,6 +46,7 @@ public class Date {
     private static int today_jour = LocalDate.now().getDayOfMonth();
     private static int today_mois = LocalDate.now().getMonthValue();
     private static int today_annee = LocalDate.now().getYear();
+    
 
     public static int getToday_jour() {
         return today_jour;
