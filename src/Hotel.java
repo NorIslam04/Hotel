@@ -300,6 +300,16 @@ public class Hotel {
 			throw new non_presente_bdd();
 		}
 	}
+	static void ModifierUserMap(User user) throws non_presente_bdd{
+		
+		if (userMap.containsKey(user.getId())) {
+			userMap.replace(user.getId(), user);
+			ModificationHotel<User, TypeOperation> modifUser = new ModificationHotel<>(user.getId(),user,TypeOperation.MODIFICATION );
+			modificationMap.put(ModificationHotel.getNb(),modifUser);
+		} else {
+			throw new non_presente_bdd();
+		}
+	}
 
 
 

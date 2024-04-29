@@ -231,9 +231,24 @@ public class DataBase {
             Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
                                                                        // O)
 
-            if (objet instanceof User && operation == TypeOperation.AJOUT) {
+            if (objet instanceof User ) {
                 User user = (User) objet;
+                if(operation == TypeOperation.AJOUT){
                 AddUserDb(user);
+                }
+                else
+                if(operation==TypeOperation.MODIFICATION){
+                int iduser = user.getId(); // Supposons que vous ayez une méthode getId() dans la classe
+                                                     // Chambre pour obtenir l'identifiant de la chambre
+                    String updateQuery = "UPDATE users SET note = ? WHERE id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                    
+                    preparedStatement.setInt(1, user.getNote());
+                    preparedStatement.setInt(2, iduser);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    System.out.println("Objet: User / Operation: "+operation);
+               } 
             }
 
             else if (objet instanceof Chambre) {
