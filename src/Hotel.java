@@ -36,6 +36,9 @@ public class Hotel {
 	static int id_user_current;
 	static int totalRating;
 	static int langue; //0 ang 1 fr
+	static String username_current;
+	
+	
 	
     static boolean reserveoption=false;
 
@@ -95,6 +98,7 @@ public class Hotel {
 			User user = entry.getValue();
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
 				id_user_current = user.getId();
+				username_current=user.getName();
 				return true;
 				
 			}
@@ -158,6 +162,13 @@ public class Hotel {
 																							// ajout user Mapss
 		commentairesMap.put(commentaires.getId(), commentaires);
 
+	}
+	static void AjtCommentaireMap(Commentaires commentaires){
+		commentairesMap.put(commentaires.getId(), commentaires);
+		ModificationHotel<Commentaires, TypeOperation> ajoutercmtrMap = new ModificationHotel<>(
+				commentaires.getId(), commentaires, TypeOperation.AJOUT);
+
+		modificationMap.put(ModificationHotel.getNb(), ajoutercmtrMap);
 	}
 
 	static void AjtOptionMap(Option option) throws deja_presente_bdd {// la meme chose hna kima ajout
