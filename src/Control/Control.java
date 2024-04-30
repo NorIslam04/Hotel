@@ -47,8 +47,12 @@ public class Control {
         return utilisateurTrouve;
     }
 
-    public static void hash_map_bdd () {
-        
+    public static void hash_map_bdd () throws Exception {
+        User.hash_map_db();
+        Reservation.hahs_map_bdd();;
+        Chambre.hash_map_bdd();
+        Commentaires.hash_map_bdd();
+        //Option.
     }
     
 
