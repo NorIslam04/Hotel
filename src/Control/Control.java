@@ -1,5 +1,5 @@
 package Control;
-
+import Model.*;
 
 import java.sql.*;
 
@@ -48,7 +48,7 @@ public class Control {
     }
 
     public static void hash_map_bdd () {
-        User.
+        
     }
     
 
