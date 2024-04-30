@@ -2,7 +2,8 @@ package Model;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import Model.Date.*;
+import Model.Reservation.EtatReservation;
 import Control.Control;
 
 
@@ -88,7 +89,7 @@ public class User {
 	}
 
 
-	public static void Bdd_to_hashMap_users() throws deja_presente_bdd {
+	public static void Bdd_to_hashMap_users() {
         // Informations de connexion à la base de données
 
         String query = "SELECT * FROM users";

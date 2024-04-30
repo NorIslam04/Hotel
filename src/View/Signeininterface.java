@@ -1,4 +1,6 @@
-package Model;
+package View;
+import Model.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -171,10 +173,7 @@ public class Signeininterface extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     submitbtnActionPerformed(evt);
-                } catch (deja_presente_bdd e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -366,7 +365,7 @@ public class Signeininterface extends javax.swing.JFrame {
        
     }
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws deja_presente_bdd, SQLException {
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception, SQLException {
         if(Hotel.verif_email(mailtext.getText())){
             if(User.motdepass(pwdtext.getText())){
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {

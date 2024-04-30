@@ -1,4 +1,5 @@
 package Model;
+import Model.Chambre.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,28 +14,14 @@ enum TypeOperation {
 
 }
 
-class non_presente_bdd extends Exception {
-	private String message = "l'article que vous cherchez n'est pas présent à notre bdd verifiez svp";
 
-	// hna j crois nst3mlou les interface graphic ten khir
-	public String getMessage() {
-		return message;
-	}
-} class deja_presente_bdd extends Exception {
-	private String message = "l'article que vous faite entrer est deja present a notre bdd";
-
-	// hna j crois nst3mlou les interface graphic ten khir
-	public String getMessage() {
-		return message;
-	}
-}
 
 public class Hotel {
 
-	static int id_user_current;
-	static int totalRating;
-	static int langue; //0 ang 1 fr
-	static String username_current;
+	public static int id_user_current;
+	public static int totalRating;
+	public static int langue; //0 ang 1 fr
+	public static String username_current;
 	
 	
 	
@@ -47,6 +34,8 @@ public class Hotel {
 	private static HashMap<Integer, Option> optionHashMap = new HashMap<>();
 
 	private static HashMap<Integer, ModificationHotel<?, ?>> modificationMap = new HashMap<>();
+
+	
 
 	// get set Hashmap
 
@@ -91,7 +80,7 @@ public class Hotel {
 	}
 
 	// une fonction pour vérifier si un utilisateur existe dans déja:
-	static boolean findUser(String name, String password) {
+	public static boolean findUser(String name, String password) {
 		for (Map.Entry<Integer, User> entry : userMap.entrySet()) {
 			User user = entry.getValue();
 			if (user.getName().equals(name) && user.getPassword().equals(password)) {
@@ -104,7 +93,7 @@ public class Hotel {
 		return false;
 	}
 
-	static boolean findEmail(String name, String password, String email) {
+	public static boolean findEmail(String name, String password, String email) {
 		// Parcourir la HashMap d'utilisateurs
 		for (Entry<Integer, User> entry : userMap.entrySet()) {
 			User user = entry.getValue();
@@ -119,11 +108,11 @@ public class Hotel {
 
     //fct ajt hashmap:
 
-	static void AjouterChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
+	public static void AjouterChambreMap(Chambre chambre) {// la meme chose han kima ajoutusermap
 		chambreMap.put(chambre.getId(), chambre);
 	}
 
-	static void AjtChambreMap(Chambre chambre) throws deja_presente_bdd {// la meme chose han kima ajoutusermap
+	public static void AjtChambreMap(Chambre chambre) {// la meme chose han kima ajoutusermap
 		chambreMap.put(chambre.getId(), chambre);
 		ModificationHotel<Chambre, TypeOperation> ajouterChambre = new ModificationHotel<>(chambre.getId(), chambre,
 				TypeOperation.AJOUT);
@@ -131,24 +120,24 @@ public class Hotel {
 
 	}
 
-	static void AjouterUserMap(User user) throws deja_presente_bdd {
+	public static void AjouterUserMap(User user) {
 		userMap.put(user.getId(), user);
 	}
 
-	static void AjtUserMap(User user) throws deja_presente_bdd {
+	public static void AjtUserMap(User user) {
 		userMap.put(user.getId(), user);
 		ModificationHotel<User, TypeOperation> ajouterUser = new ModificationHotel<>(user.getId(), user,
 				TypeOperation.AJOUT);
 		modificationMap.put(ModificationHotel.getNb(), ajouterUser);
 	}
 
-	static void AjouterReservationMap(Reservation reservation) throws deja_presente_bdd {// la meme chose hna kima ajout
+	public static void AjouterReservationMap(Reservation reservation)  {// la meme chose hna kima ajout
 																							// user Mapss
 		reservationMap.put(reservation.getId(), reservation);
 
 	}
 
-	static void AjtReservationMap(Reservation reservation) throws deja_presente_bdd {// la meme chose hna kima ajout
+	public static void AjtReservationMap(Reservation reservation) {// la meme chose hna kima ajout
 																						// user Mapss
 		reservationMap.put(reservation.getId(), reservation);
 		ModificationHotel<Reservation, TypeOperation> ajouterReservation = new ModificationHotel<>(reservation.getId(),
@@ -156,12 +145,12 @@ public class Hotel {
 		modificationMap.put(ModificationHotel.getNb(), ajouterReservation);
 	}
 
-	static void AjouterCommentaireMap(Commentaires commentaires) throws deja_presente_bdd {// la meme chose hna kima
+	public static void AjouterCommentaireMap(Commentaires commentaires){// la meme chose hna kima
 																							// ajout user Mapss
 		commentairesMap.put(commentaires.getId(), commentaires);
 
 	}
-	static void AjtCommentaireMap(Commentaires commentaires){
+	public static void AjtCommentaireMap(Commentaires commentaires){
 		commentairesMap.put(commentaires.getId(), commentaires);
 		ModificationHotel<Commentaires, TypeOperation> ajoutercmtrMap = new ModificationHotel<>(
 				commentaires.getId(), commentaires, TypeOperation.AJOUT);
@@ -169,7 +158,7 @@ public class Hotel {
 		modificationMap.put(ModificationHotel.getNb(), ajoutercmtrMap);
 	}
 
-	static void AjtOptionMap(Option option) throws deja_presente_bdd {// la meme chose hna kima ajout
+	public static void AjtOptionMap(Option option){// la meme chose hna kima ajout
 																						// user Mapss
 		optionHashMap.put(option.getId(), option);
 		ModificationHotel<Option, TypeOperation> ajouteroptMap = new ModificationHotel<>(
@@ -178,7 +167,7 @@ public class Hotel {
 		modificationMap.put(ModificationHotel.getNb(), ajouteroptMap);
 	}
 
-	static void AjouterOptionMap(Option option) {
+	public static void AjouterOptionMap(Option option) {
 	optionHashMap.put(option.getId(), option);
 	}
 
@@ -186,69 +175,59 @@ public class Hotel {
 
 	// supp hashmap:
 
-	static void SupprimeroptionMap(Option option) throws non_presente_bdd {
+	public static void SupprimeroptionMap(Option option)  {
 		if (optionHashMap.containsKey(option.getId())) {
 			optionHashMap.remove(option.getId());
 			ModificationHotel<Option, TypeOperation> suppop= new ModificationHotel<>(option.getId(), option,
 					TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppop);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void SupprimerChambreMap(Chambre chambre) throws non_presente_bdd {
+	public static void SupprimerChambreMap(Chambre chambre)  {
 		if (chambreMap.containsKey(chambre.getId())) {
 			chambreMap.remove(chambre.getId());
 			ModificationHotel<Chambre, TypeOperation> suppChambre = new ModificationHotel<>(chambre.getId(), chambre,
 					TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppChambre);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void SupprimerUserMap(User user) throws non_presente_bdd {
+	public static void SupprimerUserMap(User user) {
 		if (userMap.containsKey(user.getId())) {
 			userMap.remove(user.getId());
 			ModificationHotel<User, TypeOperation> suppUser = new ModificationHotel<>(user.getId(), user,
 					TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppUser);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void SupprimerCommentaireMap(Commentaires commentaires) throws non_presente_bdd {
+	public static void SupprimerCommentaireMap(Commentaires commentaires) {
 		if (commentairesMap.containsKey(commentaires.getId())) {
 			commentairesMap.remove(commentaires.getId());
 			ModificationHotel<Commentaires, TypeOperation> suppcmntr = new ModificationHotel<>(commentaires.getId(),
 					commentaires, TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppcmntr);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void SupprimerReservationMap(Reservation reservation) throws non_presente_bdd {
+	public static void SupprimerReservationMap(Reservation reservation) {
 		if (reservationMap.containsKey(reservation.getId())) {
 			reservationMap.remove(reservation.getId());
 			ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),
 					reservation, TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppReservation);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
 
 		//modif hashmap:
-	static void ModifieroptionMap(Option option) throws non_presente_bdd {
+	public static void ModifieroptionMap(Option option){
 		if (optionHashMap.containsKey(option.getId())) {
 			optionHashMap.replace(option.getId(), option);
 
@@ -256,57 +235,47 @@ public class Hotel {
 					TypeOperation.MODIFICATION);
 			modificationMap.put(ModificationHotel.getNb(), modifopt);
 
-		} else {
-			throw new non_presente_bdd();
 		}
 
 	}
 
-	static void ModifierChambreMap(Chambre chambre) throws non_presente_bdd {
+	public static void ModifierChambreMap(Chambre chambre) {
 		if (chambreMap.containsKey(chambre.getId())) {
 			chambreMap.replace(chambre.getId(), chambre);
 			ModificationHotel<Chambre, TypeOperation> modifChambre = new ModificationHotel<>(chambre.getId(), chambre,
 					TypeOperation.MODIFICATION);
 			modificationMap.put(ModificationHotel.getNb(), modifChambre);
 
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void ModifierCmntrMap(Commentaires commentaire) throws non_presente_bdd {
+	public static void ModifierCmntrMap(Commentaires commentaire) {
 		if (commentairesMap.containsKey(commentaire.getId())) {
 			commentairesMap.replace(commentaire.getId(), commentaire);
 			ModificationHotel<Commentaires, TypeOperation> modifcmntr = new ModificationHotel<>(commentaire.getId(),
 					commentaire, TypeOperation.MODIFICATION);
 			modificationMap.put(ModificationHotel.getNb(), modifcmntr);
 
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 
 	}
 
-	static void ModifierReservationMap(Reservation reservation) throws non_presente_bdd {
+	public static void ModifierReservationMap(Reservation reservation) {
 		
 		if (reservationMap.containsKey(reservation.getId())) {
 			reservationMap.replace(reservation.getId(), reservation);
 			ModificationHotel<Reservation, TypeOperation> modifReservation = new ModificationHotel<>(reservation.getId(),reservation,TypeOperation.MODIFICATION );
 			modificationMap.put(ModificationHotel.getNb(),modifReservation);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 	}
-	static void ModifierUserMap(User user) throws non_presente_bdd{
+	public static void ModifierUserMap(User user){
 		
 		if (userMap.containsKey(user.getId())) {
 			userMap.replace(user.getId(), user);
 			ModificationHotel<User, TypeOperation> modifUser = new ModificationHotel<>(user.getId(),user,TypeOperation.MODIFICATION );
 			modificationMap.put(ModificationHotel.getNb(),modifUser);
-		} else {
-			throw new non_presente_bdd();
-		}
+		} 
 	}
 
 
@@ -324,7 +293,7 @@ public class Hotel {
         return m.find();
     }
 	
-	static Chambre RechercheChambreParId(int id) {
+	public static Chambre RechercheChambreParId(int id) {
 		if (chambreMap.containsKey(id)) {
 			return chambreMap.get(id);
 		} else {
@@ -334,7 +303,7 @@ public class Hotel {
 
 	}
 
-	static User RechercheuserParId(int id) {
+	public static User RechercheuserParId(int id) {
 		if (userMap.containsKey(id)) {
 			return userMap.get(id);
 		} else {
@@ -344,7 +313,7 @@ public class Hotel {
 
 	}
 
-	static Reservation RechercheResevationParId(int id) {
+	public static Reservation RechercheResevationParId(int id) {
 		if (reservationMap.containsKey(id)) {
 			return reservationMap.get(id);
 		} else {
@@ -354,7 +323,7 @@ public class Hotel {
 
 	}
 
-	static boolean verifchambreavecoption(Chambre chambre, TypeChambre type, boolean sona, boolean terasse,
+	public static boolean verifchambreavecoption(Chambre chambre, TypeChambre type, boolean sona, boolean terasse,
 			boolean vuesurmer, boolean vuesurforet) {
 
 		if (type == chambre.getType()) {
@@ -369,7 +338,7 @@ public class Hotel {
 		}
 	}
 
-	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
+	public static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
 
 		Iterator<Map.Entry<Integer, Reservation>> iterator = reservationMap.entrySet().iterator();
 
@@ -388,7 +357,7 @@ public class Hotel {
 		return true;
 	}
 
-	static boolean chambreAafficher(Chambre chambre, TypeChambre type, Date datedebut, Date datefin, boolean tv,
+	public static boolean chambreAafficher(Chambre chambre, TypeChambre type, Date datedebut, Date datefin, boolean tv,
 			boolean climatisation, boolean vuesurforet, boolean vuesurmer) {
 		if (ChambreDispo(chambre, datedebut, datefin)
 				&& verifchambreavecoption(chambre, type, tv, climatisation, vuesurmer, vuesurforet)) {
@@ -397,7 +366,7 @@ public class Hotel {
 		return false;
 	}
 
-	static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2) throws non_presente_bdd {
+	public static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2) {
 		Iterator<Map.Entry<Integer, Chambre>> iterator = chambreMap.entrySet().iterator();
 
 		while (iterator.hasNext()) {

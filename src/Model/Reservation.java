@@ -2,42 +2,11 @@ package Model;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import Model.Chambre.*;
 import Control.Control;
 
 
-enum EtatReservation {
-    ACCEPTER,
-    DECLINER,
-    EN_ATTENTE;
 
-    public static EtatReservation toEtatReservation(String str) {
-        switch (str) {
-            case "ACCEPTER":
-                return ACCEPTER;
-            case "DECLINER":
-                return DECLINER;
-            case "EN_ATTEND":
-                return EN_ATTENTE;
-            default:
-                throw new IllegalStateException("État de réservation inconnu : " + str);
-        }
-    }
-
-    @Override
-    public String toString() {
-        switch (this) {
-            case ACCEPTER:
-                return "ACCEPTER";
-            case DECLINER:
-                return "DECLINER";
-            case EN_ATTENTE:
-                return "EN_ATTEND";
-            default:
-                throw new IllegalArgumentException("État de réservation invalide : " + this);
-        }
-    }
-}
 public class Reservation {
 
 	private int id;//de hash map
@@ -49,6 +18,40 @@ public class Reservation {
 	private int id_chambre;
 	private int NbrJourReservation;
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
+
+    public enum EtatReservation {
+        ACCEPTER,
+        DECLINER,
+        EN_ATTENTE;
+    
+        public static EtatReservation toEtatReservation(String str) {
+            switch (str) {
+                case "ACCEPTER":
+                    return ACCEPTER;
+                case "DECLINER":
+                    return DECLINER;
+                case "EN_ATTEND":
+                    return EN_ATTENTE;
+                default:
+                    throw new IllegalStateException("État de réservation inconnu : " + str);
+            }
+        }
+    
+        @Override
+        public String toString() {
+            switch (this) {
+                case ACCEPTER:
+                    return "ACCEPTER";
+                case DECLINER:
+                    return "DECLINER";
+                case EN_ATTENTE:
+                    return "EN_ATTEND";
+                default:
+                    throw new IllegalArgumentException("État de réservation invalide : " + this);
+            }
+        }
+    }
+
 	static int nb = 0;
 
 	public Reservation(int id, int idUser, Date dateFin, Date dateDebut, TypeChambre type, int idChambre,

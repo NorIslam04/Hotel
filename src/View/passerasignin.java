@@ -1,4 +1,6 @@
-package Model;
+package View;
+import Model.*;
+
 public class passerasignin extends javax.swing.JFrame {
 
     public passerasignin() {

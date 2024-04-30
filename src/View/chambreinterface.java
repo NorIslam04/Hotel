@@ -1,4 +1,6 @@
-package Model;
+package View;
+import Model.*;
+import Model.Chambre.*;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -349,7 +351,7 @@ public class chambreinterface extends javax.swing.JFrame {
     private void avissurnousButtonActionPerformed() {
         try {
             new CommentairesInterface();
-        } catch (deja_presente_bdd e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -367,7 +369,7 @@ public class chambreinterface extends javax.swing.JFrame {
     private void reserverDetailActionPerformed() {
         try {
             new ReservationAvecDetail();
-        } catch (deja_presente_bdd e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

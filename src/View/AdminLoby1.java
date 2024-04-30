@@ -1,4 +1,5 @@
-package Model;
+package View;
+import Model.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -113,7 +114,7 @@ public class AdminLoby1 extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     new Adminchambresoption();
-                } catch (deja_presente_bdd e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

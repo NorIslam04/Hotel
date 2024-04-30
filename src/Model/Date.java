@@ -1,53 +1,60 @@
 package Model;
-
 import java.time.LocalDate;
 import java.util.Map.Entry;
 
-class Date_nonvalid extends Exception {
-    private String message = "Dates invalide !";
+import Model.Chambre.*;
 
-    public String getMessage() {
-        return message;
-    }
-}
 
-class Date_nonorganiser extends Exception {
-    private String message = "Dates non organisées !";
-
-    public String getMessage() {
-        return message;
-    }
-}
-
-class DiffSup365 extends Exception {
-    private String message = "le nombre de jours de réservation était supérieure à 365 jours, contactez la direction de l'hôtel.";
-
-    public String getMessage() {
-        return message;
-    }
-}
-
-class Date_Debut_Reservation extends Exception {
-    private String message = "Votre date de réservation est déjà passée !";
-
-    public String getMessage() {
-        return message;
-    }
-}
-
-class Date_syntaxe extends Exception {
-    private String message = "erreur dans la syntaxe de la date ! -> syntaxe: (JJ/MM/AAAA) ou 2-chiffres pour JJ et MM et 4 pour AAAA ";
-
-    public String getMessage() {
-        return message;
-    }
-}
 
 public class Date {
     private int jour, mois, annee;
     private static int today_jour = LocalDate.now().getDayOfMonth();
     private static int today_mois = LocalDate.now().getMonthValue();
     private static int today_annee = LocalDate.now().getYear();
+    
+
+    //class execption:
+    public static class Date_nonvalid extends Exception {
+        private String message = "Dates invalide !";
+    
+        public String getMessage() {
+            return message;
+        }
+    }
+    
+    public static class Date_nonorganiser extends Exception {
+        private String message = "Dates non organisées !";
+    
+        public String getMessage() {
+            return message;
+        }
+    }
+    
+    public static class DiffSup365 extends Exception {
+        private String message = "le nombre de jours de réservation était supérieure à 365 jours, contactez la direction de l'hôtel.";
+    
+        public String getMessage() {
+            return message;
+        }
+    }
+    
+    public static class Date_Debut_Reservation extends Exception {
+        private String message = "Votre date de réservation est déjà passée !";
+    
+        public String getMessage() {
+            return message;
+        }
+    }
+    
+    public static class Date_syntaxe extends Exception {
+        private String message = "erreur dans la syntaxe de la date ! -> syntaxe: (JJ/MM/AAAA) ou 2-chiffres pour JJ et MM et 4 pour AAAA ";
+    
+        public String getMessage() {
+            return message;
+        }
+    }
+    //fin class exeption
+    
     
 
     public static int getToday_jour() {
@@ -83,9 +90,12 @@ public class Date {
         this.annee = annee;
     }
 
-    public static void verif_today_date(Date today, Date dubut_reservation) throws Date_Debut_Reservation {
-        if (!Dates_logique(today, dubut_reservation) && !(today.getJour() == dubut_reservation.getJour()
-                && today.getAnnee() == dubut_reservation.getAnnee() && today_mois == dubut_reservation.getMois())) {
+    public static void verif_today_date(Date today, Date debut_reservation) throws Date_Debut_Reservation {
+        if (!Dates_logique(today, debut_reservation)) {
+            throw new Date_Debut_Reservation();
+        } else if (!(today.getJour() == debut_reservation.getJour()
+                    && today.getAnnee() == debut_reservation.getAnnee()
+                    && today.getMois() == debut_reservation.getMois())) {
             throw new Date_Debut_Reservation();
         }
     }

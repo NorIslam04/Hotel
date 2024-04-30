@@ -1,5 +1,5 @@
 package Model;
-
+import Model.Date.*;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Map;
@@ -69,7 +69,7 @@ public class Admin {
 		Admin.nb = nb;
 	}
 
-	public static void supprimerreservationinutile() throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {
+	public static void supprimerreservationinutile() throws Date_nonvalid {
 		Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
 
 		Iterator<Map.Entry<Integer, Reservation>> iterator = Hotel.getReservationMap().entrySet().iterator();

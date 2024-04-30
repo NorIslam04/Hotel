@@ -1,7 +1,9 @@
-package Model;
+package View;
+import Model.*;
+import Model.Date.*;
 import java.awt.Color;
 import java.awt.Font;
-
+import Model.Chambre.*;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -32,11 +34,11 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
 
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
-    public ReservationAvecDetail() throws deja_presente_bdd {
+    public ReservationAvecDetail() throws Exception {
         initComponents();
     }
 
-    private void initComponents() throws deja_presente_bdd {
+    private void initComponents() throws Exception {
 
         TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
@@ -502,7 +504,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                 try {
 
                     new ReservationAvecDetail().setVisible(true);
-                } catch (deja_presente_bdd e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

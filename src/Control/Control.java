@@ -1,6 +1,6 @@
 package Control;
 import Model.*;
-
+import Model.Chambre.*;
 import java.sql.*;
 import java.util.Map;
 

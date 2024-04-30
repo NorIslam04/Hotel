@@ -1,4 +1,6 @@
-package Model;
+package View;
+import Model.*;
+
 enum Prevoir {
 	MODIFICATION,SUPPRESSION,RIEN;	
 	}
