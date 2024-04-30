@@ -2,10 +2,11 @@ package Model;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import Control.Control;
 
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
@@ -428,10 +429,10 @@ public class CommentairesInterface extends javax.swing.JFrame {
         return panel;
     }
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws SQLException, non_presente_bdd {
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         Hotel.RechercheuserParId(Hotel.id_user_current).setNote(new_note);
         Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-        DataBase.HasgMapsToDb();
+        Control.hash_map_bdd();
         System.exit(0);
     }
 

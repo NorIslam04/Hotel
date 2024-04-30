@@ -20,9 +20,7 @@ class non_presente_bdd extends Exception {
 	public String getMessage() {
 		return message;
 	}
-}
-
-class deja_presente_bdd extends Exception {
+} class deja_presente_bdd extends Exception {
 	private String message = "l'article que vous faite entrer est deja present a notre bdd";
 
 	// hna j crois nst3mlou les interface graphic ten khir
