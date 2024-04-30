@@ -54,6 +54,14 @@ public class Control {
         Commentaires.hash_map_bdd();
         //Option.
     }
+    public static void bdd_to_hashmap() throws Exception {
+        Option.Bdd_to_hashMap_option();
+        Commentaires.Bdd_to_hashMap_commantaire();
+        User.Bdd_to_hashMap_users();
+        Chambre.Bdd_to_hashMap_room();
+        Reservation.Bdd_to_hashMap_reservation();
+       
+    }
     
 
     

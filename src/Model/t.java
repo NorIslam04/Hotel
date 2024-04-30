@@ -1,3 +1,5 @@
+package Model;
+import Control.*;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
@@ -206,6 +208,9 @@ public static void setId_chambre(int id_chambre) {
                 } catch (SQLException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
             }
         });
@@ -335,10 +340,9 @@ public static void setId_chambre(int id_chambre) {
     private void acceptdeclineboxActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
     }   
-    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {                                               
+    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                               
         new chambreadmin();
-        DataBase.HasgMapsToDb();
-        System.out.println(Chambre.getNb());
+        Control.hash_map_bdd();
         this.dispose();
     }                                              
 
@@ -348,7 +352,7 @@ public static void setId_chambre(int id_chambre) {
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {   
 
-            DataBase.HasgMapsToDb();
+            Control.hash_map_bdd();
             System.exit(0);
         }
     }                                                
