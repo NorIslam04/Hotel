@@ -67,7 +67,7 @@ public class User {
 	}
 
 
-	static boolean motdepass(String passworld){
+	public static boolean motdepass(String passworld){
 			return passworld.length() >= 8;
 	
 	}
