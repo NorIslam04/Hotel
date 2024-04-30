@@ -1,11 +1,14 @@
+
+
+
 public class Main {
     public static void main(String[] args)  throws Exception { 
 
-        DataBase.Bdd_to_hashMap_option();
-        DataBase.Bdd_to_hashMap_commantaire();
-        DataBase.Bdd_to_hashMap_users();
-        DataBase.Bdd_to_hashMap_room();
-        DataBase.Bdd_to_hashMap_reservation();
+        Option.Bdd_to_hashMap_option();
+        Commentaires.Bdd_to_hashMap_commantaire();
+        User.Bdd_to_hashMap_users();
+        Chambre.Bdd_to_hashMap_room();
+        Reservation.Bdd_to_hashMap_reservation();
        
 
         //DataBase.afficherHashMap(1);
