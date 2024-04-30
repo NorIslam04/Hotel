@@ -363,7 +363,7 @@ public class chambreinterface extends javax.swing.JFrame {
     }
 
     private void passeraureservationActionPerformed() {
-        new t();
+        new TableReseravtionUser();
     }
 
     private void reserverDetailActionPerformed() {

@@ -149,7 +149,7 @@ public class AdminLoby1 extends javax.swing.JFrame {
 
     private void passeraureservationActionPerformed() throws Exception {
         try {
-          new t();
+          new TableReservationAdmin();
         } catch (Exception e) {
             e.getMessage();
         }
