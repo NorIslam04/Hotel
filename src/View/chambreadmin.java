@@ -1,4 +1,7 @@
-package Model;
+package View;
+import Model.*;
+import Model.Chambre.*;
+import Model.Date.*;
 import Control.*;
 import java.awt.Color;
 import java.sql.SQLException;

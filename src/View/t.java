@@ -1,6 +1,8 @@
 package View;
 import Model.*;
-
+import Model.Date.*;
+import Model.Reservation.EtatReservation;
+import Model.Chambre.*;
 import Control.*;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -109,7 +111,7 @@ public static void setId_chambre(int id_chambre) {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
                     reservationtabelMouseClicked(evt);
-                } catch (NumberFormatException | non_presente_bdd | Date_nonvalid | Date_syntaxe e) {
+                } catch (NumberFormatException  | Date_nonvalid | Date_syntaxe e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -173,7 +175,7 @@ public static void setId_chambre(int id_chambre) {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     suppreservationbtnActionPerformed(evt);
-                } catch (Date_nonvalid | non_presente_bdd | deja_presente_bdd e) {
+                } catch (Date_nonvalid   e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -308,7 +310,7 @@ public static void setId_chambre(int id_chambre) {
        
     }                   
     
-    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid, non_presente_bdd, deja_presente_bdd {                                           
+    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid {                                           
         Admin.supprimerreservationinutile();
     } 
 

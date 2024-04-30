@@ -1,8 +1,10 @@
-package Model;
+package View;
+import Model.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import Model.Date.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -33,11 +35,11 @@ public class CommentairesInterface extends javax.swing.JFrame {
 
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
-    public CommentairesInterface() throws deja_presente_bdd {
+    public CommentairesInterface() throws Exception {
         initComponents();
     }
 
-    private void initComponents() throws deja_presente_bdd {
+    private void initComponents() throws Exception {
 
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
@@ -443,7 +445,7 @@ public class CommentairesInterface extends javax.swing.JFrame {
                 try {
 
                     new CommentairesInterface().setVisible(true);
-                } catch (deja_presente_bdd e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

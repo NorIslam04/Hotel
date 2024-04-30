@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Control.Control;
+import Model.Date.*;
 
 
 public class Commentaires {
@@ -96,7 +97,7 @@ public class Commentaires {
         this.date=date;
     }
 
-    public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe, deja_presente_bdd{
+    public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe{
         String query = "SELECT * FROM commentaires";
 
         try {

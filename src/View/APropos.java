@@ -1,4 +1,5 @@
-package Model;
+package View;
+import Model.*;
 
 import java.awt.Color;
 import java.awt.Font;

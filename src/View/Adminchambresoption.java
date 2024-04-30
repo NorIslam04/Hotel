@@ -1,6 +1,6 @@
 package View;
 import Model.*;
-
+import Model.Chambre.*;
 
 import java.awt.*;
 
@@ -451,7 +451,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
 
     }
 
-    void afficherchambre() throws deja_presente_bdd {
+    void afficherchambre() throws Exception {
 
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -497,7 +497,7 @@ public class Adminchambresoption extends javax.swing.JFrame{
                 try {
 
                     new Adminchambresoption().setVisible(true);
-                } catch (deja_presente_bdd e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

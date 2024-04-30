@@ -114,7 +114,7 @@ public class Option {
         this.prix_option = prix_option;
     }
 
-    public static void Bdd_to_hashMap_option() throws deja_presente_bdd {
+    public static void Bdd_to_hashMap_option() {
         String query = "SELECT * FROM options";
     
         try {
