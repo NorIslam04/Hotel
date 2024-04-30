@@ -1,3 +1,8 @@
+import java.sql.*;
+
+import Control.Control;
+
+
 enum Rooms_Options{
     SOLO,
 	DOUBLE,
@@ -106,6 +111,35 @@ public class Option {
     }
     public void setPrix_option(Double prix_option) {
         this.prix_option = prix_option;
+    }
+
+    public static void Bdd_to_hashMap_option() throws deja_presente_bdd {
+        String query = "SELECT * FROM options";
+    
+        try {
+            Connection connection = Control.connectToMySQL();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+    
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String optionName = resultSet.getString("option_name");
+                double prix = resultSet.getDouble("price");
+    
+                // Convertir le nom de l'option en enum Rooms_Options
+                Rooms_Options roomsOption = Rooms_Options.ToTypeChambre(optionName);
+    
+                Option option = new Option(roomsOption, prix, id);
+                Hotel.AjouterOptionMap(option);
+                Option.setNb(id);
+            }
+    
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
     }
     
 }

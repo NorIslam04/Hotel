@@ -1,3 +1,10 @@
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import Control.Control;
+
+
 enum EtatReservation {
     ACCEPTER,
     DECLINER,
@@ -141,6 +148,99 @@ public class Reservation {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+
+	public static void Bdd_to_hashMap_reservation() throws Exception {
+
+        String query = "SELECT * FROM reservation";
+
+        try {
+            Connection connection =Control.connectToMySQL();;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idUser = resultSet.getInt("idUser");
+                TypeChambre type = TypeChambre.ToTypeChambre(resultSet.getString("type"));
+                String dateDebut = resultSet.getString("dateDebut");
+                String dateFin = resultSet.getString("dateFin");
+                int idChambre = resultSet.getInt("idChambre");
+                EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
+                double prix=resultSet.getDouble("prix");
+                Date dd = Date.Recupere_date(dateDebut);
+                Date df = Date.Recupere_date(dateFin);
+
+                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat,prix);
+                Hotel.AjouterReservationMap(reservation);
+                Reservation.setNb(id);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static void hahs_map_bdd () throws SQLException{
+
+		HashMap<Integer, ModificationHotel<?,?>> modificMap = Hotel.getModificationMap();
+        Connection connection = Control.connectToMySQL();
+        // Parcours de la HashMap et accès à ses éléments
+        for (Map.Entry<Integer, ModificationHotel<?,?>> entry : modificMap.entrySet()) {
+
+            Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
+            Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
+                                                                       // O)
+
+                if (objet instanceof Reservation) {
+                    Reservation reservation = (Reservation) objet;
+                    String res="Reservation";
+                    if(operation == TypeOperation.AJOUT) {
+                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+                        preparedStatement.setInt(1, reservation.getId_user());
+                        preparedStatement.setString(2, reservation.getType().ToString());
+                        preparedStatement.setString(3, reservation.getDateDebut().toString());
+                        preparedStatement.setString(4, reservation.getDateFin().toString());
+                        preparedStatement.setInt(5, reservation.getId_chambre());
+                        preparedStatement.setString(6, reservation.getEtat().toString());
+                        preparedStatement.setDouble(7, reservation.getPrix());
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
+                    } else if (operation==TypeOperation.MODIFICATION) {
+                        int idReservation = reservation.getId();
+                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ?, prix = ? WHERE id = ?";
+                        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                        preparedStatement.setInt(1, reservation.getId_user());
+                        preparedStatement.setString(2, reservation.getType().ToString());
+                        preparedStatement.setString(3, reservation.getDateDebut().toString());
+                        preparedStatement.setString(4, reservation.getDateFin().toString());
+                        preparedStatement.setInt(5, reservation.getId_chambre());
+                        preparedStatement.setString(6, reservation.getEtat().toString());
+                        preparedStatement.setDouble(7, reservation.getPrix());
+                        preparedStatement.setInt(8, idReservation);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
+                    } else if (operation.equals(TypeOperation.SUPPRESSION)) {
+                        int idReservation = reservation.getId();
+                        String deleteQuery = "DELETE FROM reservation WHERE id = ?";
+                        PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+                        preparedStatement.setInt(1, idReservation);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        System.out.println("Objet: "+res+" / Operation: "+operation);
+
+                    }
+                }
+		}
 	}
 
 }

@@ -91,99 +91,11 @@ public class DataBase {
         }
     }
 
-    public static void Bdd_to_hashMap_reservation() throws Exception {
+   
 
-        String query = "SELECT * FROM reservation";
-
-        try {
-            Connection connection = connectToMySQL();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int idUser = resultSet.getInt("idUser");
-                TypeChambre type = TypeChambre.ToTypeChambre(resultSet.getString("type"));
-                String dateDebut = resultSet.getString("dateDebut");
-                String dateFin = resultSet.getString("dateFin");
-                int idChambre = resultSet.getInt("idChambre");
-                EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
-                double prix=resultSet.getDouble("prix");
-                Date dd = Date.Recupere_date(dateDebut);
-                Date df = Date.Recupere_date(dateFin);
-
-                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat,prix);
-                Hotel.AjouterReservationMap(reservation);
-                Reservation.setNb(id);
-            }
-
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe, deja_presente_bdd{
-        String query = "SELECT * FROM commentaires";
-
-        try {
-            Connection connection = connectToMySQL();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int idUser = resultSet.getInt("iduser");
-                String stringdate = resultSet.getString("date");
-                String commantaires=resultSet.getString("commentaires");
-                String username=resultSet.getString("username");
-
-                Date date = Date.Recupere_date(stringdate);
-
-                Commentaires commantaire = new Commentaires(id, commantaires, username, date, idUser);
-                Hotel.AjouterCommentaireMap(commantaire);
-                Commentaires.setNb(id);
-            }
-
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void Bdd_to_hashMap_option() throws deja_presente_bdd {
-        String query = "SELECT * FROM options";
     
-        try {
-            Connection connection = connectToMySQL();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+
     
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String optionName = resultSet.getString("option_name");
-                double prix = resultSet.getDouble("price");
-    
-                // Convertir le nom de l'option en enum Rooms_Options
-                Rooms_Options roomsOption = Rooms_Options.ToTypeChambre(optionName);
-    
-                Option option = new Option(roomsOption, prix, id);
-                Hotel.AjouterOptionMap(option);
-                Option.setNb(id);
-            }
-    
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.getMessage();
-        }
-    }
     
    
    

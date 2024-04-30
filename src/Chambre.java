@@ -1,3 +1,9 @@
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import Control.Control;
+
 enum TypeChambre {
 	SOLO,
 	DOUBLE,
@@ -260,4 +266,106 @@ enum OptionSupplementaire {
 	this.prix=prix;  
 	return prix;
   }
+
+   public static void Bdd_to_hashMap_room() throws deja_presente_bdd {
+        // Informations de connexion à la base de données
+
+        String query = "SELECT * FROM rooms";
+
+        try {
+            // Établir la connexion à la base de données
+            Connection connection = Control.connectToMySQL();
+
+            // Créer une déclaration pour exécuter la requête
+            Statement statement = connection.createStatement();
+
+            // Exécuter la requête SQL et obtenir le résultat
+            ResultSet resultSet = statement.executeQuery(query);
+            // Parcourir le résultat et afficher les informations
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String type = resultSet.getString("type");
+                TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
+                int prix=resultSet.getInt("prix");
+                boolean sona=resultSet.getBoolean("SONA");
+                boolean terasse=resultSet.getBoolean("TERASSE");
+                boolean vuesurmere=resultSet.getBoolean("VUESURMERE");
+                boolean vuesurforet=resultSet.getBoolean("VUESURFORET");
+
+                Chambre chambre = new Chambre(id, typeChambre, prix, sona, terasse, vuesurmere, vuesurforet);
+                Hotel.AjouterChambreMap(chambre);
+                Chambre.setNb(id);
+            }
+
+            // Fermer les ressources
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static void hash_map_bdd () throws SQLException{
+		 HashMap<Integer, ModificationHotel<?,?>> modificMap = Hotel.getModificationMap();
+        Connection connection = Control.connectToMySQL();
+        // Parcours de la HashMap et accès à ses éléments
+        for (Map.Entry<Integer, ModificationHotel<?,?>> entry : modificMap.entrySet()) {
+
+            Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
+            Object operation = entry.getValue().getOperation(); // Obtenez l'opération de ModificationHotel (type
+                                                                       // O)
+                if (objet instanceof Chambre) {
+                Chambre chambre = (Chambre) objet;
+                String ch ="Chambre";
+                if (operation==TypeOperation.AJOUT) {
+
+                    String insertQuery = "INSERT INTO rooms (type, prix) VALUES (?, ?, ?, ?, ?, ?)";                 
+                    PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+                    preparedStatement.setString(1, chambre.getType().ToString());
+                    preparedStatement.setDouble(2, chambre.getPrix());
+
+                    preparedStatement.setBoolean(3, chambre.isSONA());
+                    preparedStatement.setBoolean(4, chambre.isTERASSE());
+                    preparedStatement.setBoolean(5, chambre.isVuesurmere());
+                    preparedStatement.setBoolean(6, chambre.isVuesurforet());
+
+
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    System.out.println("Objet: "+ch+" / Operation: "+operation);
+
+                } else if (operation == TypeOperation.MODIFICATION) {
+                    // on a un probleme de iD_hashMap != iD_DB (c pas suur)
+                    int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe
+                                                     // Chambre pour obtenir l'identifiant de la chambre
+                    String updateQuery = "UPDATE rooms SET  type = ?, prix = ?, SONA=?, TERASSE=?, VUESURMERE= ?, VUESURFORET= ? WHERE id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                    
+                    preparedStatement.setString(1, chambre.getType().ToString());
+                    preparedStatement.setDouble(2, chambre.getPrix());
+                    preparedStatement.setBoolean(3, chambre.isSONA());
+                    preparedStatement.setBoolean(4, chambre.isTERASSE());
+                    preparedStatement.setBoolean(5, chambre.isVuesurmere());
+                    preparedStatement.setBoolean(6, chambre.isVuesurforet());
+                    preparedStatement.setInt(7, idChambre);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    System.out.println("Objet: "+ch+" / Operation: "+operation);
+
+
+                } else {
+
+                    int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe
+                                                     // Chambre pour obtenir l'identifiant de la chambre
+                    String deleteQuery = "DELETE FROM rooms WHERE id = ?";
+                    PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+                    preparedStatement.setInt(1, idChambre);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+
+                }
+            }
+		}
+	}
 }
