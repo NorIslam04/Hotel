@@ -4,13 +4,8 @@ import Model.Date.*;
 import java.awt.Color;
 import java.awt.Font;
 import Model.Chambre.*;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 
 public class ReservationAvecDetail extends javax.swing.JFrame {
 
@@ -390,9 +385,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                         + "$</html>");
             }
 
-            //Reservation reservation = new Reservation(Reservation.getNb(),Hotel.id_user_current, date_fin, date_debut, typeChambre, -1, EtatReservation.EN_ATTENTE);
-            //Hotel.AjtReservationMap(reservation);
-            new t();
+            new TableReseravtionUser();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
@@ -413,7 +406,7 @@ public class ReservationAvecDetail extends javax.swing.JFrame {
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
 
-        } catch (Date_nonorganiser e) {
+        }catch (Date_nonorganiser e) {
             JOptionPane.showMessageDialog(frame,
                     e.getMessage(),
                     "dates non organisee",
