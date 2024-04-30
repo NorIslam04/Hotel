@@ -1,7 +1,7 @@
 package Control;
 
-import java.sql.*;
 
+import java.sql.*;
 
 public class Control {
 
@@ -46,6 +46,13 @@ public class Control {
 
         return utilisateurTrouve;
     }
+
+    public static void hash_map_bdd () {
+        User.
+    }
+    
+
+    
     
     
 }
