@@ -1,3 +1,8 @@
+import java.sql.*;
+
+import Control.Control;
+
+
 public class Commentaires {
     private int id;//hashMap
     private String commentaire;
@@ -86,6 +91,37 @@ public class Commentaires {
        // this.user = Hotel.RechercheuserParId(iduser); hna ikon andna direct l id user
         this.commentaire = commentaire;
         this.date=date;
+    }
+
+    public static void Bdd_to_hashMap_commantaire() throws NumberFormatException, Date_nonvalid, Date_syntaxe, deja_presente_bdd{
+        String query = "SELECT * FROM commentaires";
+
+        try {
+            Connection connection = Control.connectToMySQL();;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idUser = resultSet.getInt("iduser");
+                String stringdate = resultSet.getString("date");
+                String commantaires=resultSet.getString("commentaires");
+                String username=resultSet.getString("username");
+
+                Date date = Date.Recupere_date(stringdate);
+
+                Commentaires commantaire = new Commentaires(id, commantaires, username, date, idUser);
+                Hotel.AjouterCommentaireMap(commantaire);
+                Commentaires.setNb(id);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
