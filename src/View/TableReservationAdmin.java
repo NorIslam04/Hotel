@@ -345,7 +345,7 @@ public static void setId_chambre(int id_chambre) {
         // TODO add your handling code here:
     }   
     private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                               
-        new chambreadmin();
+        new Adminchambresoption();
         Control.hash_map_bdd();
         this.dispose();
     }                                              
