@@ -8,10 +8,6 @@ public class Main {
        Control.bdd_to_hashmap();
 
         new Login();
-
-        
-       
-       
-        
+  
     }
 }

@@ -3,6 +3,8 @@ import Model.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.sql.SQLException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,10 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class Login extends javax.swing.JFrame {
+public class Signe_in extends javax.swing.JFrame {
+    
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
-    public Login() {
+    public Signe_in() {
         initComponents();
     }
 
@@ -24,42 +27,36 @@ public class Login extends javax.swing.JFrame {
 
         userlabel = new javax.swing.JLabel();
         pwdlabel = new javax.swing.JLabel();
-        loginlabel = new javax.swing.JLabel();
-        welcomelabel = new javax.swing.JLabel();
-        backgroundlabel = new javax.swing.JLabel();
-        descriptionlabel = new javax.swing.JLabel();
-        showPasswordLabel = new JLabel();
+        signinlabel = new javax.swing.JLabel();
         usertext = new javax.swing.JTextField();
         pwdtext = new javax.swing.JPasswordField();
-        seConnerButton = new javax.swing.JButton();
+        welcomelabel = new javax.swing.JLabel();
+        submitbtn = new javax.swing.JButton();
+        maillabel = new javax.swing.JLabel();
+        mailtext = new javax.swing.JTextField();
         closebtn = new javax.swing.JButton();
-        sinscrireButton = new javax.swing.JButton();
-        aPropos = new javax.swing.JButton();
+        backgroundlabel = new javax.swing.JLabel();
+        descriptionlabel = new javax.swing.JLabel();
         showPasswordButton = new JCheckBox();
-      
-        // Création des panneaux 
+        showPasswordLabel = new JLabel();
+        seConnecterButton = new javax.swing.JButton();
+        aPropos = new javax.swing.JButton();
+        // Création des panneaux
         JPanel bienvenuePanel = new JPanel();
         JPanel contenuPanel = new JPanel();
         JPanel bouttonsJPanel = new JPanel();
 
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
-        setUndecorated(true); 
-        // Supprime tous les boutons par défaut 
-        // rendre le layout manager null pour le positionement absolu.
-        getContentPane().setLayout(null);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login page");
-        setLocationRelativeTo(null);
-        setVisible(true);
-        // les labels:
+        setUndecorated(true); // Supprime tous les boutons par défaut
+
         if(Hotel.langue==0){
-        langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","French" }));
+            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "English","frensh" }));
         }else{
-            langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
-        }
-        langueBox.setBounds(400, 5, 150, 30);
-        langueBox.setForeground(color);
+                langueBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francais","Anglais" }));
+         }
+         langueBox.setBounds(400, 5, 150, 30);
+         langueBox.setForeground(color);
         langueBox.setBackground(colorgris);
         langueBox.setBorder(new RoundBorder(color, 3));
         add(langueBox);
@@ -68,124 +65,158 @@ public class Login extends javax.swing.JFrame {
                 changerlangue();
             }
         });
+
         if(Hotel.langue==0){
-        pwdlabel.setText("Password:");
-        descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
-        showPasswordLabel.setText("See PassWord");
-        userlabel.setText("User-name:"); // le positionement exact du label.
-        loginlabel.setText("Log-In");
-        welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
-        sinscrireButton.setText("I Don't Have An Acount");
-        aPropos.setText("About-Us");
-        loginlabel.setBounds(170, 30, 300, 40);
-        }else{
-            pwdlabel.setText("Mot de pass:");
-            descriptionlabel.setText("<html><p style='line-height: ;'>un sejour confortable et relaxant en pleine nature a jijel,<br> vivez l'experience</p></html>");
-            showPasswordLabel.setText("Voir le mot de pass");
-            userlabel.setText("Pseudo:"); // le positionement exact du label.
-            loginlabel.setText("Se Connecter");
-            welcomelabel.setText("<html><p style='line-height: ;'>Bienvenue au Harry,<br>l’evasion par excellence</p></html>");
-            sinscrireButton.setText("J'ai pas de compte"); 
-            aPropos.setText("A propos de Nous");
-            loginlabel.setBounds(125, 30, 300, 40);
-        }
+            pwdlabel.setText("Password:");
+            descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
+            showPasswordLabel.setText("See PassWord");
+            userlabel.setText("User-name:"); // le positionement exact du label.
+            signinlabel.setText("Sign-In");
+            welcomelabel.setText("<html><p style='line-height: ;'>Welcome To Harry,<br>The Ultimate Escape</p></html>");
+            seConnecterButton.setText("Back To Login");
+            submitbtn.setText("Creat A New Acount");
+            maillabel.setText("Mail-Adress");
+            aPropos.setText("About-Us");
+            signinlabel.setBounds(170, 30, 300, 40);
+            }else{
+                pwdlabel.setText("Mot de pass:");
+                descriptionlabel.setText("<html><p style='line-height: ;'>un sejour confortable et relaxant en pleine nature a jijel,<br> vivez l'experience</p></html>");
+                showPasswordLabel.setText("Voir le mot de pass");
+                userlabel.setText("Pseudo:"); // le positionement exact du label.
+                signinlabel.setText("S'inscrire");
+                welcomelabel.setText("<html><p style='line-height: ;'>Bienvenue au Harry,<br>l’evasion par excellence</p></html>");
+                maillabel.setText("Adresse email");
+                aPropos.setText("A propos de Nous");
+                seConnecterButton.setText("revenir a ce connecter");
+                submitbtn.setText("Creer un nouveaux compte");
+           
+                signinlabel.setBounds(10, 30, 300, 40);
+            }
         
+            
+   
+        
+        // rendre le layout manager null pour le positionement absolu.
+        getContentPane().setLayout(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("signin page");
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+        // les labels:
         // creation d'une label pour le username avec ses caractéristiques.
         userlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
         userlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        
+       
         // le positionement exact du label.
-        userlabel.setBounds(20, 100, 150, 30);
+        userlabel.setBounds(20, 90, 150, 30);
         getContentPane().add(userlabel);
 
         // creation d'une label pour la description avec ses caractéristiques.
         descriptionlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 15));
         descriptionlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
       
+        // le positionement exact du label.
         descriptionlabel.setBounds(42, 100, 1000, 105);
         getContentPane().add(descriptionlabel);
 
         // creation d'une label pour le show password avec ses caractéristiques.
         showPasswordLabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         showPasswordLabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue() + 50));
-      
+       
         // le positionement exact du label.
-        showPasswordLabel.setBounds(170, 195, 150, 30);
+        showPasswordLabel.setBounds(170, 205, 150, 30);
         getContentPane().add(showPasswordLabel);
-        
+
         // creation d'une label pour le password avec ses caractéristiques.
-        pwdlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); 
+        pwdlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24)); // NOI18N
         pwdlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-      
+       
         // le positionement exact du label.
-        pwdlabel.setBounds(20, 150, 150, 30);
+        pwdlabel.setBounds(20, 170, 150, 30);
         getContentPane().add(pwdlabel);
 
         // creation d'une label pour le sign in avec ses caractéristiques.
-        loginlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        loginlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        
-        // le positionement exact du label.
+        signinlabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
+        signinlabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
      
-        getContentPane().add(loginlabel);
+        // le positionement exact du label.
+        signinlabel.setBounds(170, 30, 150, 40);
+        getContentPane().add(signinlabel);
 
         // creation d'une label pour le welcome avec ses caractéristiques.
         welcomelabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 37));
         welcomelabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        
+    
         // le positionement exact du label.
-        welcomelabel.setBounds(70, 34, 1000, 100);
+        welcomelabel.setBounds(42, 34, 1000, 100);
         getContentPane().add(welcomelabel);
-
-        // les bouttons:
-        // boutton pour le show password
+        // boutton pour le show passwd
         showPasswordButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        showPasswordButton.setBounds(362, 200, 40, 20);
+        showPasswordButton.setText(" ");
+        showPasswordButton.setBounds(370, 208, 40, 20);
         getContentPane().add(showPasswordButton);
 
+        // creation d'une label pour le e-mail avec ses caractéristiques.
+        maillabel.setFont(new java.awt.Font("Baskerville Old Face", 0, 24));
+        maillabel.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+   
+        // le positionement exact du label.
+        maillabel.setBounds(20, 130, 200, 30);
+        getContentPane().add(maillabel);
+
+        // les bouttons:
         // creation d'un boutton pour le submit avec ses caractéristiques.
-        seConnerButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        seConnerButton.setText("Login");
-        seConnerButton.addActionListener(new java.awt.event.ActionListener() {
+        submitbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        
+        submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seConnecterbtnActionPerformed(evt);
+                try {
+                    submitbtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         // le positionement exact du boutton.
-        seConnerButton.setBounds(280, 457, 235, 40);
-        seConnerButton.setBackground(color);
-        seConnerButton.setForeground(Color.BLACK);
+        submitbtn.setBounds(285, 457, 230, 40);
+        submitbtn.setBackground(color);
+        submitbtn.setForeground(Color.BLACK);
 
         // creation d'un boutton pour se connecter avec ses caractéristiques.
-        sinscrireButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        sinscrireButton.setBorder(new RoundBorder(color, 3));
-     
+        seConnecterButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+    
 
-        sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
+        seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sinscrireButtonbtnActionPerformed();
+                seConnecterButtonbtnActionPerformed();
             }
         });
+
+        
         // le positionement exact du boutton.
-        sinscrireButton.setBounds(60, 457, 215, 40);
-        sinscrireButton.setBackground(colorgris);
-        sinscrireButton.setForeground(color);
+        seConnecterButton.setBounds(60, 457, 220, 40);
+        seConnecterButton.setBackground(colorgris);
+        seConnecterButton.setForeground(Color.WHITE);
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-
+    
         aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aProposbtnActionPerformed();
             }
         });
+        pwdtext.setEchoChar('\u2022');
         // le positionement exact du boutton.
         aPropos.setBounds(60, 510, 452, 40);
         aPropos.setBackground(colorgris);
-        aPropos.setBorder(new RoundBorder(color, 3));
-        aPropos.setForeground(color);
+        aPropos.setForeground(Color.WHITE);
+
+        // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
+
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
@@ -193,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         // le positionement exact du boutton.
         closebtn.setBounds(1000, 5, 25, 30);
         getContentPane().add(closebtn);
-
+        
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closebtnActionPerformed(evt);
@@ -201,6 +232,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         // les textfields:
+
         pwdtext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdtextActionPerformed(evt);
@@ -212,10 +244,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-
         // le positionement exact du textfield:
-        pwdtext.setBounds(170, 150, 230, 30);
+        pwdtext.setBounds(170, 170, 230, 30);
         // Définir le remplissage du champ de texte
+        pwdtext.setForeground(color);
+        pwdtext.setBackground(colorgris);
+
         Border whiteBorder = BorderFactory.createLineBorder(color);
 
         // Créer une bordure transparente intérieure
@@ -230,17 +264,22 @@ public class Login extends javax.swing.JFrame {
         pwdtext.setBorder(compoundBorder);
 
         // le positionement exact du textfield.
-        usertext.setBounds(170, 100, 230, 30);
+        usertext.setBounds(170, 90, 230, 30);
         usertext.setForeground(color);
         usertext.setBackground(colorgris);
         usertext.setBorder(compoundBorder);
         getContentPane().add(usertext);
 
         // le positionement exct du textfield.
+        mailtext.setBounds(170, 130, 230, 30);
+        mailtext.setForeground(color);
+        mailtext.setBackground(colorgris);
+        mailtext.setBorder(compoundBorder);
+        getContentPane().add(mailtext);
 
         // Définir la disposition des panneaux
         bienvenuePanel.setLayout(new BorderLayout());
-        contenuPanel.setLayout(null);
+        contenuPanel.setLayout(null); // Vous pouvez ajuster le layout en fonction de vos besoins
 
         bouttonsJPanel.setLayout(null);
 
@@ -249,23 +288,24 @@ public class Login extends javax.swing.JFrame {
         bienvenuePanel.add(descriptionlabel, BorderLayout.SOUTH);
 
         // Ajouter les composants au panneau contenu
-        contenuPanel.setBorder(new RoundBorder(color, 3));
         contenuPanel.add(userlabel);
         contenuPanel.add(pwdlabel);
-        contenuPanel.add(loginlabel);
+        contenuPanel.add(signinlabel);
         contenuPanel.add(usertext);
         contenuPanel.add(pwdtext);
-
+        contenuPanel.add(maillabel);
+        contenuPanel.add(mailtext);
         contenuPanel.add(showPasswordLabel);
         contenuPanel.add(showPasswordButton);
 
         bouttonsJPanel.add(aPropos);
-        bouttonsJPanel.add(sinscrireButton);
-        bouttonsJPanel.add(seConnerButton);
+        bouttonsJPanel.add(seConnecterButton);
+        bouttonsJPanel.add(submitbtn);
 
         // Positionner les panneaux
         bienvenuePanel.setBounds(30, 10, 1032, 150); // Ajustez les coordonnées et les dimensions selon votre interface
         contenuPanel.setBounds(65, 200, 442, 250);
+        contenuPanel.setBorder(new RoundBorder(color, 3));
         bouttonsJPanel.setBounds(0, 10, 1032, 1000); // Ajustez les coordonnées et les dimensions selon votre interface
         bienvenuePanel.setOpaque(false);
         contenuPanel.setOpaque(false);
@@ -286,7 +326,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void pwdtextActionPerformed(java.awt.event.ActionEvent evt) {
-        
+       
     }
 
     private void aProposbtnActionPerformed() {
@@ -295,6 +335,9 @@ public class Login extends javax.swing.JFrame {
 
     private JFrame frame;
 
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
+    }
 
     private void togglePasswordVisibility() {
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
@@ -306,37 +349,9 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-    private void sinscrireButtonbtnActionPerformed() {
+    private void seConnecterButtonbtnActionPerformed() {
         dispose();
-        new Signe_in();
-    }
-
-    private void seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt) {
-
-        if (usertext.getText().equals("") || pwdtext.getText().equals("")) {
-            JOptionPane.showMessageDialog(frame,
-                    "Please Fill All The Text Fields !!",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-        } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
-         
-            new Loby_Admin();
-
-        } else {
-
-            if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
-
-                Chambre_interface ch = new Chambre_interface();
-                ch.setVisible(true);
-                this.hide();
-
-            } else {
-
-                Passer_a_signin pas = new Passer_a_signin();
-                pas.setVisible(true);
-
-            }
-        }
+        new Login();
     }
     private void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
@@ -346,14 +361,65 @@ public class Login extends javax.swing.JFrame {
             Hotel.langue=1;
         }
         dispose();
-        new Login();
+        new Signe_in();
        
     }
 
- private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception, SQLException {
+        if(Hotel.verif_email(mailtext.getText())){
+            if(User.motdepass(pwdtext.getText())){
+        if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
+            if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
+                JOptionPane.showMessageDialog(frame,
+                        "Ce compte existe deja !",
+                        "Compte Existe",
+                        JOptionPane.INFORMATION_MESSAGE);
+                new Login();
+            } else {
+                JOptionPane.showMessageDialog(frame,
+                        "Votre compte a été créé avec succès ",
+                        "WELCOME",
+                        JOptionPane.INFORMATION_MESSAGE);
+                // ajoute dans hashMap users
+                User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
+                Hotel.AjtUserMap(user);
+                Hotel.id_user_current=User.getNb();
+                new Loby_User();
+            }
+        } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
+            JOptionPane.showMessageDialog(frame,
+                    "Remplir le champ de User-Name et Password et Adresse-Mail !",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
 
+            JOptionPane.showMessageDialog(frame,
+                    "Votre compte a été créé avec succès ",
+                    "WELCOME",
+                    JOptionPane.INFORMATION_MESSAGE);
+            // ajoute dans hashMap users
+            User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
+            Hotel.AjtUserMap(user);
+            Hotel.id_user_current=User.getNb();
+            new Loby_User();
+            this.hide();
+        }
+    }else{
+        JOptionPane.showMessageDialog(frame,
+        "Veuillez entrer un mot de passe contenant au moins 8 caractères",
+        "Erreur de syntaxe dans le password",
+        JOptionPane.INFORMATION_MESSAGE);
+
+    }
+        }else{
+            JOptionPane.showMessageDialog(frame,
+                    "Exemple:  utilisateur@exemple.com",
+                    "Erreur de syntaxe dans l'e-mail",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    
+    }
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -364,22 +430,22 @@ public class Login extends javax.swing.JFrame {
             }
 
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Signe_in().setVisible(true);
             }
         });
     }
@@ -387,20 +453,20 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel backgroundlabel;
     private javax.swing.JButton closebtn;
+    private javax.swing.JLabel maillabel;
+    private javax.swing.JTextField mailtext;
     private javax.swing.JLabel pwdlabel;
     private javax.swing.JPasswordField pwdtext;
-    private javax.swing.JLabel loginlabel;
-    private javax.swing.JButton seConnerButton;
+    private javax.swing.JLabel signinlabel;
+    private javax.swing.JButton submitbtn;
     private javax.swing.JLabel userlabel;
     private javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
     private JCheckBox showPasswordButton;
-    private JButton sinscrireButton;
+    private JButton seConnecterButton;
     private javax.swing.JLabel showPasswordLabel;
     private JButton aPropos;
     // End of variables declaration
 
 }
-
-// To:do verification de la validation de l adreesse mail
