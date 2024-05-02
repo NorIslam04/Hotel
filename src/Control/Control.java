@@ -70,11 +70,14 @@ public class Control {
         Chambre.Bdd_to_hashMap_room();
         Reservation.Bdd_to_hashMap_reservation();
 
+        //les instructions doit etre trier pour l'execution de programme
+
+
         Action_Login();
 
     }
 
-    public static void Action_Login(){
+    public static void Action_Login(){ //fait
 
        new Login();
 
@@ -117,38 +120,25 @@ public class Control {
             }
         });
 
+        Login.showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                Login.togglePasswordVisibility();
+            }
+        });
 
         Login.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                // 7ta t3abez 3la box bch yasra had l fnct
                 Login.changerlangue();
                 Login.fermerFenetre();
-                Action_Login();
-                   
+                Action_Login();  
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-        if(Login.langueBox.getSelectedItem()=="English"||Login.langueBox.getSelectedItem()=="Anglais"){
-            Hotel.langue=0;
-            Login.loginFrame.dispose();
-        }else{
-            Hotel.langue=1;
-            Login.loginFrame.dispose();
-        }
-
         
-       
+
+
+
 
 
     }
