@@ -127,16 +127,18 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         Icon etoileJauneIcon = new ImageIcon("For Rent2.png");
 
         // Initialiser les cases à cocher avec l'icône d'étoile blanche
-        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==1){
-        etoile1Box.setIcon(etoileJauneIcon);
-        etoile2Box.setIcon(etoileBlancheIcon);
-        etoile3Box.setIcon(etoileBlancheIcon);
-        etoile4Box.setIcon(etoileBlancheIcon);
-        etoile5Box.setIcon(etoileBlancheIcon);
-    etoile1Box.setSelected(true);
+        if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew) != null){
+
+            if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).getNote()==1){
+            etoile1Box.setIcon(etoileJauneIcon);
+            etoile2Box.setIcon(etoileBlancheIcon);
+            etoile3Box.setIcon(etoileBlancheIcon);
+            etoile4Box.setIcon(etoileBlancheIcon);
+            etoile5Box.setIcon(etoileBlancheIcon);
+            etoile1Box.setSelected(true);
 }
       
-        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==2){
+        if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).getNote()==2){
             etoile1Box.setSelected(true);
             etoile2Box.setSelected(true);
         etoile1Box.setIcon(etoileJauneIcon);
@@ -144,7 +146,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         etoile3Box.setIcon(etoileBlancheIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
         etoile5Box.setIcon(etoileBlancheIcon);} 
-         if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==3){
+         if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).getNote()==3){
             etoile1Box.setSelected(true);
             etoile2Box.setSelected(true);
             etoile3Box.setSelected(true);
@@ -154,7 +156,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         etoile3Box.setIcon(etoileJauneIcon);
         etoile4Box.setIcon(etoileBlancheIcon);
         etoile5Box.setIcon(etoileBlancheIcon);}  
-        if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==4){
+        if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).getNote()==4){
             etoile1Box.setSelected(true);
             etoile2Box.setSelected(true);
             etoile3Box.setSelected(true);
@@ -165,24 +167,28 @@ public class Commentaires_Interface extends javax.swing.JFrame {
             etoile4Box.setIcon(etoileJauneIcon);
             etoile5Box.setIcon(etoileBlancheIcon);}
 
-            if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==5){
+            if(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).getNote()==5){
                 etoile1Box.setSelected(true);
                 etoile2Box.setSelected(true);
                 etoile3Box.setSelected(true);
                 etoile4Box.setSelected(true);
                 etoile5Box.setSelected(true);
-               
+                
                 etoile1Box.setIcon(etoileJauneIcon);
                 etoile2Box.setIcon(etoileJauneIcon);
                 etoile3Box.setIcon(etoileJauneIcon);
                 etoile4Box.setIcon(etoileJauneIcon);
                 etoile5Box.setIcon(etoileJauneIcon);}
-                if(Hotel.RechercheuserParId(Hotel.id_user_current).getNote()==-1){
-                    etoile1Box.setIcon(etoileBlancheIcon);
-                    etoile2Box.setIcon(etoileBlancheIcon);
-                    etoile3Box.setIcon(etoileBlancheIcon);
-                    etoile4Box.setIcon(etoileBlancheIcon);
-                    etoile5Box.setIcon(etoileBlancheIcon);}
+            }else{
+               
+                etoile1Box.setIcon(etoileBlancheIcon);
+                etoile2Box.setIcon(etoileBlancheIcon);
+                etoile3Box.setIcon(etoileBlancheIcon);
+                etoile4Box.setIcon(etoileBlancheIcon);
+                etoile5Box.setIcon(etoileBlancheIcon);
+            }
+               
+                    
 
         // Ajouter un écouteur d'événements à chaque case à cocher
         etoile1Box.addActionListener(new ActionListener() {
@@ -432,25 +438,13 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     }
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
-        Hotel.RechercheuserParId(Hotel.id_user_current).setNote(new_note);
-        Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+        Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew).setNote(new_note);
+        Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current-Hotel.neew));
+        
+    
         Control.hash_map_bdd();
         System.exit(0);
     }
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-
-                    new Commentaires_Interface().setVisible(true);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
 }
