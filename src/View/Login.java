@@ -11,7 +11,8 @@ import javax.swing.border.Border;
 
 public class Login extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
-    public static JFrame loginFrame = new JFrame();
+    private static JFrame frame;
+
 
     public Login() {
         initComponents();
@@ -133,7 +134,8 @@ public class Login extends javax.swing.JFrame {
         // les bouttons:
         // boutton pour le show password
         showPasswordButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        showPasswordButton.setBounds(362, 200, 40, 20);
+        showPasswordButton.setBounds(362, 200, 20, 20);
+        showPasswordButton.setBackground(colorgris);
         getContentPane().add(showPasswordButton);
 
         // creation d'un boutton pour le submit avec ses caractéristiques.
@@ -174,16 +176,6 @@ public class Login extends javax.swing.JFrame {
         // le positionement exact du boutton.
         closebtn.setBounds(1000, 5, 25, 30);
         getContentPane().add(closebtn);
-
-        
-
-        // les textfields:
-
-        showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                togglePasswordVisibility();
-            }
-        });
 
 
         // le positionement exact du textfield:
@@ -263,20 +255,14 @@ public class Login extends javax.swing.JFrame {
         new APropos();
     }
 
-    private static JFrame frame;
-
-
-    private void togglePasswordVisibility() {//fait
+    public static void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
         } else {
             pwdtext.setEchoChar('\u2022'); // Masquer le mot de passe
-            
         }
     }
-
-
 
     public static int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
 
@@ -308,7 +294,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
-    
     
     public static void changerlangue(){//fait
         
