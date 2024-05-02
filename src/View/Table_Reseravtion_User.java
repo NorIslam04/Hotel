@@ -6,16 +6,14 @@ import Model.Reservation.*;
 import Control.*;
 
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -590,6 +588,7 @@ private JFrame frame;
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
             Control.hash_map_bdd();
+            System.out.println(Chambre.getNb());
             System.exit(0);
         }
     }                                       

@@ -1,5 +1,8 @@
 package Control;
 import Model.*;
+import View.*;
+
+
 import java.sql.*;
 import java.util.Map;
 
@@ -52,7 +55,9 @@ public class Control {
         Reservation.hahs_map_bdd();;
         Chambre.hash_map_bdd();
         Commentaires.hash_map_bdd();
-        //Option.
+        //Option.hash_map_bdd();
+       
+       
     }
     public static void bdd_to_hashmap() throws Exception {
         Option.Bdd_to_hashMap_option();
@@ -60,6 +65,28 @@ public class Control {
         User.Bdd_to_hashMap_users();
         Chambre.Bdd_to_hashMap_room();
         Reservation.Bdd_to_hashMap_reservation();
+
+        new Login();
+
+        Login.seConnerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                switch (Login.seConnecterbtnActionPerformed(evt)) {
+                    case -1:
+                    new Passer_a_signin();   
+                        break;
+                    case 1:
+                    Chambre_interface ch = new Chambre_interface();
+                    ch.setVisible(true);
+                        break;
+                    case 2:
+                    new Loby_Admin();
+                        break;
+                   
+                }
+               
+            }
+        });
        
     }
 

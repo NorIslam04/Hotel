@@ -293,7 +293,7 @@ public class Login extends javax.swing.JFrame {
         APropos a = new APropos();
     }
 
-    private JFrame frame;
+    private static JFrame frame;
 
 
     private void togglePasswordVisibility() {
@@ -311,29 +311,32 @@ public class Login extends javax.swing.JFrame {
         new Signe_in();
     }
 
-    private void seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt) {
+    public static int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
 
         if (usertext.getText().equals("") || pwdtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
                     "Please Fill All The Text Fields !!",
                     "ERROR",
                     JOptionPane.ERROR_MESSAGE);
+                    return 0;//se cas traite dans view psq en affiche un message de dialoge
         } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
-         
-            new Loby_Admin();
+            return 2;
+            //new Loby_Admin();
 
         } else {
 
             if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
 
-                Chambre_interface ch = new Chambre_interface();
-                ch.setVisible(true);
-                this.hide();
+               // Chambre_interface ch = new Chambre_interface();
+              //  ch.setVisible(true);
+                return 1; 
 
             } else {
 
-                Passer_a_signin pas = new Passer_a_signin();
-                pas.setVisible(true);
+                //Passer_a_signin pas = new Passer_a_signin();
+               
+                //pas.setVisible(true);
+                return -1;
 
             }
         }
@@ -385,20 +388,20 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel backgroundlabel;
-    private javax.swing.JButton closebtn;
-    private javax.swing.JLabel pwdlabel;
-    private javax.swing.JPasswordField pwdtext;
-    private javax.swing.JLabel loginlabel;
-    private javax.swing.JButton seConnerButton;
-    private javax.swing.JLabel userlabel;
-    private javax.swing.JTextField usertext;
-    private javax.swing.JLabel welcomelabel;
-    private javax.swing.JLabel descriptionlabel;
-    private JCheckBox showPasswordButton;
-    private JButton sinscrireButton;
-    private javax.swing.JLabel showPasswordLabel;
-    private JButton aPropos;
+    private static javax.swing.JLabel backgroundlabel;
+    private static javax.swing.JButton closebtn;
+    private static javax.swing.JLabel pwdlabel;
+    private static javax.swing.JPasswordField pwdtext;
+    private static javax.swing.JLabel loginlabel;
+    public static javax.swing.JButton seConnerButton;
+    private static javax.swing.JLabel userlabel;
+    private static javax.swing.JTextField usertext;
+    private static javax.swing.JLabel welcomelabel;
+    private static javax.swing.JLabel descriptionlabel;
+    private static JCheckBox showPasswordButton;
+    private static JButton sinscrireButton;
+    private static javax.swing.JLabel showPasswordLabel;
+    private static JButton aPropos;
     // End of variables declaration
 
 }

@@ -42,7 +42,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
     private void initComponents() throws Exception {
         
-        TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
+        /*TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
         Chambre chambre1;
         double prix =-1;//hna 3la jal constricteure
@@ -58,7 +58,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE,prix, true, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
-        }
+        }*/
         
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale

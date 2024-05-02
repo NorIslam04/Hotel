@@ -339,6 +339,8 @@ public class Chambre_interface extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
+        this.setVisible(true);
+
     }
 
     private JFrame frame;
