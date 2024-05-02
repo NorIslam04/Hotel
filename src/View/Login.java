@@ -1,20 +1,17 @@
 package View;
 import Model.*;
-
+import Control.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import java.awt.Window;
+
+import javax.swing.*;
+
 import javax.swing.border.Border;
 
 public class Login extends javax.swing.JFrame {
-    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static JFrame loginFrame = new JFrame();
 
     public Login() {
         initComponents();
@@ -63,11 +60,7 @@ public class Login extends javax.swing.JFrame {
         langueBox.setBackground(colorgris);
         langueBox.setBorder(new RoundBorder(color, 3));
         add(langueBox);
-        langueBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerlangue();
-            }
-        });
+        
         if(Hotel.langue==0){
         pwdlabel.setText("Password:");
         descriptionlabel.setText("<html><p style='line-height: ;'>A Comfortable And Relaxing Stay Surrounded By Nature In JiJel,<br> Live The Experience</p></html>");
@@ -146,11 +139,7 @@ public class Login extends javax.swing.JFrame {
         // creation d'un boutton pour le submit avec ses caractéristiques.
         seConnerButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         seConnerButton.setText("Login");
-        seConnerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seConnecterbtnActionPerformed(evt);
-            }
-        });
+        
         // le positionement exact du boutton.
         seConnerButton.setBounds(280, 457, 235, 40);
         seConnerButton.setBackground(color);
@@ -161,11 +150,7 @@ public class Login extends javax.swing.JFrame {
         sinscrireButton.setBorder(new RoundBorder(color, 3));
      
 
-        sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sinscrireButtonbtnActionPerformed();
-            }
-        });
+        
         // le positionement exact du boutton.
         sinscrireButton.setBounds(60, 457, 215, 40);
         sinscrireButton.setBackground(colorgris);
@@ -174,11 +159,7 @@ public class Login extends javax.swing.JFrame {
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
 
-        aPropos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aProposbtnActionPerformed();
-            }
-        });
+        
         // le positionement exact du boutton.
         aPropos.setBounds(60, 510, 452, 40);
         aPropos.setBackground(colorgris);
@@ -194,18 +175,10 @@ public class Login extends javax.swing.JFrame {
         closebtn.setBounds(1000, 5, 25, 30);
         getContentPane().add(closebtn);
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closebtnActionPerformed(evt);
-            }
-        });
+        
 
         // les textfields:
-        pwdtext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdtextActionPerformed(evt);
-            }
-        });
+
         showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 togglePasswordVisibility();
@@ -285,18 +258,15 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void pwdtextActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }
 
-    private void aProposbtnActionPerformed() {
-        APropos a = new APropos();
+    public static void aProposbtnActionPerformed() {//fait
+        new APropos();
     }
 
     private static JFrame frame;
 
 
-    private void togglePasswordVisibility() {
+    private void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
@@ -306,10 +276,7 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-    private void sinscrireButtonbtnActionPerformed() {
-        dispose();
-        new Signe_in();
-    }
+
 
     public static int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
 
@@ -341,67 +308,47 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
-    private void changerlangue(){
+    
+    
+    public static void changerlangue(){//fait
+        
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
         }else{
             Hotel.langue=1;
         }
-        dispose();
-        new Login();
-       
+        
     }
 
- private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+    public static void fermerFenetre() {
+        Window window = SwingUtilities.getWindowAncestor(langueBox);
+        if (window instanceof JFrame) {
+            JFrame frame = (JFrame) window;
+            frame.dispose();
+        }
+    }
+
+ public static void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
-
+   
     // Variables declaration - do not modify
-    private static javax.swing.JLabel backgroundlabel;
-    private static javax.swing.JButton closebtn;
-    private static javax.swing.JLabel pwdlabel;
-    private static javax.swing.JPasswordField pwdtext;
-    private static javax.swing.JLabel loginlabel;
+    public static javax.swing.JLabel backgroundlabel;
+    public static javax.swing.JButton closebtn;
+    public static javax.swing.JLabel pwdlabel;
+    public static javax.swing.JPasswordField pwdtext;
+    public static javax.swing.JLabel loginlabel;
     public static javax.swing.JButton seConnerButton;
-    private static javax.swing.JLabel userlabel;
-    private static javax.swing.JTextField usertext;
-    private static javax.swing.JLabel welcomelabel;
-    private static javax.swing.JLabel descriptionlabel;
-    private static JCheckBox showPasswordButton;
-    private static JButton sinscrireButton;
-    private static javax.swing.JLabel showPasswordLabel;
-    private static JButton aPropos;
+    public static javax.swing.JLabel userlabel;
+    public static javax.swing.JTextField usertext;
+    public static javax.swing.JLabel welcomelabel;
+    public static javax.swing.JLabel descriptionlabel;
+    public static JCheckBox showPasswordButton;
+    public static JButton sinscrireButton;
+    public static javax.swing.JLabel showPasswordLabel;
+    public static JButton aPropos;
     // End of variables declaration
 
 }

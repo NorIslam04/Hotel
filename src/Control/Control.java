@@ -59,14 +59,24 @@ public class Control {
        
        
     }
-    public static void bdd_to_hashmap() throws Exception {
+    
+
+
+    public Control() throws Exception{
+
         Option.Bdd_to_hashMap_option();
         Commentaires.Bdd_to_hashMap_commantaire();
         User.Bdd_to_hashMap_users();
         Chambre.Bdd_to_hashMap_room();
         Reservation.Bdd_to_hashMap_reservation();
 
-        new Login();
+        Action_Login();
+
+    }
+
+    public static void Action_Login(){
+
+       new Login();
 
         Login.seConnerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,8 +97,74 @@ public class Control {
                
             }
         });
+
+        Login.aPropos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Login.aProposbtnActionPerformed();
+            }
+        });
+
+        Login.sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new Signe_in();
+                Login.fermerFenetre();
+            }
+        });
+
+        Login.closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Login.closebtnActionPerformed(evt);
+            }
+        });
+
+
+        Login.langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               // 7ta t3abez 3la box bch yasra had l fnct
+                Login.changerlangue();
+                Login.fermerFenetre();
+                Action_Login();
+                   
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+        if(Login.langueBox.getSelectedItem()=="English"||Login.langueBox.getSelectedItem()=="Anglais"){
+            Hotel.langue=0;
+            Login.loginFrame.dispose();
+        }else{
+            Hotel.langue=1;
+            Login.loginFrame.dispose();
+        }
+
+        
        
+
+
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void afficherHashMap(int i) {
         switch (i) {
