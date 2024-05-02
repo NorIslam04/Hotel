@@ -70,6 +70,7 @@ public class Passer_a_signin extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(375, 215));
         setLocationRelativeTo(null);
+        this.setVisible(true);
     }// </editor-fold>                        
 
     private void clickbackbtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
