@@ -3,6 +3,7 @@ import Model.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Window;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
@@ -13,13 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import Control.Control;
 
 public class Signe_in extends javax.swing.JFrame {
     
-    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
     public Signe_in() {
         initComponents();
@@ -62,11 +64,7 @@ public class Signe_in extends javax.swing.JFrame {
         langueBox.setBackground(colorgris);
         langueBox.setBorder(new RoundBorder(color, 3));
         add(langueBox);
-        langueBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerlangue();
-            }
-        });
+        
 
         if(Hotel.langue==0){
             pwdlabel.setText("Password:");
@@ -156,7 +154,7 @@ public class Signe_in extends javax.swing.JFrame {
         // boutton pour le show passwd
         showPasswordButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         showPasswordButton.setText(" ");
-        showPasswordButton.setBounds(370, 208, 40, 20);
+        showPasswordButton.setBounds(370, 208, 20, 20);
         getContentPane().add(showPasswordButton);
 
         // creation d'une label pour le e-mail avec ses caractéristiques.
@@ -171,15 +169,7 @@ public class Signe_in extends javax.swing.JFrame {
         // creation d'un boutton pour le submit avec ses caractéristiques.
         submitbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         
-        submitbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    submitbtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du boutton.
         submitbtn.setBounds(285, 457, 230, 40);
         submitbtn.setBackground(color);
@@ -187,19 +177,6 @@ public class Signe_in extends javax.swing.JFrame {
 
         // creation d'un boutton pour se connecter avec ses caractéristiques.
         seConnecterButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-    
-
-        seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    seConnecterButtonbtnActionPerformed();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-
         
         // le positionement exact du boutton.
         seConnecterButton.setBounds(60, 457, 220, 40);
@@ -209,11 +186,7 @@ public class Signe_in extends javax.swing.JFrame {
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
     
-        aPropos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aProposbtnActionPerformed();
-            }
-        });
+        
         pwdtext.setEchoChar('\u2022');
         // le positionement exact du boutton.
         aPropos.setBounds(60, 510, 452, 40);
@@ -231,25 +204,6 @@ public class Signe_in extends javax.swing.JFrame {
         // le positionement exact du boutton.
         closebtn.setBounds(1000, 5, 25, 30);
         getContentPane().add(closebtn);
-        
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closebtnActionPerformed(evt);
-            }
-        });
-
-        // les textfields:
-
-        pwdtext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdtextActionPerformed(evt);
-            }
-        });
-        showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                togglePasswordVisibility();
-            }
-        });
 
         // le positionement exact du textfield:
         pwdtext.setBounds(170, 170, 230, 30);
@@ -332,21 +286,19 @@ public class Signe_in extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void pwdtextActionPerformed(java.awt.event.ActionEvent evt) {
-       
+  
+
+    public static void aProposbtnActionPerformed() {//fait
+         new APropos();
     }
 
-    private void aProposbtnActionPerformed() {
-        APropos a = new APropos();
-    }
+    private static JFrame frame;
 
-    private JFrame frame;
-
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
+    public static void closebtnActionPerformed(java.awt.event.ActionEvent evt) {//fait
         System.exit(0);
     }
 
-    private void togglePasswordVisibility() {
+    public static void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
@@ -356,24 +308,24 @@ public class Signe_in extends javax.swing.JFrame {
         }
     }
 
-    private void seConnecterButtonbtnActionPerformed() throws Exception {
-        dispose();
+    public static void seConnecterButtonbtnActionPerformed(){ //fait
         Control.Action_Login();
     }
-    private void changerlangue(){
+
+
+   public static void changerlangue(){//fait
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
         }else{
             Hotel.langue=1;
         }
-        dispose();
-        new Signe_in();
        
     }
 
-    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception, SQLException {
+    public static int submitbtnActionPerformed(java.awt.event.ActionEvent evt)  {
         if(Hotel.verif_email(mailtext.getText())){
+
             if(User.motdepass(pwdtext.getText())){
         if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
             if (Hotel.findEmail(usertext.getText(), pwdtext.getText(), mailtext.getText())) {
@@ -381,7 +333,8 @@ public class Signe_in extends javax.swing.JFrame {
                         "Ce compte existe deja !",
                         "Compte Existe",
                         JOptionPane.INFORMATION_MESSAGE);
-                new Login();
+                return 1;
+                //new Login();
             } else {
                 JOptionPane.showMessageDialog(frame,
                         "Votre compte a été créé avec succès ",
@@ -390,8 +343,11 @@ public class Signe_in extends javax.swing.JFrame {
                 // ajoute dans hashMap users
                 User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
                 Hotel.AjtUserMap(user);
+                Hotel.username_current=usertext.getText();
                 Hotel.id_user_current=User.getNb();
-                new Loby_User();
+                Hotel.neew=1;
+                return 2;
+                //new Loby_User();
             }
         } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
@@ -407,9 +363,13 @@ public class Signe_in extends javax.swing.JFrame {
             // ajoute dans hashMap users
             User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
             Hotel.AjtUserMap(user);
+            Hotel.username_current=usertext.getText();
             Hotel.id_user_current=User.getNb();
-            new Loby_User();
-            this.hide();
+            Hotel.neew=1;
+            return 3;
+
+            //new Loby_User();
+            //this.hide();
         }
     }else{
         JOptionPane.showMessageDialog(frame,
@@ -425,55 +385,36 @@ public class Signe_in extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
 
         }
+        return -1;
     
     }
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
 
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Signe_in.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
+
+    public static void fermerFenetre() {
+        Window window = SwingUtilities.getWindowAncestor(langueBox);
+        if (window instanceof JFrame) {
+            JFrame frame = (JFrame) window;
+            frame.dispose();
         }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Signe_in().setVisible(true);
-            }
-        });
     }
-
+   
     // Variables declaration - do not modify
     private javax.swing.JLabel backgroundlabel;
-    private javax.swing.JButton closebtn;
+    public static javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
-    private javax.swing.JTextField mailtext;
+    private static javax.swing.JTextField mailtext;
     private javax.swing.JLabel pwdlabel;
-    private javax.swing.JPasswordField pwdtext;
+    private static javax.swing.JPasswordField pwdtext;
     private javax.swing.JLabel signinlabel;
-    private javax.swing.JButton submitbtn;
+    public static javax.swing.JButton submitbtn;
     private javax.swing.JLabel userlabel;
-    private javax.swing.JTextField usertext;
+    private static javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
-    private JCheckBox showPasswordButton;
-    private JButton seConnecterButton;
+    public static JCheckBox showPasswordButton;
+    public static JButton seConnecterButton;
     private javax.swing.JLabel showPasswordLabel;
-    private JButton aPropos;
+    public static JButton aPropos;
     // End of variables declaration
 
 }

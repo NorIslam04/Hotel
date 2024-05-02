@@ -1,6 +1,8 @@
 package Control;
 import Model.*;
 import View.*;
+import java.awt.event.*;
+
 
 
 import java.sql.*;
@@ -70,6 +72,7 @@ public class Control {
         Chambre.Bdd_to_hashMap_room();
         Reservation.Bdd_to_hashMap_reservation();
 
+
         //les instructions doit etre trier pour l'execution de programme
 
 
@@ -81,8 +84,8 @@ public class Control {
 
        new Login();
 
-        Login.seConnerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Login.seConnerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 
                 switch (Login.seConnecterbtnActionPerformed(evt)) {
                     case -1:
@@ -101,33 +104,33 @@ public class Control {
             }
         });
 
-        Login.aPropos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Login.aPropos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 Login.aProposbtnActionPerformed();
             }
         });
 
-        Login.sinscrireButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new Signe_in();
+        Login.sinscrireButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                Action_Signin();
                 Login.fermerFenetre();
             }
         });
 
-        Login.closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Login.closebtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 Login.closebtnActionPerformed(evt);
             }
         });
 
-        Login.showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        Login.showPasswordButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 Login.togglePasswordVisibility();
             }
         });
 
-        Login.langueBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Login.langueBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                // 7ta t3abez 3la box bch yasra had l fnct
                 Login.changerlangue();
                 Login.fermerFenetre();
@@ -143,7 +146,77 @@ public class Control {
 
     }
     
+    public static void Action_Signin(){
 
+        new Signe_in();
+
+        Signe_in.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    Signe_in.seConnecterButtonbtnActionPerformed();
+                    Signe_in.fermerFenetre();
+                
+            }
+        });
+
+        Signe_in.aPropos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Signe_in.aProposbtnActionPerformed();
+            }
+        });
+
+        Signe_in.closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Signe_in.closebtnActionPerformed(evt);
+            }
+        });
+
+        Signe_in.showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                Signe_in.togglePasswordVisibility();
+            }
+        });
+
+        Signe_in.langueBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Signe_in.changerlangue();
+                Signe_in.fermerFenetre();
+                Action_Signin();
+            }
+        });
+
+        Signe_in.submitbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+               switch (Signe_in.submitbtnActionPerformed(evt)) {
+                case 1:
+                Action_Login();  
+                break;
+                case 2:
+                new Loby_User();    
+                    break;
+                case 3:
+                new Loby_User();
+                Signe_in.fermerFenetre();    
+                break;
+               }
+                
+            }
+        });
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 
