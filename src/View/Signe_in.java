@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Control.Control;
+
 public class Signe_in extends javax.swing.JFrame {
     
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();
@@ -189,7 +191,12 @@ public class Signe_in extends javax.swing.JFrame {
 
         seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seConnecterButtonbtnActionPerformed();
+                try {
+                    seConnecterButtonbtnActionPerformed();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -349,9 +356,9 @@ public class Signe_in extends javax.swing.JFrame {
         }
     }
 
-    private void seConnecterButtonbtnActionPerformed() {
+    private void seConnecterButtonbtnActionPerformed() throws Exception {
         dispose();
-        new Login();
+        Control.Action_Login();
     }
     private void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
