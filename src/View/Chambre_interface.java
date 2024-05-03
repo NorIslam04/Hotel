@@ -1,5 +1,6 @@
 package View;
 import Model.*;
+import Control.*;
 import Model.Chambre.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -343,7 +344,6 @@ public class Chambre_interface extends javax.swing.JFrame {
 
     }
 
-    private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
@@ -354,25 +354,24 @@ public class Chambre_interface extends javax.swing.JFrame {
         try {
             new Commentaires_Interface();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
         
     };
 
     private void aProposbtnActionPerformed() {
-        APropos a = new APropos();
+       new APropos();
     }
 
     private void passeraureservationActionPerformed() {
-        new Table_Reseravtion_User();
+        Control.Action_TableReservationUser();
     }
 
     private void reserverDetailActionPerformed() {
         try {
             new Tarif_Option_Chambres ();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

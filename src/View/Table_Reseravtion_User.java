@@ -3,11 +3,10 @@ import Model.*;
 import Model.Chambre.*;
 import Model.Date.*;
 import Model.Reservation.*;
-import Control.*;
 
 import java.awt.Color;
+import java.awt.Window;
 
-import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +25,10 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     static private String Pdouble="250";
     static private ArrayList<Integer> id_reservation = new ArrayList<>();
     static private ArrayList<Integer> id_chambre = new ArrayList<>();
+    private static JFrame frame;
+   
 
-    public void mettreajourlesreservation(){
+    public static void mettreajourlesreservation(){
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
         Object rowData[]=new Object[5];
         model.setRowCount(0);
@@ -46,15 +47,15 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             }
         }
     }
-    public Double getPrixParType(TypeChambre typeChambre) {
 
-         HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
-    for (Chambre chambre : chambreMap.values()) {
+    public static Double getPrixParType(TypeChambre typeChambre) {
+        HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
+        for (Chambre chambre : chambreMap.values()) {
         if (chambre.getType() == typeChambre) {
             return chambre.getPrix();
         }
-    }
-    return null;
+        }
+        return null;
     }
 
 
@@ -93,9 +94,9 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
     public void parcourChambre(){
         Boolean so=false;
-            Boolean d=false;
-            Boolean t=false;
-            Boolean su=false;
+        Boolean d=false;
+        Boolean t=false;
+         Boolean su=false;
         
         for (Map.Entry<Integer, Chambre> entry : Hotel.getChambreMap().entrySet()) {
             
@@ -163,16 +164,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         cancelReservationBtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // Définir la police
         cancelReservationBtn.setText("Cancel-Reservation"); // Définir le texte du bouton
-        cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            cancelReservationBtnActionPerformed(evt);
-        } catch (Exception e) {
-            // Gérer les exceptions
-            e.printStackTrace();
-        }
-    }
-});
+        
         cancelReservationBtn.setBounds(90, 415, 152, 30); // Définir les coordonnées et la taille du bouton
         getContentPane().add(cancelReservationBtn); // Ajouter le bouton au conteneur
 
@@ -228,13 +220,9 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         statelabel.setBounds(30, 372, 150, 30);
         getContentPane().add(statelabel);
 
-        startdatetext.setText("JJ/MM/AAAA");
-        startdatetext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startdatetextActionPerformed(evt);
-            }
-        });
+      
         // le positionement exact du label.
+        startdatetext.setText("JJ/MM/AAAA");
         startdatetext.setBounds(160, 260, 150, 30);
         getContentPane().add(startdatetext);
 
@@ -255,11 +243,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 "Room-Type", "Total Price", "Start Date", "End Date", "State"
             }
         ));
-        tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablereservationMouseClicked(evt);
-            }
-        });
+       
         jScrollPane1.setViewportView(tablereservation);
         // le positionement exact du label.
         jScrollPane1.setBounds(420, 90, 440, 450);
@@ -267,32 +251,14 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         addreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 12)); // NOI18N
         addreservationbtn.setText("Add Reservation");
-        addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addreservationbtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du label.
         addreservationbtn.setBounds(20, 460, 130, 30);
         getContentPane().add(addreservationbtn);
 
         updatebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         updatebtn.setText("Update-Now");
-        updatebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    updatebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du label.
         updatebtn.setBounds(190, 460, 130, 30);
         getContentPane().add(updatebtn);
@@ -306,44 +272,19 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         exitbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         exitbtn.setText("Exit");
-        exitbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    exitbtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du label.
         exitbtn.setBounds(190, 510, 130, 30);
         getContentPane().add(exitbtn);
 
         enddatetext.setText("JJ/MM/AAAA");
-        enddatetext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enddatetextActionPerformed(evt);
-            }
-        });
+       
         // le positionement exact du label.
         enddatetext.setBounds(160, 320, 150, 30);
         getContentPane().add(enddatetext);
         backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         backtoroomsbtn.setText("Back To Rooms");
-        backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    backtoroomsbtnActionPerformed(evt);
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du label.
         backtoroomsbtn.setBounds(20, 510, 130, 30);
         getContentPane().add(backtoroomsbtn);
@@ -351,7 +292,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         roomtypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE" }));
         roomtypebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roomtypeboxActionPerformed(evt);
+               
                 String selectedRoomType = (String) roomtypebox.getSelectedItem();
                 if(selectedRoomType.equals("SOLO")) {
                     roompricebox.setSelectedItem(Psolo); // Set price to 100 if room type is "SOLO"
@@ -370,7 +311,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         roompricebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { getPsolo(), getPdouble(), getPtriple(), getPsuite() }));
         roompricebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roompriceboxActionPerformed(evt);
+           
                 String selectedRoomprice = (String) roompricebox.getSelectedItem();
                 if(selectedRoomprice.equals(getPsolo())) {
                     roomtypebox.setSelectedItem("SOLO"); // Set price to 100 if room type is "SOLO"
@@ -398,16 +339,10 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         mettreajourlesreservation();
     }// </editor-fold>                        
 
-    private void startdatetextActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-    }                                             
-
-    private void statetxtActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }  
+ 
     
-    
-    private void cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+    //fait
+    public static void cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         int i=tablereservation.getSelectedRow();
         Date today =new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         DefaultTableModel model =(DefaultTableModel)tablereservation.getModel();
@@ -417,22 +352,26 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
           model.setValueAt(startdatetext.getText(),i,2);
           model.setValueAt(enddatetext.getText(),i,3);
           model.setValueAt(state.getText(),i,4);
+
           if(Date.comparer(Date.Recupere_date(startdatetext.getText()), today)==1){
-            JOptionPane.showMessageDialog(this, "Réservation annulée avec succès.");
+            JOptionPane.showMessageDialog(frame, "Réservation annulée avec succès.");
             
         double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
             Reservation reservation=new Reservation(id_reservation.get(i), Hotel.id_user_current, Date.Recupere_date(enddatetext.getText()), Date.Recupere_date(startdatetext.getText()), TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem()),id_chambre.get(i), EtatReservation.toEtatReservation(state.getText()), prix);
             Hotel.SupprimerReservationMap(reservation);
             model.removeRow(i);
           }else{
-            JOptionPane.showMessageDialog(this, "Vous ne pouvez pas annuler cette réservation !", "Erreur", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(frame, "Vous ne pouvez pas annuler cette réservation !", "Erreur", JOptionPane.ERROR_MESSAGE);
           }
       }else{
-          JOptionPane.showMessageDialog(null,"Veuillez sélectionner une réservation à annuler.");
+          JOptionPane.showMessageDialog(frame,"Veuillez sélectionner une réservation à annuler.","Infornation", JOptionPane.INFORMATION_MESSAGE);
       }
     }
 
-    private void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+
+    //fait
+    public static void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
         Date today=new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         Date date_debut=Date.Recupere_date(startdatetext.getText());
@@ -493,8 +432,8 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
    }                                          
 } 
                                                  
-
-    private void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    //fait
+    public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         roomtypebox.setSelectedItem(model.getValueAt(selectedRow,0).toString());
@@ -512,8 +451,8 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         state.setText(model.getValueAt(selectedRow,4).toString());
     }                                             
 
- 
-    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
+    //fait
+    public static void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
         int i = tablereservation.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
         if (i >= 0) {
@@ -577,87 +516,53 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
            }             
         } else {
-            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne à mettre à jour.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Veuillez sélectionner une ligne à mettre à jour.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     
     }
     
-private JFrame frame;
-    private void exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
+    //fait
+    public static int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
-            Control.hash_map_bdd();
-            System.out.println(Chambre.getNb());
-            System.exit(0);
+            return 1;
+            
         }
+        return -1;
     }                                       
 
-    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
-        Control.hash_map_bdd();                                              
-        this.dispose();
-        new Chambre_interface();
-    }                                              
-
-    private void enddatetextActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void roompriceboxActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
-    }                                            
-
-    private void roomtypeboxActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Table_Reseravtion_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Table_Reseravtion_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Table_Reseravtion_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Table_Reseravtion_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    
+    //fait
+    public static void fermerFenetre() {
+        Window window = SwingUtilities.getWindowAncestor(exitbtn);
+        if (window instanceof JFrame) {
+            JFrame frame = (JFrame) window;
+            frame.dispose();
         }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Table_Reseravtion_User().setVisible(true);
-            }
-        });
     }
 
+
     // Variables declaration - do not modify                     
-    private javax.swing.JButton addreservationbtn;
-    private javax.swing.JLabel backgroundlabel;
-    private javax.swing.JButton backtoroomsbtn;
-    private javax.swing.JLabel caraclabel;
-    private javax.swing.JLabel enddatelabel;
-    private javax.swing.JTextField enddatetext;
-    private javax.swing.JButton exitbtn;
-    private javax.swing.JLabel idroomlabel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> roompricebox;
-    private javax.swing.JComboBox<String> roomtypebox;
-    private javax.swing.JLabel roomtypelabel;
-    private javax.swing.JLabel showtablelabel;
-    private javax.swing.JLabel startdatelabel;
-    private javax.swing.JTextField startdatetext;
-    private javax.swing.JLabel statelabel;
-    private javax.swing.JLabel state;
-    private javax.swing.JTable tablereservation;
-    private javax.swing.JButton updatebtn;
-    private javax.swing.JButton  cancelReservationBtn;
+    public static javax.swing.JButton addreservationbtn;
+    public static  javax.swing.JLabel backgroundlabel;
+    public static  javax.swing.JButton backtoroomsbtn;
+    public static  javax.swing.JLabel caraclabel;
+    public static  javax.swing.JLabel enddatelabel;
+    public static  javax.swing.JTextField enddatetext;
+    public static  javax.swing.JButton exitbtn;
+    public static  javax.swing.JLabel idroomlabel;
+    public static  javax.swing.JScrollPane jScrollPane1;
+    public static  javax.swing.JComboBox<String> roompricebox;
+    public static  javax.swing.JComboBox<String> roomtypebox;
+    public static  javax.swing.JLabel roomtypelabel;
+    public static  javax.swing.JLabel showtablelabel;
+    public static  javax.swing.JLabel startdatelabel;
+    public static  javax.swing.JTextField startdatetext;
+    public static  javax.swing.JLabel statelabel;
+    public static  javax.swing.JLabel state;
+    public static   javax.swing.JTable tablereservation;
+    public static  javax.swing.JButton updatebtn;
+    public static  javax.swing.JButton cancelReservationBtn;
     // End of variables declaration                   
 }

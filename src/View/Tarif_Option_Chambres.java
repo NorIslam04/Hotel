@@ -1,5 +1,6 @@
 package View;
 import Model.*;
+import Control.*;
 import Model.Date.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -39,7 +40,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         OptionSupplementaire.initialiser(15, 5, 10, 10);
         Chambre chambre1;
 
-        /*for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             chambre1 = new Chambre(i, TypeChambre.SOLO,-1, false, true, true, false);
             Hotel.AjouterChambreMap(chambre1);
             chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE,-1, false, true, true, true);
@@ -51,7 +52,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE,-1, true, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
-        }*/
+        }
 
         TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
@@ -385,7 +386,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
                         + "$</html>");
             }
 
-            new Table_Reseravtion_User();
+            Control.Action_TableReservationUser();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
