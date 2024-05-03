@@ -127,7 +127,6 @@ public class Hotel {
 
 	public static void AjtUserMap(User user) {
 		userMap.put(user.getId(), user);
-		System.out.println("im here");
 		ModificationHotel<User, TypeOperation> ajouterUser = new ModificationHotel<>(user.getId(), user,
 				TypeOperation.AJOUT);
 		modificationMap.put(ModificationHotel.getNb(), ajouterUser);

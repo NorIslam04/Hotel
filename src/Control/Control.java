@@ -146,7 +146,7 @@ public class Control {
 
     }
     
-    public static void Action_Signin(){
+    public static void Action_Signin(){//fait
 
         new Signe_in();
 
@@ -202,13 +202,72 @@ public class Control {
             }
         });
 
-       
+    }
+
+    public static void Action_TableReservationUser(){//fait
+        new Table_Reseravtion_User();
+
+        Table_Reseravtion_User.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    });
 
 
+        Table_Reseravtion_User.addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
+        }  catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    });
 
+    Table_Reseravtion_User.tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            Table_Reseravtion_User.tablereservationMouseClicked(evt);
+        }
+    });
 
+    Table_Reseravtion_User.updatebtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Table_Reseravtion_User.updatebtnActionPerformed(evt);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());;
+            }
+        }
+    });
 
+    Table_Reseravtion_User.exitbtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                if(Table_Reseravtion_User.exitbtnActionPerformed(evt)==1){
+                    Control.hash_map_bdd();
+                    Table_Reseravtion_User.fermerFenetre();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    });
 
+    Table_Reseravtion_User.backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    Control.hash_map_bdd();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }                                              
+                Table_Reseravtion_User.fermerFenetre();
+                new Chambre_interface();
+            } 
+    });
 
 
 
@@ -217,8 +276,6 @@ public class Control {
 
 
     }
-
-
 
 
 
