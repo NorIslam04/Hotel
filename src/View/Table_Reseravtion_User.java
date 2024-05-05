@@ -356,7 +356,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
           if(Date.comparer(Date.Recupere_date(startdatetext.getText()), today)==1){
             JOptionPane.showMessageDialog(frame, "Réservation annulée avec succès.");
             
-        double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
+            double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
             Reservation reservation=new Reservation(id_reservation.get(i), Hotel.id_user_current, Date.Recupere_date(enddatetext.getText()), Date.Recupere_date(startdatetext.getText()), TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem()),id_chambre.get(i), EtatReservation.toEtatReservation(state.getText()), prix);
             Hotel.SupprimerReservationMap(reservation);
             model.removeRow(i);
@@ -382,7 +382,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         TypeChambre typeChambre=TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem());
 
       
-       double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
+        double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
         Reservation reservation=new Reservation(Reservation.getNb(), id_user, date_fin, date_debut, typeChambre,-1, EtatReservation.EN_ATTENTE, prix);
         Hotel.AjtReservationMap(reservation);
        
@@ -531,16 +531,6 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         }
         return -1;
     }                                       
-
-    
-    //fait
-    public static void fermerFenetre() {
-        Window window = SwingUtilities.getWindowAncestor(exitbtn);
-        if (window instanceof JFrame) {
-            JFrame frame = (JFrame) window;
-            frame.dispose();
-        }
-    }
 
 
     // Variables declaration - do not modify                     

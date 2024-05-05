@@ -99,10 +99,11 @@ public class Control {
                     case 1:
                     Chambre_interface ch = new Chambre_interface();
                     ch.setVisible(true);
+                    SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();
                         break;
                     case 2:
                     new Loby_Admin();
-                        break;
+                    SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();                        break;
                    
                 }
                
@@ -111,20 +112,20 @@ public class Control {
 
         Login.aPropos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Login.aProposbtnActionPerformed();
+                new APropos();
             }
         });
 
         Login.sinscrireButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Action_Signin();
-                Login.fermerFenetre();
+                SwingUtilities.getWindowAncestor(Login.sinscrireButton).dispose();
             }
         });
 
         Login.closebtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Login.closebtnActionPerformed(evt);
+                System.exit(0);
             }
         });
 
@@ -138,7 +139,7 @@ public class Control {
             public void actionPerformed(ActionEvent evt) {
                // 7ta t3abez 3la box bch yasra had l fnct
                 Login.changerlangue();
-                Login.fermerFenetre();
+                SwingUtilities.getWindowAncestor(Login.langueBox).dispose();;
                 Action_Login();  
             }
         });
@@ -157,11 +158,9 @@ public class Control {
 
         Signe_in.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    Signe_in.seConnecterButtonbtnActionPerformed();
-                   SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
-                   
-                    
-                
+                Action_Login();
+                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+        
             }
 
            
@@ -169,13 +168,13 @@ public class Control {
 
         Signe_in.aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Signe_in.aProposbtnActionPerformed();
+                new APropos();
             }
         });
 
         Signe_in.closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Signe_in.closebtnActionPerformed(evt);
+                System.exit(0);
             }
         });
 
@@ -199,11 +198,24 @@ public class Control {
                switch (Signe_in.submitbtnActionPerformed(evt)) {
                 case 1:
                 Action_Login();  
-                break;
+                    break;
+
                 case 2:
-                new Loby_User();    
+                User user = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
+                Hotel.AjtUserMap(user);
+                Hotel.username_current=Signe_in.usertext.getText();
+                Hotel.id_user_current=User.getNb();
+                Hotel.neew=1;
+                new Loby_User();
+
                     break;
                 case 3:
+
+                User user1 = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
+                Hotel.AjtUserMap(user1);
+                Hotel.username_current=Signe_in.usertext.getText();
+                Hotel.id_user_current=User.getNb();
+                Hotel.neew=1;
                 new Loby_User();
                 SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
 
@@ -260,7 +272,7 @@ public class Control {
             try {
                 if(Table_Reseravtion_User.exitbtnActionPerformed(evt)==1){
                     Control.hash_map_bdd();
-                    Table_Reseravtion_User.fermerFenetre();
+                    SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -275,7 +287,7 @@ public class Control {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }                                              
-                Table_Reseravtion_User.fermerFenetre();
+                SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
                 new Chambre_interface();
             } 
     });
