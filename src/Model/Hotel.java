@@ -339,15 +339,16 @@ public class Hotel {
 		}
 	}
 
-	public static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
+	static boolean ChambreDispo(Chambre chambre, Date datedebut, Date datefin) {
 
 		Iterator<Map.Entry<Integer, Reservation>> iterator = reservationMap.entrySet().iterator();
 
 		while (iterator.hasNext()) {
+
 			Map.Entry<Integer, Reservation> entry = iterator.next();
 			Reservation reservation = entry.getValue();
 
-			if (reservation.getId_user() == chambre.getId()) {
+			if (reservation.getId_chambre() == chambre.getId()) {
 				if (!Date.DateCoincidePas(datedebut, datefin, reservation.getDateDebut(), reservation.getDateFin())) {
 					return false;
 				}
@@ -367,7 +368,7 @@ public class Hotel {
 		return false;
 	}
 
-	public static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2) {
+	public static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2)  {
 		Iterator<Map.Entry<Integer, Chambre>> iterator = chambreMap.entrySet().iterator();
 
 		while (iterator.hasNext()) {
@@ -376,13 +377,11 @@ public class Hotel {
 			if (chambre.getType() == type) {
 				boolean nonreserve = ChambreDispo(chambre, date1, date2);
 				if (nonreserve) {
-
-					return chambre;
+					return chambre;//accepter la treservation
 				}
-
 			}
 		}
-		return null;
+		return null;//decalage de la reservation
 	}
 
 	public static float calculernotehotel() {

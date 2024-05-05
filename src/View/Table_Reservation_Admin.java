@@ -105,19 +105,7 @@ public static void setId_chambre(int id_chambre) {
                 "ID-User", "ID-Reser", "Room Type", "Reser Price", "Start Date", "End Date", "State"
             }
         ));
-        reservationtabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-                    reservationtabelMouseClicked(evt);
-                } catch (NumberFormatException  | Date_nonvalid | Date_syntaxe e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         jScrollPane1.setViewportView(reservationtabel);
         // le positionement exact du label.
         jScrollPane1.setBounds(370, 70, 540, 460);
@@ -142,11 +130,7 @@ public static void setId_chambre(int id_chambre) {
 
         acceptdeclinebox.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         acceptdeclinebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPTER", "DECLINER" }));
-        acceptdeclinebox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptdeclineboxActionPerformed(evt);
-            }
-        });
+    
         // le positionement exact du label.
         acceptdeclinebox.setBounds(20, 100, 150, 40);
         getContentPane().add(acceptdeclinebox);
@@ -244,12 +228,9 @@ public static void setId_chambre(int id_chambre) {
         
     }// </editor-fold>                        
 
-    private void reservationtabelMouseClicked(java.awt.event.MouseEvent evt) throws Exception {                                              
-        int selectedRow= reservationtabel.getSelectedRow();
-        DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();                                            
-}
+   
 
-    private int EnAttente() throws Exception{
+    private int EnAttente() throws Exception{//fait
         
         int selectedRow= reservationtabel.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
@@ -270,17 +251,20 @@ public static void setId_chambre(int id_chambre) {
         
 
     }
-    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {                                          
-      int i=reservationtabel.getSelectedRow();
 
-      DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
-      int selectedRow= reservationtabel.getSelectedRow();
-      TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-      String Date_debut=model.getValueAt(selectedRow,4).toString();
-      String Date_fin=model.getValueAt(selectedRow,5).toString();
-      int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
-      int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
-      String etat=model.getValueAt(selectedRow,6).toString();
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
+        int i=reservationtabel.getSelectedRow();
+
+        DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
+        int selectedRow= reservationtabel.getSelectedRow();
+        TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
+        String Date_debut=model.getValueAt(selectedRow,4).toString();
+        String Date_fin=model.getValueAt(selectedRow,5).toString();
+        int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
+        int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
+        String etat=model.getValueAt(selectedRow,6).toString();
+
+        
       if(i>=0){
         if(!etat.equals("ACCEPTER")){
 
@@ -308,11 +292,11 @@ public static void setId_chambre(int id_chambre) {
        
     }                   
     
-    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid {                                           
+    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid { //fait                                          
         Admin.supprimerreservationinutile();
     } 
 
-    private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {
+    private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int selectedRow= reservationtabel.getSelectedRow();
         String etat=model.getValueAt(selectedRow,6).toString();
@@ -339,10 +323,8 @@ public static void setId_chambre(int id_chambre) {
     }
                                                   
 
-    private void acceptdeclineboxActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }   
-    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                               
+   
+    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {  //fait                                             
         new Admin_chambres_option();
         Control.hash_map_bdd();
         this.dispose();
@@ -359,31 +341,7 @@ public static void setId_chambre(int id_chambre) {
         }
     }                                                
 
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Table_Reservation_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Table_Reservation_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Table_Reservation_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Table_Reservation_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Table_Reservation_Admin().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify   
     private javax.swing.JButton suppreservationbtn;                  
