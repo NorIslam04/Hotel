@@ -1,12 +1,17 @@
 package Control;
 import Model.*;
 import View.*;
+
+import java.awt.Window;
 import java.awt.event.*;
 
 
 
 import java.sql.*;
 import java.util.Map;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class Control {
 
@@ -153,9 +158,14 @@ public class Control {
         Signe_in.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                     Signe_in.seConnecterButtonbtnActionPerformed();
-                    Signe_in.fermerFenetre();
+                    Window window = SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton);
+                    JFrame frame = (JFrame) window;
+                    frame.dispose();
+                    
                 
             }
+
+           
         });
 
         Signe_in.aPropos.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +189,11 @@ public class Control {
         Signe_in.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Signe_in.changerlangue();
-                Signe_in.fermerFenetre();
+                Window window = SwingUtilities.getWindowAncestor(Signe_in.langueBox);
+                    if (window instanceof JFrame) {
+                        JFrame frame = (JFrame) window;
+                        frame.dispose();
+                    }
                 Action_Signin();
             }
         });
@@ -195,7 +209,11 @@ public class Control {
                     break;
                 case 3:
                 new Loby_User();
-                Signe_in.fermerFenetre();    
+                Window window = SwingUtilities.getWindowAncestor(Signe_in.submitbtn);
+                if (window instanceof JFrame) {
+                    JFrame frame = (JFrame) window;
+                    frame.dispose();
+                }   
                 break;
                }
                 
