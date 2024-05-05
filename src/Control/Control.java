@@ -143,13 +143,6 @@ public class Control {
                 Action_Login();  
             }
         });
-
-        
-
-
-
-
-
     }
     
     public static void Action_Signin(){//fait
