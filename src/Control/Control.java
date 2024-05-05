@@ -158,9 +158,8 @@ public class Control {
         Signe_in.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                     Signe_in.seConnecterButtonbtnActionPerformed();
-                    Window window = SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton);
-                    JFrame frame = (JFrame) window;
-                    frame.dispose();
+                   SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+                   
                     
                 
             }
@@ -189,11 +188,8 @@ public class Control {
         Signe_in.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Signe_in.changerlangue();
-                Window window = SwingUtilities.getWindowAncestor(Signe_in.langueBox);
-                    if (window instanceof JFrame) {
-                        JFrame frame = (JFrame) window;
-                        frame.dispose();
-                    }
+                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+
                 Action_Signin();
             }
         });
@@ -209,11 +205,8 @@ public class Control {
                     break;
                 case 3:
                 new Loby_User();
-                Window window = SwingUtilities.getWindowAncestor(Signe_in.submitbtn);
-                if (window instanceof JFrame) {
-                    JFrame frame = (JFrame) window;
-                    frame.dispose();
-                }   
+                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+
                 break;
                }
                 
