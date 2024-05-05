@@ -390,14 +390,6 @@ public class Signe_in extends javax.swing.JFrame {
     }
 
 
-    public static void fermerFenetre() {
-        Window window = SwingUtilities.getWindowAncestor(langueBox);
-        if (window instanceof JFrame) {
-            JFrame frame = (JFrame) window;
-            frame.dispose();
-        }
-    }
-   
     // Variables declaration - do not modify
     private javax.swing.JLabel backgroundlabel;
     public static javax.swing.JButton closebtn;
