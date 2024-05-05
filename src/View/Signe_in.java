@@ -286,17 +286,9 @@ public class Signe_in extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-  
-
-    public static void aProposbtnActionPerformed() {//fait
-         new APropos();
-    }
 
     private static JFrame frame;
 
-    public static void closebtnActionPerformed(java.awt.event.ActionEvent evt) {//fait
-        System.exit(0);
-    }
 
     public static void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
@@ -308,9 +300,7 @@ public class Signe_in extends javax.swing.JFrame {
         }
     }
 
-    public static void seConnecterButtonbtnActionPerformed(){ //fait
-        Control.Action_Login();
-    }
+    
 
 
    public static void changerlangue(){//fait
@@ -341,11 +331,7 @@ public class Signe_in extends javax.swing.JFrame {
                         "WELCOME",
                         JOptionPane.INFORMATION_MESSAGE);
                 // ajoute dans hashMap users
-                User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
-                Hotel.AjtUserMap(user);
-                Hotel.username_current=usertext.getText();
-                Hotel.id_user_current=User.getNb();
-                Hotel.neew=1;
+               
                 return 2;
                 //new Loby_User();
             }
@@ -361,11 +347,7 @@ public class Signe_in extends javax.swing.JFrame {
                     "WELCOME",
                     JOptionPane.INFORMATION_MESSAGE);
             // ajoute dans hashMap users
-            User user = new User(User.getNb(), mailtext.getText(), usertext.getText(), pwdtext.getText(),-1);
-            Hotel.AjtUserMap(user);
-            Hotel.username_current=usertext.getText();
-            Hotel.id_user_current=User.getNb();
-            Hotel.neew=1;
+            
             return 3;
 
             //new Loby_User();
@@ -394,13 +376,13 @@ public class Signe_in extends javax.swing.JFrame {
     private javax.swing.JLabel backgroundlabel;
     public static javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
-    private static javax.swing.JTextField mailtext;
+    public static javax.swing.JTextField mailtext;
     private javax.swing.JLabel pwdlabel;
-    private static javax.swing.JPasswordField pwdtext;
+    public static javax.swing.JPasswordField pwdtext;
     private javax.swing.JLabel signinlabel;
     public static javax.swing.JButton submitbtn;
     private javax.swing.JLabel userlabel;
-    private static javax.swing.JTextField usertext;
+    public static javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
     public static JCheckBox showPasswordButton;

@@ -251,9 +251,7 @@ public class Login extends javax.swing.JFrame {
     }
 
 
-    public static void aProposbtnActionPerformed() {//fait
-        new APropos();
-    }
+   
 
     public static void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
@@ -306,17 +304,9 @@ public class Login extends javax.swing.JFrame {
         
     }
 
-    public static void fermerFenetre() {
-        Window window = SwingUtilities.getWindowAncestor(langueBox);
-        if (window instanceof JFrame) {
-            JFrame frame = (JFrame) window;
-            frame.dispose();
-        }
-    }
+   
 
- public static void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
+
 
    
     // Variables declaration - do not modify
