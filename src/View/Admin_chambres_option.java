@@ -3,12 +3,15 @@ import Model.*;
 import Model.Chambre.*;
 
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import Control.Control;
 
 
 
@@ -23,6 +26,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     JCheckBox terasseCheckBox = new JCheckBox();
     JCheckBox vuesurmerBox = new JCheckBox();
     JCheckBox vuesurforetBox = new JCheckBox();
+    JButton suppchambre =new JButton();
+    int id_supp_chamb=0;
   
     javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
 
@@ -41,6 +46,25 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     
 
     private void initComponents() throws Exception {
+
+        suppchambre.setText("Suprimer Chambre");
+
+        
+        suppchambre.setBounds(850, 50, 150, 30);
+        suppchambre.setBackground(color);
+        suppchambre.setForeground(colorgris);
+        suppchambre.setBorder(new RoundBorder(color, 3));
+        suppchambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    suppchambreActionPerformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        
         
         /*TypeChambre.initialiser(100, 1, 150, 2,200, 3, 350, 4);
         OptionSupplementaire.initialiser(15, 5, 10, 10);
@@ -107,6 +131,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             filtrer.setText("Filtrer");
   
         }
+    
 
         JPanel informationReservationPanel = new JPanel();
 
@@ -218,6 +243,19 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             }
         });
 
+        ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    addChambrePreformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        
+
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         filtrer.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
 
@@ -228,19 +266,15 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
             }
         });
+        suppchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         ajouterchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-
-        ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                //TODO
-            }
-        });
+    
         ajouterchambre.setBounds(850, 100, 150, 30);
         ajouterchambre.setBackground(color);
         ajouterchambre.setForeground(colorgris);
         ajouterchambre.setBorder(new RoundBorder(color, 3));
         informationReservationPanel.add(ajouterchambre);
+        informationReservationPanel.add(suppchambre);
         // le positionement exact du boutton.
         filtrer.setBounds(850, 150, 150, 30);
         filtrer.setBackground(color);
@@ -306,7 +340,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         optionlLabel.setForeground(colorgris);
         optionlLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
+        
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS)); // Utilisation d'un BoxLayout vertical
                                                                                // pour les options
@@ -341,6 +375,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         } else {
             vueforetJLabel.setForeground(colorgris);
         }
+
+        
         optionsPanel.add(vueforetJLabel);
         vueforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         vuemerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
@@ -399,12 +435,134 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         // Définir une taille préférée pour le JPanel
         panel.setPreferredSize(new Dimension(182, 200));
 
+
+        panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+               id_supp_chamb= chambre.getId();
+               JOptionPane.showMessageDialog(frame,"Vous sélectionnerez la chambre avec l'ID= "+id_supp_chamb+". Cliquez sur le bouton 'SUPPRIMER CHAMBRE' pour la supprimer.");
+            }
+        });
+
         return panel;
     }
+JFrame frame=new JFrame();
+
+    public void suppchambreActionPerformed(java.awt.event.ActionEvent evt){
+        if (id_supp_chamb!=0) {
+            Hotel.SupprimerChambreMap(Hotel.getChambreMap().get(id_supp_chamb));
+            JOptionPane.showMessageDialog(frame,"La salle a été supprimée avec succès");
+            JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
+
+            Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Chambre> entry = iterator.next();
+            Chambre chambre = entry.getValue();
+            chambreContainer.add(createPanel(chambre));
+
+        }
+        chambreContainer.setBackground(colorgris);
+        scrollPane.setBackground(colorgris);
+        JViewport viewport = scrollPane.getViewport();
+
+        
+        viewport.removeAll();
+        viewport.add(chambreContainer);
+        getContentPane().add(backgroundlabel);
+
+        System.setProperty("sun.java2d.uiScale.enabled", "false");
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+        backgroundlabel.setBounds(0, 0, 1032, 580);
+        getContentPane().add(backgroundlabel);
+
+        getContentPane().revalidate();
+        getContentPane().repaint();
+
+        id_supp_chamb=0;
+        }else{
+            JOptionPane.showMessageDialog(frame,"Choisissez une chambre à supprimer");
+        }
+    }
+
 
     
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        
+            Control.hash_map_bdd();
+            System.exit(0);
+      
+    }
+
+    private void addChambrePreformed(java.awt.event.ActionEvent evt) throws Exception{
+        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
+        boolean Sona =   sonaCheckBox.isSelected();
+        boolean climatisation = terasseCheckBox.isSelected();
+        boolean vuesurmer = vuesurmerBox.isSelected();
+        boolean vueforet = vuesurforetBox.isSelected();
+      
+        double prix=0;
+        
+
+        if(Sona){
+            prix+=Chambre.GetPrix("SONA");
+        }else if(climatisation){
+            prix+=Chambre.GetPrix("TERASSE");
+        }else if(vuesurmer){
+            prix+=Chambre.GetPrix("VUESURMERE");
+        }else{
+            prix+=Chambre.GetPrix("VUESURMERE");
+        }
+
+        switch (typeChambre.toString()) {
+            case "SOLO":
+            prix+=Chambre.GetPrix("SOLO");
+                break;
+            case "DOUBLE":
+                prix+=Chambre.GetPrix("DOUBLE");
+                    break;
+            case "TRIPLE":
+                prix+=Chambre.GetPrix("TRIPLE");
+                    break;
+            case "SUITE":
+                prix+=Chambre.GetPrix("SUITE");
+                    break;
+        }
+
+
+
+        JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
+        Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
+        
+        Hotel.AjtChambreMap(chambrerecherchee);
+      
+
+        Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Chambre> entry = iterator.next();
+            Chambre chambre = entry.getValue();
+            chambreContainer.add(createPanel(chambre));
+
+        }
+        chambreContainer.setBackground(colorgris);
+        scrollPane.setBackground(colorgris);
+        JViewport viewport = scrollPane.getViewport();
+
+        
+        viewport.removeAll();
+        viewport.add(chambreContainer);
+        getContentPane().add(backgroundlabel);
+
+        System.setProperty("sun.java2d.uiScale.enabled", "false");
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+        backgroundlabel.setBounds(0, 0, 1032, 580);
+        getContentPane().add(backgroundlabel);
+
+        getContentPane().revalidate();
+        getContentPane().repaint();
+
+
+    
     }
 
     private void filtrerbtnActionPerformed() {
@@ -422,15 +580,16 @@ public class Admin_chambres_option extends javax.swing.JFrame{
           
 
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
-
+            int i=0;
             while (iterator.hasNext()) {
                 Map.Entry<Integer, Chambre> entry = iterator.next();
                 Chambre chambre = entry.getValue();
                 if (Hotel.verifchambreavecoption(chambre, typeChambre, Sona, climatisation, vuesurmer, vuesurmer)) {
                     chambreContainer.add(createPanel(chambre));
-                    System.out.println("hi");
+                    i++;
                 }
             }
+            System.out.println(i++);
             chambreContainer.setBackground(colorgris);
             scrollPane.setBackground(colorgris);
             JViewport viewport = scrollPane.getViewport();
@@ -447,11 +606,14 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
             getContentPane().revalidate();
             getContentPane().repaint();
+
+
         
 
     }
 
     void afficherchambre() throws Exception {
+
 
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -459,7 +621,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             Map.Entry<Integer, Chambre> entry = iterator.next();
             Chambre chambre = entry.getValue();
             chambreContainer.add(createPanel(chambre));
-
         }
 
         chambreContainer.setBackground(colorgris);

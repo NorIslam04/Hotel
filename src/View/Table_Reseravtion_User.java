@@ -16,17 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class Table_Reseravtion_User extends javax.swing.JFrame {
 
 
-    public static double GetPrix(String option){
-
-        for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
-
-            if(option.equals(entry.getValue().getRooms_Options().toString())){
-                return entry.getValue().getPrix_option();
-            }
-        }
-        return 0;
-
-    }
+ 
    
 
     private static JFrame frame;
@@ -283,16 +273,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             
         switch ((String)roompricebox.getSelectedItem()) {
                 case "SONA":
-                prix=GetPrix("SONA");
+                prix=Chambre.GetPrix("SONA");
                     break;
                 case "TERASSE":
-                    prix=GetPrix("TERASSE");
+                    prix=Chambre.GetPrix("TERASSE");
                         break;
                 case "VUESURMERE":
-                    prix=GetPrix("VUESURMERE");
+                    prix=Chambre.GetPrix("VUESURMERE");
                         break;
                 case "VUESURFORET":
-                    prix=GetPrix("VUESURFORET");
+                    prix=Chambre.GetPrix("VUESURFORET");
                         break;
                             
                 default:
@@ -301,16 +291,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
             switch ((String)roomtypebox.getSelectedItem()) {
                 case "SOLO":
-                prix+=GetPrix("SOLO");
+                prix+=Chambre.GetPrix("SOLO");
                     break;
                 case "DOUBLE":
-                    prix+=GetPrix("DOUBLE");
+                    prix+=Chambre.GetPrix("DOUBLE");
                         break;
                 case "TRIPLE":
-                    prix+=GetPrix("TRIPLE");
+                    prix+=Chambre.GetPrix("TRIPLE");
                         break;
                 case "SUITE":
-                    prix+=GetPrix("SUITE");
+                    prix+=Chambre.GetPrix("SUITE");
                         break;
                             
                 default:
@@ -406,16 +396,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 
                 switch ((String)roompricebox.getSelectedItem()) {
                     case "SONA":
-                    prix=GetPrix("SONA");
+                    prix=Chambre.GetPrix("SONA");
                         break;
                     case "TERASSE":
-                        prix=GetPrix("TERASSE");
+                        prix=Chambre.GetPrix("TERASSE");
                             break;
                     case "VUESURMERE":
-                        prix=GetPrix("VUESURMERE");
+                        prix=Chambre.GetPrix("VUESURMERE");
                             break;
                     case "VUESURFORET":
-                        prix=GetPrix("VUESURFORET");
+                        prix=Chambre.GetPrix("VUESURFORET");
                             break;
                                 
                     default:
@@ -424,16 +414,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     
                 switch ((String)roomtypebox.getSelectedItem()) {
                     case "SOLO":
-                    prix+=GetPrix("SOLO");
+                    prix+=Chambre.GetPrix("SOLO");
                         break;
                     case "DOUBLE":
-                        prix+=GetPrix("DOUBLE");
+                        prix+=Chambre.GetPrix("DOUBLE");
                             break;
                     case "TRIPLE":
-                        prix+=GetPrix("TRIPLE");
+                        prix+=Chambre.GetPrix("TRIPLE");
                             break;
                     case "SUITE":
-                        prix+=GetPrix("SUITE");
+                        prix+=Chambre.GetPrix("SUITE");
                             break;
                                 
                     default:

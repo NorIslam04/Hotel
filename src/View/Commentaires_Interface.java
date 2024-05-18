@@ -446,5 +446,21 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         System.exit(0);
     }
 
+    public static void main(String args[]) {
+        
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+
+                    new Commentaires_Interface().setVisible(true);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
 }

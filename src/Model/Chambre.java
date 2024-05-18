@@ -272,6 +272,19 @@ import Control.Control;
 	return prix;
   }
 
+
+  public static double GetPrix(String option){
+
+	for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+
+		if(option.equals(entry.getValue().getRooms_Options().toString())){
+			return entry.getValue().getPrix_option();
+		}
+	}
+	return 0;
+
+}
+
    public static void Bdd_to_hashMap_room(){
         // Informations de connexion à la base de données
 
@@ -325,11 +338,10 @@ import Control.Control;
                 String ch ="Chambre";
                 if (operation==TypeOperation.AJOUT) {
 
-                    String insertQuery = "INSERT INTO rooms (type, prix) VALUES (?, ?, ?, ?, ?, ?)";                 
+                    String insertQuery = "INSERT INTO rooms (type, prix,SONA, TERASSE, VUESURMERE, VUESURFORET) VALUES (?, ?, ?, ?, ?, ?)";                 
                     PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                     preparedStatement.setString(1, chambre.getType().ToString());
                     preparedStatement.setDouble(2, chambre.getPrix());
-
                     preparedStatement.setBoolean(3, chambre.isSONA());
                     preparedStatement.setBoolean(4, chambre.isTERASSE());
                     preparedStatement.setBoolean(5, chambre.isVuesurmere());
@@ -368,6 +380,7 @@ import Control.Control;
                     preparedStatement.setInt(1, idChambre);
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
+					System.out.println("Objet: "+ch+" / Operation: "+operation);
 
                 }
             }
