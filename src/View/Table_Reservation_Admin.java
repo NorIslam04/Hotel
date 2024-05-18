@@ -267,9 +267,6 @@ public double GetPrix(int id_res){
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
         int i=reservationtabel.getSelectedRow();
 
-        
-
-        
       if(i>=0){
 
         DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
@@ -280,10 +277,6 @@ public double GetPrix(int id_res){
         int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
         int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
         String etat=model.getValueAt(selectedRow,6).toString();
-
-
-
-
 
         if(!etat.equals("ACCEPTER")){
           model.setValueAt(acceptdeclinebox.getSelectedItem(),i,6);
@@ -328,8 +321,7 @@ public double GetPrix(int id_res){
         int i=reservationtabel.getSelectedRow();
 
         if(i>=0){  
-            
-            
+
             int selectedRow= reservationtabel.getSelectedRow();
             String etat=model.getValueAt(selectedRow,6).toString();
     

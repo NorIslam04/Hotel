@@ -114,7 +114,7 @@ public class Hotel {
 	}
 
 	public static void AjtChambreMap(Chambre chambre) {// la meme chose han kima ajoutusermap
-		//chambreMap.put(chambre.getId(), chambre);
+		chambreMap.put(chambre.getId(), chambre);
 		ModificationHotel<Chambre, TypeOperation> ajouterChambre = new ModificationHotel<>(chambre.getId(), chambre,
 				TypeOperation.AJOUT);
 		modificationMap.put(ModificationHotel.getNb(), ajouterChambre);
