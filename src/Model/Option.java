@@ -4,65 +4,71 @@ import java.sql.*;
 import Control.Control;
 
 
-enum Rooms_Options{
-    SOLO,
-	DOUBLE,
-	TRIPLE,
-	SUITE,
-	SONA,
-	TERASSE,
-	VUESURMERE,
-	VUESURFORET;
 
-    public String toString() {
-        switch (this) {
-            case SOLO:
-                return "SOLO";
-            case DOUBLE:
-                return "DOUBLE";
-            case TRIPLE:
-                return "TRIPLE";
-            case SUITE:
-                return "SUITE";
-            case SONA:
-                return "SONA";
-            case TERASSE:
-                return "TERASSE";
-            case VUESURMERE:
-                return "VUESURMERE";
-            case VUESURFORET:
-                return "VUESURFORET";
-            default:
-                return "error";
-        }
-    }
-
-    public static Rooms_Options ToTypeChambre(String str) {
-        switch (str) {
-            case "SOLO":
-                return SOLO;
-            case "DOUBLE":
-                return DOUBLE;
-            case "TRIPLE":
-                return TRIPLE;
-            case "SUITE":
-                return SUITE;
-            case "SONA":
-                return SONA;
-            case "TERASSE":
-                return TERASSE;
-            case "VUESURMERE":
-                return VUESURMERE;
-            case "VUESURFORET":
-                return VUESURFORET;
-            default:
-                throw new IllegalStateException("Type de chambre inconnu : " + str);
-        }
-    }
-    
-}
 
 public class Option {
+
+    public enum Rooms_Options{
+        SOLO,
+        DOUBLE,
+        TRIPLE,
+        SUITE,
+        SONA,
+        TERASSE,
+        VUESURMERE,
+        VUESURFORET;
+    
+        public String toString() {
+            switch (this) {
+                case SOLO:
+                    return "SOLO";
+                case DOUBLE:
+                    return "DOUBLE";
+                case TRIPLE:
+                    return "TRIPLE";
+                case SUITE:
+                    return "SUITE";
+                case SONA:
+                    return "SONA";
+                case TERASSE:
+                    return "TERASSE";
+                case VUESURMERE:
+                    return "VUESURMERE";
+                case VUESURFORET:
+                    return "VUESURFORET";
+                default:
+                    return "error";
+            }
+        }
+    
+        public static Rooms_Options ToTypeChambre(String str) {
+            switch (str) {
+                case "SOLO":
+                    return SOLO;
+                case "DOUBLE":
+                    return DOUBLE;
+                case "TRIPLE":
+                    return TRIPLE;
+                case "SUITE":
+                    return SUITE;
+                case "SONA":
+                    return SONA;
+                case "TERASSE":
+                    return TERASSE;
+                case "VUESURMERE":
+                    return VUESURMERE;
+                case "VUESURFORET":
+                    return VUESURFORET;
+                default:
+                    throw new IllegalStateException("Type de chambre inconnu : " + str);
+            }
+        }
+        
+    }
+
+
+
+
     private Rooms_Options rooms_Options;
     private Double prix_option;
     private int id;

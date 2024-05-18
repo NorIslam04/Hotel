@@ -5,11 +5,7 @@ import Model.Date.*;
 import Model.Reservation.*;
 
 import java.awt.Color;
-import java.awt.Window;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.*;
@@ -19,127 +15,50 @@ import javax.swing.table.DefaultTableModel;
 
 public class Table_Reseravtion_User extends javax.swing.JFrame {
 
-    static private String Ptriple="500";
-    static private String Psolo="100";
-    static private String Psuite="700";
-    static private String Pdouble="250";
-    static private ArrayList<Integer> id_reservation = new ArrayList<>();
-    static private ArrayList<Integer> id_chambre = new ArrayList<>();
+
+    public static double GetPrix(String option){
+
+        for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+
+            if(option.equals(entry.getValue().getRooms_Options().toString())){
+                return entry.getValue().getPrix_option();
+            }
+        }
+        return 0;
+
+    }
+   
+
     private static JFrame frame;
+    public static int id_res=0;
    
 
     public static void mettreajourlesreservation(){
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
-        Object rowData[]=new Object[5];
+        Object rowData[]=new Object[6];
         model.setRowCount(0);
         for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
             Reservation reservation = entry.getValue(); // Récupérer l'objet Chambre
             if(Hotel.id_user_current==reservation.getId_user()){
-            rowData[0]=reservation.getType();
-            rowData[1]=reservation.getNbrJourReservation()*getPrixParType(reservation.getType());
-            rowData[2]=reservation.getDateDebut();
-            rowData[3]=reservation.getDateFin();
-            rowData[4]=reservation.getEtat();
-            id_reservation.add(reservation.getId());
-            id_chambre.add(reservation.getId_chambre());
+            rowData[0]=reservation.getId();
+            rowData[1]=reservation.getType();
+            rowData[2]=reservation.getPrix();
+            rowData[3]=reservation.getDateDebut();
+            rowData[4]=reservation.getDateFin();
+            rowData[5]=reservation.getEtat();
             model.addRow(rowData);
             
             }
         }
     }
 
-    public static Double getPrixParType(TypeChambre typeChambre) {
-        HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
-        for (Chambre chambre : chambreMap.values()) {
-        if (chambre.getType() == typeChambre) {
-            return chambre.getPrix();
-        }
-        }
-        return null;
-    }
-
-
-    public static String getPsolo() {
-        return Psolo;
-    }
-
-    public static void setPsolo(String psolo) {
-        Psolo = psolo;
-    }
-
-    public static String getPsuite() {
-        return Psuite;
-    }
-
-    public static void setPsuite(String psuite) {
-        Psuite = psuite;
-    }
-
-    public static String getPtriple() {
-        return Ptriple;
-    }
-
-    public static void setPtriple(String ptriple) {
-        Ptriple = ptriple;
-    }
-
-    public static String getPdouble() {
-        return Pdouble;
-    }
-
-    public static void setPdouble(String pdouble) {
-        Pdouble = pdouble;
-    }
-
-
-    public void parcourChambre(){
-        Boolean so=false;
-        Boolean d=false;
-        Boolean t=false;
-         Boolean su=false;
-        
-        for (Map.Entry<Integer, Chambre> entry : Hotel.getChambreMap().entrySet()) {
-            
-            Chambre chambre = entry.getValue(); // Récupérer l'objet Chambre
-            switch (chambre.getType()) {
-                case TypeChambre.SOLO:
-                    setPsolo(String.valueOf(chambre.getPrix()));
-                    so=true;
-                    break;
-                case TypeChambre.DOUBLE:
-                    setPdouble(String.valueOf(chambre.getPrix()));
-                    d=true;
-                    break;
-                    case TypeChambre.TRIPLE:
-                    setPtriple(String.valueOf(chambre.getPrix()));
-                    t=true;
-                    break;
-            
-                default:
-                setPsuite(String.valueOf(chambre.getPrix()));
-                su=true;
-                    break;
-            }
-
-            if(su&&t&&so&&d){
-                break;
-            }
-        }
-    }
-
-
     public Table_Reseravtion_User() {
-        parcourChambre();
         initComponents();
     }
-
-
-                         
+                 
     private void initComponents() {
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
-
-        
 
         showtablelabel = new javax.swing.JLabel();
         caraclabel = new javax.swing.JLabel();
@@ -194,7 +113,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         roomtypelabel.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         roomtypelabel.setForeground(new java.awt.Color(255, 255, 255));
-        roomtypelabel.setText("Room Price:");
+        roomtypelabel.setText("Room Options:");
         // le positionement exact du label.
         roomtypelabel.setBounds(30, 200, 1500, 30);
         getContentPane().add(roomtypelabel);
@@ -234,13 +153,14 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         state.setForeground(Color.WHITE);
         getContentPane().add(state);
 
+    
         tablereservation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tablereservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Room-Type", "Total Price", "Start Date", "End Date", "State"
+                "iD-Reser","Room-Type", "Total Price", "Start Date", "End Date", "State"
             }
         ));
        
@@ -293,35 +213,15 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         roomtypebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                
-                String selectedRoomType = (String) roomtypebox.getSelectedItem();
-                if(selectedRoomType.equals("SOLO")) {
-                    roompricebox.setSelectedItem(Psolo); // Set price to 100 if room type is "SOLO"
-                }else if(selectedRoomType.equals("DOUBLE")){
-                    roompricebox.setSelectedItem(Pdouble);
-                }else if(selectedRoomType.equals("TRIPLE")){
-                    roompricebox.setSelectedItem(Ptriple);
-                }else if(selectedRoomType.equals("SUITE")){
-                    roompricebox.setSelectedItem(Psuite);
-                }
             }
         });
         // le positionement exact du label.
         roomtypebox.setBounds(160, 131, 150, 30);
         getContentPane().add(roomtypebox);
-        roompricebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { getPsolo(), getPdouble(), getPtriple(), getPsuite() }));
+        roompricebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SONA", "TERASSE", "VUESURMERE", "VUESURFORET" }));
         roompricebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
            
-                String selectedRoomprice = (String) roompricebox.getSelectedItem();
-                if(selectedRoomprice.equals(getPsolo())) {
-                    roomtypebox.setSelectedItem("SOLO"); // Set price to 100 if room type is "SOLO"
-                }else if(selectedRoomprice.equals(getPdouble())){
-                    roomtypebox.setSelectedItem("DOUBLE");
-                }else if(selectedRoomprice.equals(getPtriple())){
-                    roomtypebox.setSelectedItem("TRIPLE");
-                }else if(selectedRoomprice.equals(getPsuite())){
-                    roomtypebox.setSelectedItem("SUITE");
-                }
             }
         });
         // le positionement exact du label.
@@ -337,60 +237,91 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
         mettreajourlesreservation();
-    }// </editor-fold>                        
+    }                        
 
  
     
-    //fait
-    public static void cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+    //faitttttt
+    public static int cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         int i=tablereservation.getSelectedRow();
-        Date today =new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         DefaultTableModel model =(DefaultTableModel)tablereservation.getModel();
-      if(i>=0){
-          model.setValueAt(roomtypebox.getSelectedItem(),i,0);
-          model.setValueAt(roompricebox.getSelectedItem(),i,1);
-          model.setValueAt(startdatetext.getText(),i,2);
-          model.setValueAt(enddatetext.getText(),i,3);
-          model.setValueAt(state.getText(),i,4);
-
-          if(Date.comparer(Date.Recupere_date(startdatetext.getText()), today)==1){
+      
+        if(i>=0){
+            
+        Date today =new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
+        if(Date.comparer(Date.Recupere_date(startdatetext.getText()), today)==1){
             JOptionPane.showMessageDialog(frame, "Réservation annulée avec succès.");
             
-            double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
-            Reservation reservation=new Reservation(id_reservation.get(i), Hotel.id_user_current, Date.Recupere_date(enddatetext.getText()), Date.Recupere_date(startdatetext.getText()), TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem()),id_chambre.get(i), EtatReservation.toEtatReservation(state.getText()), prix);
-            Hotel.SupprimerReservationMap(reservation);
+            int id_resr=Integer.parseInt(model.getValueAt(i, 0).toString());
             model.removeRow(i);
+            System.out.println(id_resr);
+            return id_resr;
           }else{
             
             JOptionPane.showMessageDialog(frame, "Vous ne pouvez pas annuler cette réservation !", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return -1;
           }
       }else{
           JOptionPane.showMessageDialog(frame,"Veuillez sélectionner une réservation à annuler.","Infornation", JOptionPane.INFORMATION_MESSAGE);
       }
+      return -2;
     }
 
 
-    //fait
-    public static void addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+    //faitttttt
+    public static double addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
         Date today=new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         Date date_debut=Date.Recupere_date(startdatetext.getText());
         Date.verif_today_date(today, date_debut);
         Date date_fin=Date.Recupere_date(enddatetext.getText());
-        int id_user=Hotel.id_user_current;
+     
+        Date.Dates_logique(date_debut, date_fin);
+        int nb_day=Date.differenceEntreDates(date_debut, date_fin);
+        double prix=0;
+            
+        switch ((String)roompricebox.getSelectedItem()) {
+                case "SONA":
+                prix=GetPrix("SONA");
+                    break;
+                case "TERASSE":
+                    prix=GetPrix("TERASSE");
+                        break;
+                case "VUESURMERE":
+                    prix=GetPrix("VUESURMERE");
+                        break;
+                case "VUESURFORET":
+                    prix=GetPrix("VUESURFORET");
+                        break;
+                            
+                default:
+                    break;
+            }
 
-        TypeChambre typeChambre=TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem());
+            switch ((String)roomtypebox.getSelectedItem()) {
+                case "SOLO":
+                prix+=GetPrix("SOLO");
+                    break;
+                case "DOUBLE":
+                    prix+=GetPrix("DOUBLE");
+                        break;
+                case "TRIPLE":
+                    prix+=GetPrix("TRIPLE");
+                        break;
+                case "SUITE":
+                    prix+=GetPrix("SUITE");
+                        break;
+                            
+                default:
+                    break;
+            }
 
-      
-        double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
-        Reservation reservation=new Reservation(Reservation.getNb(), id_user, date_fin, date_debut, typeChambre,-1, EtatReservation.EN_ATTENTE, prix);
-        Hotel.AjtReservationMap(reservation);
-       
 
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
-        double prix_resevation = Double.parseDouble((String) roompricebox.getSelectedItem()) * reservation.getNbrJourReservation();
-        Model.addRow(new Object[]{roomtypebox.getSelectedItem(),prix_resevation,startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
 
+        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),nb_day*prix,startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
+
+        return nb_day*prix;
 
     } catch(Date_syntaxe e){
         JOptionPane.showMessageDialog(frame,
@@ -429,32 +360,37 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 e.getMessage(),
                 "Erreur",
                 JOptionPane.INFORMATION_MESSAGE);
-   }                                          
+   }     
+   return -1;                                     
 } 
                                                  
-    //fait
+    //faitttt
     public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
-        roomtypebox.setSelectedItem(model.getValueAt(selectedRow,0).toString());
-        roompricebox.setSelectedItem(model.getValueAt(selectedRow,1).toString());
-        startdatetext.setText(model.getValueAt(selectedRow,2).toString());
-        enddatetext.setText(model.getValueAt(selectedRow,3).toString());
+        roomtypebox.setSelectedItem(model.getValueAt(selectedRow,1).toString());
+        roompricebox.setSelectedItem(model.getValueAt(selectedRow,2).toString());
+        startdatetext.setText(model.getValueAt(selectedRow,3).toString());
+        enddatetext.setText(model.getValueAt(selectedRow,4).toString());
+        state.setText(model.getValueAt(selectedRow,5).toString());
+        
+
         //ACCEPTER,DECLINER,EN_ATTENTE;
-        if(model.getValueAt(selectedRow,4).toString().equals("ACCEPTER")){
+        if(model.getValueAt(selectedRow,5).toString().equals("ACCEPTER")){
             state.setForeground(Color.GREEN);
-        }else if(model.getValueAt(selectedRow,4).toString().equals("DECLINER")){
+        }else if(model.getValueAt(selectedRow,5).toString().equals("DECLINER")){
             state.setForeground(Color.RED);
         }else{
             state.setForeground(Color.ORANGE);
         }
-        state.setText(model.getValueAt(selectedRow,4).toString());
+        state.setText(model.getValueAt(selectedRow,5).toString());
     }                                             
 
-    //fait
-    public static void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
+    //faitttt
+    public static double updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
         int i = tablereservation.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
+        
         if (i >= 0) {
             try {
                 Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
@@ -462,18 +398,59 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 Date.verif_today_date(today, date_debut);
                 Date date_fin = Date.Recupere_date(enddatetext.getText());
                 if(Date.comparer(date_debut, today)==1){
+                Date.Dates_logique(date_debut, date_fin);
+                int nb_day=Date.differenceEntreDates(date_debut, date_fin);
+                id_res=(int) model.getValueAt(i,0);
+                double prix=0;
+                
+                switch ((String)roompricebox.getSelectedItem()) {
+                    case "SONA":
+                    prix=GetPrix("SONA");
+                        break;
+                    case "TERASSE":
+                        prix=GetPrix("TERASSE");
+                            break;
+                    case "VUESURMERE":
+                        prix=GetPrix("VUESURMERE");
+                            break;
+                    case "VUESURFORET":
+                        prix=GetPrix("VUESURFORET");
+                            break;
+                                
+                    default:
+                        break;
+                }
     
-                TypeChambre typeChambre=TypeChambre.ToTypeChambre((String)roomtypebox.getSelectedItem());
-                double prix=9999;//TODO: affectation de prix 3la 7ssab nombre jour et les option 
-                Reservation reservation =new Reservation(id_reservation.get(i),Hotel.id_user_current, date_fin, date_debut, typeChambre,-1, EtatReservation.EN_ATTENTE,prix);
-                Hotel.ModifierReservationMap(reservation);
-                double prix_resevation = Double.parseDouble((String) roompricebox.getSelectedItem()) * reservation.getNbrJourReservation();
+                switch ((String)roomtypebox.getSelectedItem()) {
+                    case "SOLO":
+                    prix+=GetPrix("SOLO");
+                        break;
+                    case "DOUBLE":
+                        prix+=GetPrix("DOUBLE");
+                            break;
+                    case "TRIPLE":
+                        prix+=GetPrix("TRIPLE");
+                            break;
+                    case "SUITE":
+                        prix+=GetPrix("SUITE");
+                            break;
+                                
+                    default:
+                        break;
+                }
+
                 // Mise à jour des valeurs dans le modèle de tableau
-                model.setValueAt(roomtypebox.getSelectedItem(), i, 0);
-                model.setValueAt(prix_resevation, i, 1);
-                model.setValueAt(startdatetext.getText(), i, 2);
-                model.setValueAt(enddatetext.getText(), i, 3);
-                model.setValueAt("EN_ATTEND", i, 4);
+                model.setValueAt(roomtypebox.getSelectedItem(), i, 1);
+                model.setValueAt(prix*nb_day, i, 2);
+                model.setValueAt(startdatetext.getText(), i, 3);
+                model.setValueAt(enddatetext.getText(), i, 4);
+                model.setValueAt("EN_ATTEND", i, 5);
+                System.out.println("hey");
+
+
+                return nb_day*prix;
+
+
                 }else{
                     JOptionPane.showMessageDialog(null, "Vous ne pouvez pas modifier cette réservation", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
@@ -518,10 +495,11 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(frame, "Veuillez sélectionner une ligne à mettre à jour.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        return -1;
     
     }
     
-    //fait
+    //faitttt
     public static int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)

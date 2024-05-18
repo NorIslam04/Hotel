@@ -16,7 +16,6 @@ public class Reservation {
 	private Date dateFin;
 	private double prix;
 	private int id_chambre;
-	private int NbrJourReservation;
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
 
     public enum EtatReservation {
@@ -55,12 +54,11 @@ public class Reservation {
 	static int nb = 0;
 
 	public Reservation(int id, int idUser, Date dateFin, Date dateDebut, TypeChambre type, int idChambre,
-			EtatReservation etat,double prix) throws Exception {
+			EtatReservation etat,double prix){
 		this.id = id;
 		this.type = type;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.NbrJourReservation=(int) Date.differenceEntreDates(dateDebut, dateFin);
 		this.id_user=idUser;
 		this.prix=prix;
 		this.id_chambre=idChambre;
@@ -136,15 +134,7 @@ public class Reservation {
 		Reservation.nb = nb;
 	}
 
-	
 
-	public int getNbrJourReservation() {
-		return NbrJourReservation;
-	}
-
-	public void setNbrJourReservation(int nbrJourReservation) {
-		NbrJourReservation = nbrJourReservation;
-	}
 
 	public double getPrix() {
 		return prix;
