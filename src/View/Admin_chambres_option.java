@@ -52,9 +52,9 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
 
         modifierchamb.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        modifierchamb.setText("Modifier Chambre");
+
         modifierchamb.setBounds(790, 25, 150, 30);
-        suppchambre.setText("Suprimer Chambre");
+
 
         modifierchamb.setBackground(color);
         modifierchamb.setForeground(colorgris);
@@ -323,6 +323,9 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             TerasseJlabel = new JLabel("                  terasse");
             vuemerJLabel = new JLabel("                 Sea View");
             vueforetJLabel = new JLabel("               Forest View");
+            suppchambre.setText("Delete Room");
+            modifierchamb.setText("Edit Room");
+
         
             reserveButton = new JButton("Modifier this room");
             supprimerChambreButton=new JButton("Delete this room");
@@ -337,6 +340,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             vueforetJLabel = new JLabel("           Vue sur la foret");
             reserveButton = new JButton("modifier cette chambre");
             supprimerChambreButton=new JButton("supprimer cette chambre");
+            suppchambre.setText("Suprimer Chambre");
+        modifierchamb.setText("Modifier Chambre");
         }
 
         nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
