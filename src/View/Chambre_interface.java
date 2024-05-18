@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
@@ -353,6 +353,7 @@ public class Chambre_interface extends javax.swing.JFrame {
     private void avissurnousButtonActionPerformed() {
         try {
             new Commentaires_Interface();
+            dispose();
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -362,15 +363,19 @@ public class Chambre_interface extends javax.swing.JFrame {
 
     private void aProposbtnActionPerformed() {
        new APropos();
+       dispose();
     }
 
     private void passeraureservationActionPerformed() {
+        
         Control.Action_TableReservationUser();
+        dispose();
     }
 
     private void reserverDetailActionPerformed() {
         try {
-            new Tarif_Option_Chambres ();
+            new Tarif_Option_Chambres();
+            dispose();
         } catch (Exception e) {
             e.printStackTrace();
         }

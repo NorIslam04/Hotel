@@ -1,5 +1,8 @@
 package Control;
 import Model.*;
+import Model.Chambre.TypeChambre;
+import Model.Date;
+import Model.Reservation.EtatReservation;
 import View.*;
 
 import java.awt.Window;
@@ -226,7 +229,13 @@ public class Control {
         Table_Reseravtion_User.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
+ 
+                int i=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
+                if (i>=0) {
+                    Reservation reservation=new Reservation(i, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1);
+                    Hotel.SupprimerReservationMap(reservation);
+                    
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -237,23 +246,36 @@ public class Control {
         Table_Reseravtion_User.addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
+            double i=Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
+            if (i>0) {
+                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i);
+                Hotel.AjtReservationMap(reservation);
+            }
+
         }  catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
     });
 
+
+
     Table_Reseravtion_User.tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
+        public void mouseClicked(java.awt.event.MouseEvent evt) { 
             Table_Reseravtion_User.tablereservationMouseClicked(evt);
         }
     });
 
+
+
+
     Table_Reseravtion_User.updatebtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                Table_Reseravtion_User.updatebtnActionPerformed(evt);
+                double i=Table_Reseravtion_User.updatebtnActionPerformed(evt);
+                Reservation reservation =new Reservation(Table_Reseravtion_User.id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i);
+                Hotel.ModifierReservationMap(reservation);
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());;
             }
@@ -344,7 +366,7 @@ public class Control {
                     System.out.println("Type: " + reservation.getType());
                     System.out.println("Date de début: " + reservation.getDateDebut());
                     System.out.println("Date de fin: " + reservation.getDateFin());
-                    System.out.println("NbrJourResrvation: " + reservation.getNbrJourReservation());
+                    System.out.println("NbrJourResrvation: " + reservation.getPrix());
                     System.out.println("ID Chambre: " + reservation.getId_chambre());
                     System.out.println("État: " + reservation.getEtat());
                     System.out.println("Prix: "+reservation.getPrix());

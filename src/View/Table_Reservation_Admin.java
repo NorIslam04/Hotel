@@ -33,7 +33,7 @@ public static void setId_chambre(int id_chambre) {
             rowData[0]=reservation.getId_user();
             rowData[1]=reservation.getId();
             rowData[2]=reservation.getType();
-            rowData[3]=reservation.getNbrJourReservation()*getPrixParType(reservation.getType());
+            rowData[3]=reservation.getPrix();
             rowData[4]=reservation.getDateDebut();
             rowData[5]=reservation.getDateFin();
             rowData[6]=reservation.getEtat();
