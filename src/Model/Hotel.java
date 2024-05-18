@@ -222,7 +222,9 @@ public class Hotel {
 			ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),
 					reservation, TypeOperation.SUPPRESSION);
 			modificationMap.put(ModificationHotel.getNb(), suppReservation);
-		} 
+		} else{
+			System.out.println("existe pas! dnas Map reservation");
+		}
 
 	}
 

@@ -163,6 +163,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 "iD-Reser","Room-Type", "Total Price", "Start Date", "End Date", "State"
             }
         ));
+        tablereservation.getColumnModel().getColumn(5).setPreferredWidth(100);
        
         jScrollPane1.setViewportView(tablereservation);
         // le positionement exact du label.
@@ -445,7 +446,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 model.setValueAt(startdatetext.getText(), i, 3);
                 model.setValueAt(enddatetext.getText(), i, 4);
                 model.setValueAt("EN_ATTEND", i, 5);
-                System.out.println("hey");
+              
 
 
                 return nb_day*prix;

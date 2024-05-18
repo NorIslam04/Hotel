@@ -17,6 +17,7 @@ public class Reservation {
 	private double prix;
 	private int id_chambre;
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
+    public int sup;
 
     public enum EtatReservation {
         ACCEPTER,
@@ -64,6 +65,7 @@ public class Reservation {
 		this.id_chambre=idChambre;
 		this.etat = etat;
 		nb++;
+        sup=0;
 	}
 
 
