@@ -24,11 +24,23 @@ public static void setId_chambre(int id_chambre) {
     Table_Reservation_Admin.id_chambre = id_chambre;
 }
 
+public double GetPrix(int id_res){
+    for (Map.Entry<Integer, Reservation> obj : Hotel.getReservationMap().entrySet()) {
+        int id = obj.getKey();
+        Reservation res=obj.getValue();
+        if (id==id_res) {
+          return res.getPrix();
+        }
+    }
+    return -9345;
+}
+
     public void mettreajourlesreservationadmin(){
         DefaultTableModel model = (DefaultTableModel) reservationtabel.getModel();
         Object rowData[]=new Object[7];
         model.setRowCount(0);
         for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
+            if(entry.getValue().sup==0){
             Reservation reservation = entry.getValue(); // Récupérer l'objet Chambre
             rowData[0]=reservation.getId_user();
             rowData[1]=reservation.getId();
@@ -38,7 +50,7 @@ public static void setId_chambre(int id_chambre) {
             rowData[5]=reservation.getDateFin();
             rowData[6]=reservation.getEtat();
             model.addRow(rowData);
-            
+            }
         }
     }
 
@@ -255,6 +267,11 @@ public static void setId_chambre(int id_chambre) {
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
         int i=reservationtabel.getSelectedRow();
 
+        
+
+        
+      if(i>=0){
+
         DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
         int selectedRow= reservationtabel.getSelectedRow();
         TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
@@ -264,18 +281,19 @@ public static void setId_chambre(int id_chambre) {
         int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
         String etat=model.getValueAt(selectedRow,6).toString();
 
-        
-      if(i>=0){
-        if(!etat.equals("ACCEPTER")){
 
+
+
+
+        if(!etat.equals("ACCEPTER")){
           model.setValueAt(acceptdeclinebox.getSelectedItem(),i,6);
           if(EnAttente()==1){
-            double prix =-1;//hna ya nricipiriwah m lintereface wla ndiro une variable static, 7kayatha kima idChambre
+            double prix =GetPrix(idReservation);
             Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
             Hotel.ModifierReservationMap(newres);
                     
             }else{
-                double prix =-1;//hna ya nricipiriwah m lintereface wla ndiro une variable static
+                double prix =GetPrix(idReservation);
                 Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
                 Hotel.ModifierReservationMap(newres);
             } 
@@ -287,19 +305,40 @@ public static void setId_chambre(int id_chambre) {
 
         }
       }else{
-          JOptionPane.showMessageDialog(null,"Error");
+          JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
       }
        
     }                   
     
     private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid { //fait                                          
-        Admin.supprimerreservationinutile();
+        int i=Admin.supprimerreservationinutile();
+        if (i>0) {
+            JOptionPane.showMessageDialog(frame,"vous avez supprimé - "+i+" - réservations inutile !");
+            mettreajourlesreservationadmin();
+        }else{
+            JOptionPane.showMessageDialog(frame,"Il n'y a pas de réserves inutiles !");
+
+        }
+
+        //insert into reservation(idUser,type,dateDebut,dateFin,idChambre,etat,prix) values(15,'SOLO','10/5/2024','16/5/2024',-1,'DECLINER',5432.87);
     } 
 
     private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
-        int selectedRow= reservationtabel.getSelectedRow();
-        String etat=model.getValueAt(selectedRow,6).toString();
+        int i=reservationtabel.getSelectedRow();
+
+        if(i>=0){  
+            
+            
+            int selectedRow= reservationtabel.getSelectedRow();
+            String etat=model.getValueAt(selectedRow,6).toString();
+    
+            TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
+            String Date_debut=model.getValueAt(selectedRow,4).toString();
+            String Date_fin=model.getValueAt(selectedRow,5).toString();
+            int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
+            int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
+
         if(etat.equals("ACCEPTER")){
 
             JOptionPane.showMessageDialog(frame,
@@ -309,16 +348,36 @@ public static void setId_chambre(int id_chambre) {
         }  
         else{                                               
        if(EnAttente()==1){
-        JOptionPane.showMessageDialog(frame,
-                "Vous pouvez 'ACCEPTER' cette reservation !",
-                "ACCEPTER",
+        int a=JOptionPane.showConfirmDialog(frame,
+                "'ACCEPTER' cette reservation Automatique ?",
+                "Automatique",
                 JOptionPane.INFORMATION_MESSAGE);
+                if(a==0){
+                    model.setValueAt("ACCEPTER",i,6);
+                    double prix =GetPrix(idReservation);
+                    Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.ACCEPTER,prix);
+                    Hotel.ModifierReservationMap(newres);
+                }else{
+                    JOptionPane.showMessageDialog(frame, "Vous devez 'ACCEPTER' Manuellement");
+                }
+
         }else if(EnAttente()==0){
-            JOptionPane.showMessageDialog(frame,
-            "Vous devez 'DECLINER' cette reservation !",
-            "DECLINER",
-            JOptionPane.INFORMATION_MESSAGE);
-        }  
+            int a=JOptionPane.showConfirmDialog(frame,
+                "'DECLINER' cette reservation Automatique ?",
+                "Automatique",
+                JOptionPane.INFORMATION_MESSAGE);
+                if(a==0){
+                    model.setValueAt("DECLINER",i,6);
+                double prix =GetPrix(idReservation);
+                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.DECLINER,prix);
+                Hotel.ModifierReservationMap(newres);
+                }else{
+                    JOptionPane.showMessageDialog(frame, "Vous devez 'DECLINER' Manuellement");
+                }
+        }
+    }  
+    }else{
+        JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
     }                            
     }
                                                   

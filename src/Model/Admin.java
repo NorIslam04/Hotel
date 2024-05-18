@@ -1,7 +1,9 @@
 package Model;
 import Model.Date.*;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.Map.*;
+
+import javax.swing.RowFilter.Entry;
 
 class Chambre_reservee extends Exception {
 	private String message = "la chambre est deja reservee vous ne pouvez appliquer aucun changement !";
@@ -24,6 +26,7 @@ public class Admin {
 	private String name;
 	private String password;
 	private int id;
+	public static int nb_Supp;
 
 	static int nb = 0;
 
@@ -68,43 +71,28 @@ public class Admin {
 		Admin.nb = nb;
 	}
 
-	public static void supprimerreservationinutile() throws Date_nonvalid {
+	public static int supprimerreservationinutile() throws Date_nonvalid {
 		Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
-
-		Iterator<Map.Entry<Integer, Reservation>> iterator = Hotel.getReservationMap().entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<Integer, Reservation> entry = iterator.next();
-			Reservation reservation = entry.getValue();
+		try {
+			nb_Supp=0;
+		for (Map.Entry<Integer, Reservation> obj : Hotel.getReservationMap().entrySet()) {
+			Reservation reservation = obj.getValue();
 			if (Date.comparer(reservation.getDateFin(),today)<=0) {
-				Hotel.SupprimerReservationMap(reservation);
+				obj.getValue().sup=1;
+				nb_Supp++;
+				ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),
+					reservation, TypeOperation.SUPPRESSION);
+			Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
 			}
-
-		}
-	}
-/* 
-	void modifierchambrenblit(int id, TypeChambre type) throws non_presente_bdd, Date_nonvalid, Chambre_reservee, deja_presente_bdd {
-		LocalDate date = LocalDate.now();
-		Date dateact = new Date(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
-		Date dateDansUnan = Date.ajouterJours(date.getDayOfMonth(), date.getMonthValue(), date.getYear(), 365);
-		Chambre chambre = Hotel.RechercheChambreParId(id);
-		if (Hotel.ChambreDispo(chambre, dateact, dateDansUnan)) {
-			chambre.setType(type);
-			Hotel.ajouterModificationHotel(chambre, TypeOperation.MODIFICATION);// le id ne peut pas etre modified
-		} else {
-			throw new Chambre_reservee();
+			
 		}
 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return nb_Supp;
+		
 	}
 
-	// hna les ancienne reservation doivent etre acceptee avec les anciens prix a
-	// verifier
-	void modifierprixchambre(int newprice, TypeChambre type) throws prix_invalide {
-		if (newprice <= 0) {
-			throw new prix_invalide();
-		} else {
-			type.setPrix(newprice);
-		}
-	}*/
 
 }
-// TODO : ne7iw m la bdd nb de lit per chambre
