@@ -627,6 +627,7 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
         
         Hotel.AjtChambreMap(chambrerecherchee);
+        JOptionPane.showMessageDialog(frame,"La chambre a été Ajoutée avec succès");
       
 
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
