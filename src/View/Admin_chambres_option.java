@@ -1,19 +1,14 @@
 package View;
 import Model.*;
 import Model.Chambre.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import Control.Control;
-
-
 
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
@@ -22,40 +17,89 @@ class BlackScrollPane extends JScrollPane {
     }
 }
 public class Admin_chambres_option extends javax.swing.JFrame{
+
     JCheckBox sonaCheckBox = new JCheckBox();
     JCheckBox terasseCheckBox = new JCheckBox();
     JCheckBox vuesurmerBox = new JCheckBox();
     JCheckBox vuesurforetBox = new JCheckBox();
-    JButton suppchambre =new JButton();
-    int id_supp_chamb=0;
-  
-    javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
-
-
     JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
     BlackScrollPane scrollPane;
-    Color color = Color.decode("#E0C878");
-    Color colorgris = Color.decode("#252926");
     JButton filtrer = new JButton();
     JButton ajouterchambre = new JButton();
     JButton modifierchamb =new JButton();
-    
-
+    JButton suppchambre =new JButton();
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    Color color = Color.decode("#E0C878");
+    Color colorgris = Color.decode("#252926");
+    int id_supp_chamb=0;
 
     public Admin_chambres_option() throws Exception {
         initComponents();
     }
     
-
     private void initComponents() throws Exception {
 
+        // Création de la fenêtre principale
+        setUndecorated(true); // Supprime tous les boutons par défaut
+        // rendre le layout manager null pour le positionement absolu.
+        getContentPane().setLayout(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("adminchambre page");
+        setLocationRelativeTo(null);
+        setVisible(true);
+    
+       // les labels:
+        JLabel sonaJlabel;
+        JLabel vuesurmerJLabel;
+        JLabel TerasseJlabel;
+        JLabel vuesurforetJLabel;
+        JLabel choisistypeJLabel;
+        JLabel choisisoptionsJLabel;
 
+        if (Hotel.langue == 0) {
+         
+            sonaJlabel = new JLabel("Sona :");
+            vuesurmerJLabel = new JLabel("Sea View :");
+            TerasseJlabel = new JLabel("Terasse :");
+            vuesurforetJLabel = new JLabel("Forest View :");
+            filtrer.setText("Filter");
+            ajouterchambre.setText("Add This Room");
+            modifierchamb.setText("Edit This Room");
+            suppchambre.setText("Delete This Room");
+            choisisoptionsJLabel = new JLabel("Choose Options :");
+            choisistypeJLabel = new JLabel("Choose Type :");
+          
+        } else {
+       
+            sonaJlabel = new JLabel("Sona :");
+            vuesurmerJLabel = new JLabel("Terasse :");
+            TerasseJlabel = new JLabel("Vue sur mer :");
+            vuesurforetJLabel = new JLabel("Vue sur foret :");
+            choisisoptionsJLabel = new JLabel("Choisissez Les Options :");
+            choisistypeJLabel = new JLabel("Choisissez Le Type :");
+            ajouterchambre.setText("Ajouter Cette Chambre");
+            modifierchamb.setText("Modifier Cette Chambre");
+            suppchambre.setText("Supprimer Cette Chambre");
+            filtrer.setText("Filtrer");
+
+        }
+
+        // les panels:
+    
+        // création du premier panel pour les information de la réservation:
+        JPanel informationReservationPanel = new JPanel();
+        informationReservationPanel.setLayout(null);
+        informationReservationPanel.setBorder((new RoundBorder(color, 3)));
+        informationReservationPanel.setBackground(colorgris);
+        add(informationReservationPanel);
+        //le positionnement exact du panel:
+        informationReservationPanel.setBounds(3, 3, 1027, 200);
+       
+       //les bouttons du panel informationReservationPanel:
+
+       //création d'un boutton avec ses caractéristiques:
         modifierchamb.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-
-        modifierchamb.setBounds(790, 25, 150, 30);
-
-
         modifierchamb.setBackground(color);
         modifierchamb.setForeground(colorgris);
         modifierchamb.setBorder(new RoundBorder(color, 3));
@@ -69,15 +113,12 @@ public class Admin_chambres_option extends javax.swing.JFrame{
                 }
             }
         });
-
         
-        suppchambre.setBounds(790, 70, 150, 30);
-        
-        ajouterchambre.setBounds(790, 115, 150, 30);
+        //le positionnement exact du boutton:
+        modifierchamb.setBounds(790, 25, 150, 30);
 
-        filtrer.setBounds(790, 160, 150, 30);
-
-
+        //création d'un boutton avec ses caractéristiques:
+        suppchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         suppchambre.setBackground(color);
         suppchambre.setForeground(colorgris);
         suppchambre.setBorder(new RoundBorder(color, 3));
@@ -91,166 +132,15 @@ public class Admin_chambres_option extends javax.swing.JFrame{
                 }
             }
         });
-        
-        
-        // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
-        // Création de la fenêtre principale
-        setUndecorated(true); // Supprime tous les boutons par défaut
-        // rendre le layout manager null pour le positionement absolu.
-        getContentPane().setLayout(null);
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("adminchambre page");
-        setLocationRelativeTo(null);
-        setVisible(true);
-    
-        JLabel sonaJlabel;
-        JLabel vuesurmerJLabel;
-        JLabel TerasseJlabel;
-        JLabel vuesurforetJLabel;
-        JLabel choisistypeJLabel;
-        JLabel choisisoptionsJLabel;
 
-   
-        // les labels:
-        if (Hotel.langue == 0) {
-         
-            sonaJlabel = new JLabel("Sona :");
-            vuesurmerJLabel = new JLabel("Sea View :");
-            TerasseJlabel = new JLabel("Terasse :");
-            vuesurforetJLabel = new JLabel("Forest View :");
-            filtrer.setText("Filter");
-            ajouterchambre.setText("add this room");
-  
-            choisisoptionsJLabel = new JLabel("Choose Options :");
-            choisistypeJLabel = new JLabel("Choose Type :");
-          
-        } else {
-       
-            sonaJlabel = new JLabel("Sona :");
-            vuesurmerJLabel = new JLabel("Terasse :");
-            TerasseJlabel = new JLabel("vue sur mer :");
-            vuesurforetJLabel = new JLabel("vue sur foret :");
-            choisisoptionsJLabel = new JLabel("choisissez les Options :");
-            choisistypeJLabel = new JLabel("choisissez le Type :");
-            ajouterchambre.setText("ajouter cette chambre");
-        
-          
+        //le positionnement exact du boutton:
+        suppchambre.setBounds(790, 70, 150, 30);
 
-            filtrer.setText("Filtrer");
-  
-        }
-    
-
-        JPanel informationReservationPanel = new JPanel();
-
-        informationReservationPanel.setLayout(null);
-        informationReservationPanel.setBounds(3, 3, 1027, 200);
-        informationReservationPanel.setBorder((new RoundBorder(color, 3)));
-        informationReservationPanel.setBackground(colorgris);
-        add(informationReservationPanel);
-
-
-
-      
-        sonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-        TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-        vuesurforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-        vuesurmerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
-
-
-
-        sonaJlabel.setForeground(colorgris);
-        TerasseJlabel.setForeground(colorgris);
-        vuesurforetJLabel.setForeground(colorgris);
-        vuesurmerJLabel.setForeground(colorgris);
-
- 
-
-        sonaJlabel.setBounds(40, 90, 200, 20);
-          sonaCheckBox.setBounds(240, 90, 40, 20);
-        TerasseJlabel.setBounds(40, 110, 200, 20);
-        terasseCheckBox.setBounds(240, 110, 40, 20);
-        vuesurforetJLabel.setBounds(40, 130, 200, 20);
-        vuesurforetBox.setBounds(240, 130, 40, 20);
-        vuesurmerJLabel.setBounds(40, 150, 200, 20);
-        vuesurmerBox.setBounds(240, 150, 40, 20);
-        choisistypeJLabel.setBounds(20, 20, 200, 17);
-        choisisoptionsJLabel.setBounds(20, 60, 200, 17);
-        roomtypebox.setBounds(200, 14, 150, 30);
-
-        choisistypeJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        choisisoptionsJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        choisisoptionsJLabel.setForeground(colorgris);
-        choisistypeJLabel.setForeground(colorgris);
-
-        JPanel optioJPanel = new JPanel();
-        optioJPanel.setLayout(null);
-        optioJPanel.add(sonaJlabel);
-        optioJPanel.add(  sonaCheckBox);
-        optioJPanel.add(terasseCheckBox);
-        optioJPanel.add(TerasseJlabel);
-        optioJPanel.add(vuesurforetJLabel);
-        optioJPanel.add(vuesurmerJLabel);
-        optioJPanel.add(vuesurmerBox);
-        optioJPanel.add(vuesurforetBox);
-        optioJPanel.add(choisisoptionsJLabel);
-        optioJPanel.add(choisistypeJLabel);
-        optioJPanel.add(roomtypebox);
-        optioJPanel.setBounds(326, 10, 380, 180);
-        optioJPanel.setBackground(color);
-        informationReservationPanel.add(optioJPanel);
-
-          sonaCheckBox.setBackground(color);
-        terasseCheckBox.setBackground(color);
-        vuesurforetBox.setBackground(color);
-        vuesurmerBox.setBackground(color);
-
-        roomtypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE" }));
-
-        roomtypebox.setForeground(color);
-        roomtypebox.setBackground(colorgris);
-        roomtypebox.setBorder(new RoundBorder(color, 3));
-
-
-        afficherchambre();
-
-        // Bouton pour fermer la fenêtre
-        JButton revenirbtn = new JButton("");
-        revenirbtn.setBounds(970, 5, 25, 30);
-        revenirbtn.setBackground(Color.white);
-        add(revenirbtn);
-
-        // Action pour fermer la fenêtre lorsque le bouton est cliqué
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
-
-        informationReservationPanel.add(revenirbtn);
-        optioJPanel.add(roomtypebox);
-        // creation d'un boutton pour le close avec ses caractéristiques.
-
-        // Utiliser la couleur
-        javax.swing.JButton closebtn = new JButton(" ");
-        closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
-        closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        // le positionement exact du boutton.
-        closebtn.setBounds(997, 5, 25, 30);
-        informationReservationPanel.add(closebtn);
-
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    closebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-
+        //création d'un boutton avec ses caractéristiques:
+        ajouterchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        ajouterchambre.setBackground(color);
+        ajouterchambre.setForeground(colorgris);
+        ajouterchambre.setBorder(new RoundBorder(color, 3));
         ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -261,12 +151,43 @@ public class Admin_chambres_option extends javax.swing.JFrame{
                 }
             }
         });
+        //le positionnement exact du boutton:
+        ajouterchambre.setBounds(790, 115, 150, 30);
 
-        
+        //création d'un boutton avec ses caractéristiques:
+        JButton revenirbtn = new JButton("");
+        revenirbtn.setBackground(Color.white);
+        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
+            }
+        });
+        //le positionnement exact du boutton:
+        revenirbtn.setBounds(970, 5, 25, 30);
 
-        // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
+        //création d'un boutton avec ses caractéristiques:
+        javax.swing.JButton closebtn = new JButton("");
+        closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+        closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    closebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        // le positionement exact du boutton.
+        closebtn.setBounds(997, 5, 25, 30);
+
+        //création d'un boutton avec ses caractéristiques:
         filtrer.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-
+        filtrer.setBackground(color);
+        filtrer.setForeground(colorgris);
+        filtrer.setBorder(new RoundBorder(color, 3));
         filtrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -274,25 +195,82 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
             }
         });
-        suppchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        ajouterchambre.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-  
-        ajouterchambre.setBackground(color);
-        ajouterchambre.setForeground(colorgris);
-        ajouterchambre.setBorder(new RoundBorder(color, 3));
+        //le positionnement exact du boutton:
+        filtrer.setBounds(790, 160, 150, 30);
+
+        //ajouter au premier panel:
+
+        informationReservationPanel.add(filtrer);
         informationReservationPanel.add(ajouterchambre);
         informationReservationPanel.add(suppchambre);
-       
-        informationReservationPanel.add( modifierchamb);
-        // le positionement exact du boutton.
-       
-        filtrer.setBackground(color);
-        filtrer.setForeground(colorgris);
-        filtrer.setBorder(new RoundBorder(color, 3));
-        informationReservationPanel.add(filtrer);
+        informationReservationPanel.add(modifierchamb);
+        informationReservationPanel.add(closebtn);
+        informationReservationPanel.add(revenirbtn);
+
+        //création du deuxième panel pour les information de la réservation:
+        
+        JPanel optioJPanel = new JPanel();
+        optioJPanel.setBackground(color);
+        optioJPanel.setLayout(null);
+        optioJPanel.setBounds(400, 10, 380, 180);
+
+        // les labels du panel:
+
+        sonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        sonaJlabel.setForeground(colorgris);
+        sonaJlabel.setBounds(40, 90, 200, 20);
+        TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        TerasseJlabel.setForeground(colorgris);
+        TerasseJlabel.setBounds(40, 110, 200, 20);
+        vuesurforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        vuesurforetJLabel.setForeground(colorgris);
+        vuesurforetJLabel.setBounds(40, 130, 200, 20);
+        vuesurmerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        vuesurmerJLabel.setForeground(colorgris);
+        vuesurmerJLabel.setBounds(40, 150, 200, 20);
+        choisistypeJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        choisistypeJLabel.setForeground(colorgris);
+        choisistypeJLabel.setBounds(20, 20, 200, 17);
+        choisisoptionsJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        choisisoptionsJLabel.setForeground(colorgris);
+        choisisoptionsJLabel.setBounds(20, 60, 200, 17);
+
+        //les checkbox:
+        sonaCheckBox.setBackground(color);
+        sonaCheckBox.setBounds(240, 90, 40, 20);
+        terasseCheckBox.setBackground(color);
+        terasseCheckBox.setBounds(240, 110, 40, 20);
+        vuesurforetBox.setBackground(color);
+        vuesurforetBox.setBounds(240, 130, 40, 20);
+        vuesurmerBox.setBackground(color);
+        vuesurmerBox.setBounds(240, 150, 40, 20); 
+        roomtypebox.setBounds(200, 14, 150, 30);
+
+        // les combo_box:
+        roomtypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE" }));
+        roomtypebox.setForeground(color);
+        roomtypebox.setBackground(colorgris);
+        roomtypebox.setBorder(new RoundBorder(color, 3));
+
+        //ajouter au panel:
+        optioJPanel.add(sonaJlabel);
+        optioJPanel.add(sonaCheckBox);
+        optioJPanel.add(terasseCheckBox);
+        optioJPanel.add(TerasseJlabel);
+        optioJPanel.add(vuesurforetJLabel);
+        optioJPanel.add(vuesurmerJLabel);
+        optioJPanel.add(vuesurmerBox);
+        optioJPanel.add(vuesurforetBox);
+        optioJPanel.add(choisisoptionsJLabel);
+        optioJPanel.add(choisistypeJLabel);
+        optioJPanel.add(roomtypebox);
+        informationReservationPanel.add(optioJPanel);
+
+        afficherchambre();
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
-        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png"));
+
         // le positionement exact du background.
         backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);
@@ -325,8 +303,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             vueforetJLabel = new JLabel("               Forest View");
             suppchambre.setText("Delete Room");
             modifierchamb.setText("Edit Room");
-
-        
             reserveButton = new JButton("Modifier this room");
             supprimerChambreButton=new JButton("Delete this room");
         } else {
@@ -697,17 +673,12 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
             backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
             backgroundlabel.setBounds(0, 0, 1032, 580);
             getContentPane().add(backgroundlabel);
-
             getContentPane().revalidate();
             getContentPane().repaint();
-
-
-        
 
     }
 
     void afficherchambre() throws Exception {
-
 
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -723,8 +694,6 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
         scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
         scrollPane.setBounds(0, 210, 1033, 400);
-
-        // Supprimer le contenu existant du JFrame principal
 
         // Ajouter le JScrollPane au JFrame principal
         getContentPane().add(scrollPane, BorderLayout.CENTER);
