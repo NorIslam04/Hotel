@@ -60,6 +60,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         if (Hotel.langue == 0) {
          
             sonaJlabel = new JLabel("Sona :");
+            
             vuesurmerJLabel = new JLabel("Sea View :");
             TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Forest View :");
@@ -74,6 +75,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
        
             sonaJlabel = new JLabel("Sona :");
             vuesurmerJLabel = new JLabel("Terasse :");
+            
             TerasseJlabel = new JLabel("Vue sur mer :");
             vuesurforetJLabel = new JLabel("Vue sur foret :");
             choisisoptionsJLabel = new JLabel("Choisissez Les Options :");
@@ -290,21 +292,22 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         JLabel TerasseJlabel;
         JLabel vuemerJLabel;
         JLabel vueforetJLabel;
-        JButton reserveButton;
-        JButton supprimerChambreButton;
+;
         if (Hotel.langue == 0) {
             nameLabel = new JLabel("RoomID: " + chambre.getId());
+            
             bedsLabel = new JLabel("Room type: " + chambre.getType());
             priceLabel = new JLabel("price: " + chambre.getPrix());
             optionlLabel = new JLabel("Options: ");
+            optionlLabel.setForeground(Color.BLUE);
             SonaJlabel = new JLabel("                   Sona ");
             TerasseJlabel = new JLabel("                  terasse");
             vuemerJLabel = new JLabel("                 Sea View");
             vueforetJLabel = new JLabel("               Forest View");
             suppchambre.setText("Delete Room");
             modifierchamb.setText("Edit Room");
-            reserveButton = new JButton("Modifier this room");
-            supprimerChambreButton=new JButton("Delete this room");
+
+
         } else {
             nameLabel = new JLabel("IDChambre: " + chambre.getId());
             bedsLabel = new JLabel("Type de la Chambre: " + chambre.getType());
@@ -314,21 +317,19 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             TerasseJlabel = new JLabel("                  terasse");
             vuemerJLabel = new JLabel("           Vue sur la mere");
             vueforetJLabel = new JLabel("           Vue sur la foret");
-            reserveButton = new JButton("modifier cette chambre");
-            supprimerChambreButton=new JButton("supprimer cette chambre");
+
             suppchambre.setText("Suprimer Chambre");
-        modifierchamb.setText("Modifier Chambre");
+
         }
 
-        nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        nameLabel.setForeground(colorgris);
-        bedsLabel.setForeground(colorgris);
+       nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+
         bedsLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
         priceLabel.setForeground(colorgris);
         priceLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
-        optionlLabel.setForeground(colorgris);
+       optionlLabel.setForeground(colorgris);
         optionlLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         
         JPanel optionsPanel = new JPanel();
@@ -337,7 +338,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         if (chambre.isSONA()) {
             SonaJlabel.setForeground(Color.GREEN); // Si la chambre contient cette option et qu'elle est fixe, on la
-                                                // colorie en vert
+                                 // colorie en vert
         } else {
             SonaJlabel.setForeground(colorgris);
         }
@@ -373,24 +374,12 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         SonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
 
+
         // Ajout du bouton "Réserver"
 
-        reserveButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        supprimerChambreButton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-     
-        reserveButton.addActionListener(e -> {
-      
-            //TODO ici il doit verifier que la chambre n est pas reservee
-
-        });
-        
-     
-        supprimerChambreButton.addActionListener(e -> {
    
-             //TODO ici il doit verifier que la chambre n est pas deja reservee
+        
 
-        });
 
         // Ajout des composants au JPanel
         JPanel infoPanel = new JPanel();
@@ -401,17 +390,13 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         infoPanel.add(bedsLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(optionlLabel);
-        reserveButton.setBackground(colorgris);
-        reserveButton.setForeground(color);
-        supprimerChambreButton.setBackground(colorgris);
-        supprimerChambreButton.setForeground(color);
+
         infoPanel.setBackground(Color.white);
         optionsPanel.setBackground(Color.white);
         panel.setBackground(Color.white);
         JPanel modsupPanel=new JPanel();
         modsupPanel.setLayout(new GridLayout(0,1));
-        modsupPanel.add(supprimerChambreButton);
-        modsupPanel.add(reserveButton);
+
 
         panel.add(infoPanel, BorderLayout.NORTH); // Ajout du panneau d'informations au centre
         panel.add(optionsPanel, BorderLayout.CENTER); // Ajout du panneau des options en haut
@@ -419,8 +404,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
       
         Border border = new RoundBorder(colorgris, 2); // Utilisation du code RGB pour la couleur marron
 
-        reserveButton.setBorder(border);
-        supprimerChambreButton.setBorder(border);
         panel.setBorder(border);
         // Définir une taille préférée pour le JPanel
         panel.setPreferredSize(new Dimension(182, 200));
@@ -429,13 +412,35 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                id_supp_chamb= chambre.getId();
-               JOptionPane.showMessageDialog(frame,"Vous sélectionnerez la chambre avec l'ID= "+id_supp_chamb+"\n Vous pouvez 'SUPPRIMER' ou le 'MODIFIER'");
+  
+                sonaCheckBox.setSelected(chambre.isSONA());
+                terasseCheckBox.setSelected(chambre.isTERASSE());;
+                vuesurforetBox.setSelected(chambre.isVuesurforet());
+                vuesurmerBox.setSelected(chambre.isVuesurmere());
+                switch (chambre.getType()) {
+                    case SOLO:
+                    roomtypebox.setSelectedIndex(0);
+                        break;
+                    case DOUBLE:
+                    roomtypebox.setSelectedIndex(1);
+                        break;
+                    case TRIPLE:
+                    roomtypebox.setSelectedIndex(2);
+                        break;
+                    default:
+                    roomtypebox.setSelectedIndex(3);
+                        break;
+                }
+                JOptionPane.showMessageDialog(frame, "La chambre "+id_supp_chamb+" a été sélectionnée ! \n" + 
+                                        "Vous pouvez la SUPRIMER ou la MODIFIER","La sélection d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+              
             }
         });
 
         return panel;
     }
-JFrame frame=new JFrame();
+
+            JFrame frame=new JFrame();
 
 public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     if (id_supp_chamb!=0) {
@@ -477,11 +482,15 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
 
 
-    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
+    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 10, 10)); // 5 chambres par ligne
     Chambre chambrerecherchee = new Chambre(id_supp_chamb, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
     
     Hotel.ModifierChambreMap(chambrerecherchee);
-    JOptionPane.showMessageDialog(frame,"La Chambre avec l'iD= "+id_supp_chamb+" a été Modifier avec succès");
+
+    JOptionPane.showMessageDialog(frame, "La Chambre "+id_supp_chamb+" a été Modifier avec succès","Modification d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+
+
+
 
     Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -511,7 +520,9 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
 
 }else{
-    JOptionPane.showMessageDialog(frame,"Choisissez une chambre à Modifier");
+
+    JOptionPane.showMessageDialog(frame, "Choisissez une chambre à Modifier !","Modification d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+
 }
 
 }
@@ -519,7 +530,11 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     public void suppchambreActionPerformed(java.awt.event.ActionEvent evt){
         if (id_supp_chamb!=0) {
             Hotel.SupprimerChambreMap(Hotel.getChambreMap().get(id_supp_chamb));
-            JOptionPane.showMessageDialog(frame,"La Chambre avec l'iD= "+id_supp_chamb+" a été supprimée avec succès");
+
+            JOptionPane.showMessageDialog(frame,"La Chambre "+id_supp_chamb+" a été supprimée avec succès.","Suppression d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+
+
+
             JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
 
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
@@ -549,12 +564,13 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
         id_supp_chamb=0;
         }else{
-            JOptionPane.showMessageDialog(frame,"Choisissez une chambre à supprimer");
+
+            
+            JOptionPane.showMessageDialog(frame,"Choisissez une chambre à supprimer !","Suppression d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
-
-
-    
+   
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         
             Control.hash_map_bdd();
@@ -685,7 +701,9 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         while (iterator.hasNext()) {
             Map.Entry<Integer, Chambre> entry = iterator.next();
             Chambre chambre = entry.getValue();
-            chambreContainer.add(createPanel(chambre));
+            JPanel chambrePanel = createPanel(chambre);
+            chambrePanel.setPreferredSize(new Dimension(170, 135)); // Définir la taille préférée de chaque élément
+            chambreContainer.add(chambrePanel);
         }
 
         chambreContainer.setBackground(colorgris);
@@ -701,6 +719,9 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
+
+        
+
     }
 
     private void changerlangue() {
