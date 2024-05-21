@@ -277,17 +277,18 @@ public double GetPrix(int id_res){
         int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
         int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
         String etat=model.getValueAt(selectedRow,6).toString();
-
+        OptionSupplementaire opt=null;//TODO: recupirer dans le text filed
         if(!etat.equals("ACCEPTER")){
           model.setValueAt(acceptdeclinebox.getSelectedItem(),i,6);
           if(EnAttente()==1){
             double prix =GetPrix(idReservation);
-            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
+            
+            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix,opt);
             Hotel.ModifierReservationMap(newres);
                     
             }else{
                 double prix =GetPrix(idReservation);
-                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix);
+                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix,opt);
                 Hotel.ModifierReservationMap(newres);
             } 
         }else{
@@ -319,7 +320,7 @@ public double GetPrix(int id_res){
     private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int i=reservationtabel.getSelectedRow();
-
+        OptionSupplementaire opt=null;//TODO: recupirer dans le text filed
         if(i>=0){  
 
             int selectedRow= reservationtabel.getSelectedRow();
@@ -347,7 +348,7 @@ public double GetPrix(int id_res){
                 if(a==0){
                     model.setValueAt("ACCEPTER",i,6);
                     double prix =GetPrix(idReservation);
-                    Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.ACCEPTER,prix);
+                    Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.ACCEPTER,prix,opt);
                     Hotel.ModifierReservationMap(newres);
                 }else{
                     JOptionPane.showMessageDialog(frame, "Vous devez 'ACCEPTER' Manuellement");
@@ -361,7 +362,7 @@ public double GetPrix(int id_res){
                 if(a==0){
                     model.setValueAt("DECLINER",i,6);
                 double prix =GetPrix(idReservation);
-                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.DECLINER,prix);
+                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.DECLINER,prix,opt);
                 Hotel.ModifierReservationMap(newres);
                 }else{
                     JOptionPane.showMessageDialog(frame, "Vous devez 'DECLINER' Manuellement");
