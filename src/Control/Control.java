@@ -1,5 +1,6 @@
 package Control;
 import Model.*;
+import Model.Chambre.OptionSupplementaire;
 import Model.Chambre.TypeChambre;
 import Model.Date;
 import Model.Reservation.EtatReservation;
@@ -232,7 +233,8 @@ public class Control {
  
                 int i=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
                 if (i>=0) {
-                    Reservation reservation=new Reservation(i, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1);
+                    OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
+                    Reservation reservation=new Reservation(i, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1,opt);
                     Hotel.SupprimerReservationMap(reservation);
                     
                 }
@@ -248,7 +250,8 @@ public class Control {
         try {
             double i=Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
             if (i>0) {
-                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i);
+                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString()) ;//TODO: recupirer dans le text filed
+                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i,opt);
                 Hotel.AjtReservationMap(reservation);
             }
 
@@ -273,7 +276,9 @@ public class Control {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
                 double i=Table_Reseravtion_User.updatebtnActionPerformed(evt);
-                Reservation reservation =new Reservation(Table_Reseravtion_User.id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i);
+                System.out.println(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
+                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());       
+                Reservation reservation =new Reservation(Table_Reseravtion_User.id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i,opt);
                 Hotel.ModifierReservationMap(reservation);
 
             } catch (Exception e) {
@@ -306,11 +311,6 @@ public class Control {
                 new Chambre_interface();
             } 
     });
-
-
-
-
-
 
 
     }

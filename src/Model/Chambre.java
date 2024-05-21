@@ -121,6 +121,39 @@ import Control.Control;
 			VUESURMERE,
 			VUESURFORET;
 			private float prix;//prix pour chaque option
+
+
+			public String ToString() {
+				switch (this) {
+					case SONA:
+						return "SONA";
+					case TERASSE:
+						return "TERASSE";
+					case VUESURFORET:
+						return "VUESURFORET";
+					case VUESURMERE:
+						return "VUESURMERE";
+					default:
+						throw new IllegalStateException("Type de chambre inconnu : " + this);
+				}
+			}
+		
+			
+		
+			public static OptionSupplementaire tOptionSupplementaire(String str) {
+				switch (str) {
+					case "SONA":
+						return SONA;
+					case "TERASSE":
+						return TERASSE;
+					case "VUESURMERE":
+						return VUESURMERE;
+					case "VUESURFORET":
+						return VUESURFORET;
+					default:
+						throw new IllegalStateException("Type de chambre inconnu : " + str);
+				}
+			}
 		
 		
 			OptionSupplementaire() {

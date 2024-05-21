@@ -18,6 +18,7 @@ public class Reservation {
 	private int id_chambre;
 	private EtatReservation etat = EtatReservation.EN_ATTENTE;// new reservation
     public int sup;
+    public OptionSupplementaire option;
 
     public enum EtatReservation {
         ACCEPTER,
@@ -55,7 +56,7 @@ public class Reservation {
 	static int nb = 0;
 
 	public Reservation(int id, int idUser, Date dateFin, Date dateDebut, TypeChambre type, int idChambre,
-			EtatReservation etat,double prix){
+			EtatReservation etat,double prix,OptionSupplementaire opt){
 		this.id = id;
 		this.type = type;
 		this.dateDebut = dateDebut;
@@ -64,13 +65,48 @@ public class Reservation {
 		this.prix=prix;
 		this.id_chambre=idChambre;
 		this.etat = etat;
+        this.option=opt;
 		nb++;
         sup=0;
 	}
 
 
+    
+
 	
-	public int getId() {
+	public int getSup() {
+        return sup;
+    }
+
+
+
+
+
+    public void setSup(int sup) {
+        this.sup = sup;
+    }
+
+
+
+
+
+    public OptionSupplementaire getOption() {
+        return option;
+    }
+
+
+
+
+
+    public void setOption(OptionSupplementaire option) {
+        this.option = option;
+    }
+
+
+
+
+
+    public int getId() {
 		return id;
 	}
 
@@ -167,8 +203,8 @@ public class Reservation {
                 double prix=resultSet.getDouble("prix");
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
-
-                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat,prix);
+                OptionSupplementaire opt=OptionSupplementaire.tOptionSupplementaire(resultSet.getString("option"));
+                Reservation reservation = new Reservation(id, idUser, df, dd, type, idChambre, etat,prix,opt);
                 Hotel.AjouterReservationMap(reservation);
                 Reservation.setNb(id);
             }
@@ -196,7 +232,7 @@ public class Reservation {
                     Reservation reservation = (Reservation) objet;
                     String res="Reservation";
                     if(operation == TypeOperation.AJOUT) {
-                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix,option) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
                         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
                         preparedStatement.setString(2, reservation.getType().ToString());
@@ -205,25 +241,27 @@ public class Reservation {
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
                         preparedStatement.setDouble(7, reservation.getPrix());
+                        preparedStatement.setString(8, reservation.getOption().toString());
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
                         System.out.println("Objet: "+res+" / Operation: "+operation);
 
                     } else if (operation==TypeOperation.MODIFICATION) {
                         int idReservation = reservation.getId();
-                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ?, prix = ? WHERE id = ?";
+                        String updateQuery = "UPDATE reservation SET idUser = ?, type = ?, dateDebut = ?, dateFin = ?, idChambre = ?, etat = ?, prix = ?, `option` = ? WHERE id = ?";
                         PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
-                        preparedStatement.setString(2, reservation.getType().ToString());
+                        preparedStatement.setString(2, reservation.getType().toString());
                         preparedStatement.setString(3, reservation.getDateDebut().toString());
                         preparedStatement.setString(4, reservation.getDateFin().toString());
                         preparedStatement.setInt(5, reservation.getId_chambre());
                         preparedStatement.setString(6, reservation.getEtat().toString());
                         preparedStatement.setDouble(7, reservation.getPrix());
-                        preparedStatement.setInt(8, idReservation);
+                        preparedStatement.setString(8, reservation.getOption().toString());
+                        preparedStatement.setInt(9, idReservation);
                         preparedStatement.executeUpdate();
                         preparedStatement.close();
-                        System.out.println("Objet: "+res+" / Operation: "+operation);
+                        System.out.println("Objet: " + res + " / Operation: " + operation);
 
                     } else if (operation.equals(TypeOperation.SUPPRESSION)) {
                         int idReservation = reservation.getId();

@@ -5,7 +5,8 @@ import Model.Date.*;
 import Model.Reservation.*;
 
 import java.awt.Color;
-
+import java.awt.Dimension;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 import javax.swing.*;
@@ -25,17 +26,18 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
     public static void mettreajourlesreservation(){
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
-        Object rowData[]=new Object[6];
+        Object rowData[]=new Object[7];
         model.setRowCount(0);
         for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
             Reservation reservation = entry.getValue(); // Récupérer l'objet Chambre
             if(Hotel.id_user_current==reservation.getId_user()){
             rowData[0]=reservation.getId();
             rowData[1]=reservation.getType();
-            rowData[2]=reservation.getPrix();
-            rowData[3]=reservation.getDateDebut();
-            rowData[4]=reservation.getDateFin();
-            rowData[5]=reservation.getEtat();
+            rowData[2]=reservation.getOption();
+            rowData[3] = reservation.getPrix();
+            rowData[4]=reservation.getDateDebut();
+            rowData[5]=reservation.getDateFin();
+            rowData[6]=reservation.getEtat();
             model.addRow(rowData);
             
             }
@@ -150,14 +152,20 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
             },
             new String [] {
-                "iD-Reser","Room-Type", "Total Price", "Start Date", "End Date", "State"
+                "iD-Reser","Room-Type","Option", "Total Price", "Start Date", "End Date", "State"
             }
         ));
-        tablereservation.getColumnModel().getColumn(5).setPreferredWidth(100);
-       
+
+       tablereservation.getColumnModel().getColumn(6).setPreferredWidth(90);
+        tablereservation.getColumnModel().getColumn(2).setPreferredWidth(105);
+
+
+        //tablereservation.setPreferredScrollableViewportSize(new Dimension(800, 500));
+        tablereservation.setPreferredScrollableViewportSize(new Dimension(1000, 300));
+
         jScrollPane1.setViewportView(tablereservation);
         // le positionement exact du label.
-        jScrollPane1.setBounds(420, 90, 440, 450);
+        jScrollPane1.setBounds(365, 90, 550, 450);
         getContentPane().add(jScrollPane1);
 
         addreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 12)); // NOI18N
@@ -228,8 +236,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(936, 588));
         setLocationRelativeTo(null);
         mettreajourlesreservation();
-    }                        
-
+    }                       
  
     
     //faitttttt
@@ -361,20 +368,24 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         roomtypebox.setSelectedItem(model.getValueAt(selectedRow,1).toString());
         roompricebox.setSelectedItem(model.getValueAt(selectedRow,2).toString());
-        startdatetext.setText(model.getValueAt(selectedRow,3).toString());
-        enddatetext.setText(model.getValueAt(selectedRow,4).toString());
-        state.setText(model.getValueAt(selectedRow,5).toString());
+        startdatetext.setText(model.getValueAt(selectedRow,4).toString());
+        enddatetext.setText(model.getValueAt(selectedRow,5).toString());
+        state.setText(model.getValueAt(selectedRow,6).toString());
+
+        roompricebox.setSelectedItem(model.getValueAt(selectedRow,2).toString());
+
+
         
 
         //ACCEPTER,DECLINER,EN_ATTENTE;
-        if(model.getValueAt(selectedRow,5).toString().equals("ACCEPTER")){
+        if(model.getValueAt(selectedRow,6).toString().equals("ACCEPTER")){
             state.setForeground(Color.GREEN);
-        }else if(model.getValueAt(selectedRow,5).toString().equals("DECLINER")){
+        }else if(model.getValueAt(selectedRow,6).toString().equals("DECLINER")){
             state.setForeground(Color.RED);
         }else{
             state.setForeground(Color.ORANGE);
         }
-        state.setText(model.getValueAt(selectedRow,5).toString());
+        state.setText(model.getValueAt(selectedRow,6).toString());
     }                                             
 
     //faitttt
@@ -432,10 +443,12 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
                 // Mise à jour des valeurs dans le modèle de tableau
                 model.setValueAt(roomtypebox.getSelectedItem(), i, 1);
-                model.setValueAt(prix*nb_day, i, 2);
-                model.setValueAt(startdatetext.getText(), i, 3);
-                model.setValueAt(enddatetext.getText(), i, 4);
-                model.setValueAt("EN_ATTEND", i, 5);
+                model.setValueAt(roompricebox.getSelectedItem(), i, 2);
+                model.setValueAt(prix*nb_day, i, 3);
+
+                model.setValueAt(startdatetext.getText(), i, 4);
+                model.setValueAt(enddatetext.getText(), i, 5);
+                model.setValueAt("EN_ATTEND", i, 6);
               
 
 
