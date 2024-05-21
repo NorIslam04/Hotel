@@ -59,8 +59,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         if (Hotel.langue == 0) {
          
-            sonaJlabel = new JLabel("Sona :");
-            
+            sonaJlabel = new JLabel("Sona :");           
             vuesurmerJLabel = new JLabel("Sea View :");
             TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Forest View :");
@@ -75,7 +74,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
        
             sonaJlabel = new JLabel("Sona :");
             vuesurmerJLabel = new JLabel("Terasse :");
-            
             TerasseJlabel = new JLabel("Vue sur mer :");
             vuesurforetJLabel = new JLabel("Vue sur foret :");
             choisisoptionsJLabel = new JLabel("Choisissez Les Options :");
@@ -84,7 +82,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             modifierchamb.setText("Modifier Cette Chambre");
             suppchambre.setText("Supprimer Cette Chambre");
             filtrer.setText("Filtrer");
-
         }
 
         // les panels:
@@ -105,16 +102,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         modifierchamb.setBackground(color);
         modifierchamb.setForeground(colorgris);
         modifierchamb.setBorder(new RoundBorder(color, 3));
-        modifierchamb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    modifChambreactionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
         
         //le positionnement exact du boutton:
         modifierchamb.setBounds(790, 25, 150, 30);
@@ -124,17 +111,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         suppchambre.setBackground(color);
         suppchambre.setForeground(colorgris);
         suppchambre.setBorder(new RoundBorder(color, 3));
-        suppchambre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    suppchambreActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-
+        
         //le positionnement exact du boutton:
         suppchambre.setBounds(790, 70, 150, 30);
 
@@ -143,27 +120,12 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         ajouterchambre.setBackground(color);
         ajouterchambre.setForeground(colorgris);
         ajouterchambre.setBorder(new RoundBorder(color, 3));
-        ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    addChambrePreformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
         //le positionnement exact du boutton:
         ajouterchambre.setBounds(790, 115, 150, 30);
 
         //création d'un boutton avec ses caractéristiques:
         JButton revenirbtn = new JButton("");
         revenirbtn.setBackground(Color.white);
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
         //le positionnement exact du boutton:
         revenirbtn.setBounds(970, 5, 25, 30);
 
@@ -172,16 +134,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    closebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
         // le positionement exact du boutton.
         closebtn.setBounds(997, 5, 25, 30);
 
@@ -190,13 +142,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         filtrer.setBackground(color);
         filtrer.setForeground(colorgris);
         filtrer.setBorder(new RoundBorder(color, 3));
-        filtrer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                filtrerbtnActionPerformed();
-
-            }
-        });
         //le positionnement exact du boutton:
         filtrer.setBounds(790, 160, 150, 30);
 
@@ -279,6 +224,64 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
+
+        // les actions listners:
+        modifierchamb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    modifChambreactionPerformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        suppchambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    suppchambreActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    addChambrePreformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
+            }
+        });
+
+        closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    closebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        filtrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                filtrerbtnActionPerformed();
+
+            }
+        });
     }
 
     public JPanel createPanel(Chambre chambre) {
@@ -292,10 +295,9 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         JLabel TerasseJlabel;
         JLabel vuemerJLabel;
         JLabel vueforetJLabel;
-;
+
         if (Hotel.langue == 0) {
             nameLabel = new JLabel("RoomID: " + chambre.getId());
-            
             bedsLabel = new JLabel("Room type: " + chambre.getType());
             priceLabel = new JLabel("price: " + chambre.getPrix());
             optionlLabel = new JLabel("Options: ");
@@ -306,8 +308,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             vueforetJLabel = new JLabel("               Forest View");
             suppchambre.setText("Delete Room");
             modifierchamb.setText("Edit Room");
-
-
         } else {
             nameLabel = new JLabel("IDChambre: " + chambre.getId());
             bedsLabel = new JLabel("Type de la Chambre: " + chambre.getType());
@@ -317,21 +317,21 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             TerasseJlabel = new JLabel("                  terasse");
             vuemerJLabel = new JLabel("           Vue sur la mere");
             vueforetJLabel = new JLabel("           Vue sur la foret");
-
             suppchambre.setText("Suprimer Chambre");
 
         }
 
-       nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
+        nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         bedsLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
         priceLabel.setForeground(colorgris);
         priceLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-       optionlLabel.setForeground(colorgris);
+        optionlLabel.setForeground(colorgris);
         optionlLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        
+        vueforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+        vuemerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+        TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+        SonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS)); // Utilisation d'un BoxLayout vertical
                                                                                // pour les options
@@ -342,6 +342,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         } else {
             SonaJlabel.setForeground(colorgris);
         }
+
         optionsPanel.add(SonaJlabel);
 
         if (chambre.isTERASSE()) {
@@ -366,37 +367,21 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         } else {
             vueforetJLabel.setForeground(colorgris);
         }
-
-        
         optionsPanel.add(vueforetJLabel);
-        vueforetJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        vuemerJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        TerasseJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        SonaJlabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-
-
-        // Ajout du bouton "Réserver"
-
-   
-        
-
 
         // Ajout des composants au JPanel
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new GridLayout(0, 1)); // Utilisation d'un GridLayout pour empiler verticalement les
                                                    // éléments
         infoPanel.add(nameLabel);
-
         infoPanel.add(bedsLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(optionlLabel);
-
         infoPanel.setBackground(Color.white);
         optionsPanel.setBackground(Color.white);
         panel.setBackground(Color.white);
         JPanel modsupPanel=new JPanel();
         modsupPanel.setLayout(new GridLayout(0,1));
-
 
         panel.add(infoPanel, BorderLayout.NORTH); // Ajout du panneau d'informations au centre
         panel.add(optionsPanel, BorderLayout.CENTER); // Ajout du panneau des options en haut
@@ -407,7 +392,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         panel.setBorder(border);
         // Définir une taille préférée pour le JPanel
         panel.setPreferredSize(new Dimension(182, 200));
-
 
         panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -440,7 +424,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         return panel;
     }
 
-            JFrame frame=new JFrame();
+    JFrame frame=new JFrame();
 
 public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     if (id_supp_chamb!=0) {
@@ -452,7 +436,6 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
   
     double prix=0;
     
-
     if(Sona){
         prix+=Chambre.GetPrix("SONA");
     }else if(climatisation){
@@ -480,17 +463,10 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         
     }
 
-
-
     JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 10, 10)); // 5 chambres par ligne
-    Chambre chambrerecherchee = new Chambre(id_supp_chamb, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
-    
+    Chambre chambrerecherchee = new Chambre(id_supp_chamb, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);   
     Hotel.ModifierChambreMap(chambrerecherchee);
-
     JOptionPane.showMessageDialog(frame, "La Chambre "+id_supp_chamb+" a été Modifier avec succès","Modification d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
-
-
-
 
     Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
@@ -503,7 +479,6 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     chambreContainer.setBackground(colorgris);
     scrollPane.setBackground(colorgris);
     JViewport viewport = scrollPane.getViewport();
-
     
     viewport.removeAll();
     viewport.add(chambreContainer);
@@ -589,13 +564,20 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         
 
         if(Sona){
+
             prix+=Chambre.GetPrix("SONA");
         }else if(climatisation){
+
             prix+=Chambre.GetPrix("TERASSE");
+
         }else if(vuesurmer){
+
             prix+=Chambre.GetPrix("VUESURMERE");
+
         }else{
+
             prix+=Chambre.GetPrix("VUESURMERE");
+
         }
 
         switch (typeChambre.toString()) {
@@ -613,15 +595,12 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
                     break;
         }
 
-
-
         JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
         Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
         
         Hotel.AjtChambreMap(chambrerecherchee);
         JOptionPane.showMessageDialog(frame,"La chambre a été Ajoutée avec succès");
       
-
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
         while (iterator.hasNext()) {
@@ -633,8 +612,7 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         chambreContainer.setBackground(colorgris);
         scrollPane.setBackground(colorgris);
         JViewport viewport = scrollPane.getViewport();
-
-        
+  
         viewport.removeAll();
         viewport.add(chambreContainer);
         getContentPane().add(backgroundlabel);
@@ -646,8 +624,6 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
         getContentPane().revalidate();
         getContentPane().repaint();
-
-
     
     }
 
@@ -719,8 +695,6 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
-
-        
 
     }
 
