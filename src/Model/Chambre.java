@@ -6,19 +6,6 @@ import java.util.Map;
 
 import Control.Control;
 
-
-
-
-	
-	/*chambre solo 
-	4 options
-	option sona: son prix  admin*/
-	//TODO reservation prix yb9a le meme dnc nzidoulou un prix 
-
-
-	//utilisateur reserva une chambre 4 option 20 dollar solo 100 dolars 120 dollars
-
-	
 	public class Chambre {
 
 		public enum TypeChambre {
