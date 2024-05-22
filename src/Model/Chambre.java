@@ -235,7 +235,6 @@ import Control.Control;
 		}else{
 			p+=Option.GetPrix("SUITE");
 		}
-			System.out.println("prix de "+nb+" : "+p);
 			
 		this.prix=p;
 		nb++;
