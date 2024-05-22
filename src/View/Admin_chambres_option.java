@@ -241,16 +241,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         updatepricebtn.setBorder(new RoundBorder(color, 3));
         updatepricebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                int id=0;
-                for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
-                    if (entry.getValue().equals(typeandoptionsbox.getSelectedItem())) {
-                         id= entry.getKey();
-                        break;
-                    }
-                }
-                double newprice=Double.parseDouble(nouveauprixtxt.getText());
-                Option option = new Option(Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()),newprice , id);
-                Hotel.ModifieroptionMap(option);
+                ActionPreformedUpdate(evt);
+
             }
         });
         //le positionnement exact du boutton:
@@ -782,6 +774,20 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     String option=typeandoptionsbox.getSelectedItem().toString();
     Double price = Chambre.GetPrix(option);
     nouveauprixtxt.setText(price.toString());
+    }
+
+    public static void ActionPreformedUpdate(java.awt.event.ActionEvent evt) {
+        int id=0;
+        Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()) ;
+                for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+                    if (entry.getValue().getRooms_Options().equals(rooms_Options)) {
+                         id= entry.getKey();
+                        break;
+                    }
+                }
+                double newprice=Double.parseDouble(nouveauprixtxt.getText());
+                Option option = new Option(Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()),newprice , id);
+                Hotel.ModifieroptionMap(option);
     }
 
     public static void main(String args[]) {

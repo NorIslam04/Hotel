@@ -1,5 +1,7 @@
 package Model;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import Control.Control;
 
@@ -148,5 +150,33 @@ public class Option {
             e.getMessage();
         }
     }
+
+    public static void hahs_map_bdd () throws SQLException{
+
+        HashMap<Integer, ModificationHotel<?,?>> modificMap = Hotel.getModificationMap();
+        Connection connection = Control.connectToMySQL();
+
+        for (Map.Entry<Integer, ModificationHotel<?,?>> entry : modificMap.entrySet()) {
+
+            Object objet = entry.getValue().getObjet(); // Obtenez l'objet de ModificationHotel (type T)
+                if (objet instanceof Option) {
+                    Option option = (Option) objet;
+                    String res="Option";
+
+                        int idOption = option.getId();
+                        String updateQuery = "UPDATE options SET option_name = ?, price = ? WHERE id = ?";
+                        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+                        preparedStatement.setString(1, option.getRooms_Options().toString());
+                        preparedStatement.setDouble(2, option.getPrix_option());
+                        preparedStatement.setInt(3, idOption);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        System.out.println("Objet: " + res + " / Operation: Modification ");
+
+
+
+                    }
+                }
+        }
     
 }
