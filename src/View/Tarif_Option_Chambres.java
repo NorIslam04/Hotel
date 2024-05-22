@@ -41,15 +41,15 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         Chambre chambre1;
 
         for (int i = 0; i < 100; i++) {
-            chambre1 = new Chambre(i, TypeChambre.SOLO,-1, false, true, true, false);
+            chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE,-1, false, true, true, true);
+            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE, false, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 300, TypeChambre.SUITE,-1, true, false, false, true);
+            chambre1 = new Chambre(i + 300, TypeChambre.SUITE, true, false, false, true);
 
             Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE,-1, true, true, true, true);
+            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE, true, true, true, true);
 
             Hotel.AjouterChambreMap(chambre1);
         }
@@ -313,7 +313,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         reserverbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                reserverbtnbtnActionPerformed();
+                //reserverbtnbtnActionPerformed();
 
             }
         });
@@ -329,7 +329,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                afficherprixbtnbtnActionPerformed();
+                //afficherprixbtnbtnActionPerformed();
 
             }
         });
@@ -354,7 +354,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
-
+/* 
     private void reserverbtnbtnActionPerformed() {
 
         try {
@@ -373,7 +373,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
 
-            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, tv, climatisation, vuesurmer, vueforet);
+            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
             if (Hotel.langue == 0) {
                 prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
                         + "total price :"
@@ -425,8 +425,11 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         }
 
     }
+*/
+    
 
-    public void afficherprixbtnbtnActionPerformed() {
+/* 
+public void afficherprixbtnbtnActionPerformed() {
         try {
 
             Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
@@ -443,7 +446,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
 
-            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, tv, climatisation, vuesurmer, vueforet);
+            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
             if (Hotel.langue == 0) {
                 prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
                         + "total price :"
@@ -490,7 +493,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         }
 
     }
-
+*/
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

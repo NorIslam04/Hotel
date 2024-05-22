@@ -122,6 +122,19 @@ public class Option {
         this.prix_option = prix_option;
     }
 
+
+    public static double GetPrix(String option){
+
+        for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+    
+            if(option.equals(entry.getValue().getRooms_Options().toString())){
+                return entry.getValue().getPrix_option();
+            }
+        }
+        return 0;
+    
+    }
+
     public static void Bdd_to_hashMap_option() {
         String query = "SELECT * FROM options";
     

@@ -2,7 +2,7 @@ package Model;
 import Model.Date.*;
 import java.util.*;
 import java.util.Map.*;
-
+import Model.Hotel.TypeOperation;
 import javax.swing.RowFilter.Entry;
 
 class Chambre_reservee extends Exception {

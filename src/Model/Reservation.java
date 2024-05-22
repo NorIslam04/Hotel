@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import Model.Chambre.*;
 import Control.Control;
-
+import Model.Hotel.TypeOperation;
 
 
 public class Reservation {

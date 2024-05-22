@@ -7,16 +7,18 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-enum TypeOperation {
-	AJOUT,
-	SUPPRESSION,
-	MODIFICATION
 
-}
 
 
 
 public class Hotel {
+
+	public enum TypeOperation {
+		AJOUT,
+		SUPPRESSION,
+		MODIFICATION
+	
+	}
 
 	public static int id_user_current;
 	public static int totalRating;
@@ -230,6 +232,8 @@ public class Hotel {
 
 
 		//modif hashmap:
+
+
 	public static void ModifieroptionMap(Option option){
 		if (optionHashMap.containsKey(option.getId())) {
 			optionHashMap.replace(option.getId(), option);
@@ -239,7 +243,6 @@ public class Hotel {
 			modificationMap.put(ModificationHotel.getNb(), modifopt);
 
 		}
-
 	}
 
 	public static void ModifierChambreMap(Chambre chambre) {

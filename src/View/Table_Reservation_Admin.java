@@ -391,7 +391,6 @@ public double GetPrix(int id_res){
             mettreajourlesreservationadmin();
         }else{
             JOptionPane.showMessageDialog(frame,"Il n'y a pas de réserves inutiles !");
-
         }
 
         //insert into reservation(idUser,type,dateDebut,dateFin,idChambre,etat,prix) values(15,'SOLO','10/5/2024','16/5/2024',-1,'DECLINER',5432.87);
