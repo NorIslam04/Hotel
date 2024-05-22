@@ -318,8 +318,6 @@ public class Control {
 
     }
 
-
-
     public static void Action_AdminOptionChambre(int i) throws Exception{
 
         TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
