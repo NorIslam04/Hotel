@@ -19,25 +19,25 @@ class BlackScrollPane extends JScrollPane {
 }
 public class Admin_chambres_option extends javax.swing.JFrame{
 
-    JCheckBox sonaCheckBox = new JCheckBox();
-    JCheckBox terasseCheckBox = new JCheckBox();
-    JCheckBox vuesurmerBox = new JCheckBox();
-    JCheckBox vuesurforetBox = new JCheckBox();
-    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
-    BlackScrollPane scrollPane;
-    JButton filtrer = new JButton();
-    JButton ajouterchambre = new JButton();
-    JButton modifierchamb =new JButton();
-    JButton suppchambre =new JButton();
-    JButton updatepricebtn = new JButton();
-    javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
-    javax.swing.JLabel changepricelabel = new javax.swing.JLabel();
-    javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    public static JCheckBox sonaCheckBox = new JCheckBox();
+    public static JCheckBox terasseCheckBox = new JCheckBox();
+    public static JCheckBox vuesurmerBox = new JCheckBox();
+    public static JCheckBox vuesurforetBox = new JCheckBox();
+    public static JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
+    public static BlackScrollPane scrollPane;
+    public static JButton filtrer = new JButton();
+    public static JButton ajouterchambre = new JButton();
+    public static JButton modifierchamb =new JButton();
+    public static JButton suppchambre =new JButton();
+    public static JButton updatepricebtn = new JButton();
+    public static javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    public static javax.swing.JLabel changepricelabel = new javax.swing.JLabel();
+    public static javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
     public static javax.swing.JComboBox<String>  typeandoptionsbox = new JComboBox<>();
     static javax.swing.JTextField nouveauprixtxt= new javax.swing.JTextField();
-    Color color = Color.decode("#E0C878");
-    Color colorgris = Color.decode("#252926");
-    int id_supp_chamb=0;
+    public static Color color = Color.decode("#E0C878");
+    public static Color colorgris = Color.decode("#252926");
+    public static int id_supp_chamb=0;
 
     public Admin_chambres_option() throws Exception {
         initComponents();

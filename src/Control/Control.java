@@ -315,7 +315,12 @@ public class Control {
 
     }
 
+    public static void Action_AdminChambreOption(){
 
+
+
+        
+    }
 
 
 
