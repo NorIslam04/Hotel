@@ -232,7 +232,7 @@ public class Reservation {
                     Reservation reservation = (Reservation) objet;
                     String res="Reservation";
                     if(operation == TypeOperation.AJOUT) {
-                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix,option) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+                        String insertQuery = "INSERT INTO reservation (idUser, type, dateDebut, dateFin, idChambre, etat,prix,`option`) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
                         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                         preparedStatement.setInt(1, reservation.getId_user());
                         preparedStatement.setString(2, reservation.getType().ToString());

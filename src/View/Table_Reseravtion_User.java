@@ -317,7 +317,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
 
-        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),nb_day*prix,startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
+        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),roompricebox.getSelectedItem(),nb_day*prix,startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
 
         return nb_day*prix;
 
