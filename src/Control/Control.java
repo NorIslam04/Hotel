@@ -66,7 +66,7 @@ public class Control {
         Reservation.hahs_map_bdd();;
         Chambre.hash_map_bdd();
         Commentaires.hash_map_bdd();
-        //Option.hash_map_bdd();
+        Option.hahs_map_bdd();
        
        
     }
