@@ -1,6 +1,8 @@
 package View;
 import Model.*;
 import Model.Chambre.*;
+import Model.Option.Rooms_Options;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +30,12 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     JButton ajouterchambre = new JButton();
     JButton modifierchamb =new JButton();
     JButton suppchambre =new JButton();
+    JButton updatepricebtn = new JButton();
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    javax.swing.JLabel changepricelabel = new javax.swing.JLabel();
     javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    public static javax.swing.JComboBox<String>  typeandoptionsbox = new JComboBox<>();
+    static javax.swing.JTextField nouveauprixtxt= new javax.swing.JTextField();
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
     int id_supp_chamb=0;
@@ -69,7 +75,9 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             suppchambre.setText("Delete This Room");
             choisisoptionsJLabel = new JLabel("Choose Options :");
             choisistypeJLabel = new JLabel("Choose Type :");
-          
+            changepricelabel = new JLabel("Change Price:");
+            updatepricebtn.setText("Update Price");
+        
         } else {
        
             sonaJlabel = new JLabel("Sona :");
@@ -82,6 +90,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             modifierchamb.setText("Modifier Cette Chambre");
             suppchambre.setText("Supprimer Cette Chambre");
             filtrer.setText("Filtrer");
+            updatepricebtn.setText("mis à jour prix");
         }
 
         // les panels:
@@ -191,13 +200,13 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         vuesurforetBox.setBounds(240, 130, 40, 20);
         vuesurmerBox.setBackground(color);
         vuesurmerBox.setBounds(240, 150, 40, 20); 
-        roomtypebox.setBounds(200, 14, 150, 30);
 
         // les combo_box:
         roomtypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE" }));
         roomtypebox.setForeground(color);
         roomtypebox.setBackground(colorgris);
         roomtypebox.setBorder(new RoundBorder(color, 3));
+        roomtypebox.setBounds(200, 14, 150, 30);
 
         //ajouter au panel:
         optioJPanel.add(sonaJlabel);
@@ -212,6 +221,66 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         optioJPanel.add(choisistypeJLabel);
         optioJPanel.add(roomtypebox);
         informationReservationPanel.add(optioJPanel);
+
+        //création du troisième panel pour les information de la réservation:
+        
+        JPanel changepricepanel = new JPanel();
+        changepricepanel.setBackground(color);
+        changepricepanel.setLayout(null);
+        changepricepanel.setBounds(10, 10, 380, 180);
+
+        //les labels:
+        changepricelabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 17));
+        changepricelabel.setForeground(colorgris); 
+        changepricelabel.setBounds(20, 60, 200, 17);
+
+        //les bouttons:
+        updatepricebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        updatepricebtn.setBackground(colorgris);
+        updatepricebtn.setForeground(color.white);
+        updatepricebtn.setBorder(new RoundBorder(color, 3));
+        updatepricebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                int id=0;
+                for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+                    if (entry.getValue().equals(typeandoptionsbox.getSelectedItem())) {
+                         id= entry.getKey();
+                        break;
+                    }
+                }
+                double newprice=Double.parseDouble(nouveauprixtxt.getText());
+                Option option = new Option(Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()),newprice , id);
+                Hotel.ModifieroptionMap(option);
+            }
+        });
+        //le positionnement exact du boutton:
+        updatepricebtn.setBounds(20, 120, 150, 30);
+
+        //les combobox:
+        typeandoptionsbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE", "SONA","TERRASE", "FOREST VIEW", "SEA VIEW"}));
+        typeandoptionsbox.setForeground(color);
+        typeandoptionsbox.setBackground(colorgris);
+        typeandoptionsbox.setBorder(new RoundBorder(color, 3));
+        typeandoptionsbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            
+            updateprice(); 
+
+            }
+        });
+        typeandoptionsbox.setBounds(20, 14, 150, 30);
+
+        //les textfields:
+        nouveauprixtxt.setBounds(20, 90, 100, 20);
+
+        //ajouter au panel:
+        changepricepanel.add(typeandoptionsbox);
+        changepricepanel.add(changepricelabel);
+        changepricepanel.add(nouveauprixtxt);
+        changepricepanel.add(updatepricebtn);
+        informationReservationPanel.add(changepricepanel);
+
+
 
         afficherchambre();
 
@@ -706,6 +775,13 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
             Hotel.langue = 1;
         }
         System.out.println(Hotel.langue);
+    }
+
+    public static void updateprice(){
+
+    String option=typeandoptionsbox.getSelectedItem().toString();
+    Double price = Chambre.GetPrix(option);
+    nouveauprixtxt.setText(price.toString());
     }
 
     public static void main(String args[]) {
