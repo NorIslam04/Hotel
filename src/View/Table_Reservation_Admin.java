@@ -37,7 +37,7 @@ public double GetPrix(int id_res){
 
     public void mettreajourlesreservationadmin(){
         DefaultTableModel model = (DefaultTableModel) reservationtabel.getModel();
-        Object rowData[]=new Object[7];
+        Object rowData[]=new Object[8];
         model.setRowCount(0);
         for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
             if(entry.getValue().sup==0){
@@ -45,10 +45,11 @@ public double GetPrix(int id_res){
             rowData[0]=reservation.getId_user();
             rowData[1]=reservation.getId();
             rowData[2]=reservation.getType();
-            rowData[3]=reservation.getPrix();
-            rowData[4]=reservation.getDateDebut();
-            rowData[5]=reservation.getDateFin();
-            rowData[6]=reservation.getEtat();
+            rowData[3]=reservation.getOption();
+            rowData[4]=reservation.getPrix();
+            rowData[5]=reservation.getDateDebut();
+            rowData[6]=reservation.getDateFin();
+            rowData[7]=reservation.getEtat();
             model.addRow(rowData);
             }
         }
@@ -256,7 +257,7 @@ public double GetPrix(int id_res){
 
 
 
-        /*closebtn.setBackground(new java.awt.Color(171, 34, 34));
+        closebtn.setBackground(new java.awt.Color(171, 34, 34));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setText("Close");
         closebtn.setForeground(Color.WHITE);
@@ -271,8 +272,8 @@ public double GetPrix(int id_res){
             }
         });
         // le positionement exact du label.
-        closebtn.setBounds(190, 480, 150, 40);
-        getContentPane().add(closebtn);*/
+        closebtn.setBounds(500, 1, 150, 40);
+        tableaupanel.add(closebtn);
        
 
         /*backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -324,11 +325,12 @@ public double GetPrix(int id_res){
         int selectedRow= reservationtabel.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-        String Date_debut=model.getValueAt(selectedRow,4).toString();
-        String Date_fin=model.getValueAt(selectedRow,5).toString();
+        OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
+        String Date_debut=model.getValueAt(selectedRow,5).toString();
+        String Date_fin=model.getValueAt(selectedRow,6).toString();
         
 
-        Chambre tmp_Chambre = Hotel.attribuerchambre(typeChambre, Date.Recupere_date(Date_debut),Date.Recupere_date(Date_fin));
+        Chambre tmp_Chambre = Hotel.attribuerchambre(typeChambre, Date.Recupere_date(Date_debut),Date.Recupere_date(Date_fin),opt);
 
         
             if(tmp_Chambre==null){//decliner
@@ -340,7 +342,7 @@ public double GetPrix(int id_res){
         
 
     }
-
+    //fait
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
         int i=reservationtabel.getSelectedRow();
 
@@ -349,14 +351,15 @@ public double GetPrix(int id_res){
         DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
         int selectedRow= reservationtabel.getSelectedRow();
         TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-        String Date_debut=model.getValueAt(selectedRow,4).toString();
-        String Date_fin=model.getValueAt(selectedRow,5).toString();
+        String Date_debut=model.getValueAt(selectedRow,5).toString();
+        String Date_fin=model.getValueAt(selectedRow,6).toString();
         int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
         int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
-        String etat=model.getValueAt(selectedRow,6).toString();
-        OptionSupplementaire opt=null;//TODO: recupirer dans le text filed
+        String etat=model.getValueAt(selectedRow,7).toString();
+
+        OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
         if(!etat.equals("ACCEPTER")){
-          model.setValueAt(acceptdeclinebox.getSelectedItem(),i,6);
+          model.setValueAt(acceptdeclinebox.getSelectedItem(),i,7);
           if(EnAttente()==1){
             double prix =GetPrix(idReservation);
             
@@ -397,15 +400,15 @@ public double GetPrix(int id_res){
     private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int i=reservationtabel.getSelectedRow();
-        OptionSupplementaire opt=null;
+       
         if(i>=0){  
 
             int selectedRow= reservationtabel.getSelectedRow();
-            String etat=model.getValueAt(selectedRow,6).toString();
-    
+            String etat=model.getValueAt(selectedRow,7).toString();
+            OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
             TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-            String Date_debut=model.getValueAt(selectedRow,4).toString();
-            String Date_fin=model.getValueAt(selectedRow,5).toString();
+            String Date_debut=model.getValueAt(selectedRow,5).toString();
+            String Date_fin=model.getValueAt(selectedRow,6).toString();
             int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
             int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
 
@@ -423,7 +426,7 @@ public double GetPrix(int id_res){
                 "Automatique",
                 JOptionPane.INFORMATION_MESSAGE);
                 if(a==0){
-                    model.setValueAt("ACCEPTER",i,6);
+                    model.setValueAt("ACCEPTER",i,7);
                     double prix =GetPrix(idReservation);
                     Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.ACCEPTER,prix,opt);
                     Hotel.ModifierReservationMap(newres);
@@ -437,7 +440,7 @@ public double GetPrix(int id_res){
                 "Automatique",
                 JOptionPane.INFORMATION_MESSAGE);
                 if(a==0){
-                    model.setValueAt("DECLINER",i,6);
+                    model.setValueAt("DECLINER",i,7);
                 double prix =GetPrix(idReservation);
                 Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.DECLINER,prix,opt);
                 Hotel.ModifierReservationMap(newres);
@@ -460,6 +463,7 @@ public double GetPrix(int id_res){
     }                                              
 
     private JFrame frame;
+
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                         
     frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)

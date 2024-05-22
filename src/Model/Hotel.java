@@ -369,14 +369,24 @@ public class Hotel {
 		return false;
 	}
 
-	public static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2)  {
+	public static Chambre attribuerchambre(TypeChambre type, Date date1, Date date2,OptionSupplementaire opt)  {
 		Iterator<Map.Entry<Integer, Chambre>> iterator = chambreMap.entrySet().iterator();
 
 		while (iterator.hasNext()) {
 			Map.Entry<Integer, Chambre> entry = iterator.next();
 			Chambre chambre = entry.getValue();
-			if (chambre.getType() == type) {
 
+			boolean sona=chambre.isSONA() && opt ==OptionSupplementaire.SONA;
+			boolean terasse=chambre.isTERASSE() && opt == OptionSupplementaire.TERASSE;
+			boolean	vuesurforet=chambre.isVuesurforet() && opt == OptionSupplementaire.VUESURFORET;
+			boolean vuesurmer=chambre.isVuesurmere() && opt == OptionSupplementaire.VUESURMERE;
+
+			if ( chambre.getType() == type && sona 
+				|| chambre.getType() == type && terasse
+				|| chambre.getType() == type && vuesurforet
+				|| chambre.getType() == type && vuesurmer) {
+				//on recherche l'option esq en a 
+				
 				boolean nonreserve = ChambreDispo(chambre, date1, date2);
 				if (nonreserve) {
 					return chambre;//accepter la treservation
