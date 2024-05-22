@@ -310,7 +310,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    addChambrePreformed(evt);
+                    addChambrePreformed(evt,getContentPane());
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -344,7 +344,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         });
     }
 
-    public JPanel createPanel(Chambre chambre) {
+    public static JPanel createPanel(Chambre chambre) {
         JPanel panel = new JPanel();
         JLabel nameLabel;
         JLabel bedsLabel;
@@ -484,7 +484,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         return panel;
     }
 
-    JFrame frame=new JFrame();
+    static JFrame frame=new JFrame();
 
 public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     if (id_supp_chamb!=0) {
@@ -613,7 +613,7 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
       
     }
 
-    private void addChambrePreformed(java.awt.event.ActionEvent evt) throws Exception{
+    public static void addChambrePreformed(java.awt.event.ActionEvent evt,Container container) throws Exception{
         TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
         boolean Sona =   sonaCheckBox.isSelected();
         boolean climatisation = terasseCheckBox.isSelected();
@@ -675,15 +675,15 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
   
         viewport.removeAll();
         viewport.add(chambreContainer);
-        getContentPane().add(backgroundlabel);
+        container.add(backgroundlabel);
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
         backgroundlabel.setBounds(0, 0, 1032, 580);
-        getContentPane().add(backgroundlabel);
+        container.add(backgroundlabel);
 
-        getContentPane().revalidate();
-        getContentPane().repaint();
+        container.revalidate();
+        container.repaint();
     
     }
 
