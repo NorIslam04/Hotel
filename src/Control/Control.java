@@ -6,6 +6,8 @@ import Model.Date;
 import Model.Reservation.EtatReservation;
 import View.*;
 import Model.Hotel.TypeOperation;
+import Model.Option.Rooms_Options;
+
 import java.awt.Window;
 import java.awt.event.*;
 
@@ -67,7 +69,9 @@ public class Control {
         Chambre.hash_map_bdd();
         Commentaires.hash_map_bdd();
         Option.hahs_map_bdd();
-       
+        Hotel.getModificationMap().clear();
+
+
     }
     
 
@@ -79,6 +83,7 @@ public class Control {
         User.Bdd_to_hashMap_users();
         Chambre.Bdd_to_hashMap_room();
         Reservation.Bdd_to_hashMap_reservation();
+
 
         //les instructions doit etre trier pour l'execution de programme
 
@@ -315,77 +320,62 @@ public class Control {
 
 
 
-        public static void Action_AdminOptionChambre(int i){
+    public static void Action_AdminOptionChambre(int i) throws Exception{
 
-
-                    TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
-                    boolean Sona =   Admin_chambres_option.sonaCheckBox.isSelected();
-                    boolean climatisation =Admin_chambres_option. terasseCheckBox.isSelected();
-                    boolean vuesurmer = Admin_chambres_option.vuesurmerBox.isSelected();
-                    boolean vueforet = Admin_chambres_option.vuesurforetBox.isSelected();
+        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
+        boolean Sona =   Admin_chambres_option.sonaCheckBox.isSelected();
+        boolean climatisation =Admin_chambres_option. terasseCheckBox.isSelected();
+        boolean vuesurmer = Admin_chambres_option.vuesurmerBox.isSelected();
+        boolean vueforet = Admin_chambres_option.vuesurforetBox.isSelected();
       
-                    double prix=0;
+        switch (i) {
+            case 1:
+            Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1,typeChambre, Sona, climatisation, vuesurmer, vueforet);
+            Hotel.AjtChambreMap(chambrerecherchee);
+                break;
 
+            case 2:
+            if(Admin_chambres_option.id_supp_chamb !=-1){
 
-                    if(Sona){
+                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb).setSup(1);
+                ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(Admin_chambres_option.id_supp_chamb,
+                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb), TypeOperation.SUPPRESSION);
+                Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
+               
+            
+            }   
+                break;
+            
+            case 3:
+          
+            if(Admin_chambres_option.id_supp_chamb !=-1){
+                Chambre chambrerecherchee1 = new Chambre(Admin_chambres_option.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
+                Hotel.ModifierChambreMap(chambrerecherchee1);
+            }
+            
+                break;
+            default:
 
-                        prix+=Option.GetPrix("SONA");
-                    }else if(climatisation){
-            
-                        prix+=Option.GetPrix("TERASSE");
-            
-                    }else if(vuesurmer){
-            
-                        prix+=Option.GetPrix("VUESURMERE");
-            
-                    }else{
-            
-                        prix+=Option.GetPrix("VUESURMERE");
-            
+            int id=0;
+            Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()) ;
+            for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
+                if (entry.getValue().getRooms_Options().equals(rooms_Options)) {
+                    id= entry.getKey();
+                    break;
+                }
                     }
-            
-                    switch (typeChambre.toString()) {
-                        case "SOLO":
-                        prix+=Option.GetPrix("SOLO");
-                            break;
-                        case "DOUBLE":
-                            prix+=Option.GetPrix("DOUBLE");
-                                break;
-                        case "TRIPLE":
-                            prix+=Option.GetPrix("TRIPLE");
-                                break;
-                        case "SUITE":
-                            prix+=Option.GetPrix("SUITE");
-                                break;
-                    }
+            double newprice=Double.parseDouble(Admin_chambres_option.nouveauprixtxt.getText());
+            Option option = new Option(Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()),newprice , id);
+            Hotel.ModifieroptionMap(option);
 
-                    switch (i) {
-                        case 1:
-                        Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1,typeChambre, Sona, climatisation, vuesurmer, vueforet);
-                        Hotel.AjtChambreMap(chambrerecherchee);
-                            break;
+            Hotel.getChambreMap().clear();
 
-                        case 2:
-                        if(Admin_chambres_option.id_supp_chamb !=0){
+            Control.hash_map_bdd();
 
-                            Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb).setSup(1);
-                            ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(Admin_chambres_option.id_supp_chamb,
-                            Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb), TypeOperation.SUPPRESSION);
-			                Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
-                            
-                        
-                        }   
-                            break;
-                        
-                        case 3:
-                        if(Admin_chambres_option.id_supp_chamb !=0){
-                            Chambre chambrerecherchee1 = new Chambre(Admin_chambres_option.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
-                        Hotel.ModifierChambreMap(chambrerecherchee1);
-                        }
+            Chambre.Bdd_to_hashMap_room();
 
-                        default:
-                            break;
-                    }
+                break;
+        }            
 
                    
 
