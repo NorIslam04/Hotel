@@ -5,11 +5,11 @@ import Model.Reservation.EtatReservation;
 import Model.Chambre.*;
 import Control.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -86,6 +86,9 @@ public double GetPrix(int id_res){
         backgroundlabel = new javax.swing.JLabel();
         closebtn = new javax.swing.JButton();
         backtoroomsbtn = new javax.swing.JButton();
+        JPanel acceptdeclinePanel = new JPanel();
+        Color color = Color.decode("#E0C878");
+        Color colorgris = Color.decode("#252926");
 
         //rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
@@ -95,90 +98,165 @@ public double GetPrix(int id_res){
         setVisible(true);
 
 
-        reservationlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
+      /* reservationlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
         reservationlabel.setForeground(new java.awt.Color(255, 255, 255));
         reservationlabel.setText("Here Are All The Reservations:");
         // le positionement exact du label.
         reservationlabel.setBounds(440, 30, 390, 30);
-        getContentPane().add(reservationlabel);
+        getContentPane().add(reservationlabel); */
 
-        acceptdeclinelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
+      /* acceptdeclinelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
         acceptdeclinelabel.setForeground(new java.awt.Color(255, 255, 255));
         acceptdeclinelabel.setText("Accept/Decline Rservation");
         // le positionement exact du label.
         acceptdeclinelabel.setBounds(10, 30, 330, 30);
-        getContentPane().add(acceptdeclinelabel);
+        getContentPane().add(acceptdeclinelabel); */
+ 
+        // création du premier panel pour les information de la réservation:
+        acceptdeclinePanel.setLayout(null);
+        acceptdeclinePanel.setBorder((new RoundBorder(color, 3)));
+        acceptdeclinePanel.setBackground(colorgris);
+        add(acceptdeclinePanel);
+        //le positionnement exact du panel:
+        acceptdeclinePanel.setBounds(0, 3, 1027, 200);
+
+        //création du deuxième panel pour les information de la réservation:
+        
+        JPanel acceptdeclinemanuelpanel = new JPanel();
+        acceptdeclinemanuelpanel.setBackground(color);
+        acceptdeclinemanuelpanel.setLayout(null);
+        acceptdeclinemanuelpanel.setBounds(10, 10, 410, 180);
+        
+        //les labels du panel:
+        acceptordeclinelabel = new JLabel("Accept Or Decline Manuely:");
+        acceptordeclinelabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        acceptordeclinelabel.setForeground(colorgris);
+        acceptordeclinelabel.setBounds(20, 70, 400, 17);
+        acceptdeclinemanuelpanel.add(acceptordeclinelabel);
+
+        clicklabel = new JLabel("Click Here To Know:");
+        clicklabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        clicklabel.setForeground(colorgris);
+        clicklabel.setBounds(20, 20, 400, 17);
+        acceptdeclinemanuelpanel.add(clicklabel);
+
+        //les bouttons:
+        
+        acceptdeclinebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        acceptdeclinebtn.setBackground(colorgris);
+        acceptdeclinebtn.setForeground(color.white);
+        acceptdeclinebtn.setBorder(new RoundBorder(color, 3));
+        acceptdeclinebtn.setText("Accept/Decline");
+        acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    acceptdeclinebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        // le positionement exact du button:
+        acceptdeclinebtn.setBounds(230, 14, 150, 30);
+        acceptdeclinemanuelpanel.add(acceptdeclinebtn);
+
+        updatebtn.setText("Update-Now");
+        updatebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        updatebtn.setBackground(colorgris);
+        updatebtn.setForeground(color.white);
+        updatebtn.setBorder(new RoundBorder(color, 3));
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    updatebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        // le positionement exact du button:
+        updatebtn.setBounds(230, 120, 150, 30);
+        acceptdeclinemanuelpanel.add(updatebtn);
+    
+        //les combobox:
+        acceptdeclinebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPTER", "DECLINER" }));
+        acceptdeclinebox.setForeground(color);
+        acceptdeclinebox.setBackground(colorgris);
+        acceptdeclinebox.setBorder(new RoundBorder(color, 3));
+        // le positionement exact du label.
+        acceptdeclinebox.setBounds(20, 120, 150, 30);
+        acceptdeclinemanuelpanel.add(acceptdeclinebox);
+
+        acceptdeclinePanel.add(acceptdeclinemanuelpanel);
+
+
+        //création du troisième panel pour les information de la réservation:
+        
+        JPanel acceptdeclineauto = new JPanel();
+        acceptdeclineauto.setBackground(color);
+        acceptdeclineauto.setLayout(null);
+        acceptdeclineauto.setBounds(430, 10, 380, 180);
+
+        //les labels du panel:
+        reservationinutilelabel = new JLabel("Delete Unnecessary Reservation:");
+        reservationinutilelabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        reservationinutilelabel.setForeground(colorgris);
+        reservationinutilelabel.setBounds(20, 20, 400, 17);
+        acceptdeclineauto.add(reservationinutilelabel);
+
+        //les bouttons du panel:
+        suppreservationbtn.setText("Reservation inutile");
+        suppreservationbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        suppreservationbtn.setBackground(colorgris);
+        suppreservationbtn.setForeground(color.white);
+        suppreservationbtn.setBorder(new RoundBorder(color, 3));
+        suppreservationbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    suppreservationbtnActionPerformed(evt);
+                } catch (Date_nonvalid   e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        suppreservationbtn.setBounds(120, 70, 150, 30);
+        acceptdeclineauto.add(suppreservationbtn);
+
+        acceptdeclinePanel.add(acceptdeclineauto);
+
+        //création du quatrième panel pour les information de la réservation:
+        
+        JPanel tableaupanel = new JPanel();
+        tableaupanel.setLayout(null);
+        tableaupanel.setBorder((new RoundBorder(color, 3)));
+        tableaupanel.setBackground(colorgris);
+        tableaupanel.setBounds(0, 205, 1027, 380);
+        add(tableaupanel);
+
+        //le tableau du panel:
 
         reservationtabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID-User", "ID-Reser", "Room Type", "Reser Price", "Start Date", "End Date", "State"
+                "ID-User", "ID-Reservation", "Room Type","Room Option", "Reservation Price", "Start Date", "End Date", "State"
             }
         ));
         
         jScrollPane1.setViewportView(reservationtabel);
-        // le positionement exact du label.
-        jScrollPane1.setBounds(370, 70, 540, 460);
-        getContentPane().add(jScrollPane1);
+        // le positionement exact du tableau.
+        jScrollPane1.setBounds(50, 20, 900, 300);
+        getContentPane().add(jScrollPane1); 
+
+        tableaupanel.add(jScrollPane1);
 
 
-        updatebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        updatebtn.setText("Update-Now");
-        updatebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    updatebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-        // le positionement exact du label.
-        updatebtn.setBounds(190, 100, 160, 40);
-        getContentPane().add(updatebtn);
 
-        acceptdeclinebox.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        acceptdeclinebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPTER", "DECLINER" }));
-    
-        // le positionement exact du label.
-        acceptdeclinebox.setBounds(20, 100, 150, 40);
-        getContentPane().add(acceptdeclinebox);
 
-        acceptdeclinebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        acceptdeclinebtn.setText("ACCEPT/DECLINE");
-        acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    acceptdeclinebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-        // le positionement exact du label.
-        acceptdeclinebtn.setBounds(190, 240, 160, 40);
-        getContentPane().add(acceptdeclinebtn);
 
-        suppreservationbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        suppreservationbtn.setText("Reservation inutile");
-        suppreservationbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    suppreservationbtnActionPerformed(evt);
-                } catch (Date_nonvalid   e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
-        suppreservationbtn.setBounds(100, 380, 160, 30);
-        getContentPane().add(suppreservationbtn);
 
-        closebtn.setBackground(new java.awt.Color(171, 34, 34));
+        /*closebtn.setBackground(new java.awt.Color(171, 34, 34));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setText("Close");
         closebtn.setForeground(Color.WHITE);
@@ -194,10 +272,10 @@ public double GetPrix(int id_res){
         });
         // le positionement exact du label.
         closebtn.setBounds(190, 480, 150, 40);
-        getContentPane().add(closebtn);
+        getContentPane().add(closebtn);*/
        
 
-        backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        /*backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         backtoroomsbtn.setText("Back To Rooms");
         backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,28 +292,27 @@ public double GetPrix(int id_res){
         });
         // le positionement exact du label.
         backtoroomsbtn.setBounds(20, 480, 150, 40);
-        getContentPane().add(backtoroomsbtn);
+        getContentPane().add(backtoroomsbtn);*/
 
-        clicklabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
+        /* clicklabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
         clicklabel.setForeground(new java.awt.Color(255, 255, 255));
         clicklabel.setText("And Click Here:");
         // le positionement exact du label.
         clicklabel.setBounds(20, 250, 160, 30);
-        getContentPane().add(clicklabel);
+        getContentPane().add(clicklabel); */
 
-        selectlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
+        /*selectlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
         selectlabel.setForeground(new java.awt.Color(255, 255, 255));
         selectlabel.setText("Select The Reservation ");
         // le positionement exact du label.
         selectlabel.setBounds(20, 206, 220, 20);
-        getContentPane().add(selectlabel);
+        getContentPane().add(selectlabel); */
 
-        backgroundlabel.setIcon(new javax.swing.ImageIcon("liste-de-reservations.png")); // NOI18N
         // le positionement exact du label.
-        backgroundlabel.setBounds(0, 0, 920, 580);
+        backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);
 
-        setSize(new java.awt.Dimension(936, 588));
+        setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
         
     }// </editor-fold>                        
@@ -320,7 +397,7 @@ public double GetPrix(int id_res){
     private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int i=reservationtabel.getSelectedRow();
-        OptionSupplementaire opt=null;//TODO: recupirer dans le text filed
+        OptionSupplementaire opt=null;
         if(i>=0){  
 
             int selectedRow= reservationtabel.getSelectedRow();
@@ -391,7 +468,23 @@ public double GetPrix(int id_res){
             Control.hash_map_bdd();
             System.exit(0);
         }
-    }                                                
+    } 
+    
+    public static void main(String args[]) {
+        
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+
+                    new Table_Reservation_Admin().setVisible(true);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
    
 
@@ -400,6 +493,8 @@ public double GetPrix(int id_res){
     private javax.swing.JComboBox<String> acceptdeclinebox;
     private javax.swing.JButton acceptdeclinebtn;
     private javax.swing.JLabel acceptdeclinelabel;
+    private javax.swing.JLabel reservationinutilelabel;
+    private javax.swing.JLabel acceptordeclinelabel;
     private javax.swing.JLabel backgroundlabel;
     private javax.swing.JLabel clicklabel;
     private javax.swing.JScrollPane jScrollPane1;
