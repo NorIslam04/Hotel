@@ -249,7 +249,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         updatepricebtn.setBounds(20, 120, 150, 30);
 
         //les combobox:
-        typeandoptionsbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE", "SONA","TERRASE", "FOREST VIEW", "SEA VIEW"}));
+        typeandoptionsbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLO", "DOUBLE", "TRIPLE", "SUITE", "SONA","TERASSE", "VUESURMERE", "VUESURFORET"}));
         typeandoptionsbox.setForeground(color);
         typeandoptionsbox.setBackground(colorgris);
         typeandoptionsbox.setBorder(new RoundBorder(color, 3));

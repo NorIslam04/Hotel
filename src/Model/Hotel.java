@@ -363,8 +363,7 @@ public class Hotel {
 
 	public static boolean chambreAafficher(Chambre chambre, TypeChambre type, Date datedebut, Date datefin, boolean tv,
 			boolean climatisation, boolean vuesurforet, boolean vuesurmer) {
-		if (ChambreDispo(chambre, datedebut, datefin)
-				&& verifchambreavecoption(chambre, type, tv, climatisation, vuesurmer, vuesurforet)) {
+		if (ChambreDispo(chambre, datedebut, datefin) && verifchambreavecoption(chambre, type, tv, climatisation, vuesurmer, vuesurforet)) {
 			return true;
 		}
 		return false;
@@ -377,6 +376,7 @@ public class Hotel {
 			Map.Entry<Integer, Chambre> entry = iterator.next();
 			Chambre chambre = entry.getValue();
 			if (chambre.getType() == type) {
+
 				boolean nonreserve = ChambreDispo(chambre, date1, date2);
 				if (nonreserve) {
 					return chambre;//accepter la treservation
@@ -386,6 +386,14 @@ public class Hotel {
 		return null;//decalage de la reservation
 	}
 
+
+
+
+
+
+
+
+	
 	public static float calculernotehotel() {
 		int nbruserrated = 1;
 		float totalrating = 5;
