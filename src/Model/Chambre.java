@@ -3,7 +3,7 @@ package Model;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import Model.Hotel.TypeOperation;
 import Control.Control;
 
 	public class Chambre {
@@ -182,9 +182,25 @@ import Control.Control;
 	//TODO faire les modif necessaires dans les fct d attribution 
 	private double prix;
 	static int nb = 0;
+	int sup;
+	
+
+	public int getSup() {
+		return sup;
+	}
+
+
+
+
+	public void setSup(int sup) {
+		this.sup = sup;
+	}
+
+
+
 
 	//neveau constructeure
-	public Chambre(int id, TypeChambre type,double prix,boolean SONA,boolean TERASSE,boolean vuesurmere,boolean vuesurforet) {
+	public Chambre(int id, TypeChambre type,boolean SONA,boolean TERASSE,boolean vuesurmere,boolean vuesurforet) {
 		this.id = id;
 		this.type = type;
 
@@ -192,8 +208,36 @@ import Control.Control;
 		this.TERASSE=TERASSE;
 		this.vuesurmere=vuesurmere;
 		this.vuesurforet=vuesurforet;
-		this.prix=calculeprixchambre();///hsna lazem nriglo prblm psq ana nst3mel had l constructure bch njbed base de donnees l hashmap bch njeb prix psq f base de donnees ikon prix wadjed
-		this.prix=prix;
+		double p=0;
+		if(SONA){
+
+			p+=Option.GetPrix("SONA");
+		}else if(TERASSE){
+
+			p+=Option.GetPrix("TERASSE");
+
+		}else if(vuesurmere){
+
+			p+=Option.GetPrix("VUESURMERE");
+
+		}else{
+
+			p+=Option.GetPrix("VUESURMERE");
+
+		}
+
+		if (TypeChambre.SOLO==type) {
+			p+=Option.GetPrix("SOLO");
+		}else if(TypeChambre.DOUBLE==type){
+			p+=Option.GetPrix("DOUBLE");
+		}else if(TypeChambre.TRIPLE==type){
+			p+=Option.GetPrix("TRIPLE");
+		}else{
+			p+=Option.GetPrix("SUITE");
+		}
+			System.out.println("prix de "+nb+" : "+p);
+			
+		this.prix=p;
 		nb++;
 	}
 
@@ -269,41 +313,10 @@ import Control.Control;
 		this.prix = prix;
 	}
 
-	
-  public float calculeprixchambre(){
-	float prix=type.getPrix();
-	if(SONA){
-		prix=prix+OptionSupplementaire.SONA.getPrix();
-	
-	}
-	if(TERASSE){
-		prix=prix+OptionSupplementaire.TERASSE.getPrix();
-		
-	}
-	if(vuesurforet){
-		prix=prix+OptionSupplementaire.VUESURFORET.getPrix();
-	}
-	if(vuesurmere){
-		prix=prix+OptionSupplementaire.VUESURMERE.getPrix();
-	}
-	
-// TODO : n9drou n7ou kml hd les if w nkhdmou b objet ida mnssinech ndirouha
-	this.prix=prix;  
-	return prix;
-  }
 
 
-  public static double GetPrix(String option){
 
-	for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
-
-		if(option.equals(entry.getValue().getRooms_Options().toString())){
-			return entry.getValue().getPrix_option();
-		}
-	}
-	return 0;
-
-}
+ 
 
    public static void Bdd_to_hashMap_room(){
         // Informations de connexion à la base de données
@@ -324,13 +337,12 @@ import Control.Control;
                 int id = resultSet.getInt("id");
                 String type = resultSet.getString("type");
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre(type);
-                int prix=resultSet.getInt("prix");
                 boolean sona=resultSet.getBoolean("SONA");
                 boolean terasse=resultSet.getBoolean("TERASSE");
                 boolean vuesurmere=resultSet.getBoolean("VUESURMERE");
                 boolean vuesurforet=resultSet.getBoolean("VUESURFORET");
 
-                Chambre chambre = new Chambre(id, typeChambre, prix, sona, terasse, vuesurmere, vuesurforet);
+                Chambre chambre = new Chambre(id, typeChambre, sona, terasse, vuesurmere, vuesurforet);
                 Hotel.AjouterChambreMap(chambre);
                 Chambre.setNb(id);
             }
@@ -358,14 +370,13 @@ import Control.Control;
                 String ch ="Chambre";
                 if (operation==TypeOperation.AJOUT) {
 
-                    String insertQuery = "INSERT INTO rooms (type, prix,SONA, TERASSE, VUESURMERE, VUESURFORET) VALUES (?, ?, ?, ?, ?, ?)";                 
+                    String insertQuery = "INSERT INTO rooms (type,SONA, TERASSE, VUESURMERE, VUESURFORET) VALUES (?,?, ?, ?, ?)";                 
                     PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
                     preparedStatement.setString(1, chambre.getType().ToString());
-                    preparedStatement.setDouble(2, chambre.getPrix());
-                    preparedStatement.setBoolean(3, chambre.isSONA());
-                    preparedStatement.setBoolean(4, chambre.isTERASSE());
-                    preparedStatement.setBoolean(5, chambre.isVuesurmere());
-                    preparedStatement.setBoolean(6, chambre.isVuesurforet());
+                    preparedStatement.setBoolean(2, chambre.isSONA());
+                    preparedStatement.setBoolean(3, chambre.isTERASSE());
+                    preparedStatement.setBoolean(4, chambre.isVuesurmere());
+                    preparedStatement.setBoolean(5, chambre.isVuesurforet());
 
 
                     preparedStatement.executeUpdate();

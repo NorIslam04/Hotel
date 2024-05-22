@@ -280,16 +280,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             
         switch ((String)roompricebox.getSelectedItem()) {
                 case "SONA":
-                prix=Chambre.GetPrix("SONA");
+                prix=Option.GetPrix("SONA");
                     break;
                 case "TERASSE":
-                    prix=Chambre.GetPrix("TERASSE");
+                    prix=Option.GetPrix("TERASSE");
                         break;
                 case "VUESURMERE":
-                    prix=Chambre.GetPrix("VUESURMERE");
+                    prix=Option.GetPrix("VUESURMERE");
                         break;
                 case "VUESURFORET":
-                    prix=Chambre.GetPrix("VUESURFORET");
+                    prix=Option.GetPrix("VUESURFORET");
                         break;
                             
                 default:
@@ -298,16 +298,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
             switch ((String)roomtypebox.getSelectedItem()) {
                 case "SOLO":
-                prix+=Chambre.GetPrix("SOLO");
+                prix+=Option.GetPrix("SOLO");
                     break;
                 case "DOUBLE":
-                    prix+=Chambre.GetPrix("DOUBLE");
+                    prix+=Option.GetPrix("DOUBLE");
                         break;
                 case "TRIPLE":
-                    prix+=Chambre.GetPrix("TRIPLE");
+                    prix+=Option.GetPrix("TRIPLE");
                         break;
                 case "SUITE":
-                    prix+=Chambre.GetPrix("SUITE");
+                    prix+=Option.GetPrix("SUITE");
                         break;
                             
                 default:
@@ -407,16 +407,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 
                 switch ((String)roompricebox.getSelectedItem()) {
                     case "SONA":
-                    prix=Chambre.GetPrix("SONA");
+                    prix=Option.GetPrix("SONA");
                         break;
                     case "TERASSE":
-                        prix=Chambre.GetPrix("TERASSE");
+                        prix=Option.GetPrix("TERASSE");
                             break;
                     case "VUESURMERE":
-                        prix=Chambre.GetPrix("VUESURMERE");
+                        prix=Option.GetPrix("VUESURMERE");
                             break;
                     case "VUESURFORET":
-                        prix=Chambre.GetPrix("VUESURFORET");
+                        prix=Option.GetPrix("VUESURFORET");
                             break;
                                 
                     default:
@@ -425,16 +425,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     
                 switch ((String)roomtypebox.getSelectedItem()) {
                     case "SOLO":
-                    prix+=Chambre.GetPrix("SOLO");
+                    prix+=Option.GetPrix("SOLO");
                         break;
                     case "DOUBLE":
-                        prix+=Chambre.GetPrix("DOUBLE");
+                        prix+=Option.GetPrix("DOUBLE");
                             break;
                     case "TRIPLE":
-                        prix+=Chambre.GetPrix("TRIPLE");
+                        prix+=Option.GetPrix("TRIPLE");
                             break;
                     case "SUITE":
-                        prix+=Chambre.GetPrix("SUITE");
+                        prix+=Option.GetPrix("SUITE");
                             break;
                                 
                     default:

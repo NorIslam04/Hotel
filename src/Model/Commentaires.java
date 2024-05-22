@@ -5,6 +5,7 @@ import java.util.Map;
 
 import Control.Control;
 import Model.Date.*;
+import Model.Hotel.TypeOperation;
 
 
 public class Commentaires {

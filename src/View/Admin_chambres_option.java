@@ -38,6 +38,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     public static Color color = Color.decode("#E0C878");
     public static Color colorgris = Color.decode("#252926");
     public static int id_supp_chamb=0;
+    public static Container container;
 
     public Admin_chambres_option() throws Exception {
         initComponents();
@@ -289,9 +290,9 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         modifierchamb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
+                    Control.Action_AdminOptionChambre(3);
                     modifChambreactionPerformed(evt);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -300,6 +301,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         suppchambre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
+                    Control.Action_AdminOptionChambre(2);
                     suppchambreActionPerformed(evt);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -307,16 +309,26 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             }
         });
 
+
+
         ajouterchambre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    addChambrePreformed(evt,getContentPane());
+                    Control.Action_AdminOptionChambre(1);
+                    addChambrePreformed(evt);
+                    
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
+    
+
+
+
+
+
+
 
         revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,7 +467,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-               id_supp_chamb= chambre.getId();
+                Admin_chambres_option.id_supp_chamb= chambre.getId();
+               System.out.println(id_supp_chamb);
   
                 sonaCheckBox.setSelected(chambre.isSONA());
                 terasseCheckBox.setSelected(chambre.isTERASSE());;
@@ -483,58 +496,31 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         return panel;
     }
+     
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        
+        Control.hash_map_bdd();
+        System.exit(0);
+  
+}
 
     static JFrame frame=new JFrame();
 
-public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
-    if (id_supp_chamb!=0) {
-    TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
-    boolean Sona =   sonaCheckBox.isSelected();
-    boolean climatisation = terasseCheckBox.isSelected();
-    boolean vuesurmer = vuesurmerBox.isSelected();
-    boolean vueforet = vuesurforetBox.isSelected();
-  
-    double prix=0;
+    public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
+    if (Admin_chambres_option.id_supp_chamb !=0) {
+   
+    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
     
-    if(Sona){
-        prix+=Chambre.GetPrix("SONA");
-    }else if(climatisation){
-        prix+=Chambre.GetPrix("TERASSE");
-    }else if(vuesurmer){
-        prix+=Chambre.GetPrix("VUESURMERE");
-    }else{
-        prix+=Chambre.GetPrix("VUESURMERE");
-    }
-
-    switch (typeChambre.toString()) {
-        case "SOLO":
-        prix+=Chambre.GetPrix("SOLO");
-            break;
-        case "DOUBLE":
-            prix+=Chambre.GetPrix("DOUBLE");
-                break;
-        case "TRIPLE":
-            prix+=Chambre.GetPrix("TRIPLE");
-                break;
-        case "SUITE":
-            prix+=Chambre.GetPrix("SUITE");
-                break;
-
-        
-    }
-
-    JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 10, 10)); // 5 chambres par ligne
-    Chambre chambrerecherchee = new Chambre(id_supp_chamb, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);   
-    Hotel.ModifierChambreMap(chambrerecherchee);
     JOptionPane.showMessageDialog(frame, "La Chambre "+id_supp_chamb+" a été Modifier avec succès","Modification d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
 
     Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
     while (iterator.hasNext()) {
         Map.Entry<Integer, Chambre> entry = iterator.next();
+        if(entry.getValue().getSup()!=1){
         Chambre chambre = entry.getValue();
         chambreContainer.add(createPanel(chambre));
-
+        }
     }
     chambreContainer.setBackground(colorgris);
     scrollPane.setBackground(colorgris);
@@ -547,11 +533,11 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
     System.setProperty("sun.java2d.uiScale.enabled", "false");
     backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
     backgroundlabel.setBounds(0, 0, 1032, 580);
+    
     getContentPane().add(backgroundlabel);
-
     getContentPane().revalidate();
     getContentPane().repaint();
-    id_supp_chamb=0;
+    Admin_chambres_option.id_supp_chamb =0;
 
 
 }else{
@@ -564,21 +550,19 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
     public void suppchambreActionPerformed(java.awt.event.ActionEvent evt){
         if (id_supp_chamb!=0) {
-            Hotel.SupprimerChambreMap(Hotel.getChambreMap().get(id_supp_chamb));
 
-            JOptionPane.showMessageDialog(frame,"La Chambre "+id_supp_chamb+" a été supprimée avec succès.","Suppression d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame,"La Chambre "+id_supp_chamb+" a été supprimée avec succès.","Suppression d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
 
+        JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
 
-
-            JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
-
-            Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
+        Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
 
         while (iterator.hasNext()) {
             Map.Entry<Integer, Chambre> entry = iterator.next();
+            if(entry.getValue().getSup()!=1){
             Chambre chambre = entry.getValue();
             chambreContainer.add(createPanel(chambre));
-
+            }
         }
         chambreContainer.setBackground(colorgris);
         scrollPane.setBackground(colorgris);
@@ -596,78 +580,29 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
 
         getContentPane().revalidate();
         getContentPane().repaint();
+        Admin_chambres_option.id_supp_chamb =0;
 
-        id_supp_chamb=0;
         }else{
-
-            
+  
             JOptionPane.showMessageDialog(frame,"Choisissez une chambre à supprimer !","Suppression d'une chambre",  JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
-   
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+  
+
+     void  addChambrePreformed(java.awt.event.ActionEvent evt) throws Exception{
         
-            Control.hash_map_bdd();
-            System.exit(0);
-      
-    }
-
-    public static void addChambrePreformed(java.awt.event.ActionEvent evt,Container container) throws Exception{
-        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
-        boolean Sona =   sonaCheckBox.isSelected();
-        boolean climatisation = terasseCheckBox.isSelected();
-        boolean vuesurmer = vuesurmerBox.isSelected();
-        boolean vueforet = vuesurforetBox.isSelected();
-      
-        double prix=0;
-        
-
-        if(Sona){
-
-            prix+=Chambre.GetPrix("SONA");
-        }else if(climatisation){
-
-            prix+=Chambre.GetPrix("TERASSE");
-
-        }else if(vuesurmer){
-
-            prix+=Chambre.GetPrix("VUESURMERE");
-
-        }else{
-
-            prix+=Chambre.GetPrix("VUESURMERE");
-
-        }
-
-        switch (typeChambre.toString()) {
-            case "SOLO":
-            prix+=Chambre.GetPrix("SOLO");
-                break;
-            case "DOUBLE":
-                prix+=Chambre.GetPrix("DOUBLE");
-                    break;
-            case "TRIPLE":
-                prix+=Chambre.GetPrix("TRIPLE");
-                    break;
-            case "SUITE":
-                prix+=Chambre.GetPrix("SUITE");
-                    break;
-        }
-
         JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
-        Chambre chambrerecherchee = new Chambre(Chambre.getNb()+1, typeChambre,prix, Sona, climatisation, vuesurmer, vueforet);
-        
-        Hotel.AjtChambreMap(chambrerecherchee);
+       
         JOptionPane.showMessageDialog(frame,"La chambre a été Ajoutée avec succès");
       
         Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
-
         while (iterator.hasNext()) {
             Map.Entry<Integer, Chambre> entry = iterator.next();
+            if(entry.getValue().getSup()!=1){
             Chambre chambre = entry.getValue();
             chambreContainer.add(createPanel(chambre));
-
+            }
         }
         chambreContainer.setBackground(colorgris);
         scrollPane.setBackground(colorgris);
@@ -675,15 +610,15 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
   
         viewport.removeAll();
         viewport.add(chambreContainer);
-        container.add(backgroundlabel);
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
         backgroundlabel.setBounds(0, 0, 1032, 580);
-        container.add(backgroundlabel);
 
-        container.revalidate();
-        container.repaint();
+
+        getContentPane().add(backgroundlabel);
+        getContentPane().revalidate();
+        getContentPane().repaint();
     
     }
 
@@ -695,23 +630,19 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
           
-            TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
 
             JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
-            Chambre chambrerecherchee = new Chambre(0, typeChambre,-1, Sona, climatisation, vuesurmer, vueforet);
           
 
             Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
-            int i=0;
             while (iterator.hasNext()) {
                 Map.Entry<Integer, Chambre> entry = iterator.next();
                 Chambre chambre = entry.getValue();
                 if (Hotel.verifchambreavecoption(chambre, typeChambre, Sona, climatisation, vuesurmer, vuesurmer)) {
                     chambreContainer.add(createPanel(chambre));
-                    i++;
+                    
                 }
             }
-            System.out.println(i++);
             chambreContainer.setBackground(colorgris);
             scrollPane.setBackground(colorgris);
             JViewport viewport = scrollPane.getViewport();
@@ -767,15 +698,19 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
         }
         System.out.println(Hotel.langue);
     }
-
+    
+    //mazel !!
     public static void updateprice(){
 
     String option=typeandoptionsbox.getSelectedItem().toString();
-    Double price = Chambre.GetPrix(option);
+    Double price = Option.GetPrix(option);
     nouveauprixtxt.setText(price.toString());
     }
 
-    public static void ActionPreformedUpdate(java.awt.event.ActionEvent evt) {
+
+
+
+    void ActionPreformedUpdate(java.awt.event.ActionEvent evt) {
         int id=0;
         Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()) ;
                 for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
@@ -787,6 +722,35 @@ public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
                 double newprice=Double.parseDouble(nouveauprixtxt.getText());
                 Option option = new Option(Rooms_Options.ToTypeChambre(typeandoptionsbox.getSelectedItem().toString()),newprice , id);
                 Hotel.ModifieroptionMap(option);
+
+                JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
+       
+                JOptionPane.showMessageDialog(frame,"La Prix "+typeandoptionsbox.getSelectedItem().toString()+ " a été Modifier avec succès !");
+                Hotel.getChambreMap().clear();
+                Chambre.Bdd_to_hashMap_room();
+                Iterator<Map.Entry<Integer, Chambre>> iterator = Hotel.getChambreMap().entrySet().iterator();
+                while (iterator.hasNext()) {
+                    Map.Entry<Integer, Chambre> entry = iterator.next();
+                    if(entry.getValue().getSup()!=1){
+                    Chambre chambre = entry.getValue();
+                    chambreContainer.add(createPanel(chambre));
+                    }
+                }
+                chambreContainer.setBackground(colorgris);
+                scrollPane.setBackground(colorgris);
+                JViewport viewport = scrollPane.getViewport();
+          
+                viewport.removeAll();
+                viewport.add(chambreContainer);
+        
+                System.setProperty("sun.java2d.uiScale.enabled", "false");
+                backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+                backgroundlabel.setBounds(0, 0, 1032, 580);
+        
+        
+                getContentPane().add(backgroundlabel);
+                getContentPane().revalidate();
+                getContentPane().repaint();
     }
 
     public static void main(String args[]) {

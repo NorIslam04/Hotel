@@ -5,7 +5,7 @@ import java.util.Map;
 import Model.Date.*;
 import Model.Reservation.EtatReservation;
 import Control.Control;
-
+import Model.Hotel.TypeOperation;
 
 public class User {
 	private String gmail;
