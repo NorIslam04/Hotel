@@ -123,6 +123,8 @@ public class Option {
     }
 
 
+
+
     public static double GetPrix(String option){
 
         for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {

@@ -36,24 +36,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
     private void initComponents() throws Exception {
 
-        TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
-        OptionSupplementaire.initialiser(15, 5, 10, 10);
-        Chambre chambre1;
-
-        for (int i = 0; i < 100; i++) {
-            chambre1 = new Chambre(i, TypeChambre.SOLO, false, true, true, false);
-            Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 100, TypeChambre.DOUBLE, false, true, true, true);
-
-            Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 300, TypeChambre.SUITE, true, false, false, true);
-
-            Hotel.AjouterChambreMap(chambre1);
-            chambre1 = new Chambre(i + 200, TypeChambre.TRIPLE, true, true, true, true);
-
-            Hotel.AjouterChambreMap(chambre1);
-        }
-
+       
         TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
@@ -301,7 +284,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
                 try {
                     closebtnActionPerformed(evt);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+
                     e.printStackTrace();
                 }
             }
@@ -313,7 +296,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         reserverbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                //reserverbtnbtnActionPerformed();
+                reserverbtnbtnActionPerformed();
 
             }
         });
@@ -329,7 +312,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                //afficherprixbtnbtnActionPerformed();
+                afficherprixbtnbtnActionPerformed();
 
             }
         });
@@ -354,7 +337,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
-/* 
+ 
     private void reserverbtnbtnActionPerformed() {
 
         try {
@@ -375,18 +358,18 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
             Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
             if (Hotel.langue == 0) {
-                prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
+                prixJLabel.setText("<html>price : " + chambrerecherchee.getPrix() + "$/night<br>"
                         + "total price :"
-                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
                         + "$</html>");
             } else {
-                prixJLabel.setText("<html>prix : " + chambrerecherchee.calculeprixchambre() + "$/nuitee<br>"
+                prixJLabel.setText("<html>prix : " + chambrerecherchee.getPrix()+ "$/nuitee<br>"
                         + "prix total :"
-                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
                         + "$</html>");
             }
 
-            Control.Action_TableReservationUser();
+        Control.Action_TableReservationUser();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
@@ -425,10 +408,10 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         }
 
     }
-*/
+
     
 
-/* 
+ 
 public void afficherprixbtnbtnActionPerformed() {
         try {
 
@@ -446,16 +429,20 @@ public void afficherprixbtnbtnActionPerformed() {
             boolean vuesurmer = vuesurmerBox.isSelected();
             boolean vueforet = vuesurforetBox.isSelected();
 
+
+
+
             Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            System.out.println(chambrerecherchee.getPrix());
             if (Hotel.langue == 0) {
-                prixJLabel.setText("<html>price : " + chambrerecherchee.calculeprixchambre() + "$/night<br>"
+                prixJLabel.setText("<html>price : " + chambrerecherchee.getPrix() + "$/night<br>"
                         + "total price :"
-                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
                         + "$</html>");
             } else {
-                prixJLabel.setText("<html>prix : " + chambrerecherchee.calculeprixchambre() + "$/nuitee<br>"
+                prixJLabel.setText("<html>prix : " + chambrerecherchee.getPrix() + "$/nuitee<br>"
                         + "prix total :"
-                        + chambrerecherchee.calculeprixchambre() * Date.differenceEntreDates(date_debut, date_fin)
+                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
                         + "$</html>");
             }
 
@@ -493,7 +480,7 @@ public void afficherprixbtnbtnActionPerformed() {
         }
 
     }
-*/
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
