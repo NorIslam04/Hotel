@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.HeadlessException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -56,16 +57,7 @@ public double GetPrix(int id_res){
         }
     }
 
-    public Double getPrixParType(TypeChambre typeChambre) {
-
-         HashMap<Integer, Chambre> chambreMap=Hotel.getChambreMap();
-    for (Chambre chambre : chambreMap.values()) {
-        if (chambre.getType() == typeChambre) {
-            return chambre.getPrix();
-        }
-    }
-    return null;
-    }
+  
 
     public Table_Reservation_Admin() {
         initComponents();
@@ -76,7 +68,7 @@ public double GetPrix(int id_res){
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
         suppreservationbtn =new javax.swing.JButton();
-        reservationlabel = new javax.swing.JLabel();
+
         acceptdeclinelabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reservationtabel = new javax.swing.JTable();
@@ -140,7 +132,8 @@ public double GetPrix(int id_res){
         clicklabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         clicklabel.setForeground(colorgris);
         clicklabel.setBounds(20, 20, 400, 17);
-        acceptdeclinemanuelpanel.add(clicklabel);
+        getContentPane().add(clicklabel);
+        
 
         //les bouttons:
         
@@ -159,7 +152,7 @@ public double GetPrix(int id_res){
             }
         });
         // le positionement exact du button:
-        acceptdeclinebtn.setBounds(230, 14, 150, 30);
+        acceptdeclinebtn.setBounds(130, 14, 150, 30);
         acceptdeclinemanuelpanel.add(acceptdeclinebtn);
 
         updatebtn.setText("Update-Now");
@@ -191,6 +184,9 @@ public double GetPrix(int id_res){
 
         acceptdeclinePanel.add(acceptdeclinemanuelpanel);
 
+        backtoroomsbtn.setBounds(840, 50, 150, 30);
+        getContentPane().add(backtoroomsbtn);
+
 
         //création du troisième panel pour les information de la réservation:
         
@@ -203,7 +199,7 @@ public double GetPrix(int id_res){
         reservationinutilelabel = new JLabel("Delete Unnecessary Reservation:");
         reservationinutilelabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         reservationinutilelabel.setForeground(colorgris);
-        reservationinutilelabel.setBounds(20, 20, 400, 17);
+        reservationinutilelabel.setBounds(45, 30, 400, 17);
         acceptdeclineauto.add(reservationinutilelabel);
 
         //les bouttons du panel:
@@ -221,7 +217,7 @@ public double GetPrix(int id_res){
                 }
             }
         });
-        suppreservationbtn.setBounds(120, 70, 150, 30);
+        suppreservationbtn.setBounds(115, 95, 150, 35);
         acceptdeclineauto.add(suppreservationbtn);
 
         acceptdeclinePanel.add(acceptdeclineauto);
@@ -273,11 +269,13 @@ public double GetPrix(int id_res){
             }
         });
         // le positionement exact du label.
-        closebtn.setBounds(500, 1, 150, 40);
-        tableaupanel.add(closebtn);
+        closebtn.setBounds(850, 110, 130, 30);
+        getContentPane().add(closebtn);
+
+      
        
 
-        /*backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         backtoroomsbtn.setText("Back To Rooms");
         backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,8 +291,7 @@ public double GetPrix(int id_res){
             }
         });
         // le positionement exact du label.
-        backtoroomsbtn.setBounds(20, 480, 150, 40);
-        getContentPane().add(backtoroomsbtn);*/
+       
 
         /* clicklabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
         clicklabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -311,7 +308,9 @@ public double GetPrix(int id_res){
         getContentPane().add(selectlabel); */
 
         // le positionement exact du label.
-        backgroundlabel.setBounds(0, 0, 1032, 580);
+
+
+        //backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);
 
         setSize(new java.awt.Dimension(1032, 580));
@@ -469,7 +468,6 @@ public double GetPrix(int id_res){
     frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {   
-
             Control.hash_map_bdd();
             System.exit(0);
         }
