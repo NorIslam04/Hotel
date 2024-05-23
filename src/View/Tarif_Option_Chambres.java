@@ -67,12 +67,12 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             vuesurmerJLabel = new JLabel("Sea View :");
             TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Forest View :");
-            reserverbtn.setText("reserve");
-            afficherprixButton.setText("see price");
+            reserverbtn.setText("Reserve");
+            afficherprixButton.setText("See Price");
             choisisdateJLabel = new JLabel("Choose your reservation date :");
             choisisoptionsJLabel = new JLabel("Choose Options :");
             choisistypeJLabel = new JLabel("Choose Type :");
-            prixJLabel = new JLabel("price:");
+            prixJLabel = new JLabel("Price:");
             datefinJLabel.setBounds(0, 0, 150, 50);
         } else {
             datedebutJLabel = new JLabel("date debut");
@@ -85,9 +85,8 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             choisistypeJLabel = new JLabel("choisissez le Type :");
             choisisdateJLabel = new JLabel("choisissez votre date de reservation :");
             prixJLabel = new JLabel("prix:");
-            afficherprixButton.setText("voir le prix");
-
-            reserverbtn.setText("reserver");
+            afficherprixButton.setText("Voir le prix");
+            reserverbtn.setText("Reserver");
             datefinJLabel.setBounds(0, 0, 150, 50);
         }
 
@@ -192,8 +191,8 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         anneedebutBox = new JComboBox<>(annee);
         anneefinBox = new JComboBox<>(annee);
 
-        jourdebutBox.setSelectedItem(Date.getToday_jour());
-        jourfinBox.setSelectedItem(Date.getToday_jour() + 1);
+        jourdebutBox.setSelectedItem(Date.getToday_jour()+1);
+        jourfinBox.setSelectedItem(Date.getToday_jour() + 2);
         moisdebutBox.setSelectedItem(Date.getToday_mois());
         moisfinBox.setSelectedItem(Date.getToday_mois());
         anneedebutBox.setSelectedItem(Date.getToday_annee());
@@ -330,7 +329,60 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
+
+ 
+
+        sonaCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                terasseCheckBox.setSelected(false);
+                vuesurforetBox.setSelected(false);
+                vuesurmerBox.setSelected(false);
+        
+
+            }
+        });
+
+        terasseCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                sonaCheckBox.setSelected(false);
+                vuesurforetBox.setSelected(false);
+                vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        vuesurforetBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                sonaCheckBox.setSelected(false);
+                terasseCheckBox.setSelected(false);
+                vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        vuesurmerBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                sonaCheckBox.setSelected(false);
+                terasseCheckBox.setSelected(false);
+                vuesurforetBox.setSelected(false);
+
+            }
+        });
+
+        sonaCheckBox.setSelected(true);
+
+
     }
+
+
+
+
 
     private JFrame frame;
 
@@ -431,9 +483,10 @@ public void afficherprixbtnbtnActionPerformed() {
 
 
 
-
             Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+
             System.out.println(chambrerecherchee.getPrix());
+
             if (Hotel.langue == 0) {
                 prixJLabel.setText("<html>price : " + chambrerecherchee.getPrix() + "$/night<br>"
                         + "total price :"

@@ -34,7 +34,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             rowData[0]=reservation.getId();
             rowData[1]=reservation.getType();
             rowData[2]=reservation.getOption();
-            rowData[3] = reservation.getPrix();
+            rowData[3] =reservation.getPrix()+" $";
             rowData[4]=reservation.getDateDebut();
             rowData[5]=reservation.getDateFin();
             rowData[6]=reservation.getEtat();

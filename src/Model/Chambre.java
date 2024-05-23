@@ -174,15 +174,9 @@ import Control.Control;
 		private boolean TERASSE;
 		private boolean vuesurmere;
 		private boolean vuesurforet;
-
-	// en gros ces deux variable vont permettre a l admin de mette une date pour les chambres ou tt les reservation 
-	//qui coincide m3a hd la date on vas pas leurs proposer cette chambre puisque elle sera soit
-	//supprimee apres soit modified apres 
-	//si la chambre est deja resevee durant la date que proposera l admin une err sera projetee 
-	//TODO faire les modif necessaires dans les fct d attribution 
-	private double prix;
-	static int nb = 0;
-	int sup;
+		private double prix;
+		static int nb = 0;
+		int sup;
 	
 
 	public int getSup() {
@@ -222,7 +216,7 @@ import Control.Control;
 
 		}else{
 
-			p+=Option.GetPrix("VUESURMERE");
+			p+=Option.GetPrix("VUESURFORET");
 
 		}
 

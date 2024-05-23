@@ -1,5 +1,6 @@
 package Model;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Chambre.*;
@@ -186,6 +187,7 @@ public class Reservation {
 	public static void Bdd_to_hashMap_reservation() throws Exception {
 
         String query = "SELECT * FROM reservation";
+    
 
         try {
             Connection connection =Control.connectToMySQL();;
@@ -200,7 +202,9 @@ public class Reservation {
                 String dateFin = resultSet.getString("dateFin");
                 int idChambre = resultSet.getInt("idChambre");
                 EtatReservation etat = EtatReservation.toEtatReservation(resultSet.getString("etat"));
+
                 double prix=resultSet.getDouble("prix");
+
                 Date dd = Date.Recupere_date(dateDebut);
                 Date df = Date.Recupere_date(dateFin);
                 OptionSupplementaire opt=OptionSupplementaire.tOptionSupplementaire(resultSet.getString("option"));
@@ -213,7 +217,7 @@ public class Reservation {
             statement.close();
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
