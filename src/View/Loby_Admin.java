@@ -8,8 +8,7 @@ import javax.swing.*;
 
 public class Loby_Admin extends javax.swing.JFrame {
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();
-    JButton processusfindejournee = new JButton();
-    JButton modifprixbtn = new JButton();
+
 
     public Loby_Admin() {
         initComponents();
@@ -53,14 +52,13 @@ public class Loby_Admin extends javax.swing.JFrame {
 
             gererlesreservationbtn = new JButton("manage reservations");
             modifieroptions.setText("add/delete/modifie room's options");
-            processusfindejournee.setText("start the end of day process");
-            modifprixbtn.setText("manage prices");
+ 
         } else {
 
             gererlesreservationbtn = new JButton("gerer les reservations");
             modifieroptions.setText("ajouter/supprimer/modifier une chambre");
-            processusfindejournee.setText("lancer le processus de fin de journee");
-            modifprixbtn.setText("gerer les prix");
+        
+            
         }
         // creation d'un boutton pour le close avec ses caractéristiques.
 
@@ -88,27 +86,18 @@ public class Loby_Admin extends javax.swing.JFrame {
 
         gererlesreservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         gererlesreservationbtn.setBackground(color);
-        gererlesreservationbtn.setBounds(780, 300, 240, 30);
+        gererlesreservationbtn.setBounds(650, 480, 250, 30);
         gererlesreservationbtn.setForeground(colorgris);
         add(gererlesreservationbtn);
 
-        modifprixbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        modifprixbtn.setBackground(color);
-        modifprixbtn.setBounds(10, 300, 240, 30);
-        modifprixbtn.setForeground(colorgris);
-        add(modifprixbtn);
+ 
 
         modifieroptions.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         modifieroptions.setBackground(color);
-        modifieroptions.setBounds(320, 300, 400, 30);
+        modifieroptions.setBounds(90, 480, 300, 30);
         modifieroptions.setForeground(colorgris);
         add(modifieroptions);
 
-        processusfindejournee.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        processusfindejournee.setBackground(color);
-        processusfindejournee.setBounds(10, 10, 400, 30);
-        processusfindejournee.setForeground(colorgris);
-        add(processusfindejournee);
 
         modifieroptions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

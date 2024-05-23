@@ -54,13 +54,13 @@ public class Loby_User extends javax.swing.JFrame {
         if(Hotel.langue==0){
              descJLabel = new JLabel(
                 "<html>Our vision is to be <br>themost reliable and <br>respected hotel in Djijel.</html>");
-             passeraureservationbtn = new JButton("pass to rooms");
+             passeraureservationbtn = new JButton("Pass To Reservation");
             aPropos.setText("About-Us ");
         }
             else{
          descJLabel = new JLabel(
                 "<html>Notre vision est d'être<br>l'Hotel le plus fiable<br>et respectée à djijel.</html>");
-                 passeraureservationbtn = new JButton("passer aux chambres");
+                 passeraureservationbtn = new JButton("Passer Aux Reservation");
                 aPropos.setText("A propos de nous ");
             }
         // creation d'un boutton pour le close avec ses caractéristiques.
@@ -132,12 +132,12 @@ public class Loby_User extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private JFrame frame;
+
 
  
 
     private void aProposbtnActionPerformed() {
-        APropos a = new APropos();
+      new APropos();
     }
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +147,8 @@ public class Loby_User extends javax.swing.JFrame {
     private void passeraureservationActionPerformed() {
         new Chambre_interface();
     }
+
+
     private void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
