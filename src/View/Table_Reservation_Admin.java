@@ -6,8 +6,8 @@ import Model.Chambre.*;
 import Control.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.HeadlessException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -46,10 +46,11 @@ public double GetPrix(int id_res){
             rowData[1]=reservation.getId();
             rowData[2]=reservation.getType();
             rowData[3]=reservation.getOption();
-            rowData[4]=reservation.getPrix();
+            rowData[4]=reservation.getPrix()+"$";
             rowData[5]=reservation.getDateDebut();
             rowData[6]=reservation.getDateFin();
             rowData[7]=reservation.getEtat();
+            
             model.addRow(rowData);
             }
         }
@@ -266,7 +267,7 @@ public double GetPrix(int id_res){
                 try {
                     closebtnActionPerformed(evt);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             }
@@ -315,7 +316,8 @@ public double GetPrix(int id_res){
 
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
-        
+
+      
     }// </editor-fold>                        
 
    

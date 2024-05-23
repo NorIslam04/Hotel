@@ -269,7 +269,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         typeandoptionsbox.setBounds(20, 14, 150, 30);
 
         //les textfields:
-        nouveauprixtxt.setBounds(20, 90, 100, 20);
+        nouveauprixtxt.setBounds(20, 87, 120, 25);
 
         //ajouter au panel:
         changepricepanel.add(typeandoptionsbox);
@@ -360,6 +360,10 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
             }
         });
+
+        String option=typeandoptionsbox.getSelectedItem().toString();
+        Double price = Option.GetPrix(option);
+        nouveauprixtxt.setText(price.toString()+"$");
     }
 
     public static JPanel createPanel(Chambre chambre) {
@@ -704,7 +708,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     public static void updateprice(){
     String option=typeandoptionsbox.getSelectedItem().toString();
     Double price = Option.GetPrix(option);
-    nouveauprixtxt.setText(price.toString());
+    nouveauprixtxt.setText(price.toString()+"$");
     }
 
 

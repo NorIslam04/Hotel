@@ -104,7 +104,7 @@ public class Control {
                     new Passer_a_signin();   
                         break;
                     case 1:
-                    Chambre_interface ch = new Chambre_interface();
+                    Loby_User ch = new Loby_User();
                     ch.setVisible(true);
                     SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();
                         break;

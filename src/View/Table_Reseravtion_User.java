@@ -34,7 +34,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             rowData[0]=reservation.getId();
             rowData[1]=reservation.getType();
             rowData[2]=reservation.getOption();
-            rowData[3] =reservation.getPrix()+" $";
+            rowData[3] =reservation.getPrix()+"$";
             rowData[4]=reservation.getDateDebut();
             rowData[5]=reservation.getDateFin();
             rowData[6]=reservation.getEtat();
@@ -317,7 +317,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
 
-        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),roompricebox.getSelectedItem(),nb_day*prix,startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
+        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),roompricebox.getSelectedItem(),nb_day*prix+"$",startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
 
         return nb_day*prix;
 
