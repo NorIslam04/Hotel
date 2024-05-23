@@ -73,10 +73,10 @@ public class Chambre_interface extends javax.swing.JFrame {
         JLabel descJLabel;
         JButton reserverpardetailbtn ;
         if(Hotel.langue==0){
-            reserverpardetailbtn = new JButton("reserve");
+            reserverpardetailbtn = new JButton("Price with options");
             avissurnousButton.setText("Comments");
             aPropos.setText("About Us ");
-             passeraureservationbtn = new JButton("manage my reservations");
+             passeraureservationbtn = new JButton("Manage my reservations");
             prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
             suitetext.setText("Suite:Max 5 Guests.");
             prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
@@ -92,10 +92,10 @@ public class Chambre_interface extends javax.swing.JFrame {
              solotext.setBounds(40, 25, 200, 20);
              triotext.setBounds(35, 25, 200, 20);
         }else{
-            reserverpardetailbtn = new JButton("reserver");
+            reserverpardetailbtn = new JButton("Prix avec options");
             avissurnousButton.setText("Commentaires ");
             aPropos.setText("A propos de nous ");
-             passeraureservationbtn = new JButton("gerer mes reservation");
+             passeraureservationbtn = new JButton("Gerer mes reservation");
             prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/nuit.");
             suitetext.setText("Suite:Max 5 personnes.");
             prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/nuit.");
