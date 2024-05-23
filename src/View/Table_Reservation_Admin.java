@@ -185,7 +185,7 @@ public double GetPrix(int id_res){
         acceptdeclinePanel.add(acceptdeclinemanuelpanel);
 
         backtoroomsbtn.setBounds(840, 50, 150, 30);
-        getContentPane().add(backtoroomsbtn);
+        acceptdeclinePanel.add(backtoroomsbtn);
 
 
         //création du troisième panel pour les information de la réservation:
@@ -270,7 +270,7 @@ public double GetPrix(int id_res){
         });
         // le positionement exact du label.
         closebtn.setBounds(850, 110, 130, 30);
-        getContentPane().add(closebtn);
+        acceptdeclinePanel.add(closebtn);
 
       
        
@@ -394,9 +394,10 @@ public double GetPrix(int id_res){
             JOptionPane.showMessageDialog(frame,"Il n'y a pas de réserves inutiles !");
         }
 
-        //insert into reservation(idUser,type,dateDebut,dateFin,idChambre,etat,prix) values(15,'SOLO','10/5/2024','16/5/2024',-1,'DECLINER',5432.87);
+        //insert into reservation(idUser,type,dateDebut,dateFin,idChambre,etat,prix,`option`) values(15,'SOLO','10/5/2024','25/5/2024',-1,'DECLINER',5432.87,'SONA');
     } 
 
+    
     private void acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int i=reservationtabel.getSelectedRow();

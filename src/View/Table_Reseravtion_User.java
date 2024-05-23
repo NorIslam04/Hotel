@@ -265,7 +265,6 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
       return -2;
     }
 
-
     //faitttttt
     public static double addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
@@ -447,7 +446,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 model.setValueAt(prix*nb_day, i, 3);
 
                 model.setValueAt(startdatetext.getText(), i, 4);
-                model.setValueAt(enddatetext.getText(), i, 5);
+                model.setValueAt(enddatetext.getText()+"$", i, 5);
                 model.setValueAt("EN_ATTEND", i, 6);
               
 

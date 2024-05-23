@@ -21,6 +21,8 @@ import javax.swing.SwingUtilities;
 
 public class Control {
 
+    
+
     public static Connection connectToMySQL() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/hotel";
         String utilisateur = "root";
@@ -98,6 +100,7 @@ public class Control {
 
         Login.seConnerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+            
                 
                 switch (Login.seConnecterbtnActionPerformed(evt)) {
                     case -1:
@@ -150,6 +153,7 @@ public class Control {
                 Action_Login();  
             }
         });
+    
     }
     
     public static void Action_Signin(){//fait

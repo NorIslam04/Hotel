@@ -81,8 +81,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         } else {
        
             sonaJlabel = new JLabel("Sona :");
-            vuesurmerJLabel = new JLabel("Terasse :");
-            TerasseJlabel = new JLabel("Vue sur mer :");
+            vuesurmerJLabel = new JLabel("Vue sur mer :");
+            TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Vue sur foret :");
             choisisoptionsJLabel = new JLabel("Choisissez Les Options :");
             choisistypeJLabel = new JLabel("Choisissez Le Type :");
@@ -397,7 +397,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
             optionlLabel = new JLabel("Options: ");
             SonaJlabel = new JLabel("                   Sona ");
             TerasseJlabel = new JLabel("                  terasse");
-            vuemerJLabel = new JLabel("           Vue sur la mere");
+            vuemerJLabel = new JLabel("           Vue sur la mer");
             vueforetJLabel = new JLabel("           Vue sur la foret");
             suppchambre.setText("Suprimer Chambre");
 
