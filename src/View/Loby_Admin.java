@@ -86,7 +86,7 @@ public class Loby_Admin extends javax.swing.JFrame {
 
         gererlesreservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         gererlesreservationbtn.setBackground(color);
-        gererlesreservationbtn.setBounds(650, 480, 250, 30);
+        gererlesreservationbtn.setBounds(650, 480, 250, 40);
         gererlesreservationbtn.setForeground(colorgris);
         add(gererlesreservationbtn);
 
@@ -94,7 +94,7 @@ public class Loby_Admin extends javax.swing.JFrame {
 
         modifieroptions.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         modifieroptions.setBackground(color);
-        modifieroptions.setBounds(90, 480, 300, 30);
+        modifieroptions.setBounds(90, 480, 300, 40);
         modifieroptions.setForeground(colorgris);
         add(modifieroptions);
 
