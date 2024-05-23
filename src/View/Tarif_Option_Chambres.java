@@ -67,7 +67,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             vuesurmerJLabel = new JLabel("Sea View :");
             TerasseJlabel = new JLabel("Terasse :");
             vuesurforetJLabel = new JLabel("Forest View :");
-            reserverbtn.setText("Price");
+            reserverbtn.setText("Reserve");
             afficherprixButton.setText("See Price");
             choisisdateJLabel = new JLabel("Choose your reservation date :");
             choisisoptionsJLabel = new JLabel("Choose Options :");

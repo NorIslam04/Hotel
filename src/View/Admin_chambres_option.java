@@ -624,7 +624,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
-        backgroundlabel.setBounds(0, 0, 1032, 580);
+        backgroundlabel.setBounds(0, 0, 1032, 550);
 
 
         getContentPane().add(backgroundlabel);
@@ -695,12 +695,21 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
         scrollPane.setBounds(0, 210, 1033, 400);
 
+
+
         // Ajouter le JScrollPane au JFrame principal
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
+
+
+
+
+
+
+        
 
     }
     
