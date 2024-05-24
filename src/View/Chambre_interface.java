@@ -12,7 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Chambre_interface extends javax.swing.JFrame {
-    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static JButton aPropos = new JButton();
+
+    public static JButton avissurnousButton = new JButton();
+    public static JButton passeraureservationbtn;
+    public static JLabel descJLabel;
+    public static JButton reserverpardetailbtn ;
+    public static JButton revenirbtn = new JButton("");
+    public static javax.swing.JButton closebtn = new JButton(" ");
+
+
+
     public Chambre_interface() {
         initComponents();
     }
@@ -62,16 +73,9 @@ public class Chambre_interface extends javax.swing.JFrame {
         langueBox.setBackground(colorgris);
         langueBox.setBorder(new RoundBorder(color, 3));
         add(langueBox);
-        langueBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerlangue();
-            }
-        });
-        JButton aPropos = new JButton();
-        JButton avissurnousButton = new JButton();
-        JButton passeraureservationbtn;
-        JLabel descJLabel;
-        JButton reserverpardetailbtn ;
+        
+        
+        
         if(Hotel.langue==0){
             reserverpardetailbtn = new JButton("Price with options");
             avissurnousButton.setText("Comments");
@@ -252,11 +256,7 @@ public class Chambre_interface extends javax.swing.JFrame {
         closebtn.setBounds(1000, 5, 25, 30);
         add(closebtn);
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closebtnActionPerformed(evt);
-            }
-        });
+        
 
         
         passeraureservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
@@ -276,11 +276,7 @@ public class Chambre_interface extends javax.swing.JFrame {
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         aPropos.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
     
-        aPropos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aProposbtnActionPerformed();
-            }
-        });
+
         aPropos.setBounds(10, 10, 150, 30);
         aPropos.setBackground(colorgris);
         aPropos.setForeground(color);
@@ -292,11 +288,7 @@ public class Chambre_interface extends javax.swing.JFrame {
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         avissurnousButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
      
-        avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avissurnousButtonActionPerformed();
-            }
-        });
+        
         // le positionement exact du boutton.
         avissurnousButton.setBounds(10, 40, 150, 30);
         avissurnousButton.setBackground(colorgris);
@@ -307,30 +299,13 @@ public class Chambre_interface extends javax.swing.JFrame {
         add(avissurnousButton);
 
         // Bouton pour fermer la fenêtre
-        JButton revenirbtn = new JButton("");
+        
         // le positionement exact du boutton.
         revenirbtn.setBounds(970, 5, 25, 30);
         revenirbtn.setBackground(Color.white);
         add(revenirbtn);
 
         // Action pour fermer la fenêtre lorsque le bouton est cliqué
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
-
-        passeraureservationbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passeraureservationActionPerformed();
-            }
-        });
-
-        reserverpardetailbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserverDetailActionPerformed();
-            }
-        });
 
         System.setProperty("sun.java2d.uiScale.enabled", "false");
         backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
@@ -345,51 +320,15 @@ public class Chambre_interface extends javax.swing.JFrame {
     }
 
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
 
-
-    private void avissurnousButtonActionPerformed() {
-        try {
-            new Commentaires_Interface();
-            dispose();
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-        
-    };
-
-    private void aProposbtnActionPerformed() {
-       new APropos();
-       dispose();
-    }
-
-    private void passeraureservationActionPerformed() {
-        
-        Control.Action_TableReservationUser();
-        dispose();
-    }
-
-    private void reserverDetailActionPerformed() {
-        try {
-            new Tarif_Option_Chambres();
-            dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private void changerlangue(){
+    public static void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
         }else{
             Hotel.langue=1;
         }
-        dispose();
-        new Chambre_interface();
-       
+        
     }
 
     public static void main(String args[]) {

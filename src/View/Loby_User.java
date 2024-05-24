@@ -3,6 +3,7 @@ import Model.*;
 
 import java.awt.Color;
 import java.awt.Font;
+import Control.*;
 
 import javax.swing.*;
 
@@ -137,7 +138,7 @@ public class Loby_User extends javax.swing.JFrame {
  
 
     private void aProposbtnActionPerformed() {
-      new APropos();
+      Control.Action_apropos();
     }
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,8 +146,8 @@ public class Loby_User extends javax.swing.JFrame {
     }
 
     private void passeraureservationActionPerformed() {
-        new Chambre_interface();
-    }
+        Control.Action_Chambre_Intreface();  
+     }
 
 
     private void changerlangue(){
