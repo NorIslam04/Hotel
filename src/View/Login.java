@@ -261,7 +261,7 @@ public class Login extends javax.swing.JFrame {
             pwdtext.setEchoChar('\u2022'); // Masquer le mot de passe
         }
     }
-
+    //cbn
     public static int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
 
         if (usertext.getText().equals("") || pwdtext.getText().equals("")) {
@@ -269,24 +269,17 @@ public class Login extends javax.swing.JFrame {
                     "Please Fill All The Text Fields !!",
                     "ERROR",
                     JOptionPane.ERROR_MESSAGE);
-                    return 0;//se cas traite dans view psq en affiche un message de dialoge
+                    return 0;
+
         } else if (usertext.getText().equals(".") && pwdtext.getText().equals(".")) {
             return 2;
-            //new Loby_Admin();
 
         } else {
-
             if (Hotel.findUser(usertext.getText(), pwdtext.getText())) {
-
-               // Chambre_interface ch = new Chambre_interface();
-              //  ch.setVisible(true);
                 return 1; 
 
             } else {
-
-                //Passer_a_signin pas = new Passer_a_signin();
-               
-                //pas.setVisible(true);
+                Control.tmp=JOptionPane.showConfirmDialog(frame, "Vous voulais ouvrir un nouveau compte ?", "Cree Un Compte", JOptionPane.INFORMATION_MESSAGE);
                 return -1;
 
             }
