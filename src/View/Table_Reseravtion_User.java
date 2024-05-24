@@ -442,20 +442,17 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
 
                     new Table_Reseravtion_User().setVisible(true);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
     }
-
 
     // Variables declaration - do not modify                     
     public static javax.swing.JButton addreservationbtn;

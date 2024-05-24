@@ -57,56 +57,35 @@ public double GetPrix(int id_res){
         }
     }
 
-  
-
     public Table_Reservation_Admin() {
         initComponents();
         mettreajourlesreservationadmin();
     }
-                       
+                    
     private void initComponents() {
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
         suppreservationbtn =new javax.swing.JButton();
-
-        acceptdeclinelabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reservationtabel = new javax.swing.JTable();
         updatebtn = new javax.swing.JButton();
         acceptdeclinebox = new javax.swing.JComboBox<>();
         acceptdeclinebtn = new javax.swing.JButton();
         clicklabel = new javax.swing.JLabel();
-        selectlabel = new javax.swing.JLabel();
-        backgroundlabel = new javax.swing.JLabel();
         closebtn = new javax.swing.JButton();
         backtoroomsbtn = new javax.swing.JButton();
         JPanel acceptdeclinePanel = new JPanel();
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
 
-        //rendre le layout manager null pour le positionement absolu.
+        //rendre le layout manager null pour le positionement absolu:
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Page");
         setLocationRelativeTo(null);
         setVisible(true);
 
-
-      /* reservationlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
-        reservationlabel.setForeground(new java.awt.Color(255, 255, 255));
-        reservationlabel.setText("Here Are All The Reservations:");
-        // le positionement exact du label.
-        reservationlabel.setBounds(440, 30, 390, 30);
-        getContentPane().add(reservationlabel); */
-
-      /* acceptdeclinelabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 24)); // NOI18N
-        acceptdeclinelabel.setForeground(new java.awt.Color(255, 255, 255));
-        acceptdeclinelabel.setText("Accept/Decline Rservation");
-        // le positionement exact du label.
-        acceptdeclinelabel.setBounds(10, 30, 330, 30);
-        getContentPane().add(acceptdeclinelabel); */
- 
-        // création du premier panel pour les information de la réservation:
+        // création du premier panel:
         acceptdeclinePanel.setLayout(null);
         acceptdeclinePanel.setBorder((new RoundBorder(color, 3)));
         acceptdeclinePanel.setBackground(colorgris);
@@ -114,8 +93,30 @@ public double GetPrix(int id_res){
         //le positionnement exact du panel:
         acceptdeclinePanel.setBounds(0, 3, 1027, 200);
 
-        //création du deuxième panel pour les information de la réservation:
+        //les bouttons du premier panel: 
+
+        //création d'un boutton pour fermer la fenetre:
+        closebtn.setBackground(new java.awt.Color(171, 34, 34));
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        closebtn.setText("Close");
+        closebtn.setForeground(Color.WHITE);
         
+        // le positionement exact du boutton:
+        closebtn.setBounds(850, 80, 130, 30);
+        acceptdeclinePanel.add(closebtn);
+
+        //création d'un boutton pour revenier en arriere:
+        backtoroomsbtn.setText("Back To Rooms");
+        backtoroomsbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        backtoroomsbtn.setBackground(color);
+        backtoroomsbtn.setForeground(colorgris);
+        backtoroomsbtn.setBorder(new RoundBorder(color, 3));
+        
+        // le positionement exact du boutton:
+        backtoroomsbtn.setBounds(840, 20, 150, 30);
+        acceptdeclinePanel.add(backtoroomsbtn);
+
+        //création du deuxième panel pour les information de la réservation:
         JPanel acceptdeclinemanuelpanel = new JPanel();
         acceptdeclinemanuelpanel.setBackground(color);
         acceptdeclinemanuelpanel.setLayout(null);
@@ -132,43 +133,28 @@ public double GetPrix(int id_res){
         clicklabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         clicklabel.setForeground(colorgris);
         clicklabel.setBounds(20, 20, 400, 17);
-        getContentPane().add(clicklabel);
-        
+        acceptdeclinemanuelpanel.add(clicklabel);
+    
+        //les bouttons:   
 
-        //les bouttons:
-        
+        //creation d'un boutton pour accepter ou decliner: 
         acceptdeclinebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         acceptdeclinebtn.setBackground(colorgris);
         acceptdeclinebtn.setForeground(color.white);
         acceptdeclinebtn.setBorder(new RoundBorder(color, 3));
         acceptdeclinebtn.setText("Accept/Decline");
-        acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    acceptdeclinebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du button:
-        acceptdeclinebtn.setBounds(130, 14, 150, 30);
+        acceptdeclinebtn.setBounds(230, 14, 150, 30);
         acceptdeclinemanuelpanel.add(acceptdeclinebtn);
 
+        //creation d'un boutton pour faire la mis à jour: 
         updatebtn.setText("Update-Now");
         updatebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
         updatebtn.setBackground(colorgris);
         updatebtn.setForeground(color.white);
         updatebtn.setBorder(new RoundBorder(color, 3));
-        updatebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    updatebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         // le positionement exact du button:
         updatebtn.setBounds(230, 120, 150, 30);
         acceptdeclinemanuelpanel.add(updatebtn);
@@ -178,18 +164,15 @@ public double GetPrix(int id_res){
         acceptdeclinebox.setForeground(color);
         acceptdeclinebox.setBackground(colorgris);
         acceptdeclinebox.setBorder(new RoundBorder(color, 3));
+
         // le positionement exact du label.
         acceptdeclinebox.setBounds(20, 120, 150, 30);
         acceptdeclinemanuelpanel.add(acceptdeclinebox);
-
+        
+        // ajouter au premier panel le deuxième panel: 
         acceptdeclinePanel.add(acceptdeclinemanuelpanel);
 
-        backtoroomsbtn.setBounds(840, 50, 150, 30);
-        acceptdeclinePanel.add(backtoroomsbtn);
-
-
         //création du troisième panel pour les information de la réservation:
-        
         JPanel acceptdeclineauto = new JPanel();
         acceptdeclineauto.setBackground(color);
         acceptdeclineauto.setLayout(null);
@@ -199,6 +182,7 @@ public double GetPrix(int id_res){
         reservationinutilelabel = new JLabel("Delete Unnecessary Reservation:");
         reservationinutilelabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         reservationinutilelabel.setForeground(colorgris);
+        //le positionnement exact du label:
         reservationinutilelabel.setBounds(45, 30, 400, 17);
         acceptdeclineauto.add(reservationinutilelabel);
 
@@ -208,6 +192,60 @@ public double GetPrix(int id_res){
         suppreservationbtn.setBackground(colorgris);
         suppreservationbtn.setForeground(color.white);
         suppreservationbtn.setBorder(new RoundBorder(color, 3));
+        //le positionnement exact du boutton:
+        suppreservationbtn.setBounds(115, 95, 150, 35);
+        acceptdeclineauto.add(suppreservationbtn);
+    
+        //ajouter au premier panel le troisième panel:
+        acceptdeclinePanel.add(acceptdeclineauto);
+
+        //création du quatrième panel pour les information de la réservation:
+        JPanel tableaupanel = new JPanel();
+        tableaupanel.setLayout(null);
+        tableaupanel.setBorder((new RoundBorder(color, 3)));
+        tableaupanel.setBackground(colorgris);
+        tableaupanel.setBounds(0, 205, 1027, 380);
+        add(tableaupanel);
+
+        //le tableau du panel:
+        reservationtabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID-User", "ID-Reservation", "Room Type","Room Option", "Reservation Price", "Start Date", "End Date", "State"
+            }
+        ));
+        jScrollPane1.setViewportView(reservationtabel);
+
+        // le positionement exact du tableau.
+        jScrollPane1.setBounds(50, 20, 900, 300);
+        getContentPane().add(jScrollPane1); 
+
+        //ajouter le tableau au panel:
+        tableaupanel.add(jScrollPane1);
+       
+        //les actionlistners:
+        acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    acceptdeclinebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    updatebtnActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         suppreservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -217,47 +255,7 @@ public double GetPrix(int id_res){
                 }
             }
         });
-        suppreservationbtn.setBounds(115, 95, 150, 35);
-        acceptdeclineauto.add(suppreservationbtn);
 
-        acceptdeclinePanel.add(acceptdeclineauto);
-
-        //création du quatrième panel pour les information de la réservation:
-        
-        JPanel tableaupanel = new JPanel();
-        tableaupanel.setLayout(null);
-        tableaupanel.setBorder((new RoundBorder(color, 3)));
-        tableaupanel.setBackground(colorgris);
-        tableaupanel.setBounds(0, 205, 1027, 380);
-        add(tableaupanel);
-
-        //le tableau du panel:
-
-        reservationtabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID-User", "ID-Reservation", "Room Type","Room Option", "Reservation Price", "Start Date", "End Date", "State"
-            }
-        ));
-        
-        jScrollPane1.setViewportView(reservationtabel);
-        // le positionement exact du tableau.
-        jScrollPane1.setBounds(50, 20, 900, 300);
-        getContentPane().add(jScrollPane1); 
-
-        tableaupanel.add(jScrollPane1);
-
-
-
-
-
-
-        closebtn.setBackground(new java.awt.Color(171, 34, 34));
-        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        closebtn.setText("Close");
-        closebtn.setForeground(Color.WHITE);
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -268,58 +266,23 @@ public double GetPrix(int id_res){
                 }
             }
         });
-        // le positionement exact du label.
-        closebtn.setBounds(850, 110, 130, 30);
-        acceptdeclinePanel.add(closebtn);
 
-      
-       
-
-        backtoroomsbtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        backtoroomsbtn.setText("Back To Rooms");
         backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     backtoroomsbtnActionPerformed(evt);
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
-        // le positionement exact du label.
-       
-
-        /* clicklabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
-        clicklabel.setForeground(new java.awt.Color(255, 255, 255));
-        clicklabel.setText("And Click Here:");
-        // le positionement exact du label.
-        clicklabel.setBounds(20, 250, 160, 30);
-        getContentPane().add(clicklabel); */
-
-        /*selectlabel.setFont(new java.awt.Font("Bodoni MT Black", 0, 18)); // NOI18N
-        selectlabel.setForeground(new java.awt.Color(255, 255, 255));
-        selectlabel.setText("Select The Reservation ");
-        // le positionement exact du label.
-        selectlabel.setBounds(20, 206, 220, 20);
-        getContentPane().add(selectlabel); */
-
-        // le positionement exact du label.
-
-
-        //backgroundlabel.setBounds(0, 0, 1032, 580);
-        getContentPane().add(backgroundlabel);
-
+ 
+        //la taille de la fenetre:
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
-
-      
-    }// </editor-fold>                        
-
-   
+    }                      
 
     private int EnAttente() throws Exception{//fait
         
@@ -454,9 +417,7 @@ public double GetPrix(int id_res){
         JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
     }                            
     }
-                                                  
-
-   
+                                                
     private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {  //fait                                             
         new Admin_chambres_option();
         Control.hash_map_bdd();
@@ -490,21 +451,15 @@ public double GetPrix(int id_res){
         });
     }
 
-   
-
     // Variables declaration - do not modify   
     private javax.swing.JButton suppreservationbtn;                  
     private javax.swing.JComboBox<String> acceptdeclinebox;
     private javax.swing.JButton acceptdeclinebtn;
-    private javax.swing.JLabel acceptdeclinelabel;
     private javax.swing.JLabel reservationinutilelabel;
     private javax.swing.JLabel acceptordeclinelabel;
-    private javax.swing.JLabel backgroundlabel;
     private javax.swing.JLabel clicklabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel reservationlabel;
     private javax.swing.JTable reservationtabel;
-    private javax.swing.JLabel selectlabel;
     private javax.swing.JButton updatebtn;
     private javax.swing.JButton closebtn;
     private javax.swing.JButton backtoroomsbtn;
