@@ -736,11 +736,6 @@ public class Control {
 
     }
 
-
-
-
-
-
     public static void afficherHashMap(int i) {
         switch (i) {
             case 1:
