@@ -1,6 +1,5 @@
 package View;
 import Model.*;
-import Control.*;
 import Model.Chambre.*;
 import java.awt.Color;
 import java.awt.Font;

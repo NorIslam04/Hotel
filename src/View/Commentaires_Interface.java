@@ -501,12 +501,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     }
 
     void affichercommentaire() throws Exception {
-        int i = 0;
-        while (i < 20) {
-            Hotel.AjouterCommentaireMap(new Commentaires(i, "hi", "hi", new Date(1, 1, 2025), 11));
-            i++;
-        }
-
+      
         Iterator<Map.Entry<Integer, Commentaires>> iterator = Hotel.getCommentairesMap().entrySet().iterator();
 
         while (iterator.hasNext()) {

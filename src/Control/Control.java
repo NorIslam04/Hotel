@@ -255,7 +255,7 @@ public class Control {
         Table_Reseravtion_User.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
- 
+
                 int id_res=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
                 if (id_res!=-1) {
                     OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
