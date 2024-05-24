@@ -325,8 +325,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                                                  
     //cbn
     public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {   
-        int i=tablereservation.getSelectedRow();
-        System.out.println(i);                                           
+                                             
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         roomtypebox.setSelectedItem(model.getValueAt(selectedRow,1).toString());
