@@ -21,6 +21,9 @@ import javax.swing.SwingUtilities;
 
 public class Control {
 
+    public static double total_prix=-1;
+
+    
     
 
     public static Connection connectToMySQL() throws SQLException {
@@ -231,18 +234,26 @@ public class Control {
 
     }
 
-    public static void Action_TableReservationUser(){//fait
-        new Table_Reseravtion_User();
 
+    //cbn
+    public static void Action_TableReservationUser(){
+        new Table_Reseravtion_User();
+    
+    
+        //cbn
         Table_Reseravtion_User.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
  
-                int i=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
-                if (i>=0) {
+                int id_res=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
+                if (id_res!=-1) {
                     OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
-                    Reservation reservation=new Reservation(i, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1,opt);
-                    Hotel.SupprimerReservationMap(reservation);
+                    Reservation reservation=new Reservation(id_res, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1,opt);
+                    Hotel.getReservationMap().get(id_res).sup=1;
+                    ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),
+					reservation, TypeOperation.SUPPRESSION);
+			        Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
+                    Table_Reseravtion_User.mettreajourlesreservation();
                     
                 }
             } catch (Exception e) {
@@ -251,14 +262,55 @@ public class Control {
         }
     });
 
-
+    //cbn
         Table_Reseravtion_User.addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
         try {
+            Date date_debut=Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText());
+            Date date_fin=Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText());
+            int nb_day=Date.differenceEntreDates(date_debut, date_fin);
+            double prix=0;
+
+            switch ((String)Table_Reseravtion_User.roompricebox.getSelectedItem()) {
+                case "SONA":
+                prix=Option.GetPrix("SONA");
+                    break;
+                case "TERASSE":
+                    prix=Option.GetPrix("TERASSE");
+                        break;
+                case "VUESURMERE":
+                    prix=Option.GetPrix("VUESURMERE");
+                        break;
+                case "VUESURFORET":
+                    prix=Option.GetPrix("VUESURFORET");
+                        break;
+                            
+                default:
+                    break;
+            }
+
+            switch ((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()) {
+                case "SOLO":
+                prix+=Option.GetPrix("SOLO");
+                    break;
+                case "DOUBLE":
+                    prix+=Option.GetPrix("DOUBLE");
+                        break;
+                case "TRIPLE":
+                    prix+=Option.GetPrix("TRIPLE");
+                        break;
+                case "SUITE":
+                    prix+=Option.GetPrix("SUITE");
+                        break;
+                            
+                default:
+                    break;
+            }
+            total_prix=prix*nb_day;
             double i=Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
-            if (i>0) {
-                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString()) ;//TODO: recupirer dans le text filed
-                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i,opt);
+            if (i==1) {
+                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString()) ;
+                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
                 Hotel.AjtReservationMap(reservation);
             }
 
@@ -269,7 +321,7 @@ public class Control {
     });
 
 
-
+    //cbn
     Table_Reseravtion_User.tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) { 
             Table_Reseravtion_User.tablereservationMouseClicked(evt);
@@ -278,15 +330,62 @@ public class Control {
 
 
 
-
+    //cbn
     Table_Reseravtion_User.updatebtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                double i=Table_Reseravtion_User.updatebtnActionPerformed(evt);
-                System.out.println(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
+                Date date_fin = Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText());
+                Date date_debut = Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText());
+
+                int nb_day=Date.differenceEntreDates(date_debut, date_fin);
+                double prix=0;
+
+                switch ((String)Table_Reseravtion_User.roompricebox.getSelectedItem()) {
+                    case "SONA":
+                    prix=Option.GetPrix("SONA");
+                        break;
+                    case "TERASSE":
+                        prix=Option.GetPrix("TERASSE");
+                            break;
+                    case "VUESURMERE":
+                        prix=Option.GetPrix("VUESURMERE");
+                            break;
+                    case "VUESURFORET":
+                        prix=Option.GetPrix("VUESURFORET");
+                            break;
+                                
+                    default:
+                        break;
+                }
+    
+                switch ((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()) {
+                    case "SOLO":
+                    prix+=Option.GetPrix("SOLO");
+                        break;
+                    case "DOUBLE":
+                        prix+=Option.GetPrix("DOUBLE");
+                            break;
+                    case "TRIPLE":
+                        prix+=Option.GetPrix("TRIPLE");
+                            break;
+                    case "SUITE":
+                        prix+=Option.GetPrix("SUITE");
+                            break;
+                                
+                    default:
+                        break;
+                }
+
+                total_prix=prix*nb_day;
+
+
+                int id_res=Table_Reseravtion_User.updatebtnActionPerformed(evt);
+                if (id_res!=-1) {
+                    
                 OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());       
-                Reservation reservation =new Reservation(Table_Reseravtion_User.id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,i,opt);
+                Reservation reservation =new Reservation(id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
                 Hotel.ModifierReservationMap(reservation);
+                }
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());;
@@ -300,6 +399,7 @@ public class Control {
                 if(Table_Reseravtion_User.exitbtnActionPerformed(evt)==1){
                     Control.hash_map_bdd();
                     SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
+                    System.exit(1);
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
