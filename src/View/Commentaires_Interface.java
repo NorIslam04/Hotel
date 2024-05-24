@@ -90,12 +90,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         commenttxt.setLineWrap(true); // Enable line wrapping
         commenttxt.setWrapStyleWord(true); // Wrap lines at word boundarie
         commenttxt.setBounds(400, 83, 400, 50);
-        commenttxt.setText("Entrez votre texte ici...");
+        commenttxt.setText("\nEntrez votre texte ici...");
         add(commenttxt);
         commenttxt.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (commenttxt.getText().equals("Entrez votre texte ici...")) {
+                if (commenttxt.getText().equals("\nEntrez votre texte ici...")) {
                     commenttxt.setText("");
                     commenttxt.setForeground(Color.BLACK);
                 }
@@ -104,7 +104,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (commenttxt.getText().isEmpty()) {
-                    commenttxt.setText("Entrez votre texte ici...");
+                    commenttxt.setText("\nEntrez votre texte ici...");
                     commenttxt.setForeground(Color.GRAY);
                 }
             }
@@ -381,8 +381,21 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     Commentaires commentaires = new Commentaires(Commentaires.getNb(), commenttxt.getText(),
                             Hotel.username_current, today, Hotel.id_user_current);
                     Hotel.AjtCommentaireMap(commentaires);
-                    dispose();
-                    new Commentaires_Interface();
+                    Iterator<Map.Entry<Integer, Commentaires>> iterator = Hotel.getCommentairesMap().entrySet().iterator();
+
+                    while (iterator.hasNext()) {
+                        Map.Entry<Integer, Commentaires> entry = iterator.next();
+                        Commentaires commentaire = entry.getValue();
+            
+                        JPanel commentairePanel = createPanel(commentaire);
+                        commentairePanel.setPreferredSize(new Dimension(170, 70));
+                        if (commentaire.getIduser() == Hotel.id_user_current) {
+                            commentContainerJPanel.add(commentairePanel, 0);
+                        } else {
+                            commentContainerJPanel.add(commentairePanel);
+            
+                        }
+                    }
                 } catch (Date_nonvalid e1) {
                     e1.getMessage();
                 } catch (Exception e1) {
@@ -434,26 +447,26 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         panel.setLayout(new BorderLayout()); // Utilisation d'un BorderLayout
 
         if (Hotel.langue == 0) {
-            nameLabel = new JLabel("User : " + comment.getUsername());
-            commentLabel = new JLabel(" " + comment.getCommentaire());
+            nameLabel = new JLabel(" User : " + comment.getUsername());
+            commentLabel = new JLabel(" Comment: " + comment.getCommentaire());
             datLabel = new JLabel(" " + comment.getDate().getJour() + "/" + comment.getDate().getMois() + "/"
                     + comment.getDate().getAnnee());
 
         } else {
-            nameLabel = new JLabel("User : " + comment.getUsername());
-            commentLabel = new JLabel(" " + comment.getCommentaire());
-            datLabel = new JLabel("le : " + comment.getDate().getJour() + "/" + comment.getDate().getMois() + "/"
+            nameLabel = new JLabel(" User: " + comment.getUsername());
+            commentLabel = new JLabel(" Commentaire: " + comment.getCommentaire());
+            datLabel = new JLabel(" Le: " + comment.getDate().getJour() + "/" + comment.getDate().getMois() + "/"
                     + comment.getDate().getAnnee());
 
         }
 
-        nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
-        nameLabel.setForeground(colorgris);
+        nameLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
+        nameLabel.setForeground(Color.decode("#4A5471"));
         commentLabel.setForeground(colorgris);
-        commentLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+        commentLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
 
-        datLabel.setForeground(colorgris);
-        datLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+        datLabel.setForeground(Color.decode("#4A5471"));
+        datLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new GridLayout(0, 1)); // Utilisation d'un GridLayout pour empiler verticalement les
@@ -509,7 +522,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
             Commentaires commentaires = entry.getValue();
 
             JPanel commentairePanel = createPanel(commentaires);
-            commentairePanel.setPreferredSize(new Dimension(170, 135));
+            commentairePanel.setPreferredSize(new Dimension(170, 70));
             if (commentaires.getIduser() == Hotel.id_user_current) {
                 commentContainerJPanel.add(commentairePanel, 0);
             } else {

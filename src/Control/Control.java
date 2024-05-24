@@ -9,6 +9,7 @@ import Model.Option.Rooms_Options;
 
 import java.awt.Window;
 import java.awt.event.*;
+import Model.Date;
 
 
 
@@ -102,7 +103,7 @@ public class Control {
     //cbn
     public static void Action_Login(){ 
 
-       new Login();
+       Login l=new Login();
 
         Login.seConnerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -511,7 +512,10 @@ public class Control {
 
         APropos.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
                 SwingUtilities.getWindowAncestor(APropos.revenirbtn).dispose();
+                Action_Chambre_Intreface();
+                
             }
         });
 
@@ -537,8 +541,9 @@ public class Control {
 
         Chambre_interface.aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Control.Action_apropos();
+                
                 SwingUtilities.getWindowAncestor(Chambre_interface.aPropos).dispose();
+                Control.Action_apropos();
             }
         });
 

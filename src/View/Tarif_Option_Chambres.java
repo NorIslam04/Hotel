@@ -262,6 +262,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         // Action pour fermer la fenêtre lorsque le bouton est cliqué
         revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
                 Control.Action_Chambre_Intreface();
             }
         });
@@ -294,7 +295,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
         reserverbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-
+                dispose();
                 reserverbtnbtnActionPerformed();
 
             }
