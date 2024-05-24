@@ -421,7 +421,7 @@ public class Control {
 
 
     }
-
+    //cbn
     public static void Action_AdminOptionChambre(int i) throws Exception{
 
         TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
@@ -444,7 +444,6 @@ public class Control {
                 Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb), TypeOperation.SUPPRESSION);
                 Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
                
-            
             }   
                 break;
             
@@ -456,7 +455,7 @@ public class Control {
             }
             
                 break;
-            default:
+            case 4:
 
             int id=0;
             Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()) ;
@@ -477,6 +476,15 @@ public class Control {
             Chambre.Bdd_to_hashMap_room();
 
                 break;
+            case 5:
+            Control.hash_map_bdd();
+            System.exit(0);
+                    break;
+
+            case 6:
+            Control.hash_map_bdd();
+            SwingUtilities.getWindowAncestor(Admin_chambres_option.revenirbtn).dispose(); 
+                    break;
         }            
 
                    

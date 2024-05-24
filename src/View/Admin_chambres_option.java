@@ -39,6 +39,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     public static Color colorgris = Color.decode("#252926");
     public static int id_supp_chamb=-1;
     public static Container container;
+    public static JButton revenirbtn = new JButton("");
 
     public Admin_chambres_option() throws Exception {
         initComponents();
@@ -133,10 +134,11 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         ajouterchambre.setBounds(790, 115, 150, 30);
 
         //création d'un boutton avec ses caractéristiques:
-        JButton revenirbtn = new JButton("");
+        
         revenirbtn.setBackground(Color.white);
+        revenirbtn.setForeground(Color.BLACK);
         //le positionnement exact du boutton:
-        revenirbtn.setBounds(970, 5, 25, 30);
+        revenirbtn.setBounds(968, 5, 26, 30);
 
         //création d'un boutton avec ses caractéristiques:
         javax.swing.JButton closebtn = new JButton("");
@@ -239,18 +241,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         updatepricebtn.setBackground(colorgris);
         updatepricebtn.setForeground(color.white);
         updatepricebtn.setBorder(new RoundBorder(color, 3));
-        updatepricebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    Control.Action_AdminOptionChambre(4);
-                    ActionPreformedUpdate(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-        });
+        
         //le positionnement exact du boutton:
         updatepricebtn.setBounds(20, 120, 150, 30);
 
@@ -293,6 +284,17 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         setLocationRelativeTo(null);
 
         // les actions listners:
+
+
+        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    Control.Action_AdminOptionChambre(6);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         modifierchamb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -330,29 +332,31 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         });
     
 
-
-
-
-
-
-
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
-
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    closebtnActionPerformed(evt);
+                    Control.Action_AdminOptionChambre(5);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+
                     e.printStackTrace();
                 }
             }
         });
 
+
+        updatepricebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    Control.Action_AdminOptionChambre(4);
+                    ActionPreformedUpdate(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        //cbn
         filtrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -360,6 +364,8 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
             }
         });
+
+
 
         String option=typeandoptionsbox.getSelectedItem().toString();
         Double price = Option.GetPrix(option);
@@ -507,12 +513,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         return panel;
     }
      
-    //fait
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
-        
-        Control.hash_map_bdd();
-        System.exit(0);
-}
+
 
     static JFrame frame=new JFrame();
     //fait
@@ -716,7 +717,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
 
 
 
-    //mazel
+    //fait
     void ActionPreformedUpdate(java.awt.event.ActionEvent evt) throws Exception {
 
         JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0)); // 5 chambres par ligne
