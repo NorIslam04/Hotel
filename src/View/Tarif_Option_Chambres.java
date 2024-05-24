@@ -37,7 +37,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     private void initComponents() throws Exception {
 
        
-        TypeChambre.initialiser(100, 1, 150, 2, 200, 3, 350, 4);
+
         // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
