@@ -139,9 +139,6 @@ public double GetPrix(int id_res){
 
         //creation d'un boutton pour accepter ou decliner: 
         acceptdeclinebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        acceptdeclinebtn.setBackground(colorgris);
-        acceptdeclinebtn.setForeground(color.white);
-        acceptdeclinebtn.setBorder(new RoundBorder(color, 3));
         acceptdeclinebtn.setText("Accept/Decline");
         
         // le positionement exact du button:
@@ -151,9 +148,6 @@ public double GetPrix(int id_res){
         //creation d'un boutton pour faire la mis à jour: 
         updatebtn.setText("Update-Now");
         updatebtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        updatebtn.setBackground(colorgris);
-        updatebtn.setForeground(color.white);
-        updatebtn.setBorder(new RoundBorder(color, 3));
         
         // le positionement exact du button:
         updatebtn.setBounds(230, 120, 150, 30);
@@ -161,9 +155,6 @@ public double GetPrix(int id_res){
     
         //les combobox:
         acceptdeclinebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPTER", "DECLINER" }));
-        acceptdeclinebox.setForeground(color);
-        acceptdeclinebox.setBackground(colorgris);
-        acceptdeclinebox.setBorder(new RoundBorder(color, 3));
 
         // le positionement exact du label.
         acceptdeclinebox.setBounds(20, 120, 150, 30);
@@ -189,9 +180,6 @@ public double GetPrix(int id_res){
         //les bouttons du panel:
         suppreservationbtn.setText("Reservation inutile");
         suppreservationbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        suppreservationbtn.setBackground(colorgris);
-        suppreservationbtn.setForeground(color.white);
-        suppreservationbtn.setBorder(new RoundBorder(color, 3));
         //le positionnement exact du boutton:
         suppreservationbtn.setBounds(115, 95, 150, 35);
         acceptdeclineauto.add(suppreservationbtn);
