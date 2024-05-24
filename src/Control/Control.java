@@ -2,7 +2,6 @@ package Control;
 import Model.*;
 import Model.Chambre.OptionSupplementaire;
 import Model.Chambre.TypeChambre;
-import Model.Date;
 import Model.Reservation.EtatReservation;
 import View.*;
 import Model.Hotel.TypeOperation;
@@ -33,7 +32,6 @@ public class Control {
         String url = "jdbc:mysql://localhost:3306/hotel";
         String utilisateur = "root";
         String motDePasse = "islam";
-
         Connection connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
         return connexion;
     }
@@ -221,20 +219,21 @@ public class Control {
                     break;
 
                 case 2:
+                Hotel.id_user_current=User.getNb();
                 User user = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
+             
                 Hotel.AjtUserMap(user);
                 Hotel.username_current=Signe_in.usertext.getText();
-                Hotel.id_user_current=User.getNb();
+       
                 Hotel.neew=1;
                 new Loby_User();
 
                     break;
                 case 3:
-
+                Hotel.id_user_current=User.getNb();
                 User user1 = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
                 Hotel.AjtUserMap(user1);
                 Hotel.username_current=Signe_in.usertext.getText();
-                Hotel.id_user_current=User.getNb();
                 Hotel.neew=1;
                 new Loby_User();
                 SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();

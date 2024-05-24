@@ -52,9 +52,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
     JLabel prixJLabel;
-
     javax.swing.JButton closebtn = new JButton("");
-
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
     public Commentaires_Interface() throws Exception {
@@ -62,23 +60,20 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     }
 
     private void initComponents() throws Exception {
-            for (Map.Entry<Integer, User> entry : Hotel.getUserMap().entrySet()) {
-            // Récupération de l'ID de l'utilisateur (clé)
+        for (Map.Entry<Integer, User> entry : Hotel.getUserMap().entrySet()) {
             int userId = entry.getKey();
-            // Affichage de l'ID de l'utilisateur
-            System.out.println("ID de l'utilisateur : " + userId);
+            User user = entry.getValue();
+            System.out.println("ID de l'utilisateur : " + userId + Hotel.id_user_current + "name :" + user.getName());
         }
         System.out.println(Hotel.id_user_current);
-        // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
-        if(Hotel.RechercheuserParId(Hotel.id_user_current)==null){
+        if (Hotel.RechercheuserParId(Hotel.id_user_current) == null) {
             System.out.println("ggg");
-        }else{
-        System.out.println(Hotel.RechercheuserParId(Hotel.id_user_current).getNote());
+        } else {
+            System.out.println(Hotel.RechercheuserParId(Hotel.id_user_current).getNote());
         }
 
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
-        // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("commentaires page");
@@ -232,6 +227,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile5Box.setIcon(etoileBlancheIcon);
             }
             if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 4) {
+                System.out.println("hi");
                 etoile1Box.setSelected(true);
                 etoile2Box.setSelected(true);
                 etoile3Box.setSelected(true);
@@ -264,13 +260,6 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile5Box.setIcon(etoileBlancheIcon);
             }
 
-        } else {
-
-            etoile1Box.setIcon(etoileBlancheIcon);
-            etoile2Box.setIcon(etoileBlancheIcon);
-            etoile3Box.setIcon(etoileBlancheIcon);
-            etoile4Box.setIcon(etoileBlancheIcon);
-            etoile5Box.setIcon(etoileBlancheIcon);
         }
 
         // Ajouter un écouteur d'événements à chaque case à cocher
@@ -544,7 +533,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
             if (commentaires.getIduser() == Hotel.id_user_current) {
                 commentContainerJPanel.add(commentairePanel, 0);
             } else {
-                commentContainerJPanel.add(commentairePanel); // Définir la taille préférée de chaque élément
+                commentContainerJPanel.add(commentairePanel);
 
             }
         }
@@ -552,20 +541,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         commentContainerJPanel.setBackground(colorgris);
         scrollPane = new BlackScrollPane(commentContainerJPanel);
         scrollPane.setBackground(colorgris);
-
-        scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
+        scrollPane.setPreferredSize(new Dimension(936, 588));
         scrollPane.setBounds(0, 210, 1033, 400);
-
-        // Ajouter le JScrollPane au JFrame principal
         getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
 
     }
 
 }
-
-
-
