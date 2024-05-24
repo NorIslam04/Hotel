@@ -1,5 +1,4 @@
 package View;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +11,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,14 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
-
 import Control.Control;
 import Model.Commentaires;
 import Model.Date;
 import Model.Date.Date_nonvalid;
 import Model.Hotel;
 import Model.User;
-
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
         super(view);
@@ -52,9 +48,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
     JLabel prixJLabel;
-
     javax.swing.JButton closebtn = new JButton("");
-
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
 
     public Commentaires_Interface() throws Exception {
@@ -62,23 +56,9 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     }
 
     private void initComponents() throws Exception {
-            for (Map.Entry<Integer, User> entry : Hotel.getUserMap().entrySet()) {
-            // Récupération de l'ID de l'utilisateur (clé)
-            int userId = entry.getKey();
-            // Affichage de l'ID de l'utilisateur
-            System.out.println("ID de l'utilisateur : " + userId);
-        }
-        System.out.println(Hotel.id_user_current);
-        // hedy pour le test brk ne7iha apres mlzmch nnssaaaaaaaaaaaaaa////////
-        if(Hotel.RechercheuserParId(Hotel.id_user_current)==null){
-            System.out.println("ggg");
-        }else{
-        System.out.println(Hotel.RechercheuserParId(Hotel.id_user_current).getNote());
-        }
-
+      
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
-        // rendre le layout manager null pour le positionement absolu.
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("commentaires page");
@@ -198,7 +178,11 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         });
         Icon etoileBlancheIcon = new ImageIcon("For Rent21.png");
         Icon etoileJauneIcon = new ImageIcon("For Rent2.png");
-
+        etoile1Box.setIcon(etoileBlancheIcon);
+        etoile2Box.setIcon(etoileBlancheIcon);
+        etoile3Box.setIcon(etoileBlancheIcon);
+        etoile4Box.setIcon(etoileBlancheIcon);
+        etoile5Box.setIcon(etoileBlancheIcon);
         // Initialiser les cases à cocher avec l'icône d'étoile blanche
         if (Hotel.RechercheuserParId(Hotel.id_user_current) != null) {
 
@@ -243,7 +227,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile5Box.setIcon(etoileBlancheIcon);
             }
 
-            if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 5) {
+         
+              
+
+               
+            
+ if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 5) {
                 etoile1Box.setSelected(true);
                 etoile2Box.setSelected(true);
                 etoile3Box.setSelected(true);
@@ -255,22 +244,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile3Box.setIcon(etoileJauneIcon);
                 etoile4Box.setIcon(etoileJauneIcon);
                 etoile5Box.setIcon(etoileJauneIcon);
-            } else {
-
-                etoile1Box.setIcon(etoileBlancheIcon);
-                etoile2Box.setIcon(etoileBlancheIcon);
-                etoile3Box.setIcon(etoileBlancheIcon);
-                etoile4Box.setIcon(etoileBlancheIcon);
-                etoile5Box.setIcon(etoileBlancheIcon);
             }
-
-        } else {
-
-            etoile1Box.setIcon(etoileBlancheIcon);
-            etoile2Box.setIcon(etoileBlancheIcon);
-            etoile3Box.setIcon(etoileBlancheIcon);
-            etoile4Box.setIcon(etoileBlancheIcon);
-            etoile5Box.setIcon(etoileBlancheIcon);
         }
 
         // Ajouter un écouteur d'événements à chaque case à cocher
@@ -544,7 +518,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
             if (commentaires.getIduser() == Hotel.id_user_current) {
                 commentContainerJPanel.add(commentairePanel, 0);
             } else {
-                commentContainerJPanel.add(commentairePanel); // Définir la taille préférée de chaque élément
+                commentContainerJPanel.add(commentairePanel);
 
             }
         }
@@ -552,20 +526,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         commentContainerJPanel.setBackground(colorgris);
         scrollPane = new BlackScrollPane(commentContainerJPanel);
         scrollPane.setBackground(colorgris);
-
-        scrollPane.setPreferredSize(new Dimension(936, 588)); // Taille fixe du JScrollPane
+        scrollPane.setPreferredSize(new Dimension(936, 588));
         scrollPane.setBounds(0, 210, 1033, 400);
-
-        // Ajouter le JScrollPane au JFrame principal
         getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        // Repaint pour mettre à jour l'affichage
         getContentPane().revalidate();
         getContentPane().repaint();
 
     }
 
 }
-
-
-
