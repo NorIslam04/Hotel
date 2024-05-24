@@ -705,12 +705,6 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         getContentPane().repaint();
 
 
-
-
-
-
-        
-
     }
     
     //fait

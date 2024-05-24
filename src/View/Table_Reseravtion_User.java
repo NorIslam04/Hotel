@@ -1,5 +1,6 @@
 package View;
 import Model.*;
+import Control.*;
 import Model.Chambre.*;
 import Model.Date.*;
 import Model.Reservation.*;
@@ -19,7 +20,6 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
  
    
-
     private static JFrame frame;
     public static int id_res=0;
    
@@ -30,7 +30,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Map.Entry<Integer, Reservation> entry : Hotel.getReservationMap().entrySet()) {
             Reservation reservation = entry.getValue(); // Récupérer l'objet Chambre
-            if(Hotel.id_user_current==reservation.getId_user()){
+            if(Hotel.id_user_current==reservation.getId_user()&& reservation.sup!=1){
             rowData[0]=reservation.getId();
             rowData[1]=reservation.getType();
             rowData[2]=reservation.getOption();
@@ -239,10 +239,13 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }                       
  
     
-    //faitttttt
+
+
+    //cbn
     public static int cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         int i=tablereservation.getSelectedRow();
         DefaultTableModel model =(DefaultTableModel)tablereservation.getModel();
+       
       
         if(i>=0){
             
@@ -250,10 +253,8 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         if(Date.comparer(Date.Recupere_date(startdatetext.getText()), today)==1){
             JOptionPane.showMessageDialog(frame, "Réservation annulée avec succès.");
             
-            int id_resr=Integer.parseInt(model.getValueAt(i, 0).toString());
-            model.removeRow(i);
-            System.out.println(id_resr);
-            return id_resr;
+            
+            return Integer.parseInt(model.getValueAt(i, 0).toString());
           }else{
             
             JOptionPane.showMessageDialog(frame, "Vous ne pouvez pas annuler cette réservation !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -261,64 +262,25 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
           }
       }else{
           JOptionPane.showMessageDialog(frame,"Veuillez sélectionner une réservation à annuler.","Infornation", JOptionPane.INFORMATION_MESSAGE);
-      }
-      return -2;
+        }
+      return -1;
     }
 
-    //faitttttt
-    public static double addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+
+    //cbn
+    public static int addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
         Date today=new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         Date date_debut=Date.Recupere_date(startdatetext.getText());
         Date.verif_today_date(today, date_debut);
         Date date_fin=Date.Recupere_date(enddatetext.getText());
-     
+        Date.differenceEntreDates(date_debut, date_fin);
         Date.Dates_logique(date_debut, date_fin);
-        int nb_day=Date.differenceEntreDates(date_debut, date_fin);
-        double prix=0;
-            
-        switch ((String)roompricebox.getSelectedItem()) {
-                case "SONA":
-                prix=Option.GetPrix("SONA");
-                    break;
-                case "TERASSE":
-                    prix=Option.GetPrix("TERASSE");
-                        break;
-                case "VUESURMERE":
-                    prix=Option.GetPrix("VUESURMERE");
-                        break;
-                case "VUESURFORET":
-                    prix=Option.GetPrix("VUESURFORET");
-                        break;
-                            
-                default:
-                    break;
-            }
-
-            switch ((String)roomtypebox.getSelectedItem()) {
-                case "SOLO":
-                prix+=Option.GetPrix("SOLO");
-                    break;
-                case "DOUBLE":
-                    prix+=Option.GetPrix("DOUBLE");
-                        break;
-                case "TRIPLE":
-                    prix+=Option.GetPrix("TRIPLE");
-                        break;
-                case "SUITE":
-                    prix+=Option.GetPrix("SUITE");
-                        break;
-                            
-                default:
-                    break;
-            }
-
 
         DefaultTableModel Model=(DefaultTableModel) tablereservation.getModel();
 
-        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),roompricebox.getSelectedItem(),nb_day*prix+"$",startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
-
-        return nb_day*prix;
+        Model.addRow(new Object[]{Reservation.getNb()+1,roomtypebox.getSelectedItem(),roompricebox.getSelectedItem(),Control.total_prix+"$",startdatetext.getText(),enddatetext.getText(),EtatReservation.EN_ATTENTE});
+            return 1;
 
     } catch(Date_syntaxe e){
         JOptionPane.showMessageDialog(frame,
@@ -361,8 +323,10 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
    return -1;                                     
 } 
                                                  
-    //faitttt
-    public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    //cbn
+    public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {   
+        int i=tablereservation.getSelectedRow();
+        System.out.println(i);                                           
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
         roomtypebox.setSelectedItem(model.getValueAt(selectedRow,1).toString());
@@ -373,8 +337,6 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         roompricebox.setSelectedItem(model.getValueAt(selectedRow,2).toString());
 
-
-        
 
         //ACCEPTER,DECLINER,EN_ATTENTE;
         if(model.getValueAt(selectedRow,6).toString().equals("ACCEPTER")){
@@ -387,8 +349,8 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         state.setText(model.getValueAt(selectedRow,6).toString());
     }                                             
 
-    //faitttt
-    public static double updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
+    //cbn
+    public static int updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
         int i = tablereservation.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
         
@@ -398,64 +360,30 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 Date date_debut = Date.Recupere_date(startdatetext.getText());
                 Date.verif_today_date(today, date_debut);
                 Date date_fin = Date.Recupere_date(enddatetext.getText());
-                if(Date.comparer(date_debut, today)==1){
+
+            if(Date.comparer(date_debut, today)==1){
+
                 Date.Dates_logique(date_debut, date_fin);
-                int nb_day=Date.differenceEntreDates(date_debut, date_fin);
-                id_res=(int) model.getValueAt(i,0);
-                double prix=0;
+                Date.differenceEntreDates(date_debut, date_fin);
                 
-                switch ((String)roompricebox.getSelectedItem()) {
-                    case "SONA":
-                    prix=Option.GetPrix("SONA");
-                        break;
-                    case "TERASSE":
-                        prix=Option.GetPrix("TERASSE");
-                            break;
-                    case "VUESURMERE":
-                        prix=Option.GetPrix("VUESURMERE");
-                            break;
-                    case "VUESURFORET":
-                        prix=Option.GetPrix("VUESURFORET");
-                            break;
-                                
-                    default:
-                        break;
-                }
-    
-                switch ((String)roomtypebox.getSelectedItem()) {
-                    case "SOLO":
-                    prix+=Option.GetPrix("SOLO");
-                        break;
-                    case "DOUBLE":
-                        prix+=Option.GetPrix("DOUBLE");
-                            break;
-                    case "TRIPLE":
-                        prix+=Option.GetPrix("TRIPLE");
-                            break;
-                    case "SUITE":
-                        prix+=Option.GetPrix("SUITE");
-                            break;
-                                
-                    default:
-                        break;
-                }
 
                 // Mise à jour des valeurs dans le modèle de tableau
                 model.setValueAt(roomtypebox.getSelectedItem(), i, 1);
                 model.setValueAt(roompricebox.getSelectedItem(), i, 2);
-                model.setValueAt(prix*nb_day, i, 3);
+                model.setValueAt(Control.total_prix+"$", i, 3);
 
                 model.setValueAt(startdatetext.getText(), i, 4);
-                model.setValueAt(enddatetext.getText()+"$", i, 5);
+                model.setValueAt(enddatetext.getText(), i, 5);
                 model.setValueAt("EN_ATTEND", i, 6);
               
 
 
-                return nb_day*prix;
+                return ((int)model.getValueAt(i,0));
 
 
-                }else{
+            }else{
                     JOptionPane.showMessageDialog(null, "Vous ne pouvez pas modifier cette réservation", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    return -1;
                 }
             }catch(Date_syntaxe e){
                 JOptionPane.showMessageDialog(frame,
@@ -502,7 +430,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     
     }
     
-    //faitttt
+    //cbn
     public static int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)

@@ -381,9 +381,6 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     }
 
 
-
-
-
     private JFrame frame;
 
     private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,12 +455,8 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
-    
-
- 
 public void afficherprixbtnbtnActionPerformed() {
         try {
 
