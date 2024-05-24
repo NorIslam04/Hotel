@@ -1,5 +1,4 @@
 package View;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +11,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Iterator;
 import java.util.Map;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,14 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
-
 import Control.Control;
 import Model.Commentaires;
 import Model.Date;
 import Model.Date.Date_nonvalid;
 import Model.Hotel;
 import Model.User;
-
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
         super(view);
@@ -60,18 +56,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     }
 
     private void initComponents() throws Exception {
-        for (Map.Entry<Integer, User> entry : Hotel.getUserMap().entrySet()) {
-            int userId = entry.getKey();
-            User user = entry.getValue();
-            System.out.println("ID de l'utilisateur : " + userId + Hotel.id_user_current + "name :" + user.getName());
-        }
-        System.out.println(Hotel.id_user_current);
-        if (Hotel.RechercheuserParId(Hotel.id_user_current) == null) {
-            System.out.println("ggg");
-        } else {
-            System.out.println(Hotel.RechercheuserParId(Hotel.id_user_current).getNote());
-        }
-
+      
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
         getContentPane().setLayout(null);
@@ -193,7 +178,11 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         });
         Icon etoileBlancheIcon = new ImageIcon("For Rent21.png");
         Icon etoileJauneIcon = new ImageIcon("For Rent2.png");
-
+        etoile1Box.setIcon(etoileBlancheIcon);
+        etoile2Box.setIcon(etoileBlancheIcon);
+        etoile3Box.setIcon(etoileBlancheIcon);
+        etoile4Box.setIcon(etoileBlancheIcon);
+        etoile5Box.setIcon(etoileBlancheIcon);
         // Initialiser les cases à cocher avec l'icône d'étoile blanche
         if (Hotel.RechercheuserParId(Hotel.id_user_current) != null) {
 
@@ -227,7 +216,6 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile5Box.setIcon(etoileBlancheIcon);
             }
             if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 4) {
-                System.out.println("hi");
                 etoile1Box.setSelected(true);
                 etoile2Box.setSelected(true);
                 etoile3Box.setSelected(true);
@@ -239,7 +227,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile5Box.setIcon(etoileBlancheIcon);
             }
 
-            if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 5) {
+         
+              
+
+               
+            
+ if (Hotel.RechercheuserParId(Hotel.id_user_current).getNote() == 5) {
                 etoile1Box.setSelected(true);
                 etoile2Box.setSelected(true);
                 etoile3Box.setSelected(true);
@@ -251,15 +244,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                 etoile3Box.setIcon(etoileJauneIcon);
                 etoile4Box.setIcon(etoileJauneIcon);
                 etoile5Box.setIcon(etoileJauneIcon);
-            } else {
-
-                etoile1Box.setIcon(etoileBlancheIcon);
-                etoile2Box.setIcon(etoileBlancheIcon);
-                etoile3Box.setIcon(etoileBlancheIcon);
-                etoile4Box.setIcon(etoileBlancheIcon);
-                etoile5Box.setIcon(etoileBlancheIcon);
             }
-
         }
 
         // Ajouter un écouteur d'événements à chaque case à cocher
