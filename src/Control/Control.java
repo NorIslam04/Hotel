@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 public class Control {
 
     public static double total_prix=-1;
+    public static int tmp;
 
     
     
@@ -74,8 +75,7 @@ public class Control {
         Chambre.hash_map_bdd();
         Commentaires.hash_map_bdd();
         Option.hahs_map_bdd();
-        Hotel.getModificationMap().clear();
-
+        Hotel.getModificationMap().clear();//il faut !!!!!
 
     }
     
@@ -96,8 +96,11 @@ public class Control {
         Action_Login();
 
     }
-
-    public static void Action_Login(){ //fait
+    
+    
+    
+    //cbn
+    public static void Action_Login(){ 
 
        new Login();
 
@@ -107,7 +110,12 @@ public class Control {
                 
                 switch (Login.seConnecterbtnActionPerformed(evt)) {
                     case -1:
-                    new Passer_a_signin();   
+                    if (tmp==0) {
+                        Action_Signin();
+                        SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();  
+                    }else{
+                        System.exit(1);
+                    } 
                         break;
                     case 1:
                     Loby_User ch = new Loby_User();
@@ -115,6 +123,7 @@ public class Control {
                     SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();
                         break;
                     case 2:
+                    
                     new Loby_Admin();
                     SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();                        break;
                    
@@ -158,7 +167,7 @@ public class Control {
         });
     
     }
-    
+    //cbn
     public static void Action_Signin(){//fait
 
         new Signe_in();
@@ -233,7 +242,6 @@ public class Control {
         });
 
     }
-
 
     //cbn
     public static void Action_TableReservationUser(){

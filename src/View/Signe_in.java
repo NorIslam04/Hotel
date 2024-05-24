@@ -302,7 +302,7 @@ public class Signe_in extends javax.swing.JFrame {
 
     
 
-
+    //cbn
    public static void changerlangue(){//fait
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
@@ -324,16 +324,13 @@ public class Signe_in extends javax.swing.JFrame {
                         "Compte Existe",
                         JOptionPane.INFORMATION_MESSAGE);
                 return 1;
-                //new Login();
             } else {
                 JOptionPane.showMessageDialog(frame,
                         "Votre compte a été créé avec succès ",
                         "WELCOME",
                         JOptionPane.INFORMATION_MESSAGE);
-                // ajoute dans hashMap users
                
                 return 2;
-                //new Loby_User();
             }
         } else if (usertext.getText().equals("") || pwdtext.getText().equals("") || mailtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
@@ -346,12 +343,8 @@ public class Signe_in extends javax.swing.JFrame {
                     "Votre compte a été créé avec succès ",
                     "WELCOME",
                     JOptionPane.INFORMATION_MESSAGE);
-            // ajoute dans hashMap users
             
             return 3;
-
-            //new Loby_User();
-            //this.hide();
         }
     }else{
         JOptionPane.showMessageDialog(frame,
