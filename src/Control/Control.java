@@ -25,6 +25,9 @@ public class Control {
 
     public static double total_prix=-1;
     public static int tmp;
+    public static Date date_debut;
+    public static Date date_fin;
+    public static Date today;
 
     
     
@@ -506,6 +509,7 @@ public class Control {
 
     }
 
+    //sans database
     public static void Action_apropos(){
 
         new APropos();
@@ -534,7 +538,7 @@ public class Control {
             }
         });
     }
-    //cbn
+    //cbn //sans data base
     public static void Action_Chambre_Intreface(){
 
         new Chambre_interface();
@@ -575,8 +579,9 @@ public class Control {
         Chambre_interface.reserverpardetailbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    new Tarif_Option_Chambres();
                     SwingUtilities.getWindowAncestor(Chambre_interface.reserverpardetailbtn).dispose();
+                    Control.Action_TariOptionChambre();
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -585,7 +590,7 @@ public class Control {
 
         Chambre_interface.closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.exit(0);
+                System.exit(1);
             }
         });
 
@@ -601,6 +606,139 @@ public class Control {
 
 
     }
+
+    public static void Action_TariOptionChambre() throws Exception{
+
+        new Tarif_Option_Chambres();
+
+        Tarif_Option_Chambres.reserverbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                try{
+                
+                today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                date_debut = new Date((Integer) Tarif_Option_Chambres.jourdebutBox.getSelectedItem(),
+                    (Integer) Tarif_Option_Chambres.moisdebutBox.getSelectedItem(), (Integer) Tarif_Option_Chambres.anneedebutBox.getSelectedItem());
+
+                date_fin = new Date((Integer) Tarif_Option_Chambres.jourfinBox.getSelectedItem(), (Integer) Tarif_Option_Chambres.moisfinBox.getSelectedItem(),
+                    (Integer) Tarif_Option_Chambres.anneefinBox.getSelectedItem());
+
+
+                TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Tarif_Option_Chambres.roomtypebox.getSelectedItem());
+                boolean tv = Tarif_Option_Chambres.sonaCheckBox.isSelected();
+                boolean climatisation = Tarif_Option_Chambres.terasseCheckBox.isSelected();
+                boolean vuesurmer = Tarif_Option_Chambres.vuesurmerBox.isSelected();
+                boolean vueforet = Tarif_Option_Chambres.vuesurforetBox.isSelected();
+                    if(Tarif_Option_Chambres.reserverbtnbtnActionPerformed()!=-1){
+                Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+                total_prix=chambrerecherchee.getPrix();
+                Control.Action_TableReservationUser();
+                Tarif_Option_Chambres.reserverbtnbtnActionPerformed();
+                SwingUtilities.getWindowAncestor(Tarif_Option_Chambres.reserverbtn).dispose();
+                }
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+            }
+        });
+
+
+        Tarif_Option_Chambres.closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                System.exit(0);
+            }
+        });
+
+        Tarif_Option_Chambres.afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+               try{
+                
+                today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                date_debut = new Date((Integer) Tarif_Option_Chambres.jourdebutBox.getSelectedItem(),
+                    (Integer) Tarif_Option_Chambres.moisdebutBox.getSelectedItem(), (Integer) Tarif_Option_Chambres.anneedebutBox.getSelectedItem());
+
+                date_fin = new Date((Integer) Tarif_Option_Chambres.jourfinBox.getSelectedItem(), (Integer) Tarif_Option_Chambres.moisfinBox.getSelectedItem(),
+                    (Integer) Tarif_Option_Chambres.anneefinBox.getSelectedItem());
+
+
+                TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Tarif_Option_Chambres.roomtypebox.getSelectedItem());
+                boolean tv = Tarif_Option_Chambres.sonaCheckBox.isSelected();
+                boolean climatisation = Tarif_Option_Chambres.terasseCheckBox.isSelected();
+                boolean vuesurmer = Tarif_Option_Chambres.vuesurmerBox.isSelected();
+                boolean vueforet = Tarif_Option_Chambres.vuesurforetBox.isSelected();
+                    if(Tarif_Option_Chambres.afficherprixbtnbtnActionPerformed()!=-1){
+                Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+                total_prix=chambrerecherchee.getPrix();
+                Tarif_Option_Chambres.afficherprixbtnbtnActionPerformed();
+                }
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+               
+               
+            }
+        });
+
+        Tarif_Option_Chambres.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SwingUtilities.getWindowAncestor(Tarif_Option_Chambres.revenirbtn).dispose();
+                Control.Action_Chambre_Intreface();
+            }
+        });
+
+        Tarif_Option_Chambres.sonaCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                Tarif_Option_Chambres.terasseCheckBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurforetBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurmerBox.setSelected(false);
+        
+
+            }
+        });
+
+        Tarif_Option_Chambres.terasseCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                Tarif_Option_Chambres.sonaCheckBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurforetBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        Tarif_Option_Chambres.vuesurforetBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                Tarif_Option_Chambres.sonaCheckBox.setSelected(false);
+                Tarif_Option_Chambres.terasseCheckBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        Tarif_Option_Chambres.vuesurmerBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                Tarif_Option_Chambres.sonaCheckBox.setSelected(false);
+                Tarif_Option_Chambres.terasseCheckBox.setSelected(false);
+                Tarif_Option_Chambres.vuesurforetBox.setSelected(false);
+
+            }
+        });
+
+    }
+
+
+
+
 
 
     public static void afficherHashMap(int i) {

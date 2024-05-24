@@ -17,9 +17,9 @@ public class Chambre_interface extends javax.swing.JFrame {
     public static JButton avissurnousButton = new JButton();
     public static JButton passeraureservationbtn;
     public static JLabel descJLabel;
-    public static JButton reserverpardetailbtn ;
+    public static JButton reserverpardetailbtn= new  JButton();
     public static JButton revenirbtn = new JButton("");
-    public static javax.swing.JButton closebtn = new JButton(" ");
+    public static JButton closebtn = new JButton(" ");
 
 
 
@@ -76,17 +76,20 @@ public class Chambre_interface extends javax.swing.JFrame {
         
         
         if(Hotel.langue==0){
-            reserverpardetailbtn = new JButton("Price with options");
+            reserverpardetailbtn.setText("Price with options");
             avissurnousButton.setText("Comments");
             aPropos.setText("About Us ");
              passeraureservationbtn = new JButton("Manage my reservations");
-            prixsuite.setText(TypeChambre.SUITE.getPrix() + "$/Night.");
+            prixsuite.setText(Option.GetPrix("SUITE")+ "$/Night.");
             suitetext.setText("Suite:Max 5 Guests.");
-            prixtrio.setText(TypeChambre.TRIPLE.getPrix() + "$/Night.");
+
+            prixtrio.setText(Option.GetPrix("TRIPLE")+ "$/Night.");
             triotext.setText("Trio Room:Max 3 Guests.");
-            prixdouble.setText(TypeChambre.DOUBLE.getPrix() + "$/Night.  ");
+
+            prixdouble.setText(Option.GetPrix("DOUBLE") + "$/Night.  ");
             doubletext.setText("Double Room: Max 2 Guests.");
-            prixsolo.setText(TypeChambre.SOLO.getPrix() + "$/Night.");
+
+            prixsolo.setText(Option.GetPrix("SOLO") + "$/Night.");
             solotext.setText("Solo Room:For 1 Guest.");
              descJLabel = new JLabel("Our Rooms");
 
@@ -95,7 +98,7 @@ public class Chambre_interface extends javax.swing.JFrame {
              solotext.setBounds(40, 25, 200, 20);
              triotext.setBounds(35, 25, 200, 20);
         }else{
-            reserverpardetailbtn = new JButton("Prix avec options");
+            reserverpardetailbtn.setText("Prix avec options");
             avissurnousButton.setText("Commentaires ");
             aPropos.setText("A propos de nous ");
              passeraureservationbtn = new JButton("Gerer mes reservation");
@@ -247,7 +250,6 @@ public class Chambre_interface extends javax.swing.JFrame {
         
         // les bouttons:
         // creation d'un boutton pour le close avec ses caractéristiques.
-        javax.swing.JButton closebtn = new JButton(" ");
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));

@@ -10,25 +10,30 @@ import javax.swing.*;
 
 public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
-    JCheckBox sonaCheckBox = new JCheckBox();
-    JCheckBox terasseCheckBox = new JCheckBox();
-    JCheckBox vuesurmerBox = new JCheckBox();
-    JCheckBox vuesurforetBox = new JCheckBox();
-    javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    public static JCheckBox sonaCheckBox = new JCheckBox();
+    public static JCheckBox terasseCheckBox = new JCheckBox();
+    public static JCheckBox vuesurmerBox = new JCheckBox();
+    public static JCheckBox vuesurforetBox = new JCheckBox();
+    public static javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
 
-    javax.swing.JComboBox<Integer> jourdebutBox = new JComboBox<>();
-    javax.swing.JComboBox<Integer> moisdebutBox = new JComboBox<>();
-    javax.swing.JComboBox<Integer> anneedebutBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> jourdebutBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> moisdebutBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> anneedebutBox = new JComboBox<>();
 
-    javax.swing.JComboBox<Integer> jourfinBox = new JComboBox<>();
-    javax.swing.JComboBox<Integer> moisfinBox = new JComboBox<>();
-    javax.swing.JComboBox<Integer> anneefinBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> jourfinBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> moisfinBox = new JComboBox<>();
+    public static javax.swing.JComboBox<Integer> anneefinBox = new JComboBox<>();
 
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
-    JLabel prixJLabel;
+    static JLabel prixJLabel;
 
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    
+    public static JButton reserverbtn = new JButton();
+    public static JButton afficherprixButton = new JButton();
+    public static JButton revenirbtn = new JButton("");
+    public static javax.swing.JButton closebtn = new JButton(" ");
 
     public Tarif_Option_Chambres () throws Exception {
         initComponents();
@@ -57,8 +62,6 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         JLabel choisistypeJLabel;
         JLabel choisisoptionsJLabel;
 
-        JButton reserverbtn = new JButton();
-        JButton afficherprixButton = new JButton();
         // les labels:
         if (Hotel.langue == 0) {
             datedebutJLabel = new JLabel("Starting Date");
@@ -254,24 +257,18 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         gestiondate.add(choisisdateJLabel);
         informationReservationPanel.add(gestiondate);
         // Bouton pour fermer la fenêtre
-        JButton revenirbtn = new JButton("");
+        
         revenirbtn.setBounds(970, 5, 25, 30);
         revenirbtn.setBackground(Color.white);
         add(revenirbtn);
 
-        // Action pour fermer la fenêtre lorsque le bouton est cliqué
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-                Control.Action_Chambre_Intreface();
-            }
-        });
+        
 
         optioJPanel.add(roomtypebox);
         // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
-        javax.swing.JButton closebtn = new JButton(" ");
+        
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
@@ -279,27 +276,12 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         closebtn.setBounds(997, 5, 25, 30);
         add(closebtn);
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    closebtnActionPerformed(evt);
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-                }
-            }
-        });
+        
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         reserverbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
 
-        reserverbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-                reserverbtnbtnActionPerformed();
-
-            }
-        });
+        
         // le positionement exact du boutton.
         reserverbtn.setBounds(840, 70, 150, 25);
         reserverbtn.setBackground(color);
@@ -309,13 +291,7 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
         afficherprixButton.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
 
-        afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                afficherprixbtnbtnActionPerformed();
-
-            }
-        });
+        
         // le positionement exact du boutton.
         afficherprixButton.setBounds(840, 40, 150, 25);
         afficherprixButton.setBackground(color);
@@ -331,50 +307,6 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
 
- 
-
-        sonaCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                terasseCheckBox.setSelected(false);
-                vuesurforetBox.setSelected(false);
-                vuesurmerBox.setSelected(false);
-        
-
-            }
-        });
-
-        terasseCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                sonaCheckBox.setSelected(false);
-                vuesurforetBox.setSelected(false);
-                vuesurmerBox.setSelected(false);
-
-            }
-        });
-
-
-        vuesurforetBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                sonaCheckBox.setSelected(false);
-                terasseCheckBox.setSelected(false);
-                vuesurmerBox.setSelected(false);
-
-            }
-        });
-
-
-        vuesurmerBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                sonaCheckBox.setSelected(false);
-                terasseCheckBox.setSelected(false);
-                vuesurforetBox.setSelected(false);
-
-            }
-        });
 
         sonaCheckBox.setSelected(true);
 
@@ -382,44 +314,31 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     }
 
 
-    private JFrame frame;
+    private static JFrame frame;
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
- 
-    private void reserverbtnbtnActionPerformed() {
+    //99%
+    public static int reserverbtnbtnActionPerformed() {
 
         try {
 
             Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
-            Date date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
-                    (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
-
-            Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
-                    (Integer) anneefinBox.getSelectedItem());
-            Date.verif_today_date(today, date_debut);
-            Date.differenceEntreDates(date_debut, date_fin);
-            TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
-            boolean tv = sonaCheckBox.isSelected();
-            boolean climatisation = terasseCheckBox.isSelected();
-            boolean vuesurmer = vuesurmerBox.isSelected();
-            boolean vueforet = vuesurforetBox.isSelected();
-
-            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+            
+            Date.verif_today_date(today, Control.date_debut);
+           
+            
             if (Hotel.langue == 0) {
-                prixJLabel.setText("<html>price : " + chambrerecherchee.getPrix() + "$/night<br>"
+                prixJLabel.setText("<html>price : " + Control.total_prix + "$/night<br>"
                         + "total price :"
-                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
+                        + Control.total_prix * Date.differenceEntreDates(Control.date_debut, Control.date_fin)
                         + "$</html>");
             } else {
-                prixJLabel.setText("<html>prix : " + chambrerecherchee.getPrix()+ "$/nuitee<br>"
+                prixJLabel.setText("<html>prix : " + Control.total_prix+ "$/nuitee<br>"
                         + "prix total :"
-                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
+                        + Control.total_prix * Date.differenceEntreDates(Control.date_debut, Control.date_fin)
                         + "$</html>");
             }
+            return 1;
 
-        Control.Action_TableReservationUser();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame,
@@ -453,78 +372,72 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
+        return -1;
     }
+    //99%
+public static int  afficherprixbtnbtnActionPerformed() {
+        
+    try {
 
-public void afficherprixbtnbtnActionPerformed() {
-        try {
-
-            Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
-            Date date_debut = new Date((Integer) jourdebutBox.getSelectedItem(),
-                    (Integer) moisdebutBox.getSelectedItem(), (Integer) anneedebutBox.getSelectedItem());
-
-            Date date_fin = new Date((Integer) jourfinBox.getSelectedItem(), (Integer) moisfinBox.getSelectedItem(),
-                    (Integer) anneefinBox.getSelectedItem());
-            Date.verif_today_date(today, date_debut);
-            Date.differenceEntreDates(date_debut, date_fin);
-            TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) roomtypebox.getSelectedItem());
-            boolean tv = sonaCheckBox.isSelected();
-            boolean climatisation = terasseCheckBox.isSelected();
-            boolean vuesurmer = vuesurmerBox.isSelected();
-            boolean vueforet = vuesurforetBox.isSelected();
-
-
-
-            Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
-
-            System.out.println(chambrerecherchee.getPrix());
-
-            if (Hotel.langue == 0) {
-                prixJLabel.setText("<html>price : " + chambrerecherchee.getPrix() + "$/night<br>"
-                        + "total price :"
-                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
-                        + "$</html>");
-            } else {
-                prixJLabel.setText("<html>prix : " + chambrerecherchee.getPrix() + "$/nuitee<br>"
-                        + "prix total :"
-                        + chambrerecherchee.getPrix() * Date.differenceEntreDates(date_debut, date_fin)
-                        + "$</html>");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame,
-                    "entrer des chiffres dans les dates !",
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
-
-        } catch (Date_nonvalid e) {
-
-            JOptionPane.showMessageDialog(frame,
-                    e.getMessage(),
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
-
-        } catch (Date_Debut_Reservation e) {
-            JOptionPane.showMessageDialog(frame,
-                    e.getMessage(),
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
-
-        } catch (Date_nonorganiser e) {
-            JOptionPane.showMessageDialog(frame,
-                    e.getMessage(),
-                    "dates non organisee",
-                    JOptionPane.ERROR_MESSAGE);
-
-        } catch (DiffSup365 e) {
-            JOptionPane.showMessageDialog(frame,
-                    "date non valide!",
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
-
+        Date today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+        Date.verif_today_date(today, Control.date_debut);
+       
+        
+        if (Hotel.langue == 0) {
+            prixJLabel.setText("<html>price : " + Control.total_prix + "$/night<br>"
+                    + "total price :"
+                    + Control.total_prix * Date.differenceEntreDates(Control.date_debut, Control.date_fin)
+                    + "$</html>");
+        } else {
+            prixJLabel.setText("<html>prix : " + Control.total_prix+ "$/nuitee<br>"
+                    + "prix total :"
+                    + Control.total_prix * Date.differenceEntreDates(Control.date_debut, Control.date_fin)
+                    + "$</html>");
         }
+        return 1;
+        
+
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(frame,
+                "entrer des chiffres dans les dates !",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+    } catch (Date_nonvalid e) {
+
+        JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+    } catch (Date_Debut_Reservation e) {
+        JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+    }catch (Date_nonorganiser e) {
+        JOptionPane.showMessageDialog(frame,
+                e.getMessage(),
+                "dates non organisee",
+                JOptionPane.ERROR_MESSAGE);
+
+    } catch (DiffSup365 e) {
+        JOptionPane.showMessageDialog(frame,
+                "date non valide!",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+    return -1;
+
 
     }
 
