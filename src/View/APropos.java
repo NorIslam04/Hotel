@@ -9,13 +9,16 @@ import javax.swing.*;
 
 
 public class APropos extends javax.swing.JFrame {
-    javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public static JButton revenirbtn = new JButton("");
+    public static javax.swing.JButton closebtn = new JButton(" ");
 
     public APropos() {
         initComponents();
     }
 
     private void initComponents() {
+        
 
         JLabel contactTitle = new JLabel("     Nous contacter");
         JLabel addressLabel = new JLabel("        Adresse : Saadi Anser, Djijel");
@@ -54,11 +57,7 @@ public class APropos extends javax.swing.JFrame {
         langueBox.setBackground(colorgris);
         langueBox.setBorder(new RoundBorder(color, 3));
         add(langueBox);
-        langueBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerlangue();
-            }
-        });
+      
 
 
         // Panel gauche pour les informations de contact
@@ -153,22 +152,18 @@ public class APropos extends javax.swing.JFrame {
         availabilityPanel.add(availabilityText);
 
         // Bouton pour fermer la fenêtre
-        JButton revenirbtn = new JButton("");
+
         revenirbtn.setBounds(970, 5, 25, 30);
         revenirbtn.setBackground(Color.white);
         add(revenirbtn);
 
-        // Action pour fermer la fenêtre lorsque le bouton est cliqué
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
+
+        
 
         // creation d'un boutton pour le close avec ses caractéristiques.
 
         // Utiliser la couleur
-        javax.swing.JButton closebtn = new JButton(" ");
+        
         closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
         closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
@@ -176,11 +171,7 @@ public class APropos extends javax.swing.JFrame {
         closebtn.setBounds(1000, 5, 25, 30);
         add(closebtn);
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closebtnActionPerformed(evt);
-            }
-        });
+     
 
         JPanel descriptionpPanel=new JPanel();
         descriptionpPanel.setLayout(null);
@@ -221,23 +212,17 @@ public class APropos extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
     }
 
-    private JFrame frame;
-
     
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {
-        System.exit(0);
-    }
+  
     
-    private void changerlangue(){
+    public static void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
         }else{
             Hotel.langue=1;
         }
-        dispose();
-        new APropos();
-       
+        
     }
 
     public static void main(String args[]) {

@@ -19,6 +19,8 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+
+
 public class Control {
 
     public static double total_prix=-1;
@@ -134,7 +136,9 @@ public class Control {
 
         Login.aPropos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                new APropos();
+                Control.Action_apropos();
+
+                
             }
         });
 
@@ -161,7 +165,7 @@ public class Control {
             public void actionPerformed(ActionEvent evt) {
                // 7ta t3abez 3la box bch yasra had l fnct
                 Login.changerlangue();
-                SwingUtilities.getWindowAncestor(Login.langueBox).dispose();;
+                SwingUtilities.getWindowAncestor(Login.langueBox).dispose();
                 Action_Login();  
             }
         });
@@ -184,7 +188,7 @@ public class Control {
 
         Signe_in.aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new APropos();
+                Control.Action_apropos();
             }
         });
 
@@ -423,7 +427,7 @@ public class Control {
                     System.out.println(e.getMessage());
                 }                                              
                 SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
-                new Chambre_interface();
+                Control.Action_Chambre_Intreface();
             } 
     });
 
@@ -501,6 +505,23 @@ public class Control {
 
 
     }
+
+
+    //hna Abdou
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
