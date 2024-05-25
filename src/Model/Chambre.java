@@ -380,16 +380,15 @@ import Control.Control;
                     // on a un probleme de iD_hashMap != iD_DB (c pas suur)
                     int idChambre = chambre.getId(); // Supposons que vous ayez une méthode getId() dans la classe
                                                      // Chambre pour obtenir l'identifiant de la chambre
-                    String updateQuery = "UPDATE rooms SET  type = ?, prix = ?, SONA=?, TERASSE=?, VUESURMERE= ?, VUESURFORET= ? WHERE id = ?";
+                    String updateQuery = "UPDATE rooms SET  type = ?, SONA=?, TERASSE=?, VUESURMERE= ?, VUESURFORET= ? WHERE id = ?";
                     PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
                     
                     preparedStatement.setString(1, chambre.getType().ToString());
-                    preparedStatement.setDouble(2, chambre.getPrix());
-                    preparedStatement.setBoolean(3, chambre.isSONA());
-                    preparedStatement.setBoolean(4, chambre.isTERASSE());
-                    preparedStatement.setBoolean(5, chambre.isVuesurmere());
-                    preparedStatement.setBoolean(6, chambre.isVuesurforet());
-                    preparedStatement.setInt(7, idChambre);
+                    preparedStatement.setBoolean(2, chambre.isSONA());
+                    preparedStatement.setBoolean(3, chambre.isTERASSE());
+                    preparedStatement.setBoolean(4, chambre.isVuesurmere());
+                    preparedStatement.setBoolean(5, chambre.isVuesurforet());
+                    preparedStatement.setInt(6, idChambre);
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
                     System.out.println("Objet: "+ch+" / Operation: "+operation);

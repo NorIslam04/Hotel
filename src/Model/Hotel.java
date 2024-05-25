@@ -8,9 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
-
-
 public class Hotel {
 
 	public enum TypeOperation {
@@ -291,8 +288,11 @@ public class Hotel {
         while (iterator.hasNext()) {
             Map.Entry<Integer, User> entry = iterator.next();
             User user = entry.getValue();
-            moy=moy+user.getNote();
+			if (user.getNote()!=-1) {
+				moy=moy+user.getNote();
             i++;
+			}
+         
             }
         return moy/i;//
     } 
@@ -410,13 +410,6 @@ public class Hotel {
 		}
 		return null;//decalage de la reservation
 	}
-
-
-
-
-
-
-
 
 	
 	public static float calculernotehotel() {

@@ -49,7 +49,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     Color colorgris = Color.decode("#252926");
     javax.swing.JButton closebtn = new JButton("");
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
-    JLabel moyenneactuelle=new JLabel(""+Hotel.calculermoyenne()+"/5");
+    JLabel moyenneactuelle=new JLabel(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
 
     public Commentaires_Interface() throws Exception {
         initComponents();
@@ -257,8 +257,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile1Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
-
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 } else {
 
                     etoile2Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
@@ -272,7 +271,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
 
                 }
             }
@@ -286,7 +285,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile1Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 } else {
 
                     etoile2Box.setSelected(true);
@@ -298,7 +297,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 }
             }
         });
@@ -313,7 +312,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 } else {
 
                     etoile3Box.setSelected(true);
@@ -322,7 +321,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 }
             }
         });
@@ -339,7 +338,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 } else {
 
                     etoile4Box.setSelected(true);
@@ -347,7 +346,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                 }
             }
         });
@@ -366,10 +365,10 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(5);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
 
                 } else {
-                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
+                    moyenneactuelle.setText(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
                     etoile5Box.setSelected(true);
                 }
             }
