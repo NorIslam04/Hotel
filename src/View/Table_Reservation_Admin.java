@@ -6,10 +6,8 @@ import Model.Chambre.*;
 import Control.*;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -54,6 +52,7 @@ public static void setId_chambre(int id_chambre) {
     }
                     
     private void initComponents() {
+        setUndecorated(true); // Supprime tous les boutons par défaut
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
         suppreservationbtn =new javax.swing.JButton();

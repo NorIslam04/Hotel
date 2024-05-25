@@ -2,17 +2,9 @@ package View;
 import Model.*;
 import Model.Date.*;
 import Model.Reservation.EtatReservation;
-import Model.Chambre.*;
-import Control.*;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.HeadlessException;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.*;
-import javax.swing.RowFilter.Entry;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -70,7 +62,7 @@ public class Facture extends javax.swing.JFrame {
         acceptdeclinebox = new javax.swing.JComboBox<>();
         acceptdeclinebtn = new javax.swing.JButton();
         clicklabel = new javax.swing.JLabel();
-        closebtn = new javax.swing.JButton();
+         closebtn = new javax.swing.JButton();
         backtoroomsbtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         mercilabel = new javax.swing.JLabel();
@@ -84,7 +76,7 @@ public class Facture extends javax.swing.JFrame {
         datelabell = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         nom = new javax.swing.JLabel();
-        JPanel acceptdeclinePanel = new JPanel();
+        closebtn = new javax.swing.JButton();
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
 
@@ -129,7 +121,7 @@ public class Facture extends javax.swing.JFrame {
         //le positionnement exact du label:
         datelabel.setBounds(210, 60, 200, 50);
         factureinfospanel.add(datelabel);
-
+        setUndecorated(true); // Supprime tous les boutons par défaut
         nom = new JLabel("Nom d'utilisateur:");
         nom.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         nom.setForeground(color.white);
@@ -146,7 +138,13 @@ public class Facture extends javax.swing.JFrame {
         //le positionnement exact du label:
         nomutilisateur.setBounds(200, 100, 800, 50);
         factureinfospanel.add(nomutilisateur);
-
+        closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+        closebtn.setText(" ");
+        // le positionement exact du boutton.
+        closebtn.setBounds(1000, 5, 25, 30);
+        getContentPane().add(closebtn);
         email= new JLabel("L'Email d'utilisateur:");
         email.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         email.setForeground(color.white);

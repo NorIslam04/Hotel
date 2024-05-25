@@ -3,10 +3,7 @@ import Model.*;
 import Control.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Window;
-
 import javax.swing.*;
-
 import javax.swing.border.Border;
 
 public class Login extends javax.swing.JFrame {

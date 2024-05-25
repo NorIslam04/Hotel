@@ -49,6 +49,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }
                  
     private void initComponents() {
+        setUndecorated(true); // Supprime tous les boutons par défaut
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
         showtablelabel = new javax.swing.JLabel();
@@ -120,7 +121,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         facture.setForeground(colorgris);
         facture.setBorder(new RoundBorder(color, 3));
         // le positionement exact du boutton:
-        facture.setBounds(950, 50, 100, 30);
+        facture.setBounds(915, 40, 100, 30);
         informationreservationpanel.add(facture);
 
         //creation d'un boutton pour annuler une réservation:

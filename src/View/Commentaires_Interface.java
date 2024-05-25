@@ -47,9 +47,9 @@ public class Commentaires_Interface extends javax.swing.JFrame {
     BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
-    JLabel prixJLabel;
     javax.swing.JButton closebtn = new JButton("");
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    JLabel moyenneactuelle=new JLabel(""+Hotel.calculermoyenne()+"/5");
 
     public Commentaires_Interface() throws Exception {
         initComponents();
@@ -73,6 +73,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
 
             commenterbtn.setText("add comment");
             rateusJLabel = new JLabel("rate us :");
+        
 
         } else {
             rateusJLabel = new JLabel("notez nous:");
@@ -132,7 +133,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
 
         rateusJLabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         rateusJLabel.setForeground(color);
-
+     
         JPanel optioJPanel = new JPanel();
         optioJPanel.setLayout(null);
 
@@ -142,6 +143,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         optioJPanel.add(etoile5Box);
         optioJPanel.add(etoile4Box);
         optioJPanel.add(rateusJLabel);
+       
         optioJPanel.setBounds(10, 50, 300, 100);
         optioJPanel.setBackground(colorgris);
         ratingJPanel.add(optioJPanel);
@@ -255,6 +257,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile1Box.setIcon(etoileJauneIcon); // Changer l'icône en étoile jaune
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
 
                 } else {
 
@@ -269,6 +272,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(1);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
 
                 }
             }
@@ -282,6 +286,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile1Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 } else {
 
                     etoile2Box.setSelected(true);
@@ -293,6 +298,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(2);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 }
             }
         });
@@ -307,6 +313,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 } else {
 
                     etoile3Box.setSelected(true);
@@ -315,6 +322,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setIcon(etoileBlancheIcon); // Changer l'icône en étoile jaune
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(3);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 }
             }
         });
@@ -331,7 +339,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 } else {
 
                     etoile4Box.setSelected(true);
@@ -339,7 +347,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile5Box.setSelected(false);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(4);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
-
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                 }
             }
         });
@@ -358,12 +366,20 @@ public class Commentaires_Interface extends javax.swing.JFrame {
                     etoile2Box.setSelected(true);
                     Hotel.RechercheuserParId(Hotel.id_user_current).setNote(5);
                     Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
 
                 } else {
+                    moyenneactuelle.setText(""+Hotel.calculermoyenne()+"/5");
                     etoile5Box.setSelected(true);
                 }
             }
         });
+
+        moyenneactuelle.setBounds(230, 53, 200, 17);
+        moyenneactuelle.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+        moyenneactuelle.setForeground(color);
+        optioJPanel.add(moyenneactuelle);
+  
 
         ratingJPanel.add(revenirbtn);
         ratingJPanel.add(closebtn);
@@ -472,6 +488,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         infoPanel.setLayout(new GridLayout(0, 1)); // Utilisation d'un GridLayout pour empiler verticalement les
                                                    // éléments
         infoPanel.add(nameLabel);
+        
 
         infoPanel.add(commentLabel);
         infoPanel.add(datLabel);
