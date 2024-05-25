@@ -280,9 +280,11 @@ public static void setId_chambre(int id_chambre) {
 
     //cbn  
     public int acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
-        DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
-        int i=reservationtabel.getSelectedRow();
        
+        DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
+      
+        int i=reservationtabel.getSelectedRow();
+
         if(i>=0){  
 
             int selectedRow= reservationtabel.getSelectedRow();
@@ -294,7 +296,7 @@ public static void setId_chambre(int id_chambre) {
             "DEJA ACCEPTER !",
             "ACCEPTER",
             JOptionPane.INFORMATION_MESSAGE);
-            return -1;
+            return 0;
         }  
         else{                                               
        if(EnAttente()==1){
@@ -307,7 +309,7 @@ public static void setId_chambre(int id_chambre) {
                     return 1;
                 }else{
                     JOptionPane.showMessageDialog(frame, "Vous devez 'ACCEPTER' Manuellement");
-                    return -1;
+                    return 0;
                 }
 
         }else if(EnAttente()==0){
@@ -318,21 +320,20 @@ public static void setId_chambre(int id_chambre) {
                 
                 if(a==0){
                     model.setValueAt("DECLINER",i,7);
-            
                 return 2;
                 }else{
                     JOptionPane.showMessageDialog(frame, "Vous devez 'DECLINER' Manuellement");
-                    return -1;
+                    return 0;
                 }
         }
     }  
     }else{
         
         JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
-        return -1;
+        return 0;
     }   
 
-        return -1;                      
+        return 0;                      
     }
                                                 
                                            

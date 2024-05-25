@@ -762,16 +762,19 @@ public class Control {
                 DefaultTableModel model= (DefaultTableModel)tra.reservationtabel.getModel();
 
                 try {
-                    int selectedRow= tra.reservationtabel.getSelectedRow();
+                    int ii=tra.acceptdeclinebtnActionPerformed(evt);
+                    if (ii!=0) {
+                        int selectedRow= tra.reservationtabel.getSelectedRow();
                     OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
                     TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
                     String Date_debut=model.getValueAt(selectedRow,5).toString();
                     String Date_fin=model.getValueAt(selectedRow,6).toString();
                     int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
                     int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
-                    int ii=tra.acceptdeclinebtnActionPerformed(evt);
 
                     switch (ii) {
+
+                        
                         case 1:
                         double prix =Hotel.getReservationMap().get(idReservation).getPrix();
                         Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,Table_Reservation_Admin.getId_chambre() ,EtatReservation.ACCEPTER,prix,opt);
@@ -784,6 +787,8 @@ public class Control {
                             break;
                     
                     }
+                    }
+                    
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -794,31 +799,32 @@ public class Control {
         tra.updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-
-
-                    DefaultTableModel model =(DefaultTableModel)tra.reservationtabel.getModel();
-                    int selectedRow= tra.reservationtabel.getSelectedRow();
-                    TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-                    String Date_debut=model.getValueAt(selectedRow,5).toString();
-                    String Date_fin=model.getValueAt(selectedRow,6).toString();
-                    int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
-                    int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
-                    OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
-
                     int i=tra.updatebtnActionPerformed(evt);
-                    switch (i) {
-                        case 1:
-                        double prix =Hotel.getReservationMap().get(idReservation).getPrix();
-                        Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,Table_Reservation_Admin.getId_chambre() ,EtatReservation.toEtatReservation(tra.acceptdeclinebox.getSelectedItem().toString()),prix,opt);
-                        Hotel.ModifierReservationMap(newres);
-                            break;
-                        
-                        case 2:
-                        double prix1 =Hotel.getReservationMap().get(idReservation).getPrix();
-                        Reservation newres1=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(tra.acceptdeclinebox.getSelectedItem().toString()),prix1,opt);
-                        Hotel.ModifierReservationMap(newres1);
-                            break;
+                    if (i!=-1) {
+                        DefaultTableModel model =(DefaultTableModel)tra.reservationtabel.getModel();
+                        int selectedRow= tra.reservationtabel.getSelectedRow();
+                        TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
+                        String Date_debut=model.getValueAt(selectedRow,5).toString();
+                        String Date_fin=model.getValueAt(selectedRow,6).toString();
+                        int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
+                        int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
+                        OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
+    
+                        switch (i) {
+                            case 1:
+                            double prix =Hotel.getReservationMap().get(idReservation).getPrix();
+                            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,Table_Reservation_Admin.getId_chambre() ,EtatReservation.toEtatReservation(tra.acceptdeclinebox.getSelectedItem().toString()),prix,opt);
+                            Hotel.ModifierReservationMap(newres);
+                                break;
+                            
+                            case 2:
+                            double prix1 =Hotel.getReservationMap().get(idReservation).getPrix();
+                            Reservation newres1=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(tra.acceptdeclinebox.getSelectedItem().toString()),prix1,opt);
+                            Hotel.ModifierReservationMap(newres1);
+                                break;
+                        }
                     }
+                   
 
                 } catch (Exception e) {
                     e.printStackTrace();
