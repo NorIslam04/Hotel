@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class Table_Reseravtion_User extends javax.swing.JFrame {
 
 
- 
+
    
     private  JFrame frame;
     public  int id_res=0;
@@ -63,6 +63,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         tablereservation = new javax.swing.JTable();
         addreservationbtn = new javax.swing.JButton();
         updatebtn = new javax.swing.JButton();
+        facture = new javax.swing.JButton();
         idroomlabel = new javax.swing.JLabel();
         exitbtn = new javax.swing.JButton();
         enddatetext = new javax.swing.JTextField();
@@ -111,6 +112,16 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         // le positionement exact du boutton:
         updatebtn.setBounds(750, 50, 150, 30);
         informationreservationpanel.add(updatebtn);
+
+
+        facture.setText("Facture");
+        facture.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
+        facture.setBackground(color);
+        facture.setForeground(colorgris);
+        facture.setBorder(new RoundBorder(color, 3));
+        // le positionement exact du boutton:
+        facture.setBounds(950, 50, 100, 30);
+        informationreservationpanel.add(facture);
 
         //creation d'un boutton pour annuler une réservation:
         cancelReservationBtn.setText("Cancel-Reservation"); 
@@ -273,6 +284,18 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         roompricebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
            
+            }
+        });
+
+        facture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+           dispose();
+           try {
+            new Facture();
+        } catch (Date_nonvalid e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
             }
         });
     }                     
@@ -514,5 +537,6 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     public    javax.swing.JTable tablereservation;
     public   javax.swing.JButton updatebtn;
     public   javax.swing.JButton cancelReservationBtn;
+    public   javax.swing.JButton facture;
     // End of variables declaration                   
 }

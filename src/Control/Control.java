@@ -15,6 +15,8 @@ import Model.Date;
 import java.sql.*;
 import java.util.Map;
 
+import javax.swing.table.DefaultTableModel;
+
 public class Control {
 
     public static double total_prix=-1;
@@ -740,6 +742,72 @@ public class Control {
         });
 
     }
+
+
+    public static void Action_TableReservationAdmin(){
+
+        tra=new Table_Reservation_Admin();
+
+        tra.acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DefaultTableModel model= (DefaultTableModel)tra.reservationtabel.getModel();
+                int i=tra.reservationtabel.getSelectedRow();
+                try {
+                    int selectedRow= tra.reservationtabel.getSelectedRow();
+                    String etat=model.getValueAt(selectedRow,7).toString();
+                    OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
+                    TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
+                    String Date_debut=model.getValueAt(selectedRow,5).toString();
+                    String Date_fin=model.getValueAt(selectedRow,6).toString();
+                    int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
+                    int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
+                    int ii=tra.acceptdeclinebtnActionPerformed(evt);
+
+                    switch (ii) {
+                        case 1:
+                        double prix =Hotel.getReservationMap().get(idReservation).getPrix();
+                        Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,Table_Reservation_Admin.getId_chambre() ,EtatReservation.ACCEPTER,prix,opt);
+                        Hotel.ModifierReservationMap(newres);
+                            break;
+                        case 2:
+                        double prix1 =Hotel.getReservationMap().get(idReservation).getPrix();
+                        Reservation newres1=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.DECLINER,prix1,opt);
+                        Hotel.ModifierReservationMap(newres1);
+
+                            break;
+                    
+                        default:
+                            break;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void afficherHashMap(int i) {
         switch (i) {
