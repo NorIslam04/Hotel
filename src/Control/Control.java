@@ -260,8 +260,8 @@ public class Control {
     }
 
     //cbn
-    public static void Action_TableReservationUser(){
-       tru=new Table_Reseravtion_User();
+    public static void Action_TableReservationUser(String dated,String datef){
+       tru=new Table_Reseravtion_User(dated,datef);
     
     
         //cbn
@@ -417,10 +417,10 @@ public class Control {
         }
     });
 
-    tru.exitbtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.closebtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                if(tru.exitbtnActionPerformed(evt)==1){
+                if(tru.closebtnActionPerformed(evt)==1){
                     Control.hash_map_bdd();
                     tru.dispose();
                     System.exit(1);
@@ -431,7 +431,7 @@ public class Control {
         }
     });
 
-    tru.backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     Control.hash_map_bdd();
@@ -561,7 +561,7 @@ public class Control {
 
         ci.passeraureservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Control.Action_TableReservationUser();
+                Control.Action_TableReservationUser("jj/mm/aaaa","jj/mm/aaaa");
               ci.dispose();
             }
         });
@@ -630,6 +630,11 @@ public class Control {
                 date_fin = new Date((Integer) TOC.jourfinBox.getSelectedItem(), (Integer) TOC.moisfinBox.getSelectedItem(),
                     (Integer) TOC.anneefinBox.getSelectedItem());
 
+                    String Date_debuts=new String((String) TOC.jourdebutBox.getSelectedItem()+"/"+
+                    (String) TOC.moisdebutBox.getSelectedItem()+"/"+(String) TOC.anneedebutBox.getSelectedItem());
+                    String Date_fin=new String((String) TOC.jourfinBox.getSelectedItem()+"/"+
+                    (String) TOC.moisfinBox.getSelectedItem()+"/"+(String) TOC.anneefinBox.getSelectedItem());
+
 
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) TOC.roomtypebox.getSelectedItem());
                 boolean tv = TOC.sonaCheckBox.isSelected();
@@ -639,7 +644,7 @@ public class Control {
                     if(TOC.reserverbtnbtnActionPerformed()!=-1){
                 Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
                 total_prix=chambrerecherchee.getPrix();
-                Control.Action_TableReservationUser();
+                Control.Action_TableReservationUser(Date_debuts,Date_fin);
                 TOC.reserverbtnbtnActionPerformed();
                TOC.dispose();
                 }

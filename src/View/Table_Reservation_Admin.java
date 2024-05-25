@@ -90,10 +90,9 @@ public static void setId_chambre(int id_chambre) {
         closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         closebtn.setText("Close");
         closebtn.setForeground(Color.WHITE);
-        
-        // le positionement exact du boutton:
         closebtn.setBounds(850, 80, 130, 30);
         acceptdeclinePanel.add(closebtn);
+        
 
         //création d'un boutton pour revenier en arriere:
         backtoroomsbtn.setText("Back To Rooms");
