@@ -629,12 +629,15 @@ public class Control {
 
                 date_fin = new Date((Integer) TOC.jourfinBox.getSelectedItem(), (Integer) TOC.moisfinBox.getSelectedItem(),
                     (Integer) TOC.anneefinBox.getSelectedItem());
+                    String Date_debuts = TOC.jourdebutBox.getSelectedItem() + "/" +
+                    TOC.moisdebutBox.getSelectedItem() + "/" +
+                    TOC.anneedebutBox.getSelectedItem();
 
-                    String Date_debuts=new String((String) TOC.jourdebutBox.getSelectedItem()+"/"+
-                    (String) TOC.moisdebutBox.getSelectedItem()+"/"+(String) TOC.anneedebutBox.getSelectedItem());
-                    String Date_fin=new String((String) TOC.jourfinBox.getSelectedItem()+"/"+
-                    (String) TOC.moisfinBox.getSelectedItem()+"/"+(String) TOC.anneefinBox.getSelectedItem());
+                String date_fin = TOC.jourfinBox.getSelectedItem() + "/" +
+                 TOC.moisfinBox.getSelectedItem() + "/" +
+                 TOC.anneefinBox.getSelectedItem();
 
+           
 
                 TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) TOC.roomtypebox.getSelectedItem());
                 boolean tv = TOC.sonaCheckBox.isSelected();
@@ -644,7 +647,7 @@ public class Control {
                     if(TOC.reserverbtnbtnActionPerformed()!=-1){
                 Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
                 total_prix=chambrerecherchee.getPrix();
-                Control.Action_TableReservationUser(Date_debuts,Date_fin);
+                Control.Action_TableReservationUser(Date_debuts,date_fin);
                 TOC.reserverbtnbtnActionPerformed();
                TOC.dispose();
                 }
