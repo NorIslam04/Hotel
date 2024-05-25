@@ -7,7 +7,8 @@ import Model.Reservation.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Map;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class Table_Reseravtion_User extends javax.swing.JFrame {
 
 
-
+    public JButton revenirbtn ;
    
     private  JFrame frame;
     public  int id_res=0;
@@ -44,11 +45,11 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         }
     }
 
-    public Table_Reseravtion_User() {
-        initComponents();
+    public Table_Reseravtion_User(String dated,String datef) {
+        initComponents(dated,datef);
     }
                  
-    private void initComponents() {
+    private void initComponents(String dated,String datef) {
         setUndecorated(true); // Supprime tous les boutons par défaut
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
@@ -66,9 +67,8 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         updatebtn = new javax.swing.JButton();
         facture = new javax.swing.JButton();
         idroomlabel = new javax.swing.JLabel();
-        exitbtn = new javax.swing.JButton();
+        closebtn = new javax.swing.JButton();
         enddatetext = new javax.swing.JTextField();
-        backtoroomsbtn = new javax.swing.JButton();
         roomtypebox = new javax.swing.JComboBox<>();
         roompricebox = new javax.swing.JComboBox<>();
         backgroundlabel = new javax.swing.JLabel();
@@ -133,26 +133,27 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         // le positionement exact du boutton:
         cancelReservationBtn.setBounds(750, 90, 150, 30);
         informationreservationpanel.add(cancelReservationBtn); 
-
-        //creation d'un boutton pour revenir:
-        backtoroomsbtn.setText("Back To Rooms");
-        backtoroomsbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        backtoroomsbtn.setBackground(color);
-        backtoroomsbtn.setForeground(colorgris);
-        backtoroomsbtn.setBorder(new RoundBorder(color, 3));
+        revenirbtn = new JButton("");
         // le positionement exact du boutton:
-        backtoroomsbtn.setBounds(750, 130, 150, 30);
-        informationreservationpanel.add(backtoroomsbtn);
+       
+        revenirbtn.setBounds(970, 5, 25, 30);
+        revenirbtn.setBackground(Color.white);
+        informationreservationpanel.add(revenirbtn);
+        
+        //creation d'un boutton pour revenir:
+
  
         //creation d'un boutton pour fermer la fenetre:
-        exitbtn.setText("Exit");
-        exitbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
-        exitbtn.setBackground(color);
-        exitbtn.setForeground(colorgris);
-        exitbtn.setBorder(new RoundBorder(color, 3));
-        //le positionement exact du boutton:
-        exitbtn.setBounds(750, 170, 150, 30);
-        informationreservationpanel.add(exitbtn);
+            // Utiliser la couleur
+            closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+            closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+            closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
+            closebtn.setText(" ");
+            // le positionement exact du boutton.
+            closebtn.setBounds(1000, 5, 25, 30);
+   
+    
+        informationreservationpanel.add(closebtn);
 
         //création du deuxième panel pour les information de la réservation:
         JPanel datereservationpanel = new JPanel();
@@ -185,12 +186,49 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
         //les textfields du panel: 
 
-        startdatetext.setText("JJ/MM/AAAA");
+        startdatetext.setText(dated);
+        startdatetext.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (startdatetext.getText().equals(datef)) {
+                    startdatetext.setText("");
+                    startdatetext.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (startdatetext.getText().isEmpty()) {
+                    startdatetext.setText("JJ/MM/AAAA");
+                    startdatetext.setForeground(Color.GRAY);
+                }
+            }
+        });
+
         //le positionement exact du textfield:
         startdatetext.setBounds(160, 20, 150, 30);
         datereservationpanel.add(startdatetext);
 
         enddatetext.setText("JJ/MM/AAAA");
+        enddatetext.setForeground(Color.gray);
+        startdatetext.setForeground(Color.gray);
+        enddatetext.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (enddatetext.getText().equals("JJ/MM/AAAA")) {
+                    enddatetext.setText("");
+                    enddatetext.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (enddatetext.getText().isEmpty()) {
+                    enddatetext.setText("JJ/MM/AAAA");
+                    enddatetext.setForeground(Color.GRAY);
+                }
+            }
+        });
         // le positionement exact du textfield.
         enddatetext.setBounds(160, 70, 150, 30);
         datereservationpanel.add(enddatetext);
@@ -493,7 +531,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }
     
     //cbn
-    public  int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
+    public  int closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
@@ -509,7 +547,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             public void run() {
                 try {
 
-                    new Table_Reseravtion_User().setVisible(true);
+                    new Table_Reseravtion_User("jj/mm/aaaa","jj/mm/aaaa").setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -520,11 +558,10 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     public  javax.swing.JButton addreservationbtn;
     public   javax.swing.JLabel backgroundlabel;
-    public   javax.swing.JButton backtoroomsbtn;
     public   javax.swing.JLabel caraclabel;
     public   javax.swing.JLabel enddatelabel;
     public   javax.swing.JTextField enddatetext;
-    public   javax.swing.JButton exitbtn;
+    public   javax.swing.JButton closebtn;
     public   javax.swing.JLabel idroomlabel;
     public   javax.swing.JScrollPane jScrollPane1;
     public   javax.swing.JComboBox<String> roompricebox;
