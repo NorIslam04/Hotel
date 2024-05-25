@@ -284,6 +284,18 @@ public class Hotel {
 		} 
 	}
 
+	public static float calculermoyenne(){
+        Iterator<Map.Entry<Integer, User>> iterator = userMap.entrySet().iterator();
+        float moy=5;
+        int i=1;
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, User> entry = iterator.next();
+            User user = entry.getValue();
+            moy=moy+user.getNote();
+            i++;
+            }
+        return moy/i;//
+    } 
 
 
 	//fct:
