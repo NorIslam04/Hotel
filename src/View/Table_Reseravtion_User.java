@@ -188,6 +188,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         datereservationpanel.add(statelabel);
 
         // les textfields du panel:
+        enddatetext.setText("JJ/MM/AAAA");
 
         startdatetext.setText(dated);
         startdatetext.addFocusListener(new FocusListener() {
@@ -212,7 +213,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         startdatetext.setBounds(160, 20, 150, 30);
         datereservationpanel.add(startdatetext);
 
-        enddatetext.setText("JJ/MM/AAAA");
+        
         enddatetext.setForeground(Color.gray);
         startdatetext.setForeground(Color.gray);
         enddatetext.addFocusListener(new FocusListener() {

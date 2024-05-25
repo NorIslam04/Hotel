@@ -16,7 +16,7 @@ public class Facture extends javax.swing.JFrame {
             Object rowData[]=new Object[5];
             model.setRowCount(0);
             for (java.util.Map.Entry<Integer, Reservation> iterable_element : Hotel.getReservationMap().entrySet()) {
-                Reservation reservation = iterable_element.getValue(); // Récupérer l'objet Chambre
+                Reservation reservation = iterable_element.getValue();
             if(Hotel.id_user_current==reservation.getId_user()&& reservation.sup!=1&& reservation.getEtat()==
             EtatReservation.ACCEPTER){
             rowData[0]=reservation.getType();
