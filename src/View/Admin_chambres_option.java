@@ -1,10 +1,9 @@
 package View;
 import Model.*;
 import Model.Chambre.*;
-import Model.Option.Rooms_Options;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.*;
@@ -19,27 +18,27 @@ class BlackScrollPane extends JScrollPane {
 }
 public class Admin_chambres_option extends javax.swing.JFrame{
 
-    public static JCheckBox sonaCheckBox = new JCheckBox();
-    public static JCheckBox terasseCheckBox = new JCheckBox();
-    public static JCheckBox vuesurmerBox = new JCheckBox();
-    public static JCheckBox vuesurforetBox = new JCheckBox();
-    public static JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
-    public static BlackScrollPane scrollPane;
-    public static JButton filtrer = new JButton();
-    public static JButton ajouterchambre = new JButton();
-    public static JButton modifierchamb =new JButton();
-    public static JButton suppchambre =new JButton();
-    public static JButton updatepricebtn = new JButton();
-    public static javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
-    public static javax.swing.JLabel changepricelabel = new javax.swing.JLabel();
-    public static javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
-    public static javax.swing.JComboBox<String>  typeandoptionsbox = new JComboBox<>();
-    public static javax.swing.JTextField nouveauprixtxt= new javax.swing.JTextField();
-    public static Color color = Color.decode("#E0C878");
-    public static Color colorgris = Color.decode("#252926");
-    public static int id_supp_chamb=-1;
-    public static Container container;
-    public static JButton revenirbtn = new JButton("");
+    public   JCheckBox sonaCheckBox = new JCheckBox();
+    public   JCheckBox terasseCheckBox = new JCheckBox();
+    public   JCheckBox vuesurmerBox = new JCheckBox();
+    public   JCheckBox vuesurforetBox = new JCheckBox();
+    public   JPanel chambreContainer = new JPanel(new GridLayout(0, 5, 0, 0));
+    public   BlackScrollPane scrollPane;
+    public   JButton filtrer = new JButton();
+    public   JButton ajouterchambre = new JButton();
+    public   JButton modifierchamb =new JButton();
+    public   JButton suppchambre =new JButton();
+    public   JButton updatepricebtn = new JButton();
+    public   javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
+    public   javax.swing.JLabel changepricelabel = new javax.swing.JLabel();
+    public   javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    public   javax.swing.JComboBox<String>  typeandoptionsbox = new JComboBox<>();
+    public   javax.swing.JTextField nouveauprixtxt= new javax.swing.JTextField();
+    public   Color color = Color.decode("#E0C878");
+    public   Color colorgris = Color.decode("#252926");
+    public static   int id_supp_chamb=-1;
+    public   Container container;
+    public   JButton revenirbtn = new JButton("");
 
     public Admin_chambres_option() throws Exception {
         initComponents();
@@ -372,7 +371,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
         nouveauprixtxt.setText(price.toString()+"$");
     }
 
-    public static JPanel createPanel(Chambre chambre) {
+    public   JPanel createPanel(Chambre chambre) {
         JPanel panel = new JPanel();
         JLabel nameLabel;
         JLabel bedsLabel;
@@ -515,7 +514,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
      
 
 
-    static JFrame frame=new JFrame();
+      JFrame frame=new JFrame();
     //fait
     public void modifChambreactionPerformed(java.awt.event.ActionEvent evt){
    
@@ -709,7 +708,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
     }
     
     //fait
-    public static void updateprice(){
+    public   void updateprice(){
     String option=typeandoptionsbox.getSelectedItem().toString();
     Double price = Option.GetPrix(option);
     nouveauprixtxt.setText(price.toString()+"$");
@@ -750,7 +749,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
                 getContentPane().repaint();
     }
 
-    public static void main(String args[]) {
+    public   void main(String args[]) {
         
 
         java.awt.EventQueue.invokeLater(new Runnable() {

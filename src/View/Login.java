@@ -10,8 +10,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Login extends javax.swing.JFrame {
-    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
-    private static JFrame frame;
+    public  javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    private  JFrame frame;
 
 
     public Login() {
@@ -253,7 +253,7 @@ public class Login extends javax.swing.JFrame {
 
    
 
-    public static void togglePasswordVisibility() {//fait
+    public  void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
@@ -262,7 +262,7 @@ public class Login extends javax.swing.JFrame {
         }
     }
     //cbn
-    public static int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
+    public  int seConnecterbtnActionPerformed(java.awt.event.ActionEvent evt){
 
         if (usertext.getText().equals("") || pwdtext.getText().equals("")) {
             JOptionPane.showMessageDialog(frame,
@@ -286,7 +286,7 @@ public class Login extends javax.swing.JFrame {
         }
     }
     
-    public static void changerlangue(){//fait
+    public  void changerlangue(){//fait
         
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
@@ -303,20 +303,20 @@ public class Login extends javax.swing.JFrame {
 
    
     // Variables declaration - do not modify
-    public static javax.swing.JLabel backgroundlabel;
-    public static javax.swing.JButton closebtn;
-    public static javax.swing.JLabel pwdlabel;
-    public static javax.swing.JPasswordField pwdtext;
-    public static javax.swing.JLabel loginlabel;
-    public static javax.swing.JButton seConnerButton;
-    public static javax.swing.JLabel userlabel;
-    public static javax.swing.JTextField usertext;
-    public static javax.swing.JLabel welcomelabel;
-    public static javax.swing.JLabel descriptionlabel;
-    public static JCheckBox showPasswordButton;
-    public static JButton sinscrireButton;
-    public static javax.swing.JLabel showPasswordLabel;
-    public static JButton aPropos;
+    public  javax.swing.JLabel backgroundlabel;
+    public  javax.swing.JButton closebtn;
+    public  javax.swing.JLabel pwdlabel;
+    public  javax.swing.JPasswordField pwdtext;
+    public  javax.swing.JLabel loginlabel;
+    public  javax.swing.JButton seConnerButton;
+    public  javax.swing.JLabel userlabel;
+    public  javax.swing.JTextField usertext;
+    public  javax.swing.JLabel welcomelabel;
+    public  javax.swing.JLabel descriptionlabel;
+    public  JCheckBox showPasswordButton;
+    public  JButton sinscrireButton;
+    public  javax.swing.JLabel showPasswordLabel;
+    public  JButton aPropos;
     // End of variables declaration
 
 }

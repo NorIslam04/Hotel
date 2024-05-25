@@ -11,15 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Chambre_interface extends javax.swing.JFrame {
-    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
-    public static JButton aPropos = new JButton();
+    public  javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public  JButton aPropos = new JButton();
 
-    public static JButton avissurnousButton = new JButton();
-    public static JButton passeraureservationbtn;
-    public static JLabel descJLabel;
-    public static JButton reserverpardetailbtn= new  JButton();
-    public static JButton revenirbtn = new JButton("");
-    public static JButton closebtn = new JButton(" ");
+    public  JButton avissurnousButton = new JButton();
+    public  JButton passeraureservationbtn;
+    public  JLabel descJLabel;
+    public  JButton reserverpardetailbtn= new  JButton();
+    public  JButton revenirbtn = new JButton("");
+    public  JButton closebtn = new JButton(" ");
 
 
 
@@ -322,7 +322,7 @@ public class Chambre_interface extends javax.swing.JFrame {
 
 
 
-    public static void changerlangue(){
+    public void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            

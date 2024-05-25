@@ -138,7 +138,6 @@ public class Loby_User extends javax.swing.JFrame {
  
 
     private void aProposbtnActionPerformed() {
-        dispose();
       Control.Action_apropos();
     }
 
@@ -147,7 +146,6 @@ public class Loby_User extends javax.swing.JFrame {
     }
 
     private void passeraureservationActionPerformed() {
-        dispose();
         Control.Action_Chambre_Intreface();  
      }
 

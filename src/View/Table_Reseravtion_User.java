@@ -1,13 +1,13 @@
 package View;
 import Model.*;
 import Control.*;
-import Model.Chambre.*;
+
 import Model.Date.*;
 import Model.Reservation.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.text.DecimalFormat;
+
 import java.util.Map;
 
 import javax.swing.*;
@@ -20,11 +20,11 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
  
    
-    private static JFrame frame;
-    public static int id_res=0;
+    private  JFrame frame;
+    public  int id_res=0;
    
 
-    public static void mettreajourlesreservation(){
+    public  void mettreajourlesreservation(){
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
         Object rowData[]=new Object[7];
         model.setRowCount(0);
@@ -281,7 +281,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
 
     //cbn
-    public static int cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+    public  int cancelReservationBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         int i=tablereservation.getSelectedRow();
         DefaultTableModel model =(DefaultTableModel)tablereservation.getModel();
        
@@ -307,7 +307,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 
 
     //cbn
-    public static int addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
+    public  int addreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception { 
         try{
         Date today=new Date(Date.getToday_jour(),Date.getToday_mois(),Date.getToday_annee());
         Date date_debut=Date.Recupere_date(startdatetext.getText());
@@ -363,7 +363,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
 } 
                                                  
     //cbn
-    public static void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {   
+    public  void tablereservationMouseClicked(java.awt.event.MouseEvent evt) {   
                                              
         int selectedRow= tablereservation.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)tablereservation.getModel();
@@ -388,7 +388,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }                                             
 
     //cbn
-    public static int updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
+    public  int updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                          
         int i = tablereservation.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablereservation.getModel();
         
@@ -469,7 +469,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }
     
     //cbn
-    public static int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
+    public  int exitbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
        frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO EXIT","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
@@ -479,7 +479,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         return -1;
     }                                       
 
-    public static void main(String args[]) {
+    public  void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -494,25 +494,25 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    public static javax.swing.JButton addreservationbtn;
-    public static  javax.swing.JLabel backgroundlabel;
-    public static  javax.swing.JButton backtoroomsbtn;
-    public static  javax.swing.JLabel caraclabel;
-    public static  javax.swing.JLabel enddatelabel;
-    public static  javax.swing.JTextField enddatetext;
-    public static  javax.swing.JButton exitbtn;
-    public static  javax.swing.JLabel idroomlabel;
-    public static  javax.swing.JScrollPane jScrollPane1;
-    public static  javax.swing.JComboBox<String> roompricebox;
-    public static  javax.swing.JComboBox<String> roomtypebox;
-    public static  javax.swing.JLabel roomtypelabel;
-    public static  javax.swing.JLabel showtablelabel;
-    public static  javax.swing.JLabel startdatelabel;
-    public static  javax.swing.JTextField startdatetext;
-    public static  javax.swing.JLabel statelabel;
-    public static  javax.swing.JLabel state;
-    public static   javax.swing.JTable tablereservation;
-    public static  javax.swing.JButton updatebtn;
-    public static  javax.swing.JButton cancelReservationBtn;
+    public  javax.swing.JButton addreservationbtn;
+    public   javax.swing.JLabel backgroundlabel;
+    public   javax.swing.JButton backtoroomsbtn;
+    public   javax.swing.JLabel caraclabel;
+    public   javax.swing.JLabel enddatelabel;
+    public   javax.swing.JTextField enddatetext;
+    public   javax.swing.JButton exitbtn;
+    public   javax.swing.JLabel idroomlabel;
+    public   javax.swing.JScrollPane jScrollPane1;
+    public   javax.swing.JComboBox<String> roompricebox;
+    public   javax.swing.JComboBox<String> roomtypebox;
+    public   javax.swing.JLabel roomtypelabel;
+    public   javax.swing.JLabel showtablelabel;
+    public   javax.swing.JLabel startdatelabel;
+    public   javax.swing.JTextField startdatetext;
+    public   javax.swing.JLabel statelabel;
+    public   javax.swing.JLabel state;
+    public    javax.swing.JTable tablereservation;
+    public   javax.swing.JButton updatebtn;
+    public   javax.swing.JButton cancelReservationBtn;
     // End of variables declaration                   
 }

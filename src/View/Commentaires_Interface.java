@@ -25,7 +25,7 @@ import Model.Commentaires;
 import Model.Date;
 import Model.Date.Date_nonvalid;
 import Model.Hotel;
-import Model.User;
+
 class BlackScrollPane extends JScrollPane {
     public BlackScrollPane(Component view) {
         super(view);
@@ -169,7 +169,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    dispose(); // TODO
+                    System.exit(0);
                 } catch (Exception e) {
 
                     e.printStackTrace();

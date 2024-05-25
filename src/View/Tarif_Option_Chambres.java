@@ -4,36 +4,35 @@ import Control.*;
 import Model.Date.*;
 import java.awt.Color;
 import java.awt.Font;
-import Model.Chambre.*;
 import javax.swing.*;
 
 
 public class Tarif_Option_Chambres  extends javax.swing.JFrame {
 
-    public static JCheckBox sonaCheckBox = new JCheckBox();
-    public static JCheckBox terasseCheckBox = new JCheckBox();
-    public static JCheckBox vuesurmerBox = new JCheckBox();
-    public static JCheckBox vuesurforetBox = new JCheckBox();
-    public static javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
+    public  JCheckBox sonaCheckBox = new JCheckBox();
+    public  JCheckBox terasseCheckBox = new JCheckBox();
+    public  JCheckBox vuesurmerBox = new JCheckBox();
+    public  JCheckBox vuesurforetBox = new JCheckBox();
+    public  javax.swing.JComboBox<String> roomtypebox = new JComboBox<>();
 
-    public static javax.swing.JComboBox<Integer> jourdebutBox = new JComboBox<>();
-    public static javax.swing.JComboBox<Integer> moisdebutBox = new JComboBox<>();
-    public static javax.swing.JComboBox<Integer> anneedebutBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> jourdebutBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> moisdebutBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> anneedebutBox = new JComboBox<>();
 
-    public static javax.swing.JComboBox<Integer> jourfinBox = new JComboBox<>();
-    public static javax.swing.JComboBox<Integer> moisfinBox = new JComboBox<>();
-    public static javax.swing.JComboBox<Integer> anneefinBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> jourfinBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> moisfinBox = new JComboBox<>();
+    public  javax.swing.JComboBox<Integer> anneefinBox = new JComboBox<>();
 
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
-    static JLabel prixJLabel;
+     JLabel prixJLabel;
 
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
     
-    public static JButton reserverbtn = new JButton();
-    public static JButton afficherprixButton = new JButton();
-    public static JButton revenirbtn = new JButton("");
-    public static javax.swing.JButton closebtn = new JButton(" ");
+    public  JButton reserverbtn = new JButton();
+    public  JButton afficherprixButton = new JButton();
+    public  JButton revenirbtn = new JButton("");
+    public  javax.swing.JButton closebtn = new JButton(" ");
 
     public Tarif_Option_Chambres () throws Exception {
         initComponents();
@@ -314,10 +313,10 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
     }
 
 
-    private static JFrame frame;
+    private  JFrame frame;
 
     //99%
-    public static int reserverbtnbtnActionPerformed() {
+    public int reserverbtnbtnActionPerformed() {
 
         try {
 
@@ -378,7 +377,8 @@ public class Tarif_Option_Chambres  extends javax.swing.JFrame {
         return -1;
     }
     //99%
-public static int  afficherprixbtnbtnActionPerformed() {
+    
+public  int  afficherprixbtnbtnActionPerformed() {
         
     try {
 
