@@ -14,6 +14,7 @@ import Model.Date.Date_nonvalid;
 import java.sql.*;
 import java.util.Map;
 
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class Control {
@@ -35,6 +36,7 @@ public class Control {
     static Table_Reservation_Admin tra;
     static Tarif_Option_Chambres TOC;
     static Chambre_interface ci;
+    static Facture fa;
 
 
     
@@ -447,13 +449,11 @@ public class Control {
     //cbn
     public static void Action_AdminOptionChambre(int i) throws Exception{
 
-        ACO=new Admin_chambres_option();
-
-        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) ACO.roomtypebox.getSelectedItem());
-        boolean Sona =   ACO.sonaCheckBox.isSelected();
-        boolean climatisation =ACO. terasseCheckBox.isSelected();
-        boolean vuesurmer = ACO.vuesurmerBox.isSelected();
-        boolean vueforet = ACO.vuesurforetBox.isSelected();
+        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
+        boolean Sona =   Admin_chambres_option.sonaCheckBox.isSelected();
+        boolean climatisation =Admin_chambres_option. terasseCheckBox.isSelected();
+        boolean vuesurmer = Admin_chambres_option.vuesurmerBox.isSelected();
+        boolean vueforet = Admin_chambres_option.vuesurforetBox.isSelected();
       
         switch (i) {
             case 1:
@@ -462,11 +462,11 @@ public class Control {
                 break;
 
             case 2:
-            if(ACO.id_supp_chamb !=-1){
+            if(Admin_chambres_option.id_supp_chamb !=-1){
 
-                Hotel.getChambreMap().get(ACO.id_supp_chamb).setSup(1);
-                ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(ACO.id_supp_chamb,
-                Hotel.getChambreMap().get(ACO.id_supp_chamb), TypeOperation.SUPPRESSION);
+                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb).setSup(1);
+                ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(Admin_chambres_option.id_supp_chamb,
+                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb), TypeOperation.SUPPRESSION);
                 Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
                
             }   
@@ -475,23 +475,25 @@ public class Control {
             case 3:
           
             if(Admin_chambres_option.id_supp_chamb !=-1){
-                Chambre chambrerecherchee1 = new Chambre(ACO.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
+    
+                Chambre chambrerecherchee1 = new Chambre(Admin_chambres_option.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
                 Hotel.ModifierChambreMap(chambrerecherchee1);
+
             }
             
                 break;
             case 4:
 
             int id=0;
-            Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(ACO.typeandoptionsbox.getSelectedItem().toString()) ;
+            Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()) ;
             for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
                 if (entry.getValue().getRooms_Options().equals(rooms_Options)) {
                     id= entry.getKey();
                     break;
                 }
                     }
-            double newprice=Double.parseDouble(ACO.nouveauprixtxt.getText());
-            Option option = new Option(Rooms_Options.ToTypeChambre(ACO.typeandoptionsbox.getSelectedItem().toString()),newprice , id);
+            double newprice=Double.parseDouble(Admin_chambres_option.nouveauprixtxt.getText());
+            Option option = new Option(Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()),newprice , id);
             Hotel.ModifieroptionMap(option);
 
             Hotel.getChambreMap().clear();
@@ -508,7 +510,7 @@ public class Control {
 
             case 6:
             Control.hash_map_bdd();
-            ACO.dispose(); 
+            SwingUtilities.getWindowAncestor(Admin_chambres_option.revenirbtn).dispose(); 
                     break;
         }            
 
@@ -518,6 +520,10 @@ public class Control {
 
 
     }
+
+
+
+
 
     //sans database
     public static void Action_apropos(){
@@ -568,6 +574,12 @@ public class Control {
         ci.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             ci.dispose();
+            try {
+                Control.hash_map_bdd();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             }
         });
 
@@ -751,7 +763,6 @@ public class Control {
     }
 
 
-    
 
        public static void Action_TableReservationAdmin(){
 
@@ -860,8 +871,6 @@ public class Control {
             });
     
 
-
-
         tra.backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -880,6 +889,30 @@ public class Control {
     }
 
 
+        public static void Action_Facture() throws Date_nonvalid{
+
+            fa=new Facture();
+
+            fa.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Action_TableReservationUser("JJ/MM/AA", "JJ/MM/AA");
+                }
+            });
+
+            fa.closebtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    try {
+                        Control.hash_map_bdd();
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                System.exit(0);
+                }
+            });
+
+
+        }
 
 
 

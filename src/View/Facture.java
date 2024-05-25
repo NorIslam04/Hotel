@@ -134,8 +134,8 @@ public class Facture extends javax.swing.JFrame {
         factureinfospanel.add(datelabel);
 
         nom = new JLabel("Nom d'utilisateur:");
-        nom.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        nom.setForeground(color.white);
+        nom.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
+        nom.setForeground(color.black);
         //le positionnement exact du label:
         nom.setBounds(45, 100, 400, 50);
         factureinfospanel.add(nom);
@@ -144,24 +144,24 @@ public class Facture extends javax.swing.JFrame {
         String gmail=Hotel.getUserMap().get(Hotel.id_user_current).getGmail();
 
         nomutilisateur = new JLabel(name);
-        nomutilisateur.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        nomutilisateur.setForeground(color.white);
+        nomutilisateur.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
+        nomutilisateur.setForeground(color.BLACK);
         //le positionnement exact du label:
-        nomutilisateur.setBounds(200, 100, 800, 50);
+        nomutilisateur.setBounds(190, 100, 800, 50);
         factureinfospanel.add(nomutilisateur);
 
         email= new JLabel("L'Email d'utilisateur:");
-        email.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        email.setForeground(color.white);
+        email.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
+        email.setForeground(color.black);
         //le positionnement exact du label:
         email.setBounds(45, 130, 400, 50);
         factureinfospanel.add(email);
 
         emailutilisateur = new JLabel(gmail);
-        emailutilisateur.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
-        emailutilisateur.setForeground(color.white);
+        emailutilisateur.setFont(new Font("Baskerville Old Face", Font.BOLD, 18));
+        emailutilisateur.setForeground(color.black);
         //le positionnement exact du label:
-        emailutilisateur.setBounds(225, 130, 800, 50);
+        emailutilisateur.setBounds(213, 130, 800, 50);
         factureinfospanel.add(emailutilisateur);
 
         //le tableau du panel:
@@ -192,7 +192,7 @@ public class Facture extends javax.swing.JFrame {
         factureinfospanel.add(totaleprixpanel);
 
         //les labels du panel:
-        totallabel = new JLabel(Double.toString(totalPrix()));
+        totallabel = new JLabel(Double.toString(totalPrix())+"$");
         totallabel.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         totallabel.setForeground(color.white);
         //le positionnement exact du label:

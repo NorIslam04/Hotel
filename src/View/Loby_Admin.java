@@ -26,7 +26,7 @@ public class Loby_Admin extends javax.swing.JFrame {
         setTitle("adminLoby page");
         setLocationRelativeTo(null);
         setVisible(true);
-        // les labels:
+        // les labels:JPanel
         javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
@@ -79,12 +79,9 @@ public class Loby_Admin extends javax.swing.JFrame {
             }
         });
 
-        JPanel descriptionpPanel = new JPanel();
-        descriptionpPanel.setLayout(null);
-        descriptionpPanel.setBounds(650, 40, 400, 250);
+        
 
-        descriptionpPanel.setBackground(colorgris);
-        add(descriptionpPanel);
+   
 
         gererlesreservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         gererlesreservationbtn.setBackground(color);
@@ -124,7 +121,7 @@ public class Loby_Admin extends javax.swing.JFrame {
         });
         // le pos
         System.setProperty("sun.java2d.uiScale.enabled", "false");
-        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("12_-_Copy.png")); // NOI18N
         // le positionement exact du background.
         backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);

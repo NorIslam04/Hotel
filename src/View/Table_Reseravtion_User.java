@@ -107,7 +107,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         addreservationbtn.setForeground(colorgris);
         addreservationbtn.setBorder(new RoundBorder(color, 3));
         // le positionement exact du boutton:
-        addreservationbtn.setBounds(750, 10, 150, 30);
+        addreservationbtn.setBounds(750, 45, 150, 30);
         informationreservationpanel.add(addreservationbtn);
 
         // creation d'un boutton pour mettre à jour une réservation:
@@ -117,7 +117,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         updatebtn.setForeground(colorgris);
         updatebtn.setBorder(new RoundBorder(color, 3));
         // le positionement exact du boutton:
-        updatebtn.setBounds(750, 50, 150, 30);
+        updatebtn.setBounds(750, 85, 150, 30);
         informationreservationpanel.add(updatebtn);
 
         facture.setText("Facture");
@@ -126,7 +126,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         facture.setForeground(colorgris);
         facture.setBorder(new RoundBorder(color, 3));
         // le positionement exact du boutton:
-        facture.setBounds(915, 40, 100, 30);
+        facture.setBounds(915, 170, 100, 30);
         informationreservationpanel.add(facture);
 
         // creation d'un boutton pour annuler une réservation:
@@ -136,7 +136,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         cancelReservationBtn.setForeground(colorgris);
         cancelReservationBtn.setBorder(new RoundBorder(color, 3));
         // le positionement exact du boutton:
-        cancelReservationBtn.setBounds(750, 90, 150, 30);
+        cancelReservationBtn.setBounds(750, 125, 150, 30);
         informationreservationpanel.add(cancelReservationBtn);
         revenirbtn = new JButton("");
         // le positionement exact du boutton:
@@ -184,17 +184,18 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         statelabel.setForeground(new java.awt.Color(255, 255, 255));
         statelabel.setText("State:");
         // le positionement exact du label:
-        statelabel.setBounds(30, 120, 150, 30);
+        statelabel.setBounds(30, 118, 150, 30);
         datereservationpanel.add(statelabel);
 
         // les textfields du panel:
-        enddatetext.setText("JJ/MM/AAAA");
-
         startdatetext.setText(dated);
+        enddatetext.setText(datef);
+        
+
         startdatetext.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (startdatetext.getText().equals(dated)) {
+                if (startdatetext.getText().equals(dated)||startdatetext.getText().equals("JJ/MM/AAAA")) {
                     startdatetext.setText("");
                     startdatetext.setForeground(Color.BLACK);
                 }
@@ -203,7 +204,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (startdatetext.getText().isEmpty()) {
-                    startdatetext.setText(datef);
+                    startdatetext.setText("JJ/MM/AAAA");
                     startdatetext.setForeground(Color.GRAY);
                 }
             }
@@ -219,7 +220,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         enddatetext.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (enddatetext.getText().equals("JJ/MM/AAAA")) {
+                if (enddatetext.getText().equals(datef)||startdatetext.getText().equals("JJ/MM/AAAA")) {
                     enddatetext.setText("");
                     enddatetext.setForeground(Color.BLACK);
                 }
@@ -233,6 +234,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
                 }
             }
         });
+        // le positionement exact du textfield.
         // le positionement exact du textfield.
         enddatetext.setBounds(160, 70, 150, 30);
         datereservationpanel.add(enddatetext);
@@ -335,7 +337,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dispose();
                 try {
-                    new Facture();
+                    Control.Action_Facture();
                 } catch (Date_nonvalid e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -444,7 +446,7 @@ public class Table_Reseravtion_User extends javax.swing.JFrame {
         } else if (model.getValueAt(selectedRow, 6).toString().equals("DECLINER")) {
             state.setForeground(Color.RED);
         } else {
-            state.setForeground(Color.ORANGE);
+            state.setForeground(Color.BLACK);
         }
         state.setText(model.getValueAt(selectedRow, 6).toString());
     }
