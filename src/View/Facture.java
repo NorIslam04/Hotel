@@ -2,13 +2,24 @@ package View;
 import Model.*;
 import Model.Date.*;
 import Model.Reservation.EtatReservation;
+import Model.Chambre.*;
+import Control.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
+import javax.swing.RowFilter.Entry;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Facture extends javax.swing.JFrame {
+
+    public  JButton revenirbtn = new JButton("");
+    public  JButton closebtn = new JButton(" ");
 
 
         public void remplissageTable(){
@@ -16,7 +27,7 @@ public class Facture extends javax.swing.JFrame {
             Object rowData[]=new Object[5];
             model.setRowCount(0);
             for (java.util.Map.Entry<Integer, Reservation> iterable_element : Hotel.getReservationMap().entrySet()) {
-                Reservation reservation = iterable_element.getValue();
+                Reservation reservation = iterable_element.getValue(); // Récupérer l'objet Chambre
             if(Hotel.id_user_current==reservation.getId_user()&& reservation.sup!=1&& reservation.getEtat()==
             EtatReservation.ACCEPTER){
             rowData[0]=reservation.getType();
@@ -37,7 +48,7 @@ public class Facture extends javax.swing.JFrame {
                 Reservation reservation = iterable_element.getValue(); // Récupérer l'objet Chambre
             if(Hotel.id_user_current==reservation.getId_user()&& reservation.sup!=1&& reservation.getEtat()==
             EtatReservation.ACCEPTER){
-            
+
             prix_total+=reservation.getPrix();
             }
 
@@ -45,13 +56,13 @@ public class Facture extends javax.swing.JFrame {
         return prix_total;
 
         }
- 
+
 
     public Facture() throws Date_nonvalid {
         initComponents();
         remplissageTable();
     }
-       
+
     private void initComponents() throws Date_nonvalid {
         ImageIcon icon = new ImageIcon("icon.png");
         setIconImage(icon.getImage());
@@ -62,7 +73,7 @@ public class Facture extends javax.swing.JFrame {
         acceptdeclinebox = new javax.swing.JComboBox<>();
         acceptdeclinebtn = new javax.swing.JButton();
         clicklabel = new javax.swing.JLabel();
-         closebtn = new javax.swing.JButton();
+        closebtn = new javax.swing.JButton();
         backtoroomsbtn = new javax.swing.JButton();
         backgroundlabel = new javax.swing.JLabel();
         mercilabel = new javax.swing.JLabel();
@@ -76,10 +87,10 @@ public class Facture extends javax.swing.JFrame {
         datelabell = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         nom = new javax.swing.JLabel();
-        closebtn = new javax.swing.JButton();
+        JPanel acceptdeclinePanel = new JPanel();
         Color color = Color.decode("#E0C878");
         Color colorgris = Color.decode("#252926");
-
+        setUndecorated(true);
         //rendre le layout manager null pour le positionement absolu:
         getContentPane().setLayout(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,7 +132,7 @@ public class Facture extends javax.swing.JFrame {
         //le positionnement exact du label:
         datelabel.setBounds(210, 60, 200, 50);
         factureinfospanel.add(datelabel);
-        setUndecorated(true); // Supprime tous les boutons par défaut
+
         nom = new JLabel("Nom d'utilisateur:");
         nom.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         nom.setForeground(color.white);
@@ -131,20 +142,14 @@ public class Facture extends javax.swing.JFrame {
 
         String name=Hotel.getUserMap().get(Hotel.id_user_current).getName();
         String gmail=Hotel.getUserMap().get(Hotel.id_user_current).getGmail();
-    
+
         nomutilisateur = new JLabel(name);
         nomutilisateur.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         nomutilisateur.setForeground(color.white);
         //le positionnement exact du label:
         nomutilisateur.setBounds(200, 100, 800, 50);
         factureinfospanel.add(nomutilisateur);
-        closebtn.setBackground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
-        closebtn.setForeground(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
-        closebtn.setText(" ");
-        // le positionement exact du boutton.
-        closebtn.setBounds(1000, 5, 25, 30);
-        getContentPane().add(closebtn);
+
         email= new JLabel("L'Email d'utilisateur:");
         email.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
         email.setForeground(color.white);
@@ -223,12 +228,23 @@ public class Facture extends javax.swing.JFrame {
         //la taille de la fenetre:
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
+
+        revenirbtn.setBounds(462, 5, 25, 30);
+        revenirbtn.setBackground(Color.white);
+        factureinfospanel.add(revenirbtn);
+        closebtn.setBackground(colorgris);
+        closebtn.setFont(new java.awt.Font("Bodoni MT", 0, 14));
+        closebtn.setForeground(colorgris);
+    
+        // le positionement exact du boutton.
+        closebtn.setBounds(491, 5, 25, 30);
+        factureinfospanel.add(closebtn);
     }                      
-        
-    
-    
+
+
+
     public static void main(String args[]) {
-        
+
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -236,7 +252,7 @@ public class Facture extends javax.swing.JFrame {
 
                     new Facture().setVisible(true);
                 } catch (Exception e) {
-                    
+
                     e.printStackTrace();
                 }
             }
@@ -265,8 +281,7 @@ public class Facture extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reservationtabel;
     private javax.swing.JButton updatebtn;
-    private javax.swing.JButton closebtn;
+    
     private javax.swing.JButton backtoroomsbtn;
     // End of variables declaration                   
 }
-
