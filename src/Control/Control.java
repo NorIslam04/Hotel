@@ -24,6 +24,7 @@ public class Control {
     public static Date date_debut;
     public static Date date_fin;
     public static Date today;
+    public static int tmp1=0;
 
 
     static Login l;
@@ -37,6 +38,7 @@ public class Control {
     static Tarif_Option_Chambres TOC;
     static Chambre_interface ci;
     static Facture fa;
+    static Commentaires_Interface ac;
 
 
     
@@ -521,10 +523,6 @@ public class Control {
 
     }
 
-
-
-
-
     //sans database
     public static void Action_apropos(){
 
@@ -586,7 +584,7 @@ public class Control {
         ci.avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    new Commentaires_Interface();
+                    Control.Action_commntInterface();
                 } catch (Exception e) {
         
                     e.printStackTrace();
@@ -762,9 +760,7 @@ public class Control {
 
     }
 
-
-
-       public static void Action_TableReservationAdmin(){
+    public static void Action_TableReservationAdmin(){
 
         tra=new Table_Reservation_Admin();
 
@@ -889,7 +885,7 @@ public class Control {
     }
 
 
-        public static void Action_Facture() throws Date_nonvalid{
+    public static void Action_Facture() throws Date_nonvalid{
 
             fa=new Facture();
 
@@ -915,7 +911,64 @@ public class Control {
         }
 
 
+    public static void Action_commntInterface() throws Exception{
 
+        ac=new Commentaires_Interface();
+
+        ac.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ac.dispose();
+                try {
+                    Control.hash_map_bdd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        ac.closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+                try {
+                    Control.hash_map_bdd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            }
+        });
+
+        
+        ac.commenterbtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                } catch (Date_nonvalid e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                Commentaires commentaires = new Commentaires(Commentaires.getNb(), ac.commenttxt.getText(),
+                        Hotel.username_current, today, Hotel.id_user_current);
+                Hotel.AjtCommentaireMap(commentaires);
+         ac.commenterbtnactionPerformed();
+
+            }
+        });
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 
