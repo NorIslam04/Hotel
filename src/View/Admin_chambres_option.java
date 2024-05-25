@@ -749,7 +749,7 @@ public class Admin_chambres_option extends javax.swing.JFrame{
                 getContentPane().repaint();
     }
 
-    public   void main(String args[]) {
+    public static  void main(String args[]) {
         
 
         java.awt.EventQueue.invokeLater(new Runnable() {

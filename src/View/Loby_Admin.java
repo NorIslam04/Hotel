@@ -77,25 +77,23 @@ public class Loby_Admin extends javax.swing.JFrame {
             }
         });
 
-        JPanel descriptionpPanel = new JPanel();
+       /* JPanel descriptionpPanel = new JPanel();
         descriptionpPanel.setLayout(null);
         descriptionpPanel.setBounds(650, 40, 400, 250);
 
         descriptionpPanel.setBackground(colorgris);
-        add(descriptionpPanel);
+        add(descriptionpPanel);*/
 
         gererlesreservationbtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         gererlesreservationbtn.setBackground(color);
         gererlesreservationbtn.setBounds(650, 480, 250, 40);
-        gererlesreservationbtn.setForeground(colorgris);
+        gererlesreservationbtn.setForeground(Color.WHITE);
         add(gererlesreservationbtn);
-
- 
 
         modifieroptions.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
         modifieroptions.setBackground(color);
         modifieroptions.setBounds(90, 480, 300, 40);
-        modifieroptions.setForeground(colorgris);
+        modifieroptions.setForeground(Color.WHITE);
         add(modifieroptions);
 
 
@@ -122,7 +120,7 @@ public class Loby_Admin extends javax.swing.JFrame {
         });
         // le pos
         System.setProperty("sun.java2d.uiScale.enabled", "false");
-        backgroundlabel.setIcon(new javax.swing.ImageIcon("10.png")); // NOI18N
+        backgroundlabel.setIcon(new javax.swing.ImageIcon("lobyadmin.png")); // NOI18N
         // le positionement exact du background.
         backgroundlabel.setBounds(0, 0, 1032, 580);
         getContentPane().add(backgroundlabel);
