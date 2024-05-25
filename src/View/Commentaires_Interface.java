@@ -1,29 +1,12 @@
 package View;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.Iterator;
 import java.util.Map;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.border.Border;
 import Control.Control;
 import Model.Commentaires;
-import Model.Date;
-import Model.Date.Date_nonvalid;
 import Model.Hotel;
 
 class BlackScrollPane extends JScrollPane {
@@ -36,27 +19,28 @@ class BlackScrollPane extends JScrollPane {
 public class Commentaires_Interface extends javax.swing.JFrame {
 
     // pour le test
-
+    public JButton revenirbtn = new JButton("");
     JCheckBox etoile1Box = new JCheckBox();
     JCheckBox etoile2Box = new JCheckBox();
     JCheckBox etoile3Box = new JCheckBox();
     JCheckBox etoile4Box = new JCheckBox();
     JCheckBox etoile5Box = new JCheckBox();
-    JTextArea commenttxt = new JTextArea(1, 1);;
+    public JTextArea commenttxt = new JTextArea(1, 1);;
     JPanel commentContainerJPanel = new JPanel(new GridLayout(0, 1, 0, 0));
     BlackScrollPane scrollPane;
     Color color = Color.decode("#E0C878");
     Color colorgris = Color.decode("#252926");
-    javax.swing.JButton closebtn = new JButton("");
+    public javax.swing.JButton closebtn = new JButton("");
     javax.swing.JLabel backgroundlabel = new javax.swing.JLabel();
     JLabel moyenneactuelle=new JLabel(""+String.format("%.1f", Hotel.calculermoyenne())+"/5");
+    public JButton commenterbtn = new JButton();
 
     public Commentaires_Interface() throws Exception {
         initComponents();
     }
 
     private void initComponents() throws Exception {
-      
+     
         // Création de la fenêtre principale
         setUndecorated(true); // Supprime tous les boutons par défaut
         getContentPane().setLayout(null);
@@ -67,7 +51,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         affichercommentaire();
         JLabel rateusJLabel;
 
-        JButton commenterbtn = new JButton();
+
         // les labels:
         if (Hotel.langue == 0) {
 
@@ -151,7 +135,7 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         // Créer une JComboBox et lui fournir le tableau d'entiers comme modèle
 
         // Bouton pour fermer la fenêtre
-        JButton revenirbtn = new JButton("");
+        
         revenirbtn.setBounds(970, 5, 25, 30);
         revenirbtn.setBackground(Color.white);
 
@@ -161,23 +145,8 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         // le positionement exact du boutton.
         closebtn.setBounds(1000, 5, 25, 30);
 
-        // Action pour fermer la fenêtre lorsque le bouton est cliqué
-        revenirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-        });
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    System.exit(0);
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-                }
-            }
-        });
+        
         Icon etoileBlancheIcon = new ImageIcon("For Rent21.png");
         Icon etoileJauneIcon = new ImageIcon("For Rent2.png");
         etoile1Box.setIcon(etoileBlancheIcon);
@@ -389,48 +358,12 @@ public class Commentaires_Interface extends javax.swing.JFrame {
 
         commenterbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                Date today;
-                try {
-                    today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
-                    Commentaires commentaires = new Commentaires(Commentaires.getNb(), commenttxt.getText(),
-                            Hotel.username_current, today, Hotel.id_user_current);
-                    Hotel.AjtCommentaireMap(commentaires);
-                    Iterator<Map.Entry<Integer, Commentaires>> iterator = Hotel.getCommentairesMap().entrySet().iterator();
-
-                    while (iterator.hasNext()) {
-                        Map.Entry<Integer, Commentaires> entry = iterator.next();
-                        Commentaires commentaire = entry.getValue();
-            
-                        JPanel commentairePanel = createPanel(commentaire);
-                        commentairePanel.setPreferredSize(new Dimension(170, 70));
-                        if (commentaire.getIduser() == Hotel.id_user_current) {
-                            commentContainerJPanel.add(commentairePanel, 0);
-                        } else {
-                            commentContainerJPanel.add(commentairePanel);
-            
-                        }
-                    }
-                } catch (Date_nonvalid e1) {
-                    e1.getMessage();
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                commenterbtnactionPerformed();
 
             }
         });
 
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    closebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        });
+
 
         // creation d'un boutton pour le a propos de nous avec ses caractéristiques.
         commenterbtn.setFont(new java.awt.Font("Baskerville Old Face", 0, 14));
@@ -506,12 +439,23 @@ public class Commentaires_Interface extends javax.swing.JFrame {
         return panel;
     }
 
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+    public void commenterbtnactionPerformed(){
+        
+        Iterator<Map.Entry<Integer, Commentaires>> iterator = Hotel.getCommentairesMap().entrySet().iterator();
 
-        Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Commentaires> entry = iterator.next();
+            Commentaires commentaire = entry.getValue();
 
-        Control.hash_map_bdd();
-        System.exit(0);
+            JPanel commentairePanel = createPanel(commentaire);
+            commentairePanel.setPreferredSize(new Dimension(170, 70));
+            if (commentaire.getIduser() == Hotel.id_user_current) {
+                commentContainerJPanel.add(commentairePanel, 0);
+            } else {
+                commentContainerJPanel.add(commentairePanel);
+
+            }
+        }
     }
 
     public static void main(String args[]) {
