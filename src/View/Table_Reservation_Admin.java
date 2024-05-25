@@ -202,66 +202,14 @@ public static void setId_chambre(int id_chambre) {
         //ajouter le tableau au panel:
         tableaupanel.add(jScrollPane1);
        
-        //les actionlistners:
-        acceptdeclinebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    acceptdeclinebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        updatebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    updatebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        suppreservationbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    suppreservationbtnActionPerformed(evt);
-                } catch (Date_nonvalid   e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        closebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    closebtnActionPerformed(evt);
-                } catch (Exception e) {
-                    
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    backtoroomsbtnActionPerformed(evt);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+  
  
         //la taille de la fenetre:
         setSize(new java.awt.Dimension(1032, 580));
         setLocationRelativeTo(null);
     }                      
 
-    private int EnAttente() throws Exception{//fait
+    private int EnAttente() throws Exception{
         
         int selectedRow= reservationtabel.getSelectedRow();
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
@@ -283,49 +231,42 @@ public static void setId_chambre(int id_chambre) {
         
 
     }
-    //fait
-    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
+    //cbn
+    public int updatebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {  //mazelll                                        
         int i=reservationtabel.getSelectedRow();
 
       if(i>=0){
 
         DefaultTableModel model =(DefaultTableModel)reservationtabel.getModel();
         int selectedRow= reservationtabel.getSelectedRow();
-        TypeChambre typeChambre=TypeChambre.ToTypeChambre(model.getValueAt(selectedRow,2).toString());
-        String Date_debut=model.getValueAt(selectedRow,5).toString();
-        String Date_fin=model.getValueAt(selectedRow,6).toString();
-        int idReservation=Integer.parseInt(model.getValueAt(selectedRow,1).toString());
-        int idUser=Integer.parseInt(model.getValueAt(selectedRow,0).toString());
         String etat=model.getValueAt(selectedRow,7).toString();
 
-        OptionSupplementaire opt= OptionSupplementaire.tOptionSupplementaire(model.getValueAt(selectedRow, 3).toString());
         if(!etat.equals("ACCEPTER")){
           model.setValueAt(acceptdeclinebox.getSelectedItem(),i,7);
           if(EnAttente()==1){
-            double prix =Hotel.getReservationMap().get(idReservation).getPrix();
             
-            Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,getId_chambre() ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix,opt);
-            Hotel.ModifierReservationMap(newres);
+            return 1;
                     
             }else{
-                double prix =Hotel.getReservationMap().get(idReservation).getPrix();
-                Reservation newres=new Reservation(idReservation, idUser,Date.Recupere_date(Date_fin), Date.Recupere_date(Date_debut), typeChambre,-1 ,EtatReservation.toEtatReservation(acceptdeclinebox.getSelectedItem().toString()),prix,opt);
-                Hotel.ModifierReservationMap(newres);
+              
+                return 2;
             } 
         }else{
             JOptionPane.showMessageDialog(frame,
             "DEJA ACCEPTER !",
             "ACCEPTER",
             JOptionPane.INFORMATION_MESSAGE);
+            return -1;
 
         }
       }else{
           JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
+          return -1;
       }
        
     }                   
-    
-    private void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid { //fait                                          
+    //cbn
+    public  void suppreservationbtnActionPerformed(java.awt.event.ActionEvent evt) throws Date_nonvalid { //fait                                          
         int i=Admin.supprimerreservationinutile();
         if (i>0) {
             JOptionPane.showMessageDialog(frame,"vous avez supprimé - "+i+" - réservations inutile !");
@@ -337,7 +278,7 @@ public static void setId_chambre(int id_chambre) {
         //insert into reservation(idUser,type,dateDebut,dateFin,idChambre,etat,prix,`option`) values(15,'SOLO','10/5/2024','25/5/2024',-1,'DECLINER',5432.87,'SONA');
     } 
 
-    
+    //cbn  
     public int acceptdeclinebtnActionPerformed(java.awt.event.ActionEvent evt) throws HeadlessException, Exception {//fait
         DefaultTableModel model= (DefaultTableModel)reservationtabel.getModel();
         int i=reservationtabel.getSelectedRow();
@@ -346,6 +287,7 @@ public static void setId_chambre(int id_chambre) {
 
             int selectedRow= reservationtabel.getSelectedRow();
             String etat=model.getValueAt(selectedRow,7).toString();
+
         if(etat.equals("ACCEPTER")){
 
             JOptionPane.showMessageDialog(frame,
@@ -376,7 +318,7 @@ public static void setId_chambre(int id_chambre) {
                 
                 if(a==0){
                     model.setValueAt("DECLINER",i,7);
-                
+            
                 return 2;
                 }else{
                     JOptionPane.showMessageDialog(frame, "Vous devez 'DECLINER' Manuellement");
@@ -385,26 +327,25 @@ public static void setId_chambre(int id_chambre) {
         }
     }  
     }else{
+        
         JOptionPane.showMessageDialog(null,"Selection une ligne dans le tableau");
-    }      
+        return -1;
+    }   
+
         return -1;                      
     }
                                                 
-    private void backtoroomsbtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {  //fait                                             
-        new Admin_chambres_option();
-        Control.hash_map_bdd();
-        this.dispose();
-    }                                              
+                                           
 
     private JFrame frame;
-
-    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                         
+    //cbn
+    public boolean closebtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                         
     frame=new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame,"DO YOU REALY WANT TO CLOSE THIS WINDOW?","MySQL Connector",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {   
-            Control.hash_map_bdd();
-            System.exit(0);
+            return true;
         }
+        return false;
     } 
     
     public static void main(String args[]) {
@@ -424,17 +365,17 @@ public static void setId_chambre(int id_chambre) {
     }
 
     // Variables declaration - do not modify   
-    private javax.swing.JButton suppreservationbtn;                  
-    private javax.swing.JComboBox<String> acceptdeclinebox;
+    public javax.swing.JButton suppreservationbtn;                  
+    public javax.swing.JComboBox<String> acceptdeclinebox;
     public javax.swing.JButton acceptdeclinebtn;
     private javax.swing.JLabel reservationinutilelabel;
     private javax.swing.JLabel acceptordeclinelabel;
     private javax.swing.JLabel clicklabel;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable reservationtabel;
-    private javax.swing.JButton updatebtn;
-    private javax.swing.JButton closebtn;
-    private javax.swing.JButton backtoroomsbtn;
+    public javax.swing.JButton updatebtn;
+    public javax.swing.JButton closebtn;
+    public javax.swing.JButton backtoroomsbtn;
     // End of variables declaration                   
 }
 

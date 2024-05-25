@@ -6,6 +6,8 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import Control.Control;
+
 public class Loby_Admin extends javax.swing.JFrame {
     javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
@@ -138,7 +140,7 @@ public class Loby_Admin extends javax.swing.JFrame {
 
     private void passeraureservationActionPerformed() throws Exception {
         try {
-          new Table_Reservation_Admin();
+          Control.Action_TableReservationAdmin();
         } catch (Exception e) {
             e.getMessage();
         }
