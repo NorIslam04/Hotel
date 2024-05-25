@@ -3,8 +3,7 @@ import Model.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Window;
-import java.sql.SQLException;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,14 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+
 import javax.swing.border.Border;
 
-import Control.Control;
 
 public class Signe_in extends javax.swing.JFrame {
     
-    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public  javax.swing.JComboBox<String> langueBox = new JComboBox<>();
 
     public Signe_in() {
         initComponents();
@@ -290,7 +288,7 @@ public class Signe_in extends javax.swing.JFrame {
     private static JFrame frame;
 
 
-    public static void togglePasswordVisibility() {//fait
+    public  void togglePasswordVisibility() {//fait
         // Changer le type de champ de texte pour afficher ou masquer le mot de passe
         if (pwdtext.getEchoChar() == '\u2022') {
             pwdtext.setEchoChar((char) 0); // Afficher le mot de passe
@@ -303,7 +301,7 @@ public class Signe_in extends javax.swing.JFrame {
     
 
     //cbn
-   public static void changerlangue(){//fait
+   public  void changerlangue(){//fait
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
@@ -313,7 +311,7 @@ public class Signe_in extends javax.swing.JFrame {
        
     }
 
-    public static int submitbtnActionPerformed(java.awt.event.ActionEvent evt)  {
+    public  int submitbtnActionPerformed(java.awt.event.ActionEvent evt)  {
         if(Hotel.verif_email(mailtext.getText())){
 
             if(User.motdepass(pwdtext.getText())){
@@ -367,21 +365,21 @@ public class Signe_in extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JLabel backgroundlabel;
-    public static javax.swing.JButton closebtn;
+    public  javax.swing.JButton closebtn;
     private javax.swing.JLabel maillabel;
-    public static javax.swing.JTextField mailtext;
+    public  javax.swing.JTextField mailtext;
     private javax.swing.JLabel pwdlabel;
-    public static javax.swing.JPasswordField pwdtext;
+    public  javax.swing.JPasswordField pwdtext;
     private javax.swing.JLabel signinlabel;
-    public static javax.swing.JButton submitbtn;
+    public  javax.swing.JButton submitbtn;
     private javax.swing.JLabel userlabel;
-    public static javax.swing.JTextField usertext;
+    public  javax.swing.JTextField usertext;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JLabel descriptionlabel;
-    public static JCheckBox showPasswordButton;
-    public static JButton seConnecterButton;
+    public  JCheckBox showPasswordButton;
+    public  JButton seConnecterButton;
     private javax.swing.JLabel showPasswordLabel;
-    public static JButton aPropos;
+    public  JButton aPropos;
     // End of variables declaration
 
 }

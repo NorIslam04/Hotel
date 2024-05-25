@@ -7,23 +7,34 @@ import View.*;
 import Model.Hotel.TypeOperation;
 import Model.Option.Rooms_Options;
 
-import java.awt.Window;
 import java.awt.event.*;
+import Model.Date;
 
 
 
 import java.sql.*;
 import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-
-
 public class Control {
 
     public static double total_prix=-1;
     public static int tmp;
+    public static Date date_debut;
+    public static Date date_fin;
+    public static Date today;
+
+
+    static Login l;
+    static Signe_in s;
+    static APropos a;
+    static Admin_chambres_option ACO;
+    static Loby_Admin la;
+    static Loby_User lu;
+    static Table_Reseravtion_User tru;
+    static Table_Reservation_Admin tra;
+    static Tarif_Option_Chambres TOC;
+    static Chambre_interface ci;
+
 
     
     
@@ -102,17 +113,17 @@ public class Control {
     //cbn
     public static void Action_Login(){ 
 
-       new Login();
+       Login l=new Login();
 
-        Login.seConnerButton.addActionListener(new ActionListener() {
+        l.seConnerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             
                 
-                switch (Login.seConnecterbtnActionPerformed(evt)) {
+                switch (l.seConnecterbtnActionPerformed(evt)) {
                     case -1:
                     if (tmp==0) {
                         Action_Signin();
-                        SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();  
+                        l.dispose();  
                     }else{
                         System.exit(1);
                     } 
@@ -120,19 +131,19 @@ public class Control {
                     case 1:
                     Loby_User ch = new Loby_User();
                     ch.setVisible(true);
-                    SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();
+                    l.dispose();
                         break;
                     case 2:
                     
                     new Loby_Admin();
-                    SwingUtilities.getWindowAncestor(Login.seConnerButton).dispose();                        break;
+                     l.dispose();                        break;
                    
                 }
                
             }
         });
 
-        Login.aPropos.addActionListener(new ActionListener() {
+        l.aPropos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Control.Action_apropos();
 
@@ -140,30 +151,30 @@ public class Control {
             }
         });
 
-        Login.sinscrireButton.addActionListener(new ActionListener() {
+        l.sinscrireButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Action_Signin();
-                SwingUtilities.getWindowAncestor(Login.sinscrireButton).dispose();
+                l.dispose();
             }
         });
 
-        Login.closebtn.addActionListener(new ActionListener() {
+        l.closebtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 System.exit(0);
             }
         });
 
-        Login.showPasswordButton.addActionListener(new ActionListener() {
+        l.showPasswordButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Login.togglePasswordVisibility();
+                l.togglePasswordVisibility();
             }
         });
 
-        Login.langueBox.addActionListener(new ActionListener() {
+        l.langueBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                // 7ta t3abez 3la box bch yasra had l fnct
-                Login.changerlangue();
-                SwingUtilities.getWindowAncestor(Login.langueBox).dispose();
+                l.changerlangue();
+                l.dispose();
                 Action_Login();  
             }
         });
@@ -172,71 +183,71 @@ public class Control {
     //cbn
     public static void Action_Signin(){//fait
 
-        new Signe_in();
+        s=new Signe_in();
 
-        Signe_in.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
+        s.seConnecterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Action_Login();
-                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+                s.dispose();
         
             }
 
            
         });
 
-        Signe_in.aPropos.addActionListener(new java.awt.event.ActionListener() {
+        s.aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Control.Action_apropos();
             }
         });
 
-        Signe_in.closebtn.addActionListener(new java.awt.event.ActionListener() {
+        s.closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 System.exit(0);
             }
         });
 
-        Signe_in.showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
+        s.showPasswordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                Signe_in.togglePasswordVisibility();
+                s.togglePasswordVisibility();
             }
         });
 
-        Signe_in.langueBox.addActionListener(new java.awt.event.ActionListener() {
+        s.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Signe_in.changerlangue();
-                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+                s.changerlangue();
+               s.dispose();
 
                 Action_Signin();
             }
         });
 
-        Signe_in.submitbtn.addActionListener(new ActionListener() {
+        s.submitbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-               switch (Signe_in.submitbtnActionPerformed(evt)) {
+               switch (s.submitbtnActionPerformed(evt)) {
                 case 1:
                 Action_Login();  
                     break;
 
                 case 2:
                 Hotel.id_user_current=User.getNb();
-                User user = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
+                User user = new User(User.getNb(), s.mailtext.getText(), s.usertext.getText(), s.pwdtext.getText(),-1);
              
                 Hotel.AjtUserMap(user);
-                Hotel.username_current=Signe_in.usertext.getText();
+                Hotel.username_current=s.usertext.getText();
        
                 Hotel.neew=1;
                 new Loby_User();
 
-                    break;
+                      break;
                 case 3:
                 Hotel.id_user_current=User.getNb();
-                User user1 = new User(User.getNb(), Signe_in.mailtext.getText(), Signe_in.usertext.getText(), Signe_in.pwdtext.getText(),-1);
+                User user1 = new User(User.getNb(), s.mailtext.getText(), s.usertext.getText(), s.pwdtext.getText(),-1);
                 Hotel.AjtUserMap(user1);
-                Hotel.username_current=Signe_in.usertext.getText();
+                Hotel.username_current=s.usertext.getText();
                 Hotel.neew=1;
                 new Loby_User();
-                SwingUtilities.getWindowAncestor(Signe_in.seConnecterButton).dispose();
+               s.dispose();
 
                 break;
                }
@@ -248,23 +259,23 @@ public class Control {
 
     //cbn
     public static void Action_TableReservationUser(){
-        new Table_Reseravtion_User();
+       tru=new Table_Reseravtion_User();
     
     
         //cbn
-        Table_Reseravtion_User.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
+        tru.cancelReservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
 
-                int id_res=Table_Reseravtion_User.cancelReservationBtnActionPerformed(evt);
+                int id_res=tru.cancelReservationBtnActionPerformed(evt);
                 if (id_res!=-1) {
-                    OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());
-                    Reservation reservation=new Reservation(id_res, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(Table_Reseravtion_User.state.getText()), -1,opt);
+                    OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(tru.roompricebox.getSelectedItem().toString());
+                    Reservation reservation=new Reservation(id_res, Hotel.id_user_current, Date.Recupere_date(tru.enddatetext.getText()), Date.Recupere_date(tru.startdatetext.getText()), TypeChambre.ToTypeChambre((String)tru.roomtypebox.getSelectedItem()),-99, EtatReservation.toEtatReservation(tru.state.getText()), -1,opt);
                     Hotel.getReservationMap().get(id_res).sup=1;
                     ModificationHotel<Reservation, TypeOperation> suppReservation = new ModificationHotel<>(reservation.getId(),
 					reservation, TypeOperation.SUPPRESSION);
 			        Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
-                    Table_Reseravtion_User.mettreajourlesreservation();
+                    tru.mettreajourlesreservation();
                     
                 }
             } catch (Exception e) {
@@ -274,15 +285,15 @@ public class Control {
     });
 
     //cbn
-        Table_Reseravtion_User.addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.addreservationbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            Date date_debut=Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText());
-            Date date_fin=Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText());
+            Date date_debut=Date.Recupere_date(tru.startdatetext.getText());
+            Date date_fin=Date.Recupere_date(tru.enddatetext.getText());
             int nb_day=Date.differenceEntreDates(date_debut, date_fin);
             double prix=0;
 
-            switch ((String)Table_Reseravtion_User.roompricebox.getSelectedItem()) {
+            switch ((String)tru.roompricebox.getSelectedItem()) {
                 case "SONA":
                 prix=Option.GetPrix("SONA");
                     break;
@@ -300,7 +311,7 @@ public class Control {
                     break;
             }
 
-            switch ((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()) {
+            switch ((String)tru.roomtypebox.getSelectedItem()) {
                 case "SOLO":
                 prix+=Option.GetPrix("SOLO");
                     break;
@@ -318,10 +329,10 @@ public class Control {
                     break;
             }
             total_prix=prix*nb_day;
-            double i=Table_Reseravtion_User.addreservationbtnActionPerformed(evt);
+            double i=tru.addreservationbtnActionPerformed(evt);
             if (i==1) {
-                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString()) ;
-                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()), Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
+                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(tru.roompricebox.getSelectedItem().toString()) ;
+                Reservation reservation=new Reservation(Reservation.getNb()+1, Hotel.id_user_current, Date.Recupere_date(tru.enddatetext.getText()), Date.Recupere_date(tru.startdatetext.getText()), TypeChambre.ToTypeChambre((String)tru.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
                 Hotel.AjtReservationMap(reservation);
             }
 
@@ -333,25 +344,25 @@ public class Control {
 
 
     //cbn
-    Table_Reseravtion_User.tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
+    tru.tablereservation.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) { 
-            Table_Reseravtion_User.tablereservationMouseClicked(evt);
+            tru.tablereservationMouseClicked(evt);
         }
     });
 
 
 
     //cbn
-    Table_Reseravtion_User.updatebtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.updatebtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                Date date_fin = Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText());
-                Date date_debut = Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText());
+                Date date_fin = Date.Recupere_date(tru.enddatetext.getText());
+                Date date_debut = Date.Recupere_date(tru.startdatetext.getText());
 
                 int nb_day=Date.differenceEntreDates(date_debut, date_fin);
                 double prix=0;
 
-                switch ((String)Table_Reseravtion_User.roompricebox.getSelectedItem()) {
+                switch ((String)tru.roompricebox.getSelectedItem()) {
                     case "SONA":
                     prix=Option.GetPrix("SONA");
                         break;
@@ -369,7 +380,7 @@ public class Control {
                         break;
                 }
     
-                switch ((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()) {
+                switch ((String)tru.roomtypebox.getSelectedItem()) {
                     case "SOLO":
                     prix+=Option.GetPrix("SOLO");
                         break;
@@ -390,11 +401,11 @@ public class Control {
                 total_prix=prix*nb_day;
 
 
-                int id_res=Table_Reseravtion_User.updatebtnActionPerformed(evt);
+                int id_res=tru.updatebtnActionPerformed(evt);
                 if (id_res!=-1) {
                     
-                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(Table_Reseravtion_User.roompricebox.getSelectedItem().toString());       
-                Reservation reservation =new Reservation(id_res,Hotel.id_user_current, Date.Recupere_date(Table_Reseravtion_User.enddatetext.getText()),  Date.Recupere_date(Table_Reseravtion_User.startdatetext.getText()), TypeChambre.ToTypeChambre((String)Table_Reseravtion_User.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
+                OptionSupplementaire opt =OptionSupplementaire.tOptionSupplementaire(tru.roompricebox.getSelectedItem().toString());       
+                Reservation reservation =new Reservation(id_res,Hotel.id_user_current, Date.Recupere_date(tru.enddatetext.getText()),  Date.Recupere_date(tru.startdatetext.getText()), TypeChambre.ToTypeChambre((String)tru.roomtypebox.getSelectedItem()),-1, EtatReservation.EN_ATTENTE,total_prix,opt);
                 Hotel.ModifierReservationMap(reservation);
                 }
 
@@ -404,12 +415,12 @@ public class Control {
         }
     });
 
-    Table_Reseravtion_User.exitbtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.exitbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             try {
-                if(Table_Reseravtion_User.exitbtnActionPerformed(evt)==1){
+                if(tru.exitbtnActionPerformed(evt)==1){
                     Control.hash_map_bdd();
-                    SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
+                    tru.dispose();
                     System.exit(1);
                 }
             } catch (Exception e) {
@@ -418,14 +429,14 @@ public class Control {
         }
     });
 
-    Table_Reseravtion_User.backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
+    tru.backtoroomsbtn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     Control.hash_map_bdd();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }                                              
-                SwingUtilities.getWindowAncestor(Table_Reseravtion_User.exitbtn).dispose();
+             tru.dispose();
                 Control.Action_Chambre_Intreface();
             } 
     });
@@ -435,11 +446,13 @@ public class Control {
     //cbn
     public static void Action_AdminOptionChambre(int i) throws Exception{
 
-        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) Admin_chambres_option.roomtypebox.getSelectedItem());
-        boolean Sona =   Admin_chambres_option.sonaCheckBox.isSelected();
-        boolean climatisation =Admin_chambres_option. terasseCheckBox.isSelected();
-        boolean vuesurmer = Admin_chambres_option.vuesurmerBox.isSelected();
-        boolean vueforet = Admin_chambres_option.vuesurforetBox.isSelected();
+        ACO=new Admin_chambres_option();
+
+        TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) ACO.roomtypebox.getSelectedItem());
+        boolean Sona =   ACO.sonaCheckBox.isSelected();
+        boolean climatisation =ACO. terasseCheckBox.isSelected();
+        boolean vuesurmer = ACO.vuesurmerBox.isSelected();
+        boolean vueforet = ACO.vuesurforetBox.isSelected();
       
         switch (i) {
             case 1:
@@ -448,11 +461,11 @@ public class Control {
                 break;
 
             case 2:
-            if(Admin_chambres_option.id_supp_chamb !=-1){
+            if(ACO.id_supp_chamb !=-1){
 
-                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb).setSup(1);
-                ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(Admin_chambres_option.id_supp_chamb,
-                Hotel.getChambreMap().get(Admin_chambres_option.id_supp_chamb), TypeOperation.SUPPRESSION);
+                Hotel.getChambreMap().get(ACO.id_supp_chamb).setSup(1);
+                ModificationHotel<Chambre, TypeOperation> suppReservation = new ModificationHotel<>(ACO.id_supp_chamb,
+                Hotel.getChambreMap().get(ACO.id_supp_chamb), TypeOperation.SUPPRESSION);
                 Hotel.getModificationMap().put(ModificationHotel.getNb(), suppReservation);
                
             }   
@@ -461,7 +474,7 @@ public class Control {
             case 3:
           
             if(Admin_chambres_option.id_supp_chamb !=-1){
-                Chambre chambrerecherchee1 = new Chambre(Admin_chambres_option.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
+                Chambre chambrerecherchee1 = new Chambre(ACO.id_supp_chamb, typeChambre, Sona, climatisation, vuesurmer, vueforet);   
                 Hotel.ModifierChambreMap(chambrerecherchee1);
             }
             
@@ -469,15 +482,15 @@ public class Control {
             case 4:
 
             int id=0;
-            Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()) ;
+            Rooms_Options rooms_Options = Rooms_Options.ToTypeChambre(ACO.typeandoptionsbox.getSelectedItem().toString()) ;
             for (Map.Entry<Integer, Option> entry : Hotel.getOptionHashMap().entrySet()) {
                 if (entry.getValue().getRooms_Options().equals(rooms_Options)) {
                     id= entry.getKey();
                     break;
                 }
                     }
-            double newprice=Double.parseDouble(Admin_chambres_option.nouveauprixtxt.getText());
-            Option option = new Option(Rooms_Options.ToTypeChambre(Admin_chambres_option.typeandoptionsbox.getSelectedItem().toString()),newprice , id);
+            double newprice=Double.parseDouble(ACO.nouveauprixtxt.getText());
+            Option option = new Option(Rooms_Options.ToTypeChambre(ACO.typeandoptionsbox.getSelectedItem().toString()),newprice , id);
             Hotel.ModifieroptionMap(option);
 
             Hotel.getChambreMap().clear();
@@ -494,7 +507,7 @@ public class Control {
 
             case 6:
             Control.hash_map_bdd();
-            SwingUtilities.getWindowAncestor(Admin_chambres_option.revenirbtn).dispose(); 
+            ACO.dispose(); 
                     break;
         }            
 
@@ -505,61 +518,62 @@ public class Control {
 
     }
 
+    //sans database
     public static void Action_apropos(){
 
-        new APropos();
+        a=new APropos();
 
-        APropos.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+        a.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SwingUtilities.getWindowAncestor(APropos.revenirbtn).dispose();
+                
+          a.dispose();
+                
             }
         });
 
-        APropos.closebtn.addActionListener(new java.awt.event.ActionListener() {
+        a.closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 System.exit(0);
             }
         });
 
-        APropos.langueBox.addActionListener(new java.awt.event.ActionListener() {
+        a.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                APropos.changerlangue();
-                SwingUtilities.getWindowAncestor( APropos.langueBox).dispose();
+                a.changerlangue();
+                a.dispose();
                 Action_apropos();
        
             }
         });
     }
-    //cbn
+    //cbn //sans data base
     public static void Action_Chambre_Intreface(){
 
-        new Chambre_interface();
+        ci=new Chambre_interface();
 
-        Chambre_interface.aPropos.addActionListener(new java.awt.event.ActionListener() {
+        ci.aPropos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Control.Action_apropos();
-                SwingUtilities.getWindowAncestor(Chambre_interface.aPropos).dispose();
             }
         });
 
-        Chambre_interface.passeraureservationbtn.addActionListener(new java.awt.event.ActionListener() {
+        ci.passeraureservationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Control.Action_TableReservationUser();
-                SwingUtilities.getWindowAncestor(Chambre_interface.passeraureservationbtn).dispose();
+              ci.dispose();
             }
         });
 
-        Chambre_interface.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+        ci.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SwingUtilities.getWindowAncestor(Chambre_interface.revenirbtn).dispose();
+            ci.dispose();
             }
         });
 
-        Chambre_interface.avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
+        ci.avissurnousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     new Commentaires_Interface();
-                    SwingUtilities.getWindowAncestor(Chambre_interface.avissurnousButton).dispose();
                 } catch (Exception e) {
         
                     e.printStackTrace();
@@ -567,27 +581,28 @@ public class Control {
             }
         });
 
-        Chambre_interface.reserverpardetailbtn.addActionListener(new java.awt.event.ActionListener() {
+        ci.reserverpardetailbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    new Tarif_Option_Chambres();
-                    SwingUtilities.getWindowAncestor(Chambre_interface.reserverpardetailbtn).dispose();
+                   ci.dispose();
+                    Control.Action_TariOptionChambre();
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        Chambre_interface.closebtn.addActionListener(new java.awt.event.ActionListener() {
+        ci.closebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.exit(0);
+                System.exit(1);
             }
         });
 
-        Chambre_interface.langueBox.addActionListener(new java.awt.event.ActionListener() {
+        ci.langueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Chambre_interface.changerlangue();
-                SwingUtilities.getWindowAncestor(Chambre_interface.langueBox).dispose();
+                ci.changerlangue();
+                ci.dispose();
                 Control.Action_Chambre_Intreface();
        
             }
@@ -597,6 +612,134 @@ public class Control {
 
     }
 
+    public static void Action_TariOptionChambre() throws Exception{
+
+       TOC=new Tarif_Option_Chambres();
+
+        TOC.reserverbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                try{
+                
+                today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                date_debut = new Date((Integer) TOC.jourdebutBox.getSelectedItem(),
+                    (Integer) TOC.moisdebutBox.getSelectedItem(), (Integer) TOC.anneedebutBox.getSelectedItem());
+
+                date_fin = new Date((Integer) TOC.jourfinBox.getSelectedItem(), (Integer) TOC.moisfinBox.getSelectedItem(),
+                    (Integer) TOC.anneefinBox.getSelectedItem());
+
+
+                TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) TOC.roomtypebox.getSelectedItem());
+                boolean tv = TOC.sonaCheckBox.isSelected();
+                boolean climatisation = TOC.terasseCheckBox.isSelected();
+                boolean vuesurmer = TOC.vuesurmerBox.isSelected();
+                boolean vueforet = TOC.vuesurforetBox.isSelected();
+                    if(TOC.reserverbtnbtnActionPerformed()!=-1){
+                Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+                total_prix=chambrerecherchee.getPrix();
+                Control.Action_TableReservationUser();
+                TOC.reserverbtnbtnActionPerformed();
+               TOC.dispose();
+                }
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+            }
+        });
+
+
+        TOC.closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                System.exit(0);
+            }
+        });
+
+        TOC.afficherprixButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+               try{
+                
+                today = new Date(Date.getToday_jour(), Date.getToday_mois(), Date.getToday_annee());
+                date_debut = new Date((Integer) TOC.jourdebutBox.getSelectedItem(),
+                    (Integer)TOC.moisdebutBox.getSelectedItem(), (Integer) TOC.anneedebutBox.getSelectedItem());
+
+                date_fin = new Date((Integer) TOC.jourfinBox.getSelectedItem(), (Integer) TOC.moisfinBox.getSelectedItem(),
+                    (Integer) TOC.anneefinBox.getSelectedItem());
+
+
+                TypeChambre typeChambre = TypeChambre.ToTypeChambre((String) TOC.roomtypebox.getSelectedItem());
+                boolean tv = TOC.sonaCheckBox.isSelected();
+                boolean climatisation = TOC.terasseCheckBox.isSelected();
+                boolean vuesurmer = TOC.vuesurmerBox.isSelected();
+                boolean vueforet = TOC.vuesurforetBox.isSelected();
+                    if(TOC.afficherprixbtnbtnActionPerformed()!=-1){
+                Chambre chambrerecherchee = new Chambre(0, typeChambre, tv, climatisation, vuesurmer, vueforet);
+                total_prix=chambrerecherchee.getPrix();
+                TOC.afficherprixbtnbtnActionPerformed();
+                }
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+               
+               
+            }
+        });
+
+        TOC.revenirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TOC.dispose();
+                Control.Action_Chambre_Intreface();
+            }
+        });
+
+        TOC.sonaCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                TOC.terasseCheckBox.setSelected(false);
+                TOC.vuesurforetBox.setSelected(false);
+                TOC.vuesurmerBox.setSelected(false);
+        
+
+            }
+        });
+
+        TOC.terasseCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                TOC.sonaCheckBox.setSelected(false);
+                TOC.vuesurforetBox.setSelected(false);
+                TOC.vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        TOC.vuesurforetBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                TOC.sonaCheckBox.setSelected(false);
+                TOC.terasseCheckBox.setSelected(false);
+                TOC.vuesurmerBox.setSelected(false);
+
+            }
+        });
+
+
+        TOC.vuesurmerBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                TOC.sonaCheckBox.setSelected(false);
+                TOC.terasseCheckBox.setSelected(false);
+                TOC.vuesurforetBox.setSelected(false);
+
+            }
+        });
+
+    }
 
     public static void afficherHashMap(int i) {
         switch (i) {

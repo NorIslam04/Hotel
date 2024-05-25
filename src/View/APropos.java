@@ -9,9 +9,9 @@ import javax.swing.*;
 
 
 public class APropos extends javax.swing.JFrame {
-    public static javax.swing.JComboBox<String> langueBox = new JComboBox<>();
-    public static JButton revenirbtn = new JButton("");
-    public static javax.swing.JButton closebtn = new JButton(" ");
+    public  javax.swing.JComboBox<String> langueBox = new JComboBox<>();
+    public  JButton revenirbtn = new JButton("");
+    public  javax.swing.JButton closebtn = new JButton(" ");
 
     public APropos() {
         initComponents();
@@ -215,7 +215,7 @@ public class APropos extends javax.swing.JFrame {
     
   
     
-    public static void changerlangue(){
+    public  void changerlangue(){
         if(langueBox.getSelectedItem()=="English"||langueBox.getSelectedItem()=="Anglais"){
             Hotel.langue=0;
            
