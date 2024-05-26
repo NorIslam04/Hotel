@@ -930,6 +930,8 @@ public class Control {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
                 try {
+                    Hotel.RechercheuserParId(Hotel.id_user_current).setNote(Commentaires_Interface.note);
+                    Hotel.ModifierUserMap(Hotel.RechercheuserParId(Hotel.id_user_current));
                     Control.hash_map_bdd();
                 } catch (Exception e) {
                     e.printStackTrace();
